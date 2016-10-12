@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
-    public float forwardSpeed = 1;
+    public float forwardSpeed;
     public KeyCode leftKey;
     public KeyCode rightKey;
 

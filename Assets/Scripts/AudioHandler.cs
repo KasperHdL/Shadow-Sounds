@@ -9,17 +9,18 @@ public class AudioHandler : MonoBehaviour {
     private List<int> playInts = new List<int>();
     public int Idx;
     public bool Pitch;
+    
+    void Start()
+    {
 
-    //void Start()
-    //{
-    //    //setting up the play positions
-    //    for (int i = 1; i < Idx; i*=2)
-    //    {
-    //        playInts.Add(Idx-i);
-    //    }
-    //}
+        //    //setting up the play positions
+        //    for (int i = 1; i < Idx; i*=2)
+        //    {
+        //        playInts.Add(Idx-i);
+        //    }
+    }
 
-	void Update () {
+    void Update () {
         for(int i = 0;i < sources.Count; i++){
             
             //The relative difference
@@ -37,13 +38,13 @@ public class AudioHandler : MonoBehaviour {
 
             float m = d.sqrMagnitude;
             if(d.y < 0f)
-                m *= 2f;
+                m *= 3f;
             
             if(Pitch)
-                sources[i].pitch = 3f / (sources[i].transform.position.y - player.position.y);
+                sources[i].pitch = 5f / (sources[i].transform.position.y - player.position.y);
             
             
-            sources[i].volume = 2f / m;
+            sources[i].volume = 1f / m;
 
             if(d.x < -0.5f){
                 sources[i].panStereo = -1f;
