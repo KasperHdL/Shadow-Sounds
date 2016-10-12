@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class AudioHandler : MonoBehaviour {
     
     public Transform player;
-    public float listenXRange = 2f;
     public List<AudioSource> sources;
     private List<int> playInts = new List<int>();
     public int Idx;
@@ -39,16 +38,16 @@ public class AudioHandler : MonoBehaviour {
             float m = d.sqrMagnitude;
             if(d.y < 0f)
                 m *= 2f;
-
-            sources[i].volume = 1f / m;
+            
             if(Pitch)
                 sources[i].pitch = 3f / (sources[i].transform.position.y - player.position.y);
             
+            
+            sources[i].volume = 2f / m;
 
-
-            if (d.x < -0.5f && d.x > -listenXRange){
+            if(d.x < -0.5f){
                 sources[i].panStereo = -1f;
-            }else if(d.x > 0.5f && d.x < listenXRange){
+            }else if(d.x > 0.5f){
                 sources[i].panStereo = 1f;
             }else{
                 sources[i].panStereo = 0f;
