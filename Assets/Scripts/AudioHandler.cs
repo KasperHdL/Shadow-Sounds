@@ -9,7 +9,8 @@ public class AudioHandler : MonoBehaviour {
     private List<int> playInts = new List<int>();
     public int Idx;
     public bool Pitch;
-    
+    public float volumeOfObstacle;
+
     void Start()
     {
 
@@ -44,7 +45,7 @@ public class AudioHandler : MonoBehaviour {
                 sources[i].pitch = 5f / (sources[i].transform.position.y - player.position.y);
             
             
-            sources[i].volume = 1f / m;
+            sources[i].volume = volumeOfObstacle / m;
 
             if(d.x < -0.5f){
                 sources[i].panStereo = -1f;
