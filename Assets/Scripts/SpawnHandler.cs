@@ -14,6 +14,12 @@ public class SpawnHandler : MonoBehaviour {
         player = audioHandler.player;
 
         spawnObstacles(100,new Vector2(100,100),player.position.y + 15);
+        spawnObstacles(100,new Vector2(100,100),player.position.y + 115);
+        spawnObstacles(100,new Vector2(100,100),player.position.y + 215);
+        spawnObstacles(100,new Vector2(100,100),player.position.y + 315);
+        spawnObstacles(100,new Vector2(100,100),player.position.y + 415);
+        spawnObstacles(100,new Vector2(100,100),player.position.y + 515);
+        
 
     }
 
