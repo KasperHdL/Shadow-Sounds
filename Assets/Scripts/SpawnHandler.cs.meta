@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 015ceb23a510b40209b4ecd3b408df36
+timeCreated: 1476266743
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - obstacle_prefab: {fileID: 1000010448511000, guid: f8ed6d64b170442a296d1db062fd1445,
+      type: 2}
+  - player: {instanceID: 0}
+  - audioHandler: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
