@@ -4,7 +4,8 @@ using System.Collections;
 public class SpawnHandler : MonoBehaviour {
 
     public GameObject obstacle_prefab;
-    public int amount;
+    public int numSpawns;
+    public Vector2 spawnArea;
 
     private Transform player;
     private AudioHandler audioHandler;
@@ -14,12 +15,7 @@ public class SpawnHandler : MonoBehaviour {
         audioHandler = GetComponent<AudioHandler>();
         player = audioHandler.player;
 
-        spawnObstacles(amount, new Vector2(100,100),player.position.y + 15);
-        spawnObstacles(amount, new Vector2(100,100),player.position.y + 115);
-        spawnObstacles(amount, new Vector2(100,100),player.position.y + 215);
-        spawnObstacles(amount, new Vector2(100,100),player.position.y + 315);
-        spawnObstacles(amount, new Vector2(100,100),player.position.y + 415);
-        spawnObstacles(amount, new Vector2(100,100),player.position.y + 515);
+        spawnObstacles(numSpawns, spawnArea, player.position.y + 15);
     }
 
     void spawnObstacles(int num, Vector2 area, float yPos){
