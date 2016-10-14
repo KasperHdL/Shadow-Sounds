@@ -20,8 +20,6 @@ public class SpawnHandler : MonoBehaviour {
         spawnObstacles(amount, new Vector2(100,100),player.position.y + 315);
         spawnObstacles(amount, new Vector2(100,100),player.position.y + 415);
         spawnObstacles(amount, new Vector2(100,100),player.position.y + 515);
-        
-
     }
 
     void spawnObstacles(int num, Vector2 area, float yPos){

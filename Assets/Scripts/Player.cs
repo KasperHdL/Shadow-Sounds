@@ -12,8 +12,6 @@ public class Player : MonoBehaviour {
 	}
 	
 	void Update () {
-        float h = Input.GetAxis("Horizontal");
-
         Vector3 d = Vector3.up * forwardSpeed * Time.deltaTime;
         if(Input.GetKeyDown(leftKey))
             d.x = -1f;
