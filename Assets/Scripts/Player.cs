@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
+    public LevelHandler levelHandler;
     public float forwardSpeed;
     public KeyCode leftKey;
     public KeyCode rightKey;
@@ -22,6 +23,10 @@ public class Player : MonoBehaviour {
 	}
 
     void OnCollisionEnter2D(Collision2D coll){
+        if(coll.gameObject.tag == "Obstacle"){
+            transform.position = levelHandler.GetResetPosition();
 
+
+        }
     }
 }

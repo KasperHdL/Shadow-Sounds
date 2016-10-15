@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012911777730}
   - 114: {fileID: 114000011676983098}
-  - 114: {fileID: 114000014273334672}
   - 82: {fileID: 82000012692131860}
   m_Layer: 0
   m_Name: Handler
@@ -128,21 +127,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  sources: []
+  sources:
+  - {fileID: 0}
+  - {fileID: 0}
   Idx: 256
   Pitch: 1
-  volumeOfObstacle: 0.5
---- !u!114 &114000014273334672
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000014008146670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 015ceb23a510b40209b4ecd3b408df36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obstacle_prefab: {fileID: 1000010448511000, guid: f8ed6d64b170442a296d1db062fd1445,
-    type: 2}
-  amount: 75
+  volumeOfObstacle: 2
