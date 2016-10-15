@@ -29,4 +29,15 @@ public class Player : MonoBehaviour {
 
         }
     }
+
+    void OnTriggerEnter2D(Collider2D other) {
+
+        if(other.tag == "PositiveObject"){
+            Destroy(other.gameObject);
+        }
+
+        if(other.tag == "NegativeObject"){
+            Destroy(other.gameObject);
+        }
+    }
 }
