@@ -292,7 +292,7 @@ MonoBehaviour:
   audioHandler: {fileID: 485766333}
   player: {fileID: 1799867377}
   levelContainers: []
-  removeTestSuitesOnLoad: 1
+  removeTestSuitesOnLoad: 0
   levelOffset: 2
   numLevelsLoadedAhead: 2
 --- !u!4 &1327721261

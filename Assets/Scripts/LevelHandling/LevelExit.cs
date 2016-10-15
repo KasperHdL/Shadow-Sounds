@@ -16,7 +16,6 @@ public class LevelExit : MonoBehaviour {
         if(coll.gameObject.tag == "Player"){
             levelHandler.LevelCompleted();
             loadCallSent = true;
-            Destroy(gameObject);
         }
     }
 }

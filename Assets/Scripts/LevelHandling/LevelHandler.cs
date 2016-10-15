@@ -37,7 +37,7 @@ public class LevelHandler : MonoBehaviour {
     public void LoadNextLevel(){
 
         if(buildLevelIndex + 1 >= SceneManager.sceneCountInBuildSettings){
-            Debug.Log("no more levels");
+            Debug.LogWarning("No More Levels");
 
             return;
         }
@@ -49,7 +49,6 @@ public class LevelHandler : MonoBehaviour {
     public Vector3 GetResetPosition(){
        
         return levelContainers[currentLevelContainerIndex].levelStart.transform.position;
-
 
     }
 
@@ -71,9 +70,10 @@ public class LevelHandler : MonoBehaviour {
 
             }
         }
+
         async.allowSceneActivation = true;
 
-        //move newly loaded level
+        //find new levelContainer and add it the list of containers
         LevelContainer[] containers = GameObject.FindObjectsOfType<LevelContainer>();
         LevelContainer foundContainer = null;
 
@@ -87,6 +87,7 @@ public class LevelHandler : MonoBehaviour {
                     break;
                 }
             }
+
             if(foundContainer != null)
                 break;
         }
@@ -97,13 +98,15 @@ public class LevelHandler : MonoBehaviour {
         audioHandler.sources.AddRange(foundContainer.audioSources);
         foundContainer.levelExit.SetLevelHandler(this);
 
+        //move levelcontainer
         if(numLevelsLoaded > 0){
-            foundContainer.transform.position += levelContainers[numLevelsLoaded].levelExit.transform.position - foundContainer.levelStart.transform.position;
+            foundContainer.transform.position = levelContainers[numLevelsLoaded - 1].levelExit.transform.position;
             foundContainer.transform.position += Vector3.up * levelOffset;
         }
 
         if(numLevelsLoaded == 0)
             Time.timeScale = 1f;
+
         numLevelsLoaded++;
 
         if(numLevelsLoaded < currentLevelContainerIndex + numLevelsLoadedAhead)
