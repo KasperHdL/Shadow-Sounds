@@ -15,7 +15,7 @@ public class LevelContainer : MonoBehaviour {
 
     void Start(){
         if(!EditorApplication.isPlaying){
-            EditorApplication.hierarchyWindowChanged += SyncLevelContainer;
+           // EditorApplication.hierarchyWindowChanged += SyncLevelContainer;
             SyncLevelContainer();
         }else if(data != null){
             obstacles = data.obstacles;
@@ -31,6 +31,9 @@ public class LevelContainer : MonoBehaviour {
     }
 
 	void SyncLevelContainer () {
+        if(this == null)
+            return;
+
         obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
         audioSources = gameObject.GetComponentsInChildren<AudioSource>();
 
