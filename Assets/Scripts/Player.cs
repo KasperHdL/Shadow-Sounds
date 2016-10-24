@@ -36,6 +36,7 @@ public class Player : MonoBehaviour {
         if(coll.gameObject.tag == "Obstacle"){
             transform.position = levelHandler.GetResetPosition();
             resetSize();
+            levelHandler.ResetLevel();
         }
     }
 
@@ -51,11 +52,13 @@ public class Player : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other) {
 
         if(other.tag == "PositiveObject"){
-            Destroy(other.gameObject);
+            other.GetComponent<MeshRenderer>().enabled = false;
+            other.GetComponent<BoxCollider2D>().enabled = false;
         }
 
         if(other.tag == "NegativeObject"){
-            Destroy(other.gameObject);
+            other.GetComponent<MeshRenderer>().enabled = false;
+            other.GetComponent<BoxCollider2D>().enabled = false;
         }
     }
 }

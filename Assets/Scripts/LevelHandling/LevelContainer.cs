@@ -9,6 +9,8 @@ public class LevelContainer : MonoBehaviour {
     public LevelContainerData data;
 
     public GameObject[] obstacles;
+    public GameObject[] posObject;
+    public GameObject[] negObject;
     public AudioSource[] audioSources;
     public LevelStart levelStart;
     public LevelExit levelExit;
@@ -35,6 +37,8 @@ public class LevelContainer : MonoBehaviour {
             return;
 
         obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
+        posObject = GameObject.FindGameObjectsWithTag("PositiveObject");
+        negObject = GameObject.FindGameObjectsWithTag("NegativeObject");
         audioSources = gameObject.GetComponentsInChildren<AudioSource>();
 
         levelStart = GameObject.FindObjectOfType<LevelStart>();
@@ -44,6 +48,8 @@ public class LevelContainer : MonoBehaviour {
             data = ScriptableObject.CreateInstance<LevelContainerData>();
 
         data.obstacles = obstacles;
+        data.posObject = posObject;
+        data.negObject = negObject;
         data.audioSources = audioSources;
         data.levelStart = levelStart;
         data.levelExit = levelExit;

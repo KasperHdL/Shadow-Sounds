@@ -47,6 +47,21 @@ public class LevelHandler : MonoBehaviour {
 
     }
 
+    public void ResetLevel(){
+        var posObject = GameObject.FindGameObjectsWithTag("PositiveObject");
+        var negObject = GameObject.FindGameObjectsWithTag("NegativeObject");
+
+        for(int i = 0; i < posObject.Length; i++){
+            posObject[i].GetComponent<MeshRenderer>().enabled = true;
+            posObject[i].GetComponent<BoxCollider2D>().enabled = true;
+        }
+
+        for(int i = 0; i < negObject.Length; i++){
+            negObject[i].GetComponent<MeshRenderer>().enabled = true;
+            negObject[i].GetComponent<BoxCollider2D>().enabled = true;
+        }
+    }
+
     public Vector3 GetResetPosition(){
        
         return levelContainers[currentLevelContainerIndex].levelStart.transform.position;
