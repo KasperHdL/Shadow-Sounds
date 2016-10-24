@@ -22,6 +22,7 @@ GameObject:
   - 33: {fileID: 33000011691163122}
   - 23: {fileID: 23000013960993146}
   - 61: {fileID: 61000011331380050}
+  - 114: {fileID: 114000010667281602}
   m_Layer: 0
   m_Name: PositiveObject
   m_TagString: PositiveObject
@@ -92,3 +93,15 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
+--- !u!114 &114000010667281602
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013537182206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03945c7ef59f54fcfba05d0fcd49b5d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amount: -1

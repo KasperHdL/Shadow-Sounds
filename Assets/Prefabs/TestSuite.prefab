@@ -111,7 +111,7 @@ GameObject:
   - 50: {fileID: 50000012861554034}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -453,6 +453,7 @@ MonoBehaviour:
   forwardSpeed: 5
   leftKey: 97
   rightKey: 100
+  boundary: 13
 --- !u!114 &114000014191868408
 MonoBehaviour:
   m_ObjectHideFlags: 1
