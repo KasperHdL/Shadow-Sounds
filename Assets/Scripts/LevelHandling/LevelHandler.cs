@@ -31,6 +31,7 @@ public class LevelHandler : MonoBehaviour {
 
     public void LevelCompleted(){
         currentLevelContainerIndex++;
+        player.GetComponent<Player>().resetSize();
         LoadNextLevel();
     }
 
