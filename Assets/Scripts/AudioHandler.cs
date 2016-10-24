@@ -25,7 +25,7 @@ public class AudioHandler : MonoBehaviour {
         for(int i = 0;i < sources.Count; i++){
             
             //The relative difference
-            int soundIdx = (int)((Idx/((sources[i].transform.position.y - player.position.y))));
+    //        int soundIdx = (int)((Idx/((sources[i].transform.position.y - player.position.y))));
 
             // play the sound at each play position
             //if (playInts.Contains(soundIdx)) 

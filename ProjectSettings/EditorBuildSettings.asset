@@ -7,19 +7,19 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/main.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Levels/Level1_silence.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Levels/Level2_friendly_sound.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Levels/Level3_hazard.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Levels/Level4_friendly_and_hazard.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Levels/level5_fit.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Levels/level6_nofit.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Levels/level6_path_matters.unity
   - enabled: 1
     path: Assets/Scenes/Levels/levelx_challenging.unity
