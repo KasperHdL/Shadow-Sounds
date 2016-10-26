@@ -91,7 +91,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 1000011070295560}
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1
+  m_LinearDrag: 3
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_IsKinematic: 0
@@ -198,15 +198,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d05100af1975410fba82047636557aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coneAngle: 15
-  coneIncrement: 1
-  distance: 10
-  soundDelayPerMeter: 1
-  hitSound: {fileID: 8300000, guid: 061a4fa9f92c54a55affa727ab1f2ebf, type: 3}
-  noHitSound: {fileID: 8300000, guid: ed9c3aa20cba84a9abc93eb3167e7428, type: 3}
-  noHitVolume: 0.5
+  coneAngle: 30
+  coneIncrement: 10
+  distance: 20
+  soundDelayPerMeter: 0.1
+  hitSound: {fileID: 8300000, guid: eda2c91970dd88346af4d24a5217b494, type: 3}
+  noHitSound: {fileID: 8300000, guid: ba7ef98e12e628943a492860807cafba, type: 3}
+  noHitVolume: 0.23
   hitPitch: 1
-  hitVolume: 3
+  hitVolume: 3.58
   shotCooldown: 1
 --- !u!114 &114000013414812344
 MonoBehaviour:
