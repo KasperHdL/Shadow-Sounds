@@ -18,6 +18,8 @@ public class SonarTool : MonoBehaviour {
     private AudioSource source;
     public AudioClip hitSound;
     public AudioClip noHitSound;
+    public float noHitVolume = 0.5f;
+    public float hitPitch = 3f;
 
     private float lastShotTime = 0f;
     public float shotCooldown = 1f;
@@ -64,9 +66,12 @@ public class SonarTool : MonoBehaviour {
 
         if(nearestDistance == distance){
             source.clip = noHitSound;
+            source.volume = noHitVolume;
             source.PlayDelayed(distance * soundDelayPerMeter);
         }else{
             source.clip = hitSound;
+            source.volume = 1 - nearestDistance/distance;
+            source.pitch = hitPitch*(1 - nearestDistance / distance);
             source.PlayDelayed(nearestDistance * soundDelayPerMeter);
         }
 	
