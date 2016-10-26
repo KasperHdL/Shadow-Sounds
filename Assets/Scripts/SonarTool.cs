@@ -79,6 +79,8 @@ public class SonarTool : MonoBehaviour {
         int numCollidersHit = 0;
         int numRaysHit = 0;
 
+        if (!source.isPlaying)
+            SendMessage("SonarShoot", nearestDistance);
         for(int i = 0; i < hits.Length; i++){
             if(hits[i].collider == null) continue;
 

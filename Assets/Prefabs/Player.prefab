@@ -25,6 +25,8 @@ GameObject:
   - 50: {fileID: 50000014167265728}
   - 114: {fileID: 114000013414812344}
   - 114: {fileID: 114000012233038292}
+  - 82: {fileID: 82000012727030876}
+  - 114: {fileID: 114000013904475212}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -175,5 +177,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0f858d981194adca18b37d0fde620d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveForce: 1000
+  moveForce: 250
   viewDirection: {x: 0, y: 0}
+--- !u!114 &114000013904475212
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011070295560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11fb50aebf6a5de4fba42c29995ee184, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  colorStart: {r: 1, g: 1, b: 1, a: 1}
+  colorEnd: {r: 1, g: 1, b: 1, a: 0}
+  width: 0.1
+  time: 1
