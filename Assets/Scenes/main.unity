@@ -169,7 +169,7 @@ GameObject:
   - 23: {fileID: 486543589}
   - 114: {fileID: 486543593}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: FollowingEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
