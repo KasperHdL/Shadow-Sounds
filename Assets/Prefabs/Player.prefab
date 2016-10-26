@@ -204,6 +204,9 @@ MonoBehaviour:
   soundDelayPerMeter: 1
   hitSound: {fileID: 8300000, guid: 061a4fa9f92c54a55affa727ab1f2ebf, type: 3}
   noHitSound: {fileID: 8300000, guid: ed9c3aa20cba84a9abc93eb3167e7428, type: 3}
+  noHitVolume: 0.5
+  hitPitch: 1
+  hitVolume: 3
   shotCooldown: 1
 --- !u!114 &114000013414812344
 MonoBehaviour:
