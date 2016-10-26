@@ -89,7 +89,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 1000013906157328}
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 7
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_IsKinematic: 0
@@ -123,4 +123,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  moveForce: 300
+  moveForce: 2000
