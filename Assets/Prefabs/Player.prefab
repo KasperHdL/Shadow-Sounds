@@ -25,7 +25,6 @@ GameObject:
   - 50: {fileID: 50000014167265728}
   - 114: {fileID: 114000013414812344}
   - 114: {fileID: 114000012233038292}
-  - 82: {fileID: 82000012727030876}
   - 114: {fileID: 114000013904475212}
   m_Layer: 0
   m_Name: Player
@@ -49,6 +48,34 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000014249840974
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000011293706816}
+  m_Layer: 0
+  m_Name: AudioSources
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4000011293706816
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014249840974}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000013792654118}
+  m_RootOrder: 0
 --- !u!4 &4000012870646118
 Transform:
   m_ObjectHideFlags: 1
@@ -61,7 +88,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000013792654118}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!4 &4000013792654118
 Transform:
   m_ObjectHideFlags: 1
@@ -73,6 +100,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 4000011293706816}
   - {fileID: 4000012870646118}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -158,7 +186,7 @@ MonoBehaviour:
   coneIncrement: 10
   distance: 20
   soundDelayPerMeter: 0.025
-  sourceContainer: {fileID: 1000011803186630}
+  sourceContainer: {fileID: 1000014249840974}
   sources: []
   hitSound: {fileID: 8300000, guid: eda2c91970dd88346af4d24a5217b494, type: 3}
   noHitSound: {fileID: 8300000, guid: ba7ef98e12e628943a492860807cafba, type: 3}
@@ -190,8 +218,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11fb50aebf6a5de4fba42c29995ee184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 3}
   colorStart: {r: 1, g: 1, b: 1, a: 1}
   colorEnd: {r: 1, g: 1, b: 1, a: 0}
   width: 0.1
+  overrideTime: 1
   time: 1
+  overrideDistance: 1
+  dist: 20

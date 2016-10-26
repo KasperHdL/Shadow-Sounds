@@ -258,6 +258,11 @@ Prefab:
       propertyPath: soundDelayPerMeter
       value: 0.025
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013904475212, guid: c05b727539e0b415e927a48accd07b48,
+        type: 2}
+      propertyPath: dist
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 82000012727030876, guid: c05b727539e0b415e927a48accd07b48, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: c05b727539e0b415e927a48accd07b48, type: 2}

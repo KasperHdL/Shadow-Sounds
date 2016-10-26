@@ -79,8 +79,6 @@ public class SonarTool : MonoBehaviour {
         int numCollidersHit = 0;
         int numRaysHit = 0;
 
-        if (!source.isPlaying)
-            SendMessage("SonarShoot", nearestDistance);
         for(int i = 0; i < hits.Length; i++){
             if(hits[i].collider == null) continue;
 
@@ -95,6 +93,7 @@ public class SonarTool : MonoBehaviour {
                 numCollidersHit++;
             }
             numRaysHit++;
+        
         }
 
         for(int i = 0; i < numCollidersHit; i++){
@@ -109,6 +108,15 @@ public class SonarTool : MonoBehaviour {
             sources[numCollidersHit].volume = noHitVolume;
             sources[numCollidersHit].pitch = 1f;
             sources[numCollidersHit].PlayDelayed(distance * soundDelayPerMeter);
+
+            SendMessage("SonarShoot", distance);
+        }else{
+            float maxDist = 0f;
+            for(int i = 0;i < hits.Length; i++){
+                if(hits[i].collider != null && hits[i].distance > maxDist)
+                    maxDist = hits[i].distance;
+            }
+            SendMessage("SonarShoot", maxDist);
         }
         
     }
