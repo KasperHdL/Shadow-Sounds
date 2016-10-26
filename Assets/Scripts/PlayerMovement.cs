@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour {
 
     public float moveForce = 500f;
+    [HideInInspector]
     public Vector2 viewDirection;
     private Rigidbody2D body;
 

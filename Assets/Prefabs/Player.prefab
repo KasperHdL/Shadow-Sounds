@@ -123,7 +123,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -202,8 +202,8 @@ MonoBehaviour:
   coneIncrement: 1
   distance: 10
   soundDelayPerMeter: 1
-  hitSound: {fileID: 0}
-  noHitSound: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 061a4fa9f92c54a55affa727ab1f2ebf, type: 3}
+  noHitSound: {fileID: 8300000, guid: ed9c3aa20cba84a9abc93eb3167e7428, type: 3}
   shotCooldown: 1
 --- !u!114 &114000013414812344
 MonoBehaviour:
