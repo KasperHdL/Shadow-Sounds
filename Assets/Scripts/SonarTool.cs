@@ -65,7 +65,10 @@ public class SonarTool : MonoBehaviour {
             }
         }
 
-        if(nearestDistance == distance){
+        if (!source.isPlaying)
+            SendMessage("SonarShoot", nearestDistance);
+
+        if (nearestDistance == distance){
             source.clip = noHitSound;
             source.volume = noHitVolume;
             source.PlayDelayed(distance * soundDelayPerMeter);
@@ -75,6 +78,5 @@ public class SonarTool : MonoBehaviour {
             source.pitch = hitPitch*(1 - nearestDistance / distance);
             source.PlayDelayed(nearestDistance * soundDelayPerMeter);
         }
-	
-	}
+    }
 }
