@@ -92,7 +92,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 1000011070295560}
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1
+  m_LinearDrag: 3
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_IsKinematic: 0
@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coneAngle: 30
-  coneIncrement: 1
+  coneIncrement: 10
   distance: 20
   soundDelayPerMeter: 0.1
   hitSound: {fileID: 8300000, guid: eda2c91970dd88346af4d24a5217b494, type: 3}
