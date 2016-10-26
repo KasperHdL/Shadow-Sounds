@@ -5,13 +5,13 @@ public class SonarTool : MonoBehaviour {
 
     private PlayerMovement player;
 
-    public float coneAngle = 5f;
+    public float coneAngle = 30f;
     public float coneIncrement = 1f;
 
     private float coneAngleRad;
     private float coneIncrementRad;
 
-    public float distance  = 10f;
+    public float distance  = 20f;
     public float soundDelayPerMeter = 1f;
 
 
@@ -20,6 +20,7 @@ public class SonarTool : MonoBehaviour {
     public AudioClip noHitSound;
     public float noHitVolume = 0.5f;
     public float hitPitch = 3f;
+    public float hitVolume = 5f;
 
     private float lastShotTime = 0f;
     public float shotCooldown = 1f;
@@ -70,7 +71,7 @@ public class SonarTool : MonoBehaviour {
             source.PlayDelayed(distance * soundDelayPerMeter);
         }else{
             source.clip = hitSound;
-            source.volume = 1 - nearestDistance/distance;
+            source.volume = hitVolume*(1 - nearestDistance/distance);
             source.pitch = hitPitch*(1 - nearestDistance / distance);
             source.PlayDelayed(nearestDistance * soundDelayPerMeter);
         }

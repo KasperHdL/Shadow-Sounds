@@ -284,7 +284,7 @@ Prefab:
     - target: {fileID: 114000013414812344, guid: c05b727539e0b415e927a48accd07b48,
         type: 2}
       propertyPath: moveForce
-      value: 500
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 114000012233038292, guid: c05b727539e0b415e927a48accd07b48,
         type: 2}
@@ -305,6 +305,16 @@ Prefab:
         type: 2}
       propertyPath: distance
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012233038292, guid: c05b727539e0b415e927a48accd07b48,
+        type: 2}
+      propertyPath: noHitVolume
+      value: 0.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012233038292, guid: c05b727539e0b415e927a48accd07b48,
+        type: 2}
+      propertyPath: hitVolume
+      value: 3.58
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c05b727539e0b415e927a48accd07b48, type: 2}
@@ -542,6 +552,11 @@ Prefab:
     - target: {fileID: 1000013906157328, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04, type: 2}
       propertyPath: m_Name
       value: FollowingEnemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010118106110, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04,
+        type: 2}
+      propertyPath: speed
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04, type: 2}
