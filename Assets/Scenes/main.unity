@@ -261,10 +261,47 @@ Prefab:
     - target: {fileID: 114000013904475212, guid: c05b727539e0b415e927a48accd07b48,
         type: 2}
       propertyPath: dist
-      value: 20
+      value: 5
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 82000012727030876, guid: c05b727539e0b415e927a48accd07b48, type: 2}
+    - target: {fileID: 114000012233038292, guid: c05b727539e0b415e927a48accd07b48,
+        type: 2}
+      propertyPath: hitVolume
+      value: 3.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012233038292, guid: c05b727539e0b415e927a48accd07b48,
+        type: 2}
+      propertyPath: coneIncrement
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013904475212, guid: c05b727539e0b415e927a48accd07b48,
+        type: 2}
+      propertyPath: dist
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013414812344, guid: c05b727539e0b415e927a48accd07b48,
+        type: 2}
+      propertyPath: moveSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 50000014167265728, guid: c05b727539e0b415e927a48accd07b48,
+        type: 2}
+      propertyPath: m_LinearDrag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013904475212, guid: c05b727539e0b415e927a48accd07b48,
+        type: 2}
+      propertyPath: overrideDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012870646118, guid: c05b727539e0b415e927a48accd07b48, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011293706816, guid: c05b727539e0b415e927a48accd07b48, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c05b727539e0b415e927a48accd07b48, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &865941224
