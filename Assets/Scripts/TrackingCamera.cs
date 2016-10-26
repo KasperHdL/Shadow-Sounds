@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TrackingCamera : MonoBehaviour {
 
-	public Rigidbody2D target;
+	public PlayerMovement target;
 
 	public float smoothFactor = 0.8f;
 
@@ -13,7 +13,7 @@ public class TrackingCamera : MonoBehaviour {
     void Start(){
         if(target == null){
             Debug.LogWarning("Camera has no target, gonna try to find an object tagged 'Player'");
-            target = GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>();
+            target = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
             if(target == null)
                 Debug.LogError("No object tagged 'Player'");
         }
@@ -24,7 +24,7 @@ public class TrackingCamera : MonoBehaviour {
         
         Vector3 delta = target.transform.position - transform.position;
         delta.z = 0;
-        Vector3 desiredPosition = (Vector2)transform.position + (Vector2)delta.normalized * delta.sqrMagnitude + target.velocity * viewOffsetMultiplier;
+        Vector3 desiredPosition = (Vector2)transform.position + (Vector2)delta.normalized * delta.sqrMagnitude + target.viewDirection * viewOffsetMultiplier;
 
         desiredPosition.z = offsetZ;
 
