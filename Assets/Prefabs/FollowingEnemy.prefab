@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011656636190}
   - 33: {fileID: 33000010138635408}
-  - 65: {fileID: 65000013979304802}
   - 23: {fileID: 23000011628051286}
+  - 61: {fileID: 61000014142074444}
   m_Layer: 0
   m_Name: FollowingEnemy
   m_TagString: Enemy
@@ -78,15 +78,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013906157328}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65000013979304802
-BoxCollider:
+--- !u!61 &61000014142074444
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013906157328}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1}
