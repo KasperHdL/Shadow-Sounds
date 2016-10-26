@@ -284,7 +284,7 @@ Prefab:
     - target: {fileID: 114000013414812344, guid: c05b727539e0b415e927a48accd07b48,
         type: 2}
       propertyPath: moveForce
-      value: 250
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 114000012233038292, guid: c05b727539e0b415e927a48accd07b48,
         type: 2}
@@ -315,6 +315,16 @@ Prefab:
         type: 2}
       propertyPath: hitVolume
       value: 3.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012233038292, guid: c05b727539e0b415e927a48accd07b48,
+        type: 2}
+      propertyPath: coneIncrement
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 50000014167265728, guid: c05b727539e0b415e927a48accd07b48,
+        type: 2}
+      propertyPath: m_LinearDrag
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c05b727539e0b415e927a48accd07b48, type: 2}
