@@ -10,6 +10,9 @@ public class PlayerMovement : MonoBehaviour {
     private AudioSource footsteps;
 
     public AudioClip enemyCollision, wallCollision, defaultCol;
+    public float enemyColVol = 0.5f;
+    public float defColVol = 0.5f;
+
     private AudioSource collisionSnd;
 
     [HideInInspector]
@@ -30,12 +33,18 @@ public class PlayerMovement : MonoBehaviour {
         {
             case "Enemy":
                 collisionSnd.clip = enemyCollision;
+                collisionSnd.volume = enemyColVol;
+                Debug.Log("EnemyCollision");
                 break;
             case "Wall":
-                collisionSnd.clip = enemyCollision;
+                collisionSnd.clip = wallCollision;
+                collisionSnd.volume = defColVol;
+                Debug.Log("WallCollision");
                 break;
             default:
-                collisionSnd.clip = enemyCollision;
+                collisionSnd.clip = defaultCol;
+                collisionSnd.volume = defColVol;
+                Debug.Log("No collision tag set!");
                 break;
         }
 
