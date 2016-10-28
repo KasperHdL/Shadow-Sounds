@@ -509,7 +509,7 @@ Prefab:
     - target: {fileID: 114000012233038292, guid: c05b727539e0b415e927a48accd07b48,
         type: 2}
       propertyPath: hitVolume
-      value: 3.58
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 114000012233038292, guid: c05b727539e0b415e927a48accd07b48,
         type: 2}
@@ -562,7 +562,7 @@ Prefab:
     - target: {fileID: 114000012233038292, guid: c05b727539e0b415e927a48accd07b48,
         type: 2}
       propertyPath: hitPitch
-      value: 0.7
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 114000012233038292, guid: c05b727539e0b415e927a48accd07b48,
         type: 2}
@@ -684,7 +684,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f1a78f72a92340b4f9e990bb52906b22, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 0.15
   m_Pitch: 1
   Loop: 1
   Mute: 0
