@@ -21,6 +21,8 @@ public class SonarTool : MonoBehaviour {
 
     public AudioClip hitSound;
     public AudioClip noHitSound;
+    public AudioClip sonarNoise;
+    private AudioSource _noise;
 
     public float noHitVolume = 0.5f;
     public float hitPitch    = 3f;
@@ -33,7 +35,6 @@ public class SonarTool : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         player = GetComponent<PlayerMovement>();
-
         coneAngleRad = Mathf.Deg2Rad * coneAngle;
         coneIncrementRad = Mathf.Deg2Rad * coneIncrement;
 
@@ -53,12 +54,16 @@ public class SonarTool : MonoBehaviour {
         }
     }
 	
-	// Update is called once per frame
 	void Shoot() {
         Vector3 viewDir = player.viewDirection.normalized;
         float angle = Mathf.Atan2(-viewDir.y, viewDir.x);
 
-        float startAngle = angle - coneAngleRad;
+	    _noise = sourceContainer.AddComponent<AudioSource>();
+	    _noise.volume = 0.2f;
+        _noise.clip = sonarNoise;
+        _noise.Play();
+
+	    float startAngle = angle - coneAngleRad;
         for(int i = 0; i < hits.Length; i++){
 
             float a = startAngle + coneIncrementRad * i;
@@ -74,6 +79,8 @@ public class SonarTool : MonoBehaviour {
                 Debug.DrawLine(player.transform.position, player.transform.position + d * distance, Color.red, shotCooldown);
             }
         }
+
+        
         
         int[] indexOfNearestCollider = new int[sources.Length];
         int numCollidersHit = 0;
@@ -108,6 +115,7 @@ public class SonarTool : MonoBehaviour {
             sources[numCollidersHit].volume = noHitVolume;
             sources[numCollidersHit].pitch = 1f;
             sources[numCollidersHit].PlayDelayed(distance * soundDelayPerMeter);
+            
 
             SendMessage("SonarShoot", distance);
         }else{

@@ -190,6 +190,7 @@ MonoBehaviour:
   sources: []
   hitSound: {fileID: 8300000, guid: eda2c91970dd88346af4d24a5217b494, type: 3}
   noHitSound: {fileID: 8300000, guid: ba7ef98e12e628943a492860807cafba, type: 3}
+  sonarNoise: {fileID: 8300000, guid: a1cb448d157c21b40aa32a2bfff11843, type: 3}
   noHitVolume: 0.23
   hitPitch: 1
   hitVolume: 3.58
