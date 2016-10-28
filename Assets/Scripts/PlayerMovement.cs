@@ -6,8 +6,12 @@ public class PlayerMovement : MonoBehaviour {
     public float moveSpeed = 50.0f;
     public AudioClip footstepsClip;
     public GameObject sourceContainer;
-    public float volume = 0.1f;
+    public float stepVolume = 0.1f;
     private AudioSource footsteps;
+
+    public AudioClip enemyCollision, wallCollision, defaultCol;
+    private AudioSource collisionSnd;
+
     [HideInInspector]
     public Vector2 viewDirection;
     private Rigidbody2D body;
@@ -15,9 +19,28 @@ public class PlayerMovement : MonoBehaviour {
 	void Start () {
         body = GetComponent<Rigidbody2D>();
 	    footsteps = sourceContainer.AddComponent<AudioSource>();
-	    footsteps.clip = footstepsClip;
-	    footsteps.volume = volume;
+        collisionSnd = sourceContainer.AddComponent<AudioSource>();
+        footsteps.clip = footstepsClip;
+	    footsteps.volume = stepVolume;
 	}
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        switch (other.gameObject.tag)
+        {
+            case "Enemy":
+                collisionSnd.clip = enemyCollision;
+                break;
+            case "Wall":
+                collisionSnd.clip = enemyCollision;
+                break;
+            default:
+                collisionSnd.clip = enemyCollision;
+                break;
+        }
+
+        collisionSnd.Play();
+    }
 	
 	void Update () {
         var v = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * moveSpeed / body.mass;
@@ -34,18 +57,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             footsteps.Stop();
         }
-
-        //if (Input.GetButton("Horizontal"))
-        //{
-        //    if (!footsteps.isPlaying)
-        //    {
-        //        footsteps.Play();
-        //    }
-        //}
-        //else
-        //{
-        //    footsteps.Stop();
-        //}
+        
 
         body.AddForce(v - new Vector3(body.velocity.x, body.velocity.y), ForceMode2D.Impulse);
 
