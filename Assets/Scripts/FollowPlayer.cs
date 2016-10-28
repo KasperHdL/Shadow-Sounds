@@ -4,9 +4,12 @@ using System.Collections;
 public class FollowPlayer : MonoBehaviour {
 
 	public Rigidbody2D target;
-    public float speed;
+    private Rigidbody2D body;
+    public float moveForce;
+
 	// Use this for initialization
     void Start(){
+        body = GetComponent<Rigidbody2D>();
         if(target == null){
             /* Finds the player and follows it(To be discussed) */
             Debug.LogWarning("Enemy has no target, gonna try to find an object tagged 'Player'");
@@ -21,8 +24,7 @@ public class FollowPlayer : MonoBehaviour {
 	void Update () {
 
         Vector3 delta = target.transform.position - transform.position;
-        Vector3 desiredPosition = (Vector2)transform.position + (Vector2)delta.normalized * speed * Time.deltaTime;
+        body.AddForce(delta.normalized * moveForce * Time.deltaTime);
 
-        transform.position = desiredPosition;
 	}
 }
