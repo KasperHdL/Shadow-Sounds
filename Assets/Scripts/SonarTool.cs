@@ -87,7 +87,9 @@ public class SonarTool : MonoBehaviour {
         int numRaysHit = 0;
 
         for(int i = 0; i < hits.Length; i++){
-            if(hits[i].collider == null) continue;
+            if(hits[i].collider == null || hits[i].collider.gameObject.tag != "Enemy") continue;
+
+
 
             //check if last hit had the same collider
             if(i > 0 && hits[i-1].collider == hits[i].collider){
