@@ -27,7 +27,6 @@ public class PlayerMovement : MonoBehaviour {
         {
             if (!footsteps.isPlaying)
             {
-                Debug.Log("playing footsteps");
                 footsteps.Play();
             }
         }

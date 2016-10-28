@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11fb50aebf6a5de4fba42c29995ee184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 3}
+  material: {fileID: 2100000, guid: ad2434bb94d29439c8a4b229974e6cd4, type: 2}
   colorStart: {r: 1, g: 1, b: 1, a: 1}
   colorEnd: {r: 1, g: 1, b: 1, a: 0}
   width: 0.1
