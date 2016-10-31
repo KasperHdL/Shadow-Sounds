@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour {
     [HideInInspector]
     public Vector2 viewDirection;
     private Rigidbody2D body;
+    private bool fallen;
 
 	void Start () {
         body = GetComponent<Rigidbody2D>();
@@ -66,14 +67,18 @@ public class PlayerMovement : MonoBehaviour {
         {
             footsteps.Stop();
         }
-        
 
-        body.AddForce(v - new Vector3(body.velocity.x, body.velocity.y), ForceMode2D.Impulse);
+	    if (!collisionSnd.isPlaying)
+	    {
+
+	        body.AddForce(v - new Vector3(body.velocity.x, body.velocity.y), ForceMode2D.Impulse);
+
+	    }
+
 
         Vector2 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         viewDirection = mouse - (Vector2)transform.position;
 
-        transform.rotation = Quaternion.Euler(0,0, Mathf.Rad2Deg * Mathf.Atan2(viewDirection.y, viewDirection.x));
-	
-	}
+        transform.rotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * Mathf.Atan2(viewDirection.y, viewDirection.x));
+    }
 }
