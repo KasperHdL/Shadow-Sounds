@@ -1,11 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FollowPlayer : MonoBehaviour {
+[RequireComponent(typeof(MeshRenderer))]
+public class FollowPlayer : MonoBehaviour
+{
 
-	public Transform target;
+    public Transform target;
     private Rigidbody2D body;
+    private MeshRenderer renderer;
     public float moveForce;
+    public float visibleDistance = 1.5f;
+    public bool visibleOverride = false;
 
     public bool allowedToWander = true;
     public float raycastStartRadius = 1f;
@@ -20,6 +25,7 @@ public class FollowPlayer : MonoBehaviour {
 	// Use this for initialization
     void Start(){
         body = GetComponent<Rigidbody2D>();
+        renderer = GetComponent<MeshRenderer>();
         if(target == null){
             Debug.LogWarning("Enemy has no target, gonna try to find an object tagged 'Player'");
             target = GameObject.FindWithTag("Player").GetComponent<Transform>();
@@ -27,6 +33,25 @@ public class FollowPlayer : MonoBehaviour {
                 Debug.LogError("No object tagged 'Player'");
         }
 
+    }
+
+    void Update()
+    {
+        if (target != null)
+        {
+            if (Vector3.Distance(transform.position, target.position) < visibleDistance)
+            {
+                renderer.enabled = true;
+            }
+            else
+            {
+                renderer.enabled = visibleOverride;
+            }
+        }
+        else
+        {
+            renderer.enabled = visibleOverride;
+        }
     }
 	
 	void FixedUpdate () {

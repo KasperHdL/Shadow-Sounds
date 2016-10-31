@@ -247,6 +247,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0f858d981194adca18b37d0fde620d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 4
+  hitForce: 800
   moveSpeed: 5
   footstepsClip: {fileID: 8300000, guid: b202f3b30b95819439389ad59d25f5a9, type: 3}
   sourceContainer: {fileID: 1000012801305010}
