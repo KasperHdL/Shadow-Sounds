@@ -24,8 +24,12 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 viewDirection;
     private Rigidbody2D body;
     private bool fallen;
+    public bool useMouse;
+    private KInput.Controller controller;
 
 	void Start () {
+        controller = new KInput.Xbox360();
+
         body = GetComponent<Rigidbody2D>();
 	    footsteps = sourceContainer.AddComponent<AudioSource>();
         collisionSnd = sourceContainer.AddComponent<AudioSource>();
@@ -73,8 +77,7 @@ public class PlayerMovement : MonoBehaviour
     }
 	
 	void Update () {
-        var v = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * moveSpeed / body.mass;
-
+        var v = new Vector3(controller.GetAxis(KInput.Axis.StickLeftX), controller.GetAxis(KInput.Axis.StickLeftY),0) * moveSpeed / body.mass;
 
         if (body.velocity.magnitude >= 0.1)
         {
@@ -88,17 +91,17 @@ public class PlayerMovement : MonoBehaviour
             footsteps.Stop();
         }
 
-	    if (!collisionSnd.isPlaying)
-	    {
 
-	        body.AddForce(v - new Vector3(body.velocity.x, body.velocity.y), ForceMode2D.Impulse);
-
-	    }
+        body.AddForce(v - new Vector3(body.velocity.x, body.velocity.y), ForceMode2D.Impulse);
 
 
-        Vector2 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        viewDirection = mouse - (Vector2)transform.position;
 
+        if(useMouse){
+            Vector2 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            viewDirection = (mouse - (Vector2)transform.position).normalized;
+        }else{
+            viewDirection = new Vector2(controller.GetAxis(KInput.Axis.StickRightX), controller.GetAxis(KInput.Axis.StickRightY));
+        }
         transform.rotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * Mathf.Atan2(viewDirection.y, viewDirection.x));
     }
 }
