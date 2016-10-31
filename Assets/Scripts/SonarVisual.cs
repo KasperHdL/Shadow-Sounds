@@ -27,6 +27,7 @@ public class SonarVisual : MonoBehaviour
 
     private void SonarShoot(float distance)
     {
+        StopAllCoroutines();
         StartCoroutine(Shoot(distance));
     }
 
@@ -42,7 +43,7 @@ public class SonarVisual : MonoBehaviour
         for (var a = angle - coneAngleRad; a < angle + coneAngleRad; a += coneIncrementRad)
             n++;
 
-        line = gameObject.AddComponent<LineRenderer>();
+        line = line == null ? gameObject.AddComponent<LineRenderer>() : GetComponent<LineRenderer>();
         line.useWorldSpace = true;
         line.SetColors(colorStart, colorStart);
         line.SetWidth(width, width);
@@ -72,5 +73,6 @@ public class SonarVisual : MonoBehaviour
         }
 
         Destroy(line);
+        line = null;
     }
 }
