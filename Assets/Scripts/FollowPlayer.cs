@@ -10,6 +10,7 @@ public class FollowPlayer : MonoBehaviour
     private MeshRenderer renderer;
     public float moveForce;
     public float visibleDistance = 1.5f;
+    public bool visibleOverride = false;
 
     public bool allowedToWander = true;
     public float raycastStartRadius = 1f;
@@ -44,12 +45,12 @@ public class FollowPlayer : MonoBehaviour
             }
             else
             {
-                renderer.enabled = false;
+                renderer.enabled = visibleOverride;
             }
         }
         else
         {
-            renderer.enabled = false;
+            renderer.enabled = visibleOverride;
         }
     }
 	
