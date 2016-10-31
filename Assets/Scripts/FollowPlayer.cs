@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class FollowPlayer : MonoBehaviour {
 
@@ -12,10 +13,17 @@ public class FollowPlayer : MonoBehaviour {
     public float minWanderDistance = 2f;
     public float maxWanderDistance = 5f;
 
+
+    private List<AudioClip> ghostSounds = new List<AudioClip>();
+    public AudioClip ghost1, ghost2, ghost3, ghost4, ghost5, ghost6, ghost7;
+    private AudioSource audioSource;
+    public GameObject sourceContainer;
+
     private bool isMovingTowardsWanderPosition = false;
     private bool isMovingTowardsKnownPlayerPosition = false;
     private Vector2 knownPlayerPosition;
     private Vector2 nextWanderPosition;
+    private bool playedSound = false;
 
 	// Use this for initialization
     void Start(){
@@ -27,15 +35,38 @@ public class FollowPlayer : MonoBehaviour {
                 Debug.LogError("No object tagged 'Player'");
         }
 
+        audioSource = sourceContainer.AddComponent<AudioSource>();
+        audioSource.volume = 0.2f;
+        ghostSounds.Add(ghost1);
+        ghostSounds.Add(ghost2);
+        ghostSounds.Add(ghost3);
+        ghostSounds.Add(ghost4);
+        ghostSounds.Add(ghost5);
+        ghostSounds.Add(ghost6);
+        ghostSounds.Add(ghost7);
+
     }
 	
 	void FixedUpdate () {
-        if(isSeeingPlayer()){
+        if(isSeeingPlayer())
+        {
+            //play random ghost sound
+            if (!playedSound && !audioSource.isPlaying)
+            {
+                audioSource.clip = ghostSounds[Random.Range(0, ghostSounds.Count-1)];
+                audioSource.Play();
+                playedSound = true;
+            }
+
             Debug.DrawLine(transform.position, target.position, Color.red, 1f);
             knownPlayerPosition = target.position;
             isMovingTowardsKnownPlayerPosition = true;
             isMovingTowardsWanderPosition = false;
 
+        }
+        else
+        {
+            playedSound = false;
         }
 
         Vector2 moveDirection = Vector2.zero;
