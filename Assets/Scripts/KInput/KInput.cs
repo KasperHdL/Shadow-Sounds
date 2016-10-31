@@ -5,8 +5,6 @@
  * Version 0.01
  */
 
-
-
 namespace KInput{
 
     public enum Axis{
@@ -28,6 +26,8 @@ namespace KInput{
         Y               ,
         BumperLeft      ,
         BumperRight     ,
+        TriggerLeft     ,
+        TriggerRight    ,
         Start           ,
         Back            ,
         StickLeftClick  ,
@@ -47,7 +47,8 @@ namespace KInput{
         protected int[] axis;
         protected int[] buttons;
 
-        protected Controller(){
+        protected Controller(int controllerIndex = 1){
+            this.controllerIndex = controllerIndex;
             axis = new int[(int)Axis.Count];
             buttons = new int[(int) Button.Count];
         }
@@ -55,7 +56,8 @@ namespace KInput{
         //Getters
         public bool GetButton(Button b){
             int index = buttons[(int)b];
-            if(index == -1) return convertAxisToButton(b);
+            if(index == -1) 
+                return convertAxisToButton(b);
             return Input.GetKey("joystick " + controllerIndex + " button " + index);
         }
 
@@ -77,6 +79,10 @@ namespace KInput{
             float v = Input.GetAxis("joystick " + controllerIndex + " axis " + index);
             if(yInverted && (a == Axis.DPadY || a == Axis.StickLeftY || a == Axis.StickRightY))
                 v = -v;
+#if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
+            if(a == Axis.TriggerRight || a == Axis.TriggerLeft)
+                v = (v+1)/2;//TODO optimize
+#endif
             return v;
         }
 
@@ -91,6 +97,13 @@ namespace KInput{
                     return GetAxis(Axis.DPadX) < 0;
                 case Button.DPadRight:
                     return GetAxis(Axis.DPadX) > 0;
+
+                //TODO MACOSX ranges from -1 to 1 but is 0 until first pressed, Windows from 0 -> 1
+
+                case Button.TriggerLeft:
+                    return GetAxis(Axis.TriggerLeft) > 0;
+                case Button.TriggerRight:
+                    return GetAxis(Axis.TriggerRight) > 0;
             }
             return false;
         }
@@ -127,7 +140,8 @@ namespace KInput{
 
     public class Xbox360 : Controller{
 
-        public Xbox360(){
+        public Xbox360(int controllerIndex = 1){
+            this.controllerIndex = controllerIndex;
             bool isWired = true;
 
 #if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
@@ -178,6 +192,9 @@ namespace KInput{
             buttons[(int) Button.DPadDown]        = -1;
             buttons[(int) Button.DPadLeft]        = -1;
             buttons[(int) Button.DPadRight]       = -1;
+            buttons[(int) Button.TriggerLeft]     = -1;
+            buttons[(int) Button.TriggerRight]    = -1;
+
 
 
 
@@ -196,6 +213,8 @@ namespace KInput{
             buttons[(int) Button.DPadDown]        = 11;
             buttons[(int) Button.DPadLeft]        = 12;
             buttons[(int) Button.DPadRight]       = 13;
+            buttons[(int) Button.TriggerLeft]     = -1;
+            buttons[(int) Button.TriggerRight]    = -1;
 
 #elif UNITY_EDITOR_LINUX || UNITY_STANDALONE_LINUX
             buttons[(int) Button.A]               = 0;
@@ -212,6 +231,12 @@ namespace KInput{
             buttons[(int) Button.DPadDown]        = (!isWired ? 11 : -1);//only wireless
             buttons[(int) Button.DPadLeft]        = (!isWired ? 12 : -1);//only wireless
             buttons[(int) Button.DPadRight]       = (!isWired ? 13 : -1); //only wireless 
+            buttons[(int) Button.TriggerLeft]     = -1;
+            buttons[(int) Button.TriggerRight]    = -1;
+
+
+
+
 #endif
         }
     }

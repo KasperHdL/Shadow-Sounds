@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Linq;
+using KInput;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -25,10 +26,10 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D body;
     private bool fallen;
     public bool useMouse;
-    private KInput.Controller controller;
+    private Controller controller;
 
 	void Start () {
-        controller = new KInput.Xbox360();
+        controller = GetComponent<ControllerContainer>().controller;
 
         body = GetComponent<Rigidbody2D>();
 	    footsteps = sourceContainer.AddComponent<AudioSource>();
@@ -77,7 +78,8 @@ public class PlayerMovement : MonoBehaviour
     }
 	
 	void Update () {
-        var v = new Vector3(controller.GetAxis(KInput.Axis.StickLeftX), controller.GetAxis(KInput.Axis.StickLeftY),0) * moveSpeed / body.mass;
+        var v = new Vector3(controller.GetAxis(Axis.StickLeftX), controller.GetAxis(Axis.StickLeftY),0) ;
+        v *= moveSpeed / body.mass;
 
         if (body.velocity.magnitude >= 0.1)
         {
