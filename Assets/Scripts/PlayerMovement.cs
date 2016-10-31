@@ -34,17 +34,17 @@ public class PlayerMovement : MonoBehaviour {
             case "Enemy":
                 collisionSnd.clip = enemyCollision;
                 collisionSnd.volume = enemyColVol;
-                Debug.Log("EnemyCollision");
+              //  Debug.Log("EnemyCollision");
                 break;
             case "Wall":
                 collisionSnd.clip = wallCollision;
                 collisionSnd.volume = defColVol;
-                Debug.Log("WallCollision");
+                //Debug.Log("WallCollision");
                 break;
             default:
                 collisionSnd.clip = defaultCol;
                 collisionSnd.volume = defColVol;
-                Debug.Log("No collision tag set!");
+                //Debug.Log("No collision tag set!");
                 break;
         }
 
