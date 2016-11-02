@@ -25,13 +25,14 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D body;
     private bool fallen;
 
-	void Start () {
+    void Start()
+    {
         body = GetComponent<Rigidbody2D>();
-	    footsteps = sourceContainer.AddComponent<AudioSource>();
+        footsteps = sourceContainer.AddComponent<AudioSource>();
         collisionSnd = sourceContainer.AddComponent<AudioSource>();
         footsteps.clip = footstepsClip;
-	    footsteps.volume = stepVolume;
-	}
+        footsteps.volume = stepVolume;
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -71,29 +72,28 @@ public class PlayerMovement : MonoBehaviour
 
         // TODO restart game
     }
-	
-	void Update () {
+
+    void Update()
+    {
         var v = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * moveSpeed / body.mass;
 
 
-        if (body.velocity.magnitude >= 0.1)
+        if (footsteps != null)
         {
-            if (!footsteps.isPlaying)
+            if (body.velocity.magnitude >= 0.1)
             {
-                footsteps.Play();
+                if (!footsteps.isPlaying)
+                {
+                    footsteps.Play();
+                }
+            }
+            else
+            {
+                footsteps.Stop();
             }
         }
-        else
-        {
-            footsteps.Stop();
-        }
 
-	    if (!collisionSnd.isPlaying)
-	    {
-
-	        body.AddForce(v - new Vector3(body.velocity.x, body.velocity.y), ForceMode2D.Impulse);
-
-	    }
+        body.AddForce(v - new Vector3(body.velocity.x, body.velocity.y), ForceMode2D.Impulse);
 
 
         Vector2 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);

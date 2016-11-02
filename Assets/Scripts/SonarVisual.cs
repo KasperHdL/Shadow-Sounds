@@ -65,7 +65,7 @@ public class SonarVisual : MonoBehaviour
                 var a = startAngle + coneIncrementRad * i;
                 var md = Vector3.Distance(origin, sonar.hits[i].point);
                 md = Mathf.Min(md, d);
-                line.SetPosition(i++, origin + new Vector3(Mathf.Cos(a) * md, -Mathf.Sin(a) * md, 1));
+                line.SetPosition(i, origin + new Vector3(Mathf.Cos(a) * md, -Mathf.Sin(a) * md, 1));
             }
 
             var color = Color.Lerp(colorStart, colorEnd, l);
