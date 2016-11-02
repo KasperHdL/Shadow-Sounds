@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Linq;
+using KInput;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -26,13 +27,18 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D body;
     private bool fallen;
 
+    public bool useController;
+    private Controller controller;
+
 	void Start () {
+        controller = GetComponent<ControllerContainer>().controller;
+
         body = GetComponent<Rigidbody2D>();
-	    footsteps = sourceContainer.AddComponent<AudioSource>();
+        footsteps = sourceContainer.AddComponent<AudioSource>();
         collisionSnd = sourceContainer.AddComponent<AudioSource>();
         footsteps.clip = footstepsClip;
-	    footsteps.volume = stepVolume;
-	}
+        footsteps.volume = stepVolume;
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -82,31 +88,42 @@ public class PlayerMovement : MonoBehaviour
     }
 	
 	void Update () {
-        var v = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * moveSpeed / body.mass;
+        Vector3 v;
+        if(useController){
+           v = new Vector3(controller.GetAxis(Axis.StickLeftX), controller.GetAxis(Axis.StickLeftY),0) ;
+        }else{
+           v = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"),0) ;
+        }
 
+        
+        v *= moveSpeed / body.mass;
 
-        if (body.velocity.magnitude >= 0.1)
+        if (footsteps != null)
         {
-            if (!footsteps.isPlaying)
+            if (body.velocity.magnitude >= 0.1)
             {
-                footsteps.Play();
+                if (!footsteps.isPlaying)
+                {
+                    footsteps.Play();
+                }
+            }
+            else
+            {
+                footsteps.Stop();
             }
         }
-        else
-        {
-            footsteps.Stop();
+
+        body.AddForce(v - new Vector3(body.velocity.x, body.velocity.y), ForceMode2D.Impulse);
+
+
+
+        if(useController){
+            viewDirection = new Vector2(controller.GetAxis(Axis.StickRightX), controller.GetAxis(Axis.StickRightY));
+        }else{
+            Vector2 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            viewDirection = mouse - (Vector2)transform.position;
+            viewDirection = viewDirection.normalized;
         }
-
-	    if ( !collisionSnd.isPlaying )
-	    {
-
-	        body.AddForce(v - new Vector3(body.velocity.x, body.velocity.y), ForceMode2D.Impulse);
-
-	    }
-
-
-        Vector2 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        viewDirection = mouse - (Vector2)transform.position;
 
         transform.rotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * Mathf.Atan2(viewDirection.y, viewDirection.x));
     }
