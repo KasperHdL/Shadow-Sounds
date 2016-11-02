@@ -17,6 +17,11 @@ public class FollowPlayer : MonoBehaviour
     public float minWanderDistance = 2f;
     public float maxWanderDistance = 5f;
 
+    public float attackCooldown = 2;
+    public float attackChargeTime = 2;
+    public float attackForce = 100;
+    private bool attacking;
+
     private bool isMovingTowardsWanderPosition = false;
     private bool isMovingTowardsKnownPlayerPosition = false;
     private Vector2 knownPlayerPosition;
@@ -37,21 +42,22 @@ public class FollowPlayer : MonoBehaviour
 
     void Update()
     {
-        if (target != null)
-        {
-            if (Vector3.Distance(transform.position, target.position) < visibleDistance)
-            {
-                renderer.enabled = true;
-            }
-            else
-            {
-                renderer.enabled = visibleOverride;
-            }
-        }
-        else
-        {
-            renderer.enabled = visibleOverride;
-        }
+        if (target != null && !attacking && Vector3.Distance(transform.position, target.position) < visibleDistance)
+            StartCoroutine(Attack());
+
+        renderer.enabled = attacking || visibleOverride;
+    }
+
+    IEnumerator Attack()
+    {
+        attacking = true;
+        var dir = target.position - transform.position;
+        body.isKinematic = true;
+        yield return new WaitForSeconds(attackChargeTime);
+        body.isKinematic = false;
+        body.AddForce(dir * attackForce);
+        yield return new WaitForSeconds(attackCooldown);
+        attacking = false;
     }
 	
 	void FixedUpdate () {
@@ -83,7 +89,7 @@ public class FollowPlayer : MonoBehaviour
             moveDirection = nextWanderPosition - (Vector2) transform.position;
         }
 
-        body.AddForce(moveDirection.normalized * moveForce * Time.deltaTime);
+        body.AddForce(moveDirection.normalized * moveForce * Time.fixedDeltaTime);
 
 	}
 

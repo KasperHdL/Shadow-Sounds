@@ -3588,8 +3588,8 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114000010118106110, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04,
         type: 2}
-      propertyPath: visibleDistance
-      value: 1.8
+      propertyPath: attackChargeTime
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04, type: 2}
@@ -4584,6 +4584,11 @@ Prefab:
         type: 2}
       propertyPath: m_BackGroundColor.b
       value: 0.34379846
+      objectReference: {fileID: 0}
+    - target: {fileID: 20000013630327422, guid: 9d88353ac1e014195bc097c501fab2dd,
+        type: 2}
+      propertyPath: orthographic size
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9d88353ac1e014195bc097c501fab2dd, type: 2}
