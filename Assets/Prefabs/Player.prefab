@@ -288,8 +288,7 @@ MonoBehaviour:
   coneIncrement: 2
   distance: 20
   soundDelayPerMeter: 0.1
-  sourceContainer: {fileID: 1000011376902860, guid: 9d88353ac1e014195bc097c501fab2dd,
-    type: 2}
+  sourceContainer: {fileID: 1000012801305010}
   sources: []
   hitSound: {fileID: 8300000, guid: eda2c91970dd88346af4d24a5217b494, type: 3}
   noHitSound: {fileID: 8300000, guid: 022d1b9b3301219498ae4a914ea419e1, type: 3}
