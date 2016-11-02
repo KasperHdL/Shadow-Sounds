@@ -33,11 +33,11 @@ public class PlayerMovement : MonoBehaviour
         controller = GetComponent<ControllerContainer>().controller;
 
         body = GetComponent<Rigidbody2D>();
-	    footsteps = sourceContainer.AddComponent<AudioSource>();
+        footsteps = sourceContainer.AddComponent<AudioSource>();
         collisionSnd = sourceContainer.AddComponent<AudioSource>();
         footsteps.clip = footstepsClip;
-	    footsteps.volume = stepVolume;
-	}
+        footsteps.volume = stepVolume;
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -89,16 +89,19 @@ public class PlayerMovement : MonoBehaviour
         
         v *= moveSpeed / body.mass;
 
-        if (body.velocity.magnitude >= 0.1)
+        if (footsteps != null)
         {
-            if (!footsteps.isPlaying)
+            if (body.velocity.magnitude >= 0.1)
             {
-                footsteps.Play();
+                if (!footsteps.isPlaying)
+                {
+                    footsteps.Play();
+                }
             }
-        }
-        else
-        {
-            footsteps.Stop();
+            else
+            {
+                footsteps.Stop();
+            }
         }
 
 
