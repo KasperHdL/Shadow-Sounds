@@ -38,6 +38,7 @@ public class SonarVisual : MonoBehaviour
         var angle = Mathf.Atan2(-viewDir.y, viewDir.x);
         var coneAngleRad = Mathf.Deg2Rad * sonar.coneAngle;
         var coneIncrementRad = Mathf.Deg2Rad * sonar.coneIncrement;
+        var startAngle = angle - coneAngleRad;
 
         var n = 0;
         for (var a = angle - coneAngleRad; a < angle + coneAngleRad; a += coneIncrementRad)
@@ -59,10 +60,12 @@ public class SonarVisual : MonoBehaviour
             var l = ((tt - t)/tt);
             var d = distance * l;
 
-            var i = 0;
-            for (var a = angle - coneAngleRad; a < angle + coneAngleRad; a += coneIncrementRad)
+            for (int i = 0; i < sonar.hits.Length; i++)
             {
-                line.SetPosition(i++, origin + new Vector3(Mathf.Cos(a)*d, -Mathf.Sin(a) * d, 1));
+                var a = startAngle + coneIncrementRad * i;
+                var md = Vector3.Distance(origin, sonar.hits[i].point);
+                md = Mathf.Min(md, d);
+                line.SetPosition(i, origin + new Vector3(Mathf.Cos(a) * md, -Mathf.Sin(a) * md, 1));
             }
 
             var color = Color.Lerp(colorStart, colorEnd, l);
