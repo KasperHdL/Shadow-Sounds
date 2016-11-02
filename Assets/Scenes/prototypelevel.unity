@@ -1462,6 +1462,34 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4000012151245534, guid: c05b727539e0b415e927a48accd07b48, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012151245534, guid: c05b727539e0b415e927a48accd07b48, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012151245534, guid: c05b727539e0b415e927a48accd07b48, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012151245534, guid: c05b727539e0b415e927a48accd07b48, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012151245534, guid: c05b727539e0b415e927a48accd07b48, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012151245534, guid: c05b727539e0b415e927a48accd07b48, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012151245534, guid: c05b727539e0b415e927a48accd07b48, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012151245534, guid: c05b727539e0b415e927a48accd07b48, type: 2}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
@@ -2170,18 +2198,8 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114000010118106110, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04,
         type: 2}
-      propertyPath: speed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010118106110, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04,
-        type: 2}
-      propertyPath: moveForce
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 23000011628051286, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
+      propertyPath: visibleDistance
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 114000010118106110, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04,
         type: 2}

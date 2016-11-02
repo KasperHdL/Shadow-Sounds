@@ -1,7 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour
+{
+
+    public int health = 4;
+    public float hitForce;
 
     public float moveSpeed = 50.0f;
     public AudioClip footstepsClip;
@@ -29,15 +34,23 @@ public class PlayerMovement : MonoBehaviour {
 	    footsteps.volume = stepVolume;
 	}
 
-    void OnCollisionEnter2D(Collision2D other)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        switch (other.gameObject.tag)
+        switch (collision.gameObject.tag)
         {
             case "Enemy":
                 collisionSnd.clip = enemyCollision;
                 collisionSnd.volume = enemyColVol;
                 collisionSnd.Play();
-                //  Debug.Log("EnemyCollision");
+                //Debug.Log("EnemyCollision");
+
+                health--;
+                if (health <= 0) Die();
+
+                var avgNormal = collision.contacts.Aggregate(Vector2.zero, (a, c) => a + c.normal) / collision.contacts.Length;
+                body.AddForce(avgNormal * hitForce);
+                collision.rigidbody.AddForce(-avgNormal * hitForce);
+
                 break;
             case "Wall":
                 if (fallOnWalls)
@@ -59,6 +72,13 @@ public class PlayerMovement : MonoBehaviour {
                 break;
         }
 
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject);
+
+        // TODO restart game
     }
 	
 	void Update () {
