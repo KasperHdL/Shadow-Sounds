@@ -19,8 +19,7 @@ public class FollowPlayer : MonoBehaviour
     public float maxWanderDistance = 5f;
 
 
-    private List<AudioClip> ghostSounds = new List<AudioClip>();
-    public AudioClip ghost1, ghost2, ghost3, ghost4, ghost5, ghost6, ghost7;
+    public List<AudioClip> ghostSounds = new List<AudioClip>();
     private AudioSource audioSource;
     public GameObject sourceContainer;
 
@@ -43,14 +42,6 @@ public class FollowPlayer : MonoBehaviour
 
         audioSource = sourceContainer.AddComponent<AudioSource>();
         audioSource.volume = 0.2f;
-        ghostSounds.Add(ghost1);
-        ghostSounds.Add(ghost2);
-        ghostSounds.Add(ghost3);
-        ghostSounds.Add(ghost4);
-        ghostSounds.Add(ghost5);
-        ghostSounds.Add(ghost6);
-        ghostSounds.Add(ghost7);
-
     }
 
     void Update()
