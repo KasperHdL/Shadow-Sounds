@@ -79,10 +79,12 @@ namespace KInput{
             float v = Input.GetAxis("joystick " + controllerIndex + " axis " + index);
             if(yInverted && (a == Axis.DPadY || a == Axis.StickLeftY || a == Axis.StickRightY))
                 v = -v;
+
 #if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
             if(a == Axis.TriggerRight || a == Axis.TriggerLeft)
                 v = (v+1)/2;//TODO optimize
 #endif
+
             return v;
         }
 
@@ -195,9 +197,6 @@ namespace KInput{
             buttons[(int) Button.TriggerLeft]     = -1;
             buttons[(int) Button.TriggerRight]    = -1;
 
-
-
-
 #elif UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
             buttons[(int) Button.A]               = 0;
             buttons[(int) Button.B]               = 1;
@@ -233,11 +232,8 @@ namespace KInput{
             buttons[(int) Button.DPadRight]       = (!isWired ? 13 : -1); //only wireless 
             buttons[(int) Button.TriggerLeft]     = -1;
             buttons[(int) Button.TriggerRight]    = -1;
-
-
-
-
 #endif
+
         }
     }
 }

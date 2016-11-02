@@ -25,7 +25,8 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 viewDirection;
     private Rigidbody2D body;
     private bool fallen;
-    public bool useMouse;
+
+    public bool useController;
     private Controller controller;
 
 	void Start () {
@@ -78,7 +79,14 @@ public class PlayerMovement : MonoBehaviour
     }
 	
 	void Update () {
-        var v = new Vector3(controller.GetAxis(Axis.StickLeftX), controller.GetAxis(Axis.StickLeftY),0) ;
+        Vector3 v;
+        if(useController){
+           v = new Vector3(controller.GetAxis(Axis.StickLeftX), controller.GetAxis(Axis.StickLeftY),0) ;
+        }else{
+           v = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"),0) ;
+        }
+
+        
         v *= moveSpeed / body.mass;
 
         if (body.velocity.magnitude >= 0.1)
@@ -98,12 +106,14 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        if(useMouse){
-            Vector2 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            viewDirection = (mouse - (Vector2)transform.position).normalized;
+        if(useController){
+            viewDirection = new Vector2(controller.GetAxis(Axis.StickRightX), controller.GetAxis(Axis.StickRightY));
         }else{
-            viewDirection = new Vector2(controller.GetAxis(KInput.Axis.StickRightX), controller.GetAxis(KInput.Axis.StickRightY));
+            Vector2 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            viewDirection = mouse - (Vector2)transform.position;
+            viewDirection = viewDirection.normalized;
         }
+
         transform.rotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * Mathf.Atan2(viewDirection.y, viewDirection.x));
     }
 }
