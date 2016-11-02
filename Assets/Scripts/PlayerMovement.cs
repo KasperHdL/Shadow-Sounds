@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Linq;
+using KInput;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -25,8 +26,12 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D body;
     private bool fallen;
 
-    void Start()
-    {
+    public bool useController;
+    private Controller controller;
+
+	void Start () {
+        controller = GetComponent<ControllerContainer>().controller;
+
         body = GetComponent<Rigidbody2D>();
         footsteps = sourceContainer.AddComponent<AudioSource>();
         collisionSnd = sourceContainer.AddComponent<AudioSource>();
@@ -72,11 +77,17 @@ public class PlayerMovement : MonoBehaviour
 
         // TODO restart game
     }
+	
+	void Update () {
+        Vector3 v;
+        if(useController){
+           v = new Vector3(controller.GetAxis(Axis.StickLeftX), controller.GetAxis(Axis.StickLeftY),0) ;
+        }else{
+           v = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"),0) ;
+        }
 
-    void Update()
-    {
-        var v = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * moveSpeed / body.mass;
-
+        
+        v *= moveSpeed / body.mass;
 
         if (footsteps != null)
         {
@@ -93,11 +104,18 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+
         body.AddForce(v - new Vector3(body.velocity.x, body.velocity.y), ForceMode2D.Impulse);
 
 
-        Vector2 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        viewDirection = mouse - (Vector2)transform.position;
+
+        if(useController){
+            viewDirection = new Vector2(controller.GetAxis(Axis.StickRightX), controller.GetAxis(Axis.StickRightY));
+        }else{
+            Vector2 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            viewDirection = mouse - (Vector2)transform.position;
+            viewDirection = viewDirection.normalized;
+        }
 
         transform.rotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * Mathf.Atan2(viewDirection.y, viewDirection.x));
     }

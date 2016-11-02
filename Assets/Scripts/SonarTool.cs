@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using KInput;
 
 public class SonarTool : MonoBehaviour {
 
@@ -31,10 +32,12 @@ public class SonarTool : MonoBehaviour {
     private float lastShotTime = 0f;
     public float shotCooldown = 1f;
 
+    private Controller controller;
 
 	// Use this for initialization
 	void Start () {
         player = GetComponent<PlayerMovement>();
+        controller = GetComponent<ControllerContainer>().controller;
         coneAngleRad = Mathf.Deg2Rad * coneAngle;
         coneIncrementRad = Mathf.Deg2Rad * coneIncrement;
 
@@ -48,9 +51,11 @@ public class SonarTool : MonoBehaviour {
 
 
     void FixedUpdate(){
-        if(lastShotTime + shotCooldown < Time.time && Input.GetButtonDown("Fire1")){
-            Shoot();
-            lastShotTime = Time.time;
+        if(lastShotTime + shotCooldown < Time.time){
+            if(Input.GetButtonDown("Fire1") || controller.GetAxis(Axis.TriggerRight) > 0.75f){
+                Shoot();
+                lastShotTime = Time.time;
+            }
         }
     }
 	
