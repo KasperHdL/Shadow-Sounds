@@ -70,7 +70,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012343331628}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.55, y: -22.12, z: 0}
+  m_LocalPosition: {x: 23.4, y: -14.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -264,7 +264,7 @@ MonoBehaviour:
   hitForce: 800
   moveSpeed: 5
   footstepsClip: {fileID: 8300000, guid: b202f3b30b95819439389ad59d25f5a9, type: 3}
-  sourceContainer: {fileID: 52768672}
+  sourceContainer: {fileID: 1000012801305010}
   stepVolume: 0.3
   enemyCollision: {fileID: 8300000, guid: eab4886bb44931c4ea8511871fc36f7b, type: 3}
   wallCollision: {fileID: 8300000, guid: a2b11cb86674b0240b99c8be33e2834d, type: 3}
@@ -272,7 +272,7 @@ MonoBehaviour:
   enemyColVol: 0.5
   defColVol: 0.5
   viewDirection: {x: 0, y: 0}
-  useMouse: 0
+  useController: 0
 --- !u!114 &114000013861296054
 MonoBehaviour:
   m_ObjectHideFlags: 1

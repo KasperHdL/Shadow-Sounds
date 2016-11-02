@@ -51,9 +51,11 @@ public class SonarTool : MonoBehaviour {
 
 
     void FixedUpdate(){
-        if(lastShotTime + shotCooldown < Time.time && controller.GetAxis(Axis.TriggerRight) > 0.75f){
-            Shoot();
-            lastShotTime = Time.time;
+        if(lastShotTime + shotCooldown < Time.time){
+            if(Input.GetButtonDown("Fire1") || controller.GetAxis(Axis.TriggerRight) > 0.75f){
+                Shoot();
+                lastShotTime = Time.time;
+            }
         }
     }
 	
