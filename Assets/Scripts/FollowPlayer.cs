@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(MeshRenderer))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class FollowPlayer : MonoBehaviour
 {
 
     public Transform target;
     private Rigidbody2D body;
-    private MeshRenderer renderer;
+    private SpriteRenderer renderer;
     public float moveForce;
     public float visibleDistance = 1.5f;
     public bool visibleOverride = false;
@@ -25,7 +25,7 @@ public class FollowPlayer : MonoBehaviour
 	// Use this for initialization
     void Start(){
         body = GetComponent<Rigidbody2D>();
-        renderer = GetComponent<MeshRenderer>();
+        renderer = GetComponent<SpriteRenderer>();
         if(target == null){
             Debug.LogWarning("Enemy has no target, gonna try to find an object tagged 'Player'");
             target = GameObject.FindWithTag("Player").GetComponent<Transform>();
