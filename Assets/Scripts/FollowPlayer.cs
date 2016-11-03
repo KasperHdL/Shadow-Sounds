@@ -12,6 +12,8 @@ public class FollowPlayer : MonoBehaviour
     public float visibleDistance = 1.5f;
     public bool visibleOverride = false;
 
+    public LayerMask detectionBlockMask;
+
     public bool allowedToWander = true;
     public float raycastStartRadius = 1f;
     public float minWanderDistance = 2f;
@@ -106,7 +108,7 @@ public class FollowPlayer : MonoBehaviour
             location = (Vector2)transform.position + new Vector2(Mathf.Cos(angle) * dist, Mathf.Sin(angle) * dist);
             Vector2 delta = location - (Vector2)transform.position;
 
-            if(!Physics2D.Linecast((Vector2)transform.position + delta.normalized * raycastStartRadius, location)){
+            if(!Physics2D.Linecast((Vector2)transform.position + delta.normalized * raycastStartRadius, location, detectionBlockMask)){
                 //found a location
                 foundLocation = true;
                 Debug.DrawLine(transform.position, location, Color.green, 1f);

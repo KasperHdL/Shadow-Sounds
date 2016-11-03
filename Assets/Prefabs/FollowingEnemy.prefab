@@ -89,6 +89,9 @@ MonoBehaviour:
   moveForce: 500
   visibleDistance: 1.8
   visibleOverride: 0
+  detectionBlockMask:
+    serializedVersion: 2
+    m_Bits: 4294967039
   allowedToWander: 1
   raycastStartRadius: 1
   minWanderDistance: 2
