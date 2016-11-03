@@ -284,10 +284,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d05100af1975410fba82047636557aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SoundMask:
+    serializedVersion: 2
+    m_Bits: 256
+  BlockMask:
+    serializedVersion: 2
+    m_Bits: 4294967039
   coneAngle: 45
   coneIncrement: 2
   distance: 20
   soundDelayPerMeter: 0.1
+  rays: 0
   sourceContainer: {fileID: 1000012801305010}
   sources: []
   hitSound: {fileID: 8300000, guid: eda2c91970dd88346af4d24a5217b494, type: 3}
