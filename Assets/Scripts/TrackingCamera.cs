@@ -20,8 +20,10 @@ public class TrackingCamera : MonoBehaviour {
 
     }
 	
-	void FixedUpdate () {
-        
+	void FixedUpdate ()
+	{
+	    if (target == null) return;
+
         Vector3 delta = target.transform.position - transform.position;
         delta.z = 0;
         Vector3 desiredPosition = (Vector2)transform.position + (Vector2)delta.normalized * delta.sqrMagnitude + target.viewDirection * viewOffsetMultiplier;
