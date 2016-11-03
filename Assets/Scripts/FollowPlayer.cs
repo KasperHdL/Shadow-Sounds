@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Linq;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class FollowPlayer : MonoBehaviour
@@ -8,9 +7,8 @@ public class FollowPlayer : MonoBehaviour
 
     public Transform target;
     private Rigidbody2D body;
-    private SpriteRenderer renderer;
+    private new SpriteRenderer renderer;
     public float moveForce;
-    public float visibleDistance = 1.5f;
     public bool visibleOverride = false;
 
     public bool allowedToWander = true;
@@ -18,17 +16,21 @@ public class FollowPlayer : MonoBehaviour
     public float minWanderDistance = 2f;
     public float maxWanderDistance = 5f;
 
+    public float attackDistance = 2f;
     public float attackCooldown = 2;
-    public float attackChargeTime = 2;
+    public float attackChargeTime = 0.2f;
     public float attackForce = 100;
     private bool attacking;
+
+    public float immidiateDetectionDistance = 6;
+    public float detectionTime = 1;
+    private float? targetSeenTime = 0;
 
     private bool isMovingTowardsWanderPosition = false;
     private bool isMovingTowardsKnownPlayerPosition = false;
     private Vector2 knownPlayerPosition;
     private Vector2 nextWanderPosition;
-
-    // Use this for initialization
+    
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
@@ -45,7 +47,7 @@ public class FollowPlayer : MonoBehaviour
 
     void Update()
     {
-        if (target != null && !attacking && Vector3.Distance(transform.position, target.position) < visibleDistance)
+        if (target != null && !attacking && Vector3.Distance(transform.position, target.position) < attackDistance)
             StartCoroutine(Attack());
 
         renderer.enabled = attacking || visibleOverride;
@@ -108,7 +110,13 @@ public class FollowPlayer : MonoBehaviour
         if (target == null) return false;
         Vector2 delta = target.position - transform.position;
         RaycastHit2D hit = Physics2D.Linecast((Vector2)transform.position + delta.normalized * raycastStartRadius, target.position);
-        return hit.collider.transform == target;
+        var result = hit.collider.transform == target;
+
+        if (!result) targetSeenTime = null;
+        if (result && targetSeenTime == null) targetSeenTime = Time.fixedTime;
+        if (delta.magnitude > immidiateDetectionDistance && Time.fixedTime - targetSeenTime < detectionTime) result = false;
+
+        return result;
     }
 
     Vector2 pickWanderPosition()
@@ -151,5 +159,11 @@ public class FollowPlayer : MonoBehaviour
         var player = collision.gameObject.GetComponent<PlayerMovement>();
         if (player && attacking)
             player.Hit(1);
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, immidiateDetectionDistance);
     }
 }
