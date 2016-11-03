@@ -105,6 +105,7 @@ public class FollowPlayer : MonoBehaviour
 
     bool isSeeingPlayer()
     {
+        if (target == null) return false;
         Vector2 delta = target.position - transform.position;
         RaycastHit2D hit = Physics2D.Linecast((Vector2)transform.position + delta.normalized * raycastStartRadius, target.position);
         return hit.collider.transform == target;
