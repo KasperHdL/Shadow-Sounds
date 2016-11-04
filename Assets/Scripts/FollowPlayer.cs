@@ -1,10 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-<<<<<<< HEAD
 using System.Collections.Generic;
-=======
 using System.Linq;
->>>>>>> refs/remotes/origin/master
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class FollowPlayer : MonoBehaviour
@@ -21,18 +18,15 @@ public class FollowPlayer : MonoBehaviour
     public float raycastStartRadius = 1f;
     public float minWanderDistance = 2f;
     public float maxWanderDistance = 5f;
-
-<<<<<<< HEAD
+    
 
     public List<AudioClip> ghostSounds = new List<AudioClip>();
     private AudioSource audioSource;
     public GameObject sourceContainer;
-=======
     public float attackCooldown = 2;
     public float attackChargeTime = 2;
     public float attackForce = 100;
     private bool attacking;
->>>>>>> refs/remotes/origin/master
 
     private bool isMovingTowardsWanderPosition = false;
     private bool isMovingTowardsKnownPlayerPosition = false;
