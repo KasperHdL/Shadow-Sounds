@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -17,7 +18,11 @@ public class FollowPlayer : MonoBehaviour
     public float raycastStartRadius = 1f;
     public float minWanderDistance = 2f;
     public float maxWanderDistance = 5f;
+    
 
+    public List<AudioClip> ghostSounds = new List<AudioClip>();
+    private AudioSource audioSource;
+    public GameObject sourceContainer;
     public float attackCooldown = 2;
     public float attackChargeTime = 2;
     public float attackForce = 100;
@@ -27,6 +32,7 @@ public class FollowPlayer : MonoBehaviour
     private bool isMovingTowardsKnownPlayerPosition = false;
     private Vector2 knownPlayerPosition;
     private Vector2 nextWanderPosition;
+    private bool playedSound = false;
 
     // Use this for initialization
     void Start()
@@ -41,6 +47,8 @@ public class FollowPlayer : MonoBehaviour
                 Debug.LogError("No object tagged 'Player'");
         }
 
+        audioSource = sourceContainer.AddComponent<AudioSource>();
+        audioSource.volume = 0.2f;
     }
 
     void Update()
@@ -62,16 +70,28 @@ public class FollowPlayer : MonoBehaviour
         yield return new WaitForSeconds(attackCooldown);
         attacking = false;
     }
-
-    void FixedUpdate()
-    {
-        if (isSeeingPlayer())
+    
+    void FixedUpdate () {
+        if(isSeeingPlayer())
         {
+            //play random ghost sound
+            if (!playedSound && !audioSource.isPlaying)
+            {
+                audioSource.clip = ghostSounds[Random.Range(0, ghostSounds.Count-1)];
+                audioSource.Play();
+                playedSound = true;
+            }
+
+
             Debug.DrawLine(transform.position, target.position, Color.red, 1f);
             knownPlayerPosition = target.position;
             isMovingTowardsKnownPlayerPosition = true;
             isMovingTowardsWanderPosition = false;
 
+        }
+        else
+        {
+            playedSound = false;
         }
 
         Vector2 moveDirection = Vector2.zero;
