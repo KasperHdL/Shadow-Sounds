@@ -36,8 +36,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013906157328}
-  m_LocalRotation: {x: 0, y: 0, z: -0.043331504, w: -0.99906075}
-  m_LocalPosition: {x: -15.769925, y: -11.451083, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -20.4, y: -12.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -93,6 +93,15 @@ MonoBehaviour:
   raycastStartRadius: 1
   minWanderDistance: 2
   maxWanderDistance: 5
+  ghostSounds:
+  - {fileID: 8300000, guid: 10522021bbf9c404589dbf8a3b7a7520, type: 3}
+  - {fileID: 8300000, guid: 30ae7eeb40fe77f4ea3aaf45109b182b, type: 3}
+  - {fileID: 8300000, guid: 42238f745177ca0408c3c0e7d1b6d179, type: 3}
+  - {fileID: 8300000, guid: 928f71d9817d4fe49bec6f09d03812be, type: 3}
+  - {fileID: 8300000, guid: 75c2cb65a0f9cc74ca91f6e9c3520588, type: 3}
+  - {fileID: 8300000, guid: 835531f03fb60db418354110a561f655, type: 3}
+  - {fileID: 8300000, guid: 32e12cbd951298547b6d1aa52753a73b, type: 3}
+  sourceContainer: {fileID: 0}
   attackCooldown: 1.6
   attackChargeTime: 0.3
   attackForce: 1000
