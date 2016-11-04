@@ -93,6 +93,9 @@ MonoBehaviour:
   raycastStartRadius: 1
   minWanderDistance: 2
   maxWanderDistance: 5
+  attackCooldown: 1.6
+  attackChargeTime: 0.3
+  attackForce: 1000
 --- !u!212 &212000011481643816
 SpriteRenderer:
   m_ObjectHideFlags: 1
