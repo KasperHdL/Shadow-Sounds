@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject sourceContainer;
     public float stepVolume = 0.1f;
     private AudioSource footsteps;
+    public bool fallOnWalls;
 
     public AudioClip enemyCollision, wallCollision, defaultCol;
     public float enemyColVol = 0.5f;
@@ -47,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
             case "Enemy":
                 collisionSnd.clip = enemyCollision;
                 collisionSnd.volume = enemyColVol;
+                collisionSnd.Play();
                 //Debug.Log("EnemyCollision");
 
                 var avgNormal = collision.contacts.Aggregate(Vector2.zero, (a, c) => a + c.normal) / collision.contacts.Length;
@@ -55,18 +57,25 @@ public class PlayerMovement : MonoBehaviour
 
                 break;
             case "Wall":
-                collisionSnd.clip = wallCollision;
-                collisionSnd.volume = defColVol;
+                if (fallOnWalls)
+                {
+                    collisionSnd.clip = wallCollision;
+                    collisionSnd.volume = defColVol;
+                    collisionSnd.Play();
+                }
                 //Debug.Log("WallCollision");
                 break;
             default:
-                collisionSnd.clip = defaultCol;
-                collisionSnd.volume = defColVol;
-                //Debug.Log("No tag set!");
+                if (fallOnWalls)
+                {
+                    collisionSnd.clip = defaultCol;
+                    collisionSnd.volume = defColVol;
+                    collisionSnd.Play();
+                }
+                //Debug.Log("No collision tag set!");
                 break;
         }
 
-        collisionSnd.Play();
     }
 
     public void Hit(int damage)
@@ -110,7 +119,6 @@ public class PlayerMovement : MonoBehaviour
                 footsteps.Stop();
             }
         }
-
 
         body.AddForce(v - new Vector3(body.velocity.x, body.velocity.y), ForceMode2D.Impulse);
 

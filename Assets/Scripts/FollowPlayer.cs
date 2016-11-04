@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Linq;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class FollowPlayer : MonoBehaviour
@@ -22,11 +23,15 @@ public class FollowPlayer : MonoBehaviour
     public float attackChargeTime = 2;
     public float attackForce = 100;
     private bool attacking;
+    public List<AudioClip> ghostSounds = new List<AudioClip>();
+    private AudioSource audioSource;
+    public GameObject sourceContainer;
 
     private bool isMovingTowardsWanderPosition = false;
     private bool isMovingTowardsKnownPlayerPosition = false;
     private Vector2 knownPlayerPosition;
     private Vector2 nextWanderPosition;
+    private bool playedSound = false;
 
     // Use this for initialization
     void Start()
@@ -41,6 +46,8 @@ public class FollowPlayer : MonoBehaviour
                 Debug.LogError("No object tagged 'Player'");
         }
 
+        audioSource = sourceContainer.AddComponent<AudioSource>();
+        audioSource.volume = 0.2f;
     }
 
     void Update()
@@ -63,15 +70,27 @@ public class FollowPlayer : MonoBehaviour
         attacking = false;
     }
 
-    void FixedUpdate()
-    {
-        if (isSeeingPlayer())
+	
+	void FixedUpdate () {
+        if(isSeeingPlayer())
         {
+            //play random ghost sound
+            if (!playedSound && !audioSource.isPlaying)
+            {
+                audioSource.clip = ghostSounds[Random.Range(0, ghostSounds.Count-1)];
+                audioSource.Play();
+                playedSound = true;
+            }
+
             Debug.DrawLine(transform.position, target.position, Color.red, 1f);
             knownPlayerPosition = target.position;
             isMovingTowardsKnownPlayerPosition = true;
             isMovingTowardsWanderPosition = false;
 
+        }
+        else
+        {
+            playedSound = false;
         }
 
         Vector2 moveDirection = Vector2.zero;
