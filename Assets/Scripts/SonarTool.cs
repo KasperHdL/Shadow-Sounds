@@ -64,7 +64,7 @@ public class SonarTool : MonoBehaviour {
         float angle = Mathf.Atan2(-viewDir.y, viewDir.x);
 
 	    _noise = sourceContainer.AddComponent<AudioSource>();
-	    _noise.volume = 0.15f;
+	    _noise.volume = 0.30f;
         _noise.clip = sonarNoise;
         _noise.Play();
 
