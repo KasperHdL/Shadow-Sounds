@@ -30,7 +30,8 @@ public class PlayerMovement : MonoBehaviour
     public bool useController;
     private Controller controller;
 
-	void Start () {
+    void Start()
+    {
         controller = GetComponent<ControllerContainer>().controller;
 
         body = GetComponent<Rigidbody2D>();
@@ -49,9 +50,6 @@ public class PlayerMovement : MonoBehaviour
                 collisionSnd.volume = enemyColVol;
                 collisionSnd.Play();
                 //Debug.Log("EnemyCollision");
-
-                health--;
-                if (health <= 0) Die();
 
                 var avgNormal = collision.contacts.Aggregate(Vector2.zero, (a, c) => a + c.normal) / collision.contacts.Length;
                 body.AddForce(avgNormal * hitForce);
@@ -80,22 +78,31 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    public void Hit(int damage)
+    {
+        health -= damage;
+        if (health <= 0) Die();
+    }
     private void Die()
     {
         Destroy(gameObject);
 
         // TODO restart game
     }
-	
-	void Update () {
+
+    void Update()
+    {
         Vector3 v;
-        if(useController){
-           v = new Vector3(controller.GetAxis(Axis.StickLeftX), controller.GetAxis(Axis.StickLeftY),0) ;
-        }else{
-           v = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"),0) ;
+        if (useController)
+        {
+            v = new Vector3(controller.GetAxis(Axis.StickLeftX), controller.GetAxis(Axis.StickLeftY), 0);
+        }
+        else
+        {
+            v = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
         }
 
-        
+
         v *= moveSpeed / body.mass;
 
         if (footsteps != null)
@@ -117,9 +124,12 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        if(useController){
+        if (useController)
+        {
             viewDirection = new Vector2(controller.GetAxis(Axis.StickRightX), controller.GetAxis(Axis.StickRightY));
-        }else{
+        }
+        else
+        {
             Vector2 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             viewDirection = mouse - (Vector2)transform.position;
             viewDirection = viewDirection.normalized;

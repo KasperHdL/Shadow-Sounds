@@ -102,6 +102,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 835531f03fb60db418354110a561f655, type: 3}
   - {fileID: 8300000, guid: 32e12cbd951298547b6d1aa52753a73b, type: 3}
   sourceContainer: {fileID: 0}
+  attackCooldown: 1.6
+  attackChargeTime: 0.3
+  attackForce: 1000
 --- !u!212 &212000011481643816
 SpriteRenderer:
   m_ObjectHideFlags: 1

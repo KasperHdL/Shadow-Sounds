@@ -2201,6 +2201,9 @@ Prefab:
       propertyPath: sourceContainer
       value: 
       objectReference: {fileID: 1025171211}
+      propertyPath: attackChargeTime
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04, type: 2}
   m_IsPrefabParent: 0
@@ -2950,6 +2953,8 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 1
+      propertyPath: orthographic size
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9d88353ac1e014195bc097c501fab2dd, type: 2}
