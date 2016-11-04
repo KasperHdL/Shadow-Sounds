@@ -22,7 +22,6 @@ public class FollowPlayer : MonoBehaviour
 
     public List<AudioClip> ghostSounds = new List<AudioClip>();
     private AudioSource audioSource;
-    public GameObject sourceContainer;
     public float attackCooldown = 2;
     public float attackChargeTime = 2;
     public float attackForce = 100;
@@ -47,7 +46,7 @@ public class FollowPlayer : MonoBehaviour
                 Debug.LogError("No object tagged 'Player'");
         }
 
-        audioSource = sourceContainer.AddComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         audioSource.volume = 0.2f;
     }
 
