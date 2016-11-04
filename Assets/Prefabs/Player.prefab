@@ -457,7 +457,8 @@ MonoBehaviour:
   moveSpeed: 5
   footstepsClip: {fileID: 8300000, guid: b202f3b30b95819439389ad59d25f5a9, type: 3}
   sourceContainer: {fileID: 1000012801305010}
-  stepVolume: 0.3
+  stepVolume: 1.2
+  fallOnWalls: 0
   enemyCollision: {fileID: 8300000, guid: eab4886bb44931c4ea8511871fc36f7b, type: 3}
   wallCollision: {fileID: 8300000, guid: a2b11cb86674b0240b99c8be33e2834d, type: 3}
   defaultCol: {fileID: 8300000, guid: a2b11cb86674b0240b99c8be33e2834d, type: 3}
@@ -485,7 +486,7 @@ MonoBehaviour:
   hitSound: {fileID: 8300000, guid: eda2c91970dd88346af4d24a5217b494, type: 3}
   noHitSound: {fileID: 8300000, guid: 022d1b9b3301219498ae4a914ea419e1, type: 3}
   sonarNoise: {fileID: 8300000, guid: a1cb448d157c21b40aa32a2bfff11843, type: 3}
-  noHitVolume: 0.1
+  noHitVolume: 0.3
   hitPitch: 0.8
-  hitVolume: 2.5
+  hitVolume: 2
   shotCooldown: 1
