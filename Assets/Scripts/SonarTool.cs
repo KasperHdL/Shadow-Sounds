@@ -82,7 +82,7 @@ public class SonarTool : MonoBehaviour {
 
             Vector3 d = new Vector3(Mathf.Cos(a), Mathf.Sin(-a),0); 
 
-            soundHits[i] = Physics2D.Raycast(player.transform.position + d, d, distance, SoundMask);
+            soundHits[i] = Physics2D.Raycast(player.transform.position + d, d, distance, SoundMask | BlockMask);
             blockHits[i] = Physics2D.Raycast(player.transform.position + d, d, distance, BlockMask);
 
             //draw debug
