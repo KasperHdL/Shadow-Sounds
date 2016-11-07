@@ -25,16 +25,16 @@ MonoBehaviour:
         motionVectorsResolution: 24
         motionVectorsAmplitude: 64
   antialiasing:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
-      method: 0
+      method: 1
       fxaaSettings:
-        preset: 2
+        preset: 4
       taaSettings:
-        jitterSpread: 0.75
-        sharpen: 0.3
-        stationaryBlending: 0.95
-        motionBlending: 0.85
+        jitterSpread: 1
+        sharpen: 0.7
+        stationaryBlending: 1
+        motionBlending: 1
   ambientOcclusion:
     m_Enabled: 0
     m_Settings:
@@ -96,7 +96,7 @@ MonoBehaviour:
     m_Settings:
       bloom:
         intensity: 2.69
-        threshold: 0.99
+        threshold: 1.23
         softKnee: 0.28
         radius: 4.35
         antiFlicker: 0
@@ -116,7 +116,7 @@ MonoBehaviour:
         neutralWhiteClip: 10
       basic:
         postExposure: 0.69
-        temperature: -7
+        temperature: -10
         tint: 0
         hueShift: 0
         saturation: 1
