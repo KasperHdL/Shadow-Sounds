@@ -96,7 +96,6 @@ namespace KInput{
 
                 //interpolate so that deadzone is 0 and 1 is 1
                 q = Mathf.Sign(v) * (Mathf.Abs(v) - deadzone) / (1 - deadzone);
-                Debug.Log(v + " -> " + q);
 
             }
 
