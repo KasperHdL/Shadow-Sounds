@@ -43,6 +43,7 @@ namespace KInput{
     public class Controller{
         public int controllerIndex = 1;
         protected bool yInverted = false;
+        public float deadzone;
 
         protected int[] axis;
         protected int[] buttons;
@@ -77,15 +78,29 @@ namespace KInput{
             int index = axis[(int) a];
             if(index == -1) return convertButtonToAxis(a);
             float v = Input.GetAxis("joystick " + controllerIndex + " axis " + index);
-            if(yInverted && (a == Axis.DPadY || a == Axis.StickLeftY || a == Axis.StickRightY))
-                v = -v;
+
+            float q = 0;
+            if(Mathf.Abs(v) < deadzone)
+                q = 0;
+            else
+            {
+
+                if(yInverted && (a == Axis.DPadY || a == Axis.StickLeftY || a == Axis.StickRightY))
+                    v = -v;
 
 #if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
-            if(a == Axis.TriggerRight || a == Axis.TriggerLeft)
-                v = (v+1)/2;//TODO optimize
+                if(a == Axis.TriggerRight || a == Axis.TriggerLeft)
+                    v = (v+1)/2;//TODO optimize
 #endif
 
-            return v;
+
+                //interpolate so that deadzone is 0 and 1 is 1
+                q = Mathf.Sign(v) * (Mathf.Abs(v) - deadzone) / (1 - deadzone);
+                Debug.Log(v + " -> " + q);
+
+            }
+
+            return q;
         }
 
 
@@ -142,9 +157,10 @@ namespace KInput{
 
     public class Xbox360 : Controller{
 
-        public Xbox360(int controllerIndex = 1){
+        public Xbox360(float deadzone, int controllerIndex = 1){
             this.controllerIndex = controllerIndex;
             bool isWired = true;
+            this.deadzone = deadzone;
 
 #if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
             axis[(int) Axis.StickLeftX]   = 1;

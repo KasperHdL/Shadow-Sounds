@@ -101,6 +101,7 @@ public class PlayerMovement : MonoBehaviour
         {
             v = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
         }
+        //Debug.Log("left: " + v);
 
 
         v *= moveSpeed / body.mass;
@@ -126,7 +127,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (useController)
         {
-            viewDirection = new Vector2(controller.GetAxis(Axis.StickRightX), controller.GetAxis(Axis.StickRightY));
+            Vector2 d = new Vector2(controller.GetAxis(Axis.StickRightX), controller.GetAxis(Axis.StickRightY));
+//            Debug.Log("right " + d);
+            if(d != Vector2.zero){
+                viewDirection = d;
+            }
         }
         else
         {
