@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement; 
 
-public class exit : MonoBehaviour {
+public class ExitScene : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D enter){
         if(enter.gameObject.tag == "Player"){
