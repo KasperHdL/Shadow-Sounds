@@ -1,13 +1,21 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
 public class SoundSystem : MonoBehaviour, ISerializationCallbackReceiver
 {
+    [SerializeField]
+    [Serializable]
+    public class ClipList
+    {
+        [SerializeField] public List<AudioClip> data = new List<AudioClip>();
+    }
+
     private static SoundSystem instance;
 
     public SortedDictionary<int, string> keys = new SortedDictionary<int, string>();
-    public SortedDictionary<string, AudioClip> clips = new SortedDictionary<string, AudioClip>();
+    public SortedDictionary<string, ClipList> clips = new SortedDictionary<string, ClipList>();
 
     [SerializeField]
     [HideInInspector]
@@ -17,7 +25,7 @@ public class SoundSystem : MonoBehaviour, ISerializationCallbackReceiver
     public List<string> snames = new List<string>();
     [SerializeField]
     [HideInInspector]
-    public List<AudioClip> sclips = new List<AudioClip>();
+    public List<ClipList> sclips = new List<ClipList>();
 
     private List<AudioSource> sources = new List<AudioSource>();
 
