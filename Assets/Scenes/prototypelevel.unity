@@ -121,7 +121,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &73697848
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -202,7 +202,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &101934463
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -283,7 +283,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &220945773
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -364,7 +364,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &245777897
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -445,7 +445,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &319236501
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -526,7 +526,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &380544702
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -663,7 +663,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &426727333
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -744,7 +744,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &524249813
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -825,7 +825,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &602751852
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -906,7 +906,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &627497476
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -987,7 +987,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &635095253
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1068,7 +1068,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &647752469
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1149,7 +1149,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &736955533
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1238,11 +1238,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114000013614927962, guid: c05b727539e0b415e927a48accd07b48,
-        type: 2}
-      propertyPath: useController
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c05b727539e0b415e927a48accd07b48, type: 2}
   m_IsPrefabParent: 0
@@ -1277,7 +1272,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &809171415
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1358,7 +1353,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &839878834
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1502,7 +1497,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &907720538
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1583,7 +1578,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &913056397
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1664,7 +1659,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &983991989
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1824,7 +1819,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &1004751311
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1874,6 +1869,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 13
+--- !u!1 &1154483100 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000011376902860, guid: 9d88353ac1e014195bc097c501fab2dd,
+    type: 2}
+  m_PrefabInternal: {fileID: 2027580180}
+--- !u!114 &1154483107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1154483100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 5dd46969465974e8e863f2f800158649, type: 2}
 --- !u!1 &1164301595
 GameObject:
   m_ObjectHideFlags: 0
@@ -1905,7 +1917,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &1164301597
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1986,7 +1998,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &1222287781
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2067,7 +2079,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &1229859873
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2148,7 +2160,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &1265577980
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2229,7 +2241,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &1275184440
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2366,7 +2378,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &1420487634
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2447,7 +2459,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &1437593363
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2528,7 +2540,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &1446151559
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2609,7 +2621,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &1452736399
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2690,7 +2702,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &1472445599
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2771,7 +2783,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &1518000242
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2894,7 +2906,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &1591207474
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2975,7 +2987,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &1612877983
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3056,7 +3068,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &1660939371
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3137,7 +3149,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &1843601895
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3218,7 +3230,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &1910466943
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3299,7 +3311,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &1917796768
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3696,7 +3708,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &2062874810
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3777,7 +3789,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &2105416576
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3858,7 +3870,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
 --- !u!23 &2107515588
 MeshRenderer:
   m_ObjectHideFlags: 0
