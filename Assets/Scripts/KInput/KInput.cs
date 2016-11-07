@@ -77,6 +77,8 @@ namespace KInput{
             int index = axis[(int) a];
             if(index == -1) return convertButtonToAxis(a);
             float v = Input.GetAxis("joystick " + controllerIndex + " axis " + index);
+
+
             if(yInverted && (a == Axis.DPadY || a == Axis.StickLeftY || a == Axis.StickRightY))
                 v = -v;
 
@@ -84,6 +86,8 @@ namespace KInput{
             if(a == Axis.TriggerRight || a == Axis.TriggerLeft)
                 v = (v+1)/2;//TODO optimize
 #endif
+
+
 
             return v;
         }

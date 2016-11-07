@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private bool fallen;
 
     public bool useController;
+    [Range(0,1)] public float deadzone = 0.1f;
     private Controller controller;
 
     void Start()
@@ -78,6 +79,13 @@ public class PlayerMovement : MonoBehaviour
         if (useController)
         {
             v = new Vector3(controller.GetAxis(Axis.StickLeftX), controller.GetAxis(Axis.StickLeftY), 0);
+
+            if(v.magnitude < deadzone){
+                v = Vector2.zero;
+            }else{
+                v = v.normalized * ((v.magnitude - deadzone) / (1 - deadzone));
+            }
+
         }
         else
         {
@@ -102,7 +110,16 @@ public class PlayerMovement : MonoBehaviour
 
         if (useController)
         {
-            viewDirection = new Vector2(controller.GetAxis(Axis.StickRightX), controller.GetAxis(Axis.StickRightY));
+            Vector2 d = new Vector2(controller.GetAxis(Axis.StickRightX), controller.GetAxis(Axis.StickRightY));
+            if(d.magnitude < deadzone){
+                d = Vector2.zero;
+            }else{
+                d = d.normalized * ((d.magnitude - deadzone) / (1 - deadzone));
+            }
+
+            if(d != Vector2.zero){
+                viewDirection = d;
+            }
         }
         else
         {
