@@ -22,9 +22,6 @@ public class SonarTool : MonoBehaviour {
     public int rays;
     public RaycastHit2D[] soundHits;
     public RaycastHit2D[] blockHits;
-    
-    public AudioClip sonarNoise;
-    private AudioSource _noise;
 
     public float noHitVolume = 0.5f;
     public float hitPitch    = 3f;
@@ -60,11 +57,8 @@ public class SonarTool : MonoBehaviour {
 	void Shoot() {
         Vector3 viewDir = player.viewDirection.normalized;
         float angle = Mathf.Atan2(-viewDir.y, viewDir.x);
-
-	    _noise = gameObject.AddComponent<AudioSource>();
-	    _noise.volume = 0.30f;
-        _noise.clip = sonarNoise;
-        _noise.Play();
+        
+        SoundSystem.Play("sonar noise", 0.2f);
 
 	    float startAngle = angle - coneAngleRad;
         for(int i = 0; i < rays; i++){

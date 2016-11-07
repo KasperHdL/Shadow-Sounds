@@ -8984,15 +8984,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b466ec9ccc151b1439e26f313b22be4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sids: 0200000004000000
+  sids: 020000000400000006000000080000000a0000000c000000
   snames:
   - sonar hit
   - sonar no hit
+  - footsteps
+  - wall collision
+  - default collision
+  - sonar noise
   sclips:
   - data:
     - {fileID: 8300000, guid: eda2c91970dd88346af4d24a5217b494, type: 3}
   - data:
     - {fileID: 8300000, guid: 022d1b9b3301219498ae4a914ea419e1, type: 3}
+  - data:
+    - {fileID: 8300000, guid: b202f3b30b95819439389ad59d25f5a9, type: 3}
+  - data:
+    - {fileID: 8300000, guid: a2b11cb86674b0240b99c8be33e2834d, type: 3}
+  - data:
+    - {fileID: 8300000, guid: a2b11cb86674b0240b99c8be33e2834d, type: 3}
+  - data:
+    - {fileID: 8300000, guid: a1cb448d157c21b40aa32a2bfff11843, type: 3}
 --- !u!114 &114000013913754286
 MonoBehaviour:
   m_ObjectHideFlags: 1
