@@ -20,15 +20,8 @@ public class SonarTool : MonoBehaviour {
 
     [HideInInspector]
     public int rays;
-    public GameObject sourceContainer;
-    public AudioSource[] sources;
     public RaycastHit2D[] soundHits;
     public RaycastHit2D[] blockHits;
-
-    public AudioClip hitSound;
-    public AudioClip noHitSound;
-    public AudioClip sonarNoise;
-    private AudioSource _noise;
 
     public float noHitVolume = 0.5f;
     public float hitPitch    = 3f;
@@ -47,13 +40,8 @@ public class SonarTool : MonoBehaviour {
         coneIncrementRad = Mathf.Deg2Rad * coneIncrement;
 
 	    rays = (int) (coneAngle*2/coneIncrement);
-        sources = new AudioSource[rays];
         soundHits = new RaycastHit2D[rays];
         blockHits = new RaycastHit2D[rays];
-
-        for (int i = 0;i<sources.Length;i++)
-            sources[i] = sourceContainer.AddComponent<AudioSource>();
-
 	}
 
 
@@ -69,11 +57,8 @@ public class SonarTool : MonoBehaviour {
 	void Shoot() {
         Vector3 viewDir = player.viewDirection.normalized;
         float angle = Mathf.Atan2(-viewDir.y, viewDir.x);
-
-	    _noise = sourceContainer.AddComponent<AudioSource>();
-	    _noise.volume = 0.30f;
-        _noise.clip = sonarNoise;
-        _noise.Play();
+        
+        SoundSystem.Play("sonar noise", 0.2f);
 
 	    float startAngle = angle - coneAngleRad;
         for(int i = 0; i < rays; i++){
@@ -119,18 +104,14 @@ public class SonarTool : MonoBehaviour {
         }
 
         for(int i = 0; i < numCollidersHit; i++){
-            sources[indexOfNearestCollider[i]].clip = hitSound;
-            sources[indexOfNearestCollider[i]].volume = hitVolume * (1 - soundHits[indexOfNearestCollider[i]].distance / distance);
-            sources[indexOfNearestCollider[i]].pitch = hitPitch * (1 - soundHits[indexOfNearestCollider[i]].distance / distance);
-            sources[indexOfNearestCollider[i]].PlayDelayed(soundHits[indexOfNearestCollider[i]].distance * soundDelayPerMeter);
+            SoundSystem.Play("sonar hit", 
+                hitPitch * (1 - soundHits[indexOfNearestCollider[i]].distance / distance), 
+                hitVolume * (1 - soundHits[indexOfNearestCollider[i]].distance / distance),
+                soundHits[indexOfNearestCollider[i]].distance * soundDelayPerMeter);
         }
 
-        if(numRaysHit < sources.Length){
-            sources[numCollidersHit].clip = noHitSound;
-            sources[numCollidersHit].volume = noHitVolume;
-            sources[numCollidersHit].pitch = 1f;
-            sources[numCollidersHit].PlayDelayed(distance * soundDelayPerMeter);
-            
+        if(numRaysHit < rays){
+            SoundSystem.Play("sonar no hit", noHitVolume, 1f, distance * soundDelayPerMeter);
 
             SendMessage("SonarShoot", distance);
         }else{

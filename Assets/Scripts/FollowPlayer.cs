@@ -9,7 +9,7 @@ public class FollowPlayer : MonoBehaviour
 
     public Transform target;
     private Rigidbody2D body;
-    private SpriteRenderer renderer;
+    private new SpriteRenderer renderer;
     public float moveForce;
     public float visibleDistance = 1.5f;
     public bool visibleOverride = false;
@@ -21,9 +21,7 @@ public class FollowPlayer : MonoBehaviour
     public float minWanderDistance = 2f;
     public float maxWanderDistance = 5f;
     
-
-    public List<AudioClip> ghostSounds = new List<AudioClip>();
-    private AudioSource audioSource;
+    
     public float attackCooldown = 2;
     public float attackChargeTime = 2;
     public float attackForce = 100;
@@ -47,9 +45,6 @@ public class FollowPlayer : MonoBehaviour
             if (target == null)
                 Debug.LogError("No object tagged 'Player'");
         }
-
-        audioSource = GetComponent<AudioSource>();
-        audioSource.volume = 0.2f;
     }
 
     void Update()
@@ -76,10 +71,9 @@ public class FollowPlayer : MonoBehaviour
         if(isSeeingPlayer())
         {
             //play random ghost sound
-            if (!playedSound && !audioSource.isPlaying)
+            if (!playedSound && !SoundSystem.IsPlaying("ghost sound"))
             {
-                audioSource.clip = ghostSounds[Random.Range(0, ghostSounds.Count-1)];
-                audioSource.Play();
+                SoundSystem.Play("ghost sound");
                 playedSound = true;
             }
 
