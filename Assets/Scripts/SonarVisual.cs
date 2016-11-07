@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(SonarTool))]
@@ -38,16 +39,13 @@ public class SonarVisual : MonoBehaviour
         var angle = Mathf.Atan2(-viewDir.y, viewDir.x);
         var coneAngleRad = Mathf.Deg2Rad * sonar.coneAngle;
         var coneIncrementRad = Mathf.Deg2Rad * sonar.coneIncrement;
-
-        var n = 0;
-        for (var a = angle - coneAngleRad; a < angle + coneAngleRad; a += coneIncrementRad)
-            n++;
-
+        var startAngle = angle - coneAngleRad;
+        
         line = line == null ? gameObject.AddComponent<LineRenderer>() : GetComponent<LineRenderer>();
         line.useWorldSpace = true;
         line.SetColors(colorStart, colorStart);
         line.SetWidth(width, width);
-        line.SetVertexCount(n);
+        line.SetVertexCount(sonar.rays);
         line.material = material;
 
         if (overrideDistance) distance = dist;
@@ -59,10 +57,14 @@ public class SonarVisual : MonoBehaviour
             var l = ((tt - t)/tt);
             var d = distance * l;
 
-            var i = 0;
-            for (var a = angle - coneAngleRad; a < angle + coneAngleRad; a += coneIncrementRad)
+            for (int i = 0; i < sonar.rays; i++)
             {
-                line.SetPosition(i++, origin + new Vector3(Mathf.Cos(a)*d, -Mathf.Sin(a) * d, 1));
+                var hit = sonar.blockHits[i];
+
+                var a = startAngle + coneIncrementRad * i;
+                var md = hit.collider == null ? d : Vector3.Distance(origin, sonar.blockHits[i].point);
+                md = Mathf.Min(md, d);
+                line.SetPosition(i, origin + new Vector3(Mathf.Cos(a) * md, -Mathf.Sin(a) * md, 0));
             }
 
             var color = Color.Lerp(colorStart, colorEnd, l);

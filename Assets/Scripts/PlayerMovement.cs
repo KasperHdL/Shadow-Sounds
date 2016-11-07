@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Linq;
+using KInput;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject sourceContainer;
     public float stepVolume = 0.1f;
     private AudioSource footsteps;
+    public bool fallOnWalls;
 
     public AudioClip enemyCollision, wallCollision, defaultCol;
     public float enemyColVol = 0.5f;
@@ -25,13 +27,20 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D body;
     private bool fallen;
 
-	void Start () {
+    public bool useController;
+    [Range(0,1)] public float deadzone = 0.1f;
+    private Controller controller;
+
+    void Start()
+    {
+        controller = GetComponent<ControllerContainer>().controller;
+
         body = GetComponent<Rigidbody2D>();
-	    footsteps = sourceContainer.AddComponent<AudioSource>();
+        footsteps = sourceContainer.AddComponent<AudioSource>();
         collisionSnd = sourceContainer.AddComponent<AudioSource>();
         footsteps.clip = footstepsClip;
-	    footsteps.volume = stepVolume;
-	}
+        footsteps.volume = stepVolume;
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -40,10 +49,8 @@ public class PlayerMovement : MonoBehaviour
             case "Enemy":
                 collisionSnd.clip = enemyCollision;
                 collisionSnd.volume = enemyColVol;
+                collisionSnd.Play();
                 //Debug.Log("EnemyCollision");
-
-                health--;
-                if (health <= 0) Die();
 
                 var avgNormal = collision.contacts.Aggregate(Vector2.zero, (a, c) => a + c.normal) / collision.contacts.Length;
                 body.AddForce(avgNormal * hitForce);
@@ -51,53 +58,99 @@ public class PlayerMovement : MonoBehaviour
 
                 break;
             case "Wall":
-                collisionSnd.clip = wallCollision;
-                collisionSnd.volume = defColVol;
+                if (fallOnWalls)
+                {
+                    collisionSnd.clip = wallCollision;
+                    collisionSnd.volume = defColVol;
+                    collisionSnd.Play();
+                }
                 //Debug.Log("WallCollision");
                 break;
             default:
-                collisionSnd.clip = defaultCol;
-                collisionSnd.volume = defColVol;
-                //Debug.Log("No tag set!");
+                if (fallOnWalls)
+                {
+                    collisionSnd.clip = defaultCol;
+                    collisionSnd.volume = defColVol;
+                    collisionSnd.Play();
+                }
+                //Debug.Log("No collision tag set!");
                 break;
         }
 
-        collisionSnd.Play();
     }
 
+    public void Hit(int damage)
+    {
+        health -= damage;
+        if (health <= 0) Die();
+    }
     private void Die()
     {
         Destroy(gameObject);
 
         // TODO restart game
     }
-	
-	void Update () {
-        var v = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * moveSpeed / body.mass;
 
-
-        if (body.velocity.magnitude >= 0.1)
+    void Update()
+    {
+        Vector3 v;
+        if (useController)
         {
-            if (!footsteps.isPlaying)
+            v = new Vector3(controller.GetAxis(Axis.StickLeftX), controller.GetAxis(Axis.StickLeftY), 0);
+
+            if(v.magnitude < deadzone){
+                v = Vector2.zero;
+            }else{
+                v = v.normalized * ((v.magnitude - deadzone) / (1 - deadzone));
+            }
+
+        }
+        else
+        {
+            v = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+        }
+
+
+        v *= moveSpeed / body.mass;
+
+        if (footsteps != null)
+        {
+            if (body.velocity.magnitude >= 0.1)
             {
-                footsteps.Play();
+                if (!footsteps.isPlaying)
+                {
+                    footsteps.Play();
+                }
+            }
+            else
+            {
+                footsteps.Stop();
+            }
+        }
+
+        body.AddForce(v - new Vector3(body.velocity.x, body.velocity.y), ForceMode2D.Impulse);
+
+
+
+        if (useController)
+        {
+            Vector2 d = new Vector2(controller.GetAxis(Axis.StickRightX), controller.GetAxis(Axis.StickRightY));
+            if(d.magnitude < deadzone){
+                d = Vector2.zero;
+            }else{
+                d = d.normalized * ((d.magnitude - deadzone) / (1 - deadzone));
+            }
+
+            if(d != Vector2.zero){
+                viewDirection = d;
             }
         }
         else
         {
-            footsteps.Stop();
+            Vector2 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            viewDirection = mouse - (Vector2)transform.position;
+            viewDirection = viewDirection.normalized;
         }
-
-	    if (!collisionSnd.isPlaying)
-	    {
-
-	        body.AddForce(v - new Vector3(body.velocity.x, body.velocity.y), ForceMode2D.Impulse);
-
-	    }
-
-
-        Vector2 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        viewDirection = mouse - (Vector2)transform.position;
 
         transform.rotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * Mathf.Atan2(viewDirection.y, viewDirection.x));
     }
