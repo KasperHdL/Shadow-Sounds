@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using KInput;
 
 public class SonarTool : MonoBehaviour {
@@ -60,54 +62,51 @@ public class SonarTool : MonoBehaviour {
         
         SoundSystem.Play("sonar noise", 0.2f);
 
-	    float startAngle = angle - coneAngleRad;
+	    var colliderHits = new Dictionary<Collider2D, RaycastHit2D>();
+        var numRaysHit = 0;
+
+        float startAngle = angle - coneAngleRad;
         for(int i = 0; i < rays; i++){
 
             float a = startAngle + coneIncrementRad * i;
 
             Vector3 d = new Vector3(Mathf.Cos(a), Mathf.Sin(-a),0); 
 
-            soundHits[i] = Physics2D.Raycast(player.transform.position + d, d, distance, SoundMask | BlockMask);
+            var hits = Physics2D.RaycastAll(player.transform.position + d, d, distance, SoundMask);
             blockHits[i] = Physics2D.Raycast(player.transform.position + d, d, distance, BlockMask);
 
+            foreach (var hit in hits)
+            {
+                var c = hit.collider;
+                if (c != null && c.tag == "Enemy")
+                {
+                    numRaysHit++;
+                    if (!colliderHits.ContainsKey(c) || hit.distance < colliderHits[c].distance)
+                        colliderHits[hit.collider] = hit;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
             //draw debug
-            if (soundHits[i].collider != null){
+            /*if (soundHits[i].collider != null){
                 Debug.DrawLine(player.transform.position, soundHits[i].point, Color.white, shotCooldown);
-            } else if (blockHits[i].collider != null) {
+            } else */if (blockHits[i].collider != null) {
                 Debug.DrawLine(player.transform.position, blockHits[i].point, Color.blue, shotCooldown);
             } else { 
                 Debug.DrawLine(player.transform.position, player.transform.position + d * distance, Color.red, shotCooldown);
             }
         }
 
-        
-        
-        int[] indexOfNearestCollider = new int[rays];
-        int numCollidersHit = 0;
-        int numRaysHit = 0;
-
-        for(int i = 0; i < soundHits.Length; i++){
-            if(soundHits[i].collider == null || soundHits[i].collider.gameObject.tag != "Enemy") continue;
-
-            //check if last hit had the same collider
-            if(i > 0 && soundHits[i-1].collider == soundHits[i].collider){
-                //check if this hit is nearer than previously hit
-                if(soundHits[i-1].distance > soundHits[i].distance){
-                    indexOfNearestCollider[numCollidersHit] = i;
-                }
-            }else{
-                indexOfNearestCollider[numCollidersHit] = i;
-                numCollidersHit++;
-            }
-            numRaysHit++;
-        
-        }
-
-        for(int i = 0; i < numCollidersHit; i++){
-            SoundSystem.Play("sonar hit", 
-                hitPitch * (1 - soundHits[indexOfNearestCollider[i]].distance / distance), 
-                hitVolume * (1 - soundHits[indexOfNearestCollider[i]].distance / distance),
-                soundHits[indexOfNearestCollider[i]].distance * soundDelayPerMeter);
+	    soundHits = colliderHits.Values.ToArray();
+	    foreach (var hit in colliderHits.Values)
+        {
+            SoundSystem.Play("sonar hit",
+                hitPitch * (1 - hit.distance / distance),
+                hitVolume * (1 - hit.distance / distance),
+                hit.distance * soundDelayPerMeter);
         }
 
         if(numRaysHit < rays){
