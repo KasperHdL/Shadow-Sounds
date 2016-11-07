@@ -1,12 +1,11 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
 public class SoundSystem : MonoBehaviour, ISerializationCallbackReceiver
 {
     [SerializeField]
-    [Serializable]
+    [System.Serializable]
     public class ClipList
     {
         [SerializeField] public List<AudioClip> data = new List<AudioClip>();
@@ -27,7 +26,7 @@ public class SoundSystem : MonoBehaviour, ISerializationCallbackReceiver
     [HideInInspector]
     public List<ClipList> sclips = new List<ClipList>();
 
-    private List<AudioSource> sources = new List<AudioSource>();
+    private AudioSource source;
 
     public void OnBeforeSerialize()
     {
@@ -57,15 +56,24 @@ public class SoundSystem : MonoBehaviour, ISerializationCallbackReceiver
         instance = this;
     }
 
-    public static void Play(string sound, float pitch, float volume)
+    public static void Play(string sound, float pitch, float volume, float delay)
     {
         if (instance == null) throw new UnityException("No sound system found!");
-        instance.PlaySound(sound, pitch, volume);
+        instance.StartCoroutine(instance.PlaySound(sound, pitch, volume, delay));
     }
 
-    private void PlaySound(string sound, float pitch, float volume)
+    private IEnumerator PlaySound(string sound, float pitch, float volume, float delay)
     {
-        //if (source == null) source = gameObject.AddComponent<AudioSource>();
-        //source.PlayOneShot(clips[sound]);
+        if (!clips.ContainsKey(sound) || clips[sound].data.Count == 0)
+        {
+            Debug.LogError("Sound not found: "+sound);
+            yield break;
+        }
+        if (source == null) source = gameObject.AddComponent<AudioSource>();
+
+        yield return new WaitForSeconds(delay);
+
+        var clip = clips[sound].data[Random.Range(0, clips[sound].data.Count)];
+        source.PlayOneShot(clip);
     }
 }
