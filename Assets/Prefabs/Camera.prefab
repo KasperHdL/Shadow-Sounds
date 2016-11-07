@@ -24,7 +24,7 @@ GameObject:
   - 92: {fileID: 92000010491898994}
   - 81: {fileID: 81000011727532434}
   - 114: {fileID: 114000013913754286}
-  - 114: {fileID: 114000013635831804}
+  - 114: {fileID: 114000011765412798}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011376902860}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.8167425, y: 0, z: -10}
+  m_LocalPosition: {x: 23, y: -14, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -8973,7 +8973,7 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011376902860}
   m_Enabled: 1
---- !u!114 &114000013635831804
+--- !u!114 &114000011765412798
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -8984,6 +8984,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b466ec9ccc151b1439e26f313b22be4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sids: 020000000400000006000000
+  snames:
+  - Good sound
+  - Seems to work
+  - new-sound
+  sclips:
+  - {fileID: 8300000, guid: 30ae7eeb40fe77f4ea3aaf45109b182b, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &114000013913754286
 MonoBehaviour:
   m_ObjectHideFlags: 1

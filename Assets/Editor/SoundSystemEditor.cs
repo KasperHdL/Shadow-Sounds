@@ -13,12 +13,16 @@ public class SoundSystemEditor : Editor
 
         var keyChanges = new Dictionary<int, string>();
         var valueChanges = new Dictionary<int, AudioClip>();
+        int? remove = null;
 
         EditorGUILayout.BeginVertical();
         foreach (var key in sound.keys)
         {
             var clip = sound.clips[key.Value];
+            EditorGUILayout.BeginHorizontal();
             var newkey = EditorGUILayout.TextField("", key.Value);
+            if(GUILayout.Button("-")) remove = key.Key;
+            EditorGUILayout.EndHorizontal();
             var newclip = (AudioClip)EditorGUILayout.ObjectField("", clip, typeof(AudioClip), false);
             EditorGUILayout.Space();
 
@@ -43,6 +47,11 @@ public class SoundSystemEditor : Editor
         foreach (var change in valueChanges)
         {
             sound.clips[sound.keys[change.Key]] = change.Value;
+        }
+        if (remove.HasValue)
+        {
+            sound.clips.Remove(sound.keys[remove.Value]);
+            sound.keys.Remove(remove.Value);
         }
 
 
