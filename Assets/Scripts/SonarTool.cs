@@ -6,6 +6,9 @@ public class SonarTool : MonoBehaviour {
 
     private PlayerMovement player;
 
+    public LayerMask SoundMask;
+    public LayerMask BlockMask;
+
     public float coneAngle = 30f;
     public float coneIncrement = 1f;
 
@@ -15,10 +18,12 @@ public class SonarTool : MonoBehaviour {
     public float distance  = 20f;
     public float soundDelayPerMeter = 1f;
 
-
+    [HideInInspector]
+    public int rays;
     public GameObject sourceContainer;
     public AudioSource[] sources;
-    public RaycastHit2D[] hits;
+    public RaycastHit2D[] soundHits;
+    public RaycastHit2D[] blockHits;
 
     public AudioClip hitSound;
     public AudioClip noHitSound;
@@ -41,10 +46,12 @@ public class SonarTool : MonoBehaviour {
         coneAngleRad = Mathf.Deg2Rad * coneAngle;
         coneIncrementRad = Mathf.Deg2Rad * coneIncrement;
 
-        sources = new AudioSource[(int)((coneAngle * 2) / coneIncrement)];
-        hits    = new RaycastHit2D[sources.Length];
+	    rays = (int) (coneAngle*2/coneIncrement);
+        sources = new AudioSource[rays];
+        soundHits = new RaycastHit2D[rays];
+        blockHits = new RaycastHit2D[rays];
 
-        for(int i = 0;i<sources.Length;i++)
+        for (int i = 0;i<sources.Length;i++)
             sources[i] = sourceContainer.AddComponent<AudioSource>();
 
 	}
@@ -69,37 +76,38 @@ public class SonarTool : MonoBehaviour {
         _noise.Play();
 
 	    float startAngle = angle - coneAngleRad;
-        for(int i = 0; i < hits.Length; i++){
+        for(int i = 0; i < rays; i++){
 
             float a = startAngle + coneIncrementRad * i;
 
             Vector3 d = new Vector3(Mathf.Cos(a), Mathf.Sin(-a),0); 
 
-            hits[i] = Physics2D.Raycast(player.transform.position + d, d, distance);
+            soundHits[i] = Physics2D.Raycast(player.transform.position + d, d, distance, SoundMask | BlockMask);
+            blockHits[i] = Physics2D.Raycast(player.transform.position + d, d, distance, BlockMask);
 
             //draw debug
-            if(hits[i].collider != null){
-                Debug.DrawLine(player.transform.position, hits[i].point, Color.white, shotCooldown);
-            }else{
+            if (soundHits[i].collider != null){
+                Debug.DrawLine(player.transform.position, soundHits[i].point, Color.white, shotCooldown);
+            } else if (blockHits[i].collider != null) {
+                Debug.DrawLine(player.transform.position, blockHits[i].point, Color.blue, shotCooldown);
+            } else { 
                 Debug.DrawLine(player.transform.position, player.transform.position + d * distance, Color.red, shotCooldown);
             }
         }
 
         
         
-        int[] indexOfNearestCollider = new int[sources.Length];
+        int[] indexOfNearestCollider = new int[rays];
         int numCollidersHit = 0;
         int numRaysHit = 0;
 
-        for(int i = 0; i < hits.Length; i++){
-            if(hits[i].collider == null || hits[i].collider.gameObject.tag != "Enemy") continue;
-
-
+        for(int i = 0; i < soundHits.Length; i++){
+            if(soundHits[i].collider == null || soundHits[i].collider.gameObject.tag != "Enemy") continue;
 
             //check if last hit had the same collider
-            if(i > 0 && hits[i-1].collider == hits[i].collider){
+            if(i > 0 && soundHits[i-1].collider == soundHits[i].collider){
                 //check if this hit is nearer than previously hit
-                if(hits[i-1].distance > hits[i].distance){
+                if(soundHits[i-1].distance > soundHits[i].distance){
                     indexOfNearestCollider[numCollidersHit] = i;
                 }
             }else{
@@ -112,9 +120,9 @@ public class SonarTool : MonoBehaviour {
 
         for(int i = 0; i < numCollidersHit; i++){
             sources[indexOfNearestCollider[i]].clip = hitSound;
-            sources[indexOfNearestCollider[i]].volume = hitVolume * (1 - hits[indexOfNearestCollider[i]].distance / distance);
-            sources[indexOfNearestCollider[i]].pitch = hitPitch * (1 - hits[indexOfNearestCollider[i]].distance / distance);
-            sources[indexOfNearestCollider[i]].PlayDelayed(hits[indexOfNearestCollider[i]].distance * soundDelayPerMeter);
+            sources[indexOfNearestCollider[i]].volume = hitVolume * (1 - soundHits[indexOfNearestCollider[i]].distance / distance);
+            sources[indexOfNearestCollider[i]].pitch = hitPitch * (1 - soundHits[indexOfNearestCollider[i]].distance / distance);
+            sources[indexOfNearestCollider[i]].PlayDelayed(soundHits[indexOfNearestCollider[i]].distance * soundDelayPerMeter);
         }
 
         if(numRaysHit < sources.Length){
@@ -127,9 +135,9 @@ public class SonarTool : MonoBehaviour {
             SendMessage("SonarShoot", distance);
         }else{
             float maxDist = 0f;
-            for(int i = 0;i < hits.Length; i++){
-                if(hits[i].collider != null && hits[i].distance > maxDist)
-                    maxDist = hits[i].distance;
+            for(int i = 0;i < soundHits.Length; i++){
+                if(soundHits[i].collider != null && soundHits[i].distance > maxDist)
+                    maxDist = soundHits[i].distance;
             }
             SendMessage("SonarShoot", maxDist);
         }

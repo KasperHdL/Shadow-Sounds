@@ -24,7 +24,7 @@ GameObject:
   - 50: {fileID: 50000012725456122}
   - 212: {fileID: 212000011481643816}
   - 82: {fileID: 82000010296685684}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FollowingEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -164,6 +164,9 @@ MonoBehaviour:
   moveForce: 500
   visibleDistance: 1.8
   visibleOverride: 0
+  detectionBlockMask:
+    serializedVersion: 2
+    m_Bits: 4294967039
   allowedToWander: 1
   raycastStartRadius: 1
   minWanderDistance: 2
