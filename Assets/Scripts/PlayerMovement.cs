@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Linq;
 using KInput;
+using UnityEngine.SceneManagement; 
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -70,7 +71,8 @@ public class PlayerMovement : MonoBehaviour
     {
         Destroy(gameObject);
 
-        // TODO restart game
+        Scene scene = SceneManager.GetActiveScene(); 
+        SceneManager.LoadScene(scene.name);
     }
 
     void Update()
