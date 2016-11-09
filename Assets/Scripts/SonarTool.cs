@@ -59,8 +59,6 @@ public class SonarTool : MonoBehaviour {
 	void Shoot() {
         Vector3 viewDir = player.viewDirection.normalized;
         float angle = Mathf.Atan2(-viewDir.y, viewDir.x);
-        
-        SoundSystem.Play("sonar noise", 0.2f);
 
 	    var colliderHits = new Dictionary<Collider2D, RaycastHit2D>();
         var numRaysHit = 0;
@@ -100,7 +98,9 @@ public class SonarTool : MonoBehaviour {
             }
         }
 
-	    soundHits = colliderHits.Values.ToArray();
+	    SoundSystem.Play("sonar noise", 0.2f, 1, 0, distance*soundDelayPerMeter);
+
+        soundHits = colliderHits.Values.ToArray();
 	    foreach (var hit in colliderHits.Values)
         {
             SoundSystem.Play("sonar hit",

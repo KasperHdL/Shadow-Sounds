@@ -8,7 +8,8 @@ public class SoundSystem : MonoBehaviour, ISerializationCallbackReceiver
     [System.Serializable]
     public class ClipList
     {
-        [SerializeField] public List<AudioClip> data = new List<AudioClip>();
+        [SerializeField]
+        public List<AudioClip> data = new List<AudioClip>();
     }
 
     private static SoundSystem instance;
@@ -56,11 +57,11 @@ public class SoundSystem : MonoBehaviour, ISerializationCallbackReceiver
         instance = this;
     }
 
-    public static void Play(string sound, float pitch = 1, float volume = 1, float delay = 0, bool loop = false)
+    public static void Play(string sound, float pitch = 1, float volume = 1, float delay = 0, float? duration = null, bool loop = false)
     {
         if (instance == null) throw new UnityException("No sound system found!");
-        if(loop && IsPlaying(sound)) return;
-        instance.StartCoroutine(instance.PlaySound(sound, pitch, volume, delay, loop));
+        if (loop && IsPlaying(sound)) return;
+        instance.StartCoroutine(instance.PlaySound(sound, pitch, volume, delay, duration, loop));
     }
     public static void Stop(string sound)
     {
@@ -73,11 +74,11 @@ public class SoundSystem : MonoBehaviour, ISerializationCallbackReceiver
         return instance.sources.ContainsKey(sound) && instance.sources[sound].Count > 0;
     }
 
-    private IEnumerator PlaySound(string sound, float pitch, float volume, float delay, bool loop)
+    private IEnumerator PlaySound(string sound, float pitch, float volume, float delay, float? duration, bool loop)
     {
         if (!clips.ContainsKey(sound) || clips[sound].data.Count == 0)
         {
-            Debug.LogError("Sound not found: "+sound);
+            Debug.LogError("Sound not found: " + sound);
             yield break;
         }
 
@@ -90,14 +91,23 @@ public class SoundSystem : MonoBehaviour, ISerializationCallbackReceiver
         source.loop = loop;
         source.Play();
 
-        if(!sources.ContainsKey(sound)) sources.Add(sound, new List<AudioSource>());
+        if (!sources.ContainsKey(sound)) sources.Add(sound, new List<AudioSource>());
         sources[sound].Add(source);
 
-        if(loop) yield break;
+        if (loop) yield break;
 
-        yield return new WaitWhile(() => source.isPlaying);
-        Destroy(source);
-        sources[sound].Remove(source);
+        if (!duration.HasValue)
+        {
+            yield return new WaitWhile(() => source.isPlaying);
+            Destroy(source);
+            sources[sound].Remove(source);
+        }
+        else
+        {
+            yield return new WaitForSeconds(duration.Value);
+            StartCoroutine(FadeOut(sound, source));
+            sources[sound].Remove(source);
+        }
     }
 
     private void DoStop(string sound)
@@ -105,8 +115,25 @@ public class SoundSystem : MonoBehaviour, ISerializationCallbackReceiver
         if (!sources.ContainsKey(sound)) return;
         foreach (var source in sources[sound])
         {
-            Destroy(source);
+            StartCoroutine(FadeOut(sound, source));
         }
         sources[sound].Clear();
+    }
+
+    private IEnumerator FadeOut(string sound, AudioSource source)
+    {
+        var faceOutTime = 0.5f;
+        var t = faceOutTime;
+        var v0 = source.volume;
+        while (t > 0)
+        {
+            source.volume = Mathf.Lerp(0, v0, t / faceOutTime);
+
+            yield return new WaitForFixedUpdate();
+            t -= Time.fixedDeltaTime;
+        }
+        Destroy(source);
+        if(sources[sound].Contains(source))
+            sources[sound].Remove(source);
     }
 }
