@@ -70,7 +70,7 @@ public class SonarTool : MonoBehaviour {
 
             Vector3 d = new Vector3(Mathf.Cos(a), Mathf.Sin(-a),0); 
 
-            var hits = Physics2D.RaycastAll(player.transform.position + d, d, distance, SoundMask);
+            var hits = Physics2D.RaycastAll(player.transform.position + d, d, distance, SoundMask | BlockMask);
             blockHits[i] = Physics2D.Raycast(player.transform.position + d, d, distance, BlockMask);
 
             foreach (var hit in hits)
