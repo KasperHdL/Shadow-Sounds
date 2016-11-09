@@ -109,6 +109,7 @@ public class FollowPlayer : CharacterMovement
 
             moveDirection = nextWanderPosition - (Vector2)transform.position;
         }
+        transform.rotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * Mathf.Atan2(moveDirection.y, moveDirection.x) - 90);
         Move = moveDirection;
 
         base.Update();
