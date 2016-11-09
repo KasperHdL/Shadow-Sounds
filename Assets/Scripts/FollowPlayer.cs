@@ -4,13 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 
 [RequireComponent(typeof(SpriteRenderer))]
-public class FollowPlayer : MonoBehaviour
+public class FollowPlayer : CharacterMovement
 {
 
     public Transform target;
-    private Rigidbody2D body;
     private new SpriteRenderer renderer;
-    public float moveForce;
     public float visibleDistance = 1.5f;
     public bool visibleOverride = false;
 
@@ -32,11 +30,9 @@ public class FollowPlayer : MonoBehaviour
     private Vector2 knownPlayerPosition;
     private Vector2 nextWanderPosition;
     private bool playedSound = false;
-
-    // Use this for initialization
-    void Start()
+    
+    public override void Start()
     {
-        body = GetComponent<Rigidbody2D>();
         renderer = GetComponent<SpriteRenderer>();
         if (target == null)
         {
@@ -45,9 +41,10 @@ public class FollowPlayer : MonoBehaviour
             if (target == null)
                 Debug.LogError("No object tagged 'Player'");
         }
+        base.Start();
     }
 
-    void Update()
+    public override void Update()
     {
         if (target != null && !attacking && Vector3.Distance(transform.position, target.position) < visibleDistance)
             StartCoroutine(Attack());
@@ -112,9 +109,9 @@ public class FollowPlayer : MonoBehaviour
 
             moveDirection = nextWanderPosition - (Vector2)transform.position;
         }
+        Move = moveDirection;
 
-        body.AddForce(moveDirection.normalized * moveForce * Time.fixedDeltaTime);
-
+        base.Update();
     }
 
 

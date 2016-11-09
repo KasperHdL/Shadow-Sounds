@@ -88,8 +88,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011376699998}
-  m_LocalRotation: {x: -0, y: -0, z: -0.7067604, w: 0.707453}
-  m_LocalPosition: {x: 23.53, y: -12.09, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
+  m_LocalPosition: {x: 22.25, y: -14.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -89.94601}
   m_Children:
@@ -356,9 +356,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0f858d981194adca18b37d0fde620d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Move: {x: 0, y: 0}
+  MoveSpeed: 5
+  Acceleration: 0.2
+  Deceleration: 0.2
+  StartCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  StopCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
   health: 4
   hitForce: 800
-  moveSpeed: 5
   stepVolume: 1.2
   fallOnWalls: 0
   enemyColVol: 0.5
