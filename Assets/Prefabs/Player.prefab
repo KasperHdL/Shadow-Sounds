@@ -59,25 +59,9 @@ GameObject:
   - 114: {fileID: 114000013861296054}
   - 114: {fileID: 114000010648397684}
   - 114: {fileID: 114000012522035548}
-  - 82: {fileID: 82000010661010214}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1000012801305010
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 4000011810407846}
-  m_Layer: 0
-  m_Name: AudioSources
-  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,19 +94,6 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
   m_Children: []
   m_Father: {fileID: 4000012151245534}
-  m_RootOrder: 1
---- !u!4 &4000011810407846
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012801305010}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 4000012151245534}
   m_RootOrder: 0
 --- !u!4 &4000011933972274
 Transform:
@@ -136,7 +107,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000012151245534}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!4 &4000012151245534
 Transform:
   m_ObjectHideFlags: 1
@@ -148,7 +119,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 4000011810407846}
   - {fileID: 4000010717137570}
   - {fileID: 4000011933972274}
   - {fileID: 4000013823131474}
@@ -166,7 +136,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000012151245534}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!23 &23000011858235280
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -234,80 +204,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!82 &82000010661010214
-AudioSource:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012343331628}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f1a78f72a92340b4f9e990bb52906b22, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.24
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
 --- !u!108 &108000010052700524
 Light:
   m_ObjectHideFlags: 1
@@ -441,6 +337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controllerIndex: 1
+  deadzone: 0.1
 --- !u!114 &114000013614927962
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -455,17 +352,13 @@ MonoBehaviour:
   health: 4
   hitForce: 800
   moveSpeed: 5
-  footstepsClip: {fileID: 8300000, guid: b202f3b30b95819439389ad59d25f5a9, type: 3}
-  sourceContainer: {fileID: 1000012801305010}
   stepVolume: 1.2
   fallOnWalls: 0
-  enemyCollision: {fileID: 8300000, guid: eab4886bb44931c4ea8511871fc36f7b, type: 3}
-  wallCollision: {fileID: 8300000, guid: a2b11cb86674b0240b99c8be33e2834d, type: 3}
-  defaultCol: {fileID: 8300000, guid: a2b11cb86674b0240b99c8be33e2834d, type: 3}
   enemyColVol: 0.5
   defColVol: 0.5
   viewDirection: {x: 0, y: 0}
   useController: 0
+  deadzone: 0.1
 --- !u!114 &114000013861296054
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -488,11 +381,6 @@ MonoBehaviour:
   distance: 20
   soundDelayPerMeter: 0.1
   rays: 0
-  sourceContainer: {fileID: 1000012801305010}
-  sources: []
-  hitSound: {fileID: 8300000, guid: eda2c91970dd88346af4d24a5217b494, type: 3}
-  noHitSound: {fileID: 8300000, guid: 022d1b9b3301219498ae4a914ea419e1, type: 3}
-  sonarNoise: {fileID: 8300000, guid: a1cb448d157c21b40aa32a2bfff11843, type: 3}
   noHitVolume: 0.3
   hitPitch: 0.8
   hitVolume: 2
