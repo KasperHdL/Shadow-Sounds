@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D body;
     private bool fallen;
 
+    [Header("Controller Settings")]
     public bool useController;
     [Range(0,1)] public float deadzone = 0.1f;
     private Controller controller;
@@ -77,19 +78,19 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        Vector3 v;
+        Vector3 v = Vector3.zero;
         if (useController)
         {
             v = new Vector3(controller.GetAxis(Axis.StickLeftX), controller.GetAxis(Axis.StickLeftY), 0);
 
             if(v.magnitude < deadzone){
-                v = Vector2.zero;
+                v = Vector3.zero;
             }else{
                 v = v.normalized * ((v.magnitude - deadzone) / (1 - deadzone));
             }
-
         }
-        else
+
+        if(v == Vector3.zero) 
         {
             v = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
         }
