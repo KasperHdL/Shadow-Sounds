@@ -11,17 +11,11 @@ public class PlayerMovement : MonoBehaviour
     public float hitForce;
 
     public float moveSpeed = 50.0f;
-    public AudioClip footstepsClip;
-    public GameObject sourceContainer;
     public float stepVolume = 0.1f;
-    private AudioSource footsteps;
     public bool fallOnWalls;
-
-    public AudioClip enemyCollision, wallCollision, defaultCol;
+    
     public float enemyColVol = 0.5f;
     public float defColVol = 0.5f;
-
-    private AudioSource collisionSnd;
 
     [HideInInspector]
     public Vector2 viewDirection;
@@ -37,10 +31,6 @@ public class PlayerMovement : MonoBehaviour
         controller = GetComponent<ControllerContainer>().controller;
 
         body = GetComponent<Rigidbody2D>();
-        footsteps = sourceContainer.AddComponent<AudioSource>();
-        collisionSnd = sourceContainer.AddComponent<AudioSource>();
-        footsteps.clip = footstepsClip;
-        footsteps.volume = stepVolume;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -48,9 +38,7 @@ public class PlayerMovement : MonoBehaviour
         switch (collision.gameObject.tag)
         {
             case "Enemy":
-                collisionSnd.clip = enemyCollision;
-                collisionSnd.volume = enemyColVol;
-                collisionSnd.Play();
+                SoundSystem.Play("enemy collision", enemyColVol);
                 //Debug.Log("EnemyCollision");
 
                 var avgNormal = collision.contacts.Aggregate(Vector2.zero, (a, c) => a + c.normal) / collision.contacts.Length;
@@ -60,20 +48,14 @@ public class PlayerMovement : MonoBehaviour
                 break;
             case "Wall":
                 if (fallOnWalls)
-                {
-                    collisionSnd.clip = wallCollision;
-                    collisionSnd.volume = defColVol;
-                    collisionSnd.Play();
-                }
+                    SoundSystem.Play("wall collision", defColVol);
+
                 //Debug.Log("WallCollision");
                 break;
             default:
                 if (fallOnWalls)
-                {
-                    collisionSnd.clip = defaultCol;
-                    collisionSnd.volume = defColVol;
-                    collisionSnd.Play();
-                }
+                    SoundSystem.Play("default collision", defColVol);
+
                 //Debug.Log("No collision tag set!");
                 break;
         }
@@ -114,20 +96,14 @@ public class PlayerMovement : MonoBehaviour
 
 
         v *= moveSpeed / body.mass;
-
-        if (footsteps != null)
+        
+        if (body.velocity.magnitude >= 0.1)
         {
-            if (body.velocity.magnitude >= 0.1)
-            {
-                if (!footsteps.isPlaying)
-                {
-                    footsteps.Play();
-                }
-            }
-            else
-            {
-                footsteps.Stop();
-            }
+            SoundSystem.Play("footsteps", stepVolume, 1, 0, true);
+        }
+        else
+        {
+            SoundSystem.Stop("footsteps");
         }
 
         body.AddForce(v - new Vector3(body.velocity.x, body.velocity.y), ForceMode2D.Impulse);
