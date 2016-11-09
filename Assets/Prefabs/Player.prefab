@@ -44,7 +44,7 @@ GameObject:
   - 4: {fileID: 4000013648864890}
   - 108: {fileID: 108000013190391010}
   m_Layer: 0
-  m_Name: Ambient PointLight (1)
+  m_Name: Player Avater Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -214,7 +214,7 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.49
+  m_Intensity: 0.6
   m_Range: 3
   m_SpotAngle: 24.7
   m_CookieSize: 10
@@ -248,7 +248,7 @@ Light:
   serializedVersion: 7
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1.33
+  m_Intensity: 1
   m_Range: 3
   m_SpotAngle: 24.7
   m_CookieSize: 10
