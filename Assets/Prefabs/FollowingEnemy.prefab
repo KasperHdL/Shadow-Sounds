@@ -19,11 +19,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000011656636190}
-  - 61: {fileID: 61000014142074444}
   - 114: {fileID: 114000010118106110}
   - 50: {fileID: 50000012725456122}
   - 212: {fileID: 212000011481643816}
   - 82: {fileID: 82000010296685684}
+  - 58: {fileID: 58000013453041324}
   m_Layer: 8
   m_Name: FollowingEnemy
   m_TagString: Enemy
@@ -61,8 +61,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &61000014142074444
-BoxCollider2D:
+--- !u!58 &58000013453041324
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -74,7 +74,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Radius: 0.5
 --- !u!82 &82000010296685684
 AudioSource:
   m_ObjectHideFlags: 1
@@ -172,13 +172,13 @@ MonoBehaviour:
   minWanderDistance: 2
   maxWanderDistance: 5
   ghostSounds:
-  - {fileID: 8300000, guid: 10522021bbf9c404589dbf8a3b7a7520, type: 3}
-  - {fileID: 8300000, guid: 30ae7eeb40fe77f4ea3aaf45109b182b, type: 3}
-  - {fileID: 8300000, guid: 42238f745177ca0408c3c0e7d1b6d179, type: 3}
-  - {fileID: 8300000, guid: 928f71d9817d4fe49bec6f09d03812be, type: 3}
-  - {fileID: 8300000, guid: 75c2cb65a0f9cc74ca91f6e9c3520588, type: 3}
-  - {fileID: 8300000, guid: 835531f03fb60db418354110a561f655, type: 3}
-  - {fileID: 8300000, guid: 32e12cbd951298547b6d1aa52753a73b, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   attackCooldown: 1.6
   attackChargeTime: 0.3
   attackForce: 1000
@@ -211,7 +211,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 89ffba092c60748fcaa6eddc90350635, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5d263190c69fd4406af79470748e6821, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
