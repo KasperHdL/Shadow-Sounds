@@ -99,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
         
         if (body.velocity.magnitude >= 0.1)
         {
-            SoundSystem.Play("footsteps", stepVolume, 1, 0, true);
+            SoundSystem.Play("footsteps", stepVolume, 1, 0, null, true);
         }
         else
         {
