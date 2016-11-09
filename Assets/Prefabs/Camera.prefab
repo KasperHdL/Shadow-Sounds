@@ -8984,7 +8984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b466ec9ccc151b1439e26f313b22be4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sids: 020000000400000006000000080000000a0000000c000000
+  sids: 020000000400000006000000080000000a0000000c0000000e00000010000000
   snames:
   - sonar hit
   - sonar no hit
@@ -8992,6 +8992,8 @@ MonoBehaviour:
   - wall collision
   - default collision
   - sonar noise
+  - ghost sound
+  - enemy collision
   sclips:
   - data:
     - {fileID: 8300000, guid: eda2c91970dd88346af4d24a5217b494, type: 3}
@@ -9005,6 +9007,16 @@ MonoBehaviour:
     - {fileID: 8300000, guid: a2b11cb86674b0240b99c8be33e2834d, type: 3}
   - data:
     - {fileID: 8300000, guid: a1cb448d157c21b40aa32a2bfff11843, type: 3}
+  - data:
+    - {fileID: 8300000, guid: 10522021bbf9c404589dbf8a3b7a7520, type: 3}
+    - {fileID: 8300000, guid: 30ae7eeb40fe77f4ea3aaf45109b182b, type: 3}
+    - {fileID: 8300000, guid: 42238f745177ca0408c3c0e7d1b6d179, type: 3}
+    - {fileID: 8300000, guid: 928f71d9817d4fe49bec6f09d03812be, type: 3}
+    - {fileID: 8300000, guid: 75c2cb65a0f9cc74ca91f6e9c3520588, type: 3}
+    - {fileID: 8300000, guid: 835531f03fb60db418354110a561f655, type: 3}
+    - {fileID: 8300000, guid: 32e12cbd951298547b6d1aa52753a73b, type: 3}
+  - data:
+    - {fileID: 8300000, guid: 025a5ac7b7d052245a043a70c40bdd16, type: 3}
 --- !u!114 &114000013913754286
 MonoBehaviour:
   m_ObjectHideFlags: 1
