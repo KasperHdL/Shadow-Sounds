@@ -22,6 +22,7 @@ GameObject:
   - 114: {fileID: 114000010118106110}
   - 50: {fileID: 50000012725456122}
   - 212: {fileID: 212000011481643816}
+  - 58: {fileID: 58000013453041324}
   m_Layer: 8
   m_Name: FollowingEnemy
   m_TagString: Enemy
@@ -61,7 +62,7 @@ Rigidbody2D:
   m_Constraints: 0
 --- !u!58 &58000013453041324
 CircleCollider2D:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013906157328}
@@ -72,7 +73,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Radius: 0.5
 --- !u!114 &114000010118106110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -95,14 +96,6 @@ MonoBehaviour:
   raycastStartRadius: 1
   minWanderDistance: 2
   maxWanderDistance: 5
-  ghostSounds:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   attackCooldown: 1.6
   attackChargeTime: 0.3
   attackForce: 1000
