@@ -19,11 +19,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000011656636190}
-  - 61: {fileID: 61000014142074444}
   - 114: {fileID: 114000010118106110}
   - 50: {fileID: 50000012725456122}
   - 212: {fileID: 212000011481643816}
-  m_Layer: 0
+  - 58: {fileID: 58000013453041324}
+  m_Layer: 8
   m_Name: FollowingEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013906157328}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.4, y: -12.8, z: 0}
+  m_LocalPosition: {x: -20.948, y: -12.8, z: 0.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -60,8 +60,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &61000014142074444
-BoxCollider2D:
+--- !u!58 &58000013453041324
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -73,7 +73,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Radius: 0.53
 --- !u!114 &114000010118106110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -85,17 +85,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c0c9a8d7ed84dffb52526a6d9d6ee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Move: {x: 0, y: 0}
+  MoveSpeed: 3
+  Acceleration: 0.1
+  Deceleration: 0.1
+  StartCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  StopCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
   target: {fileID: 0}
-  moveForce: 500
   visibleDistance: 1.8
   visibleOverride: 0
+  detectionBlockMask:
+    serializedVersion: 2
+    m_Bits: 4294967039
   allowedToWander: 1
   raycastStartRadius: 1
   minWanderDistance: 2
   maxWanderDistance: 5
   attackCooldown: 1.6
-  attackChargeTime: 0.3
+  attackChargeTime: 0.5
   attackForce: 1000
+
   ghostSounds:
   - {fileID: 8300000, guid: 10522021bbf9c404589dbf8a3b7a7520, type: 3}
   - {fileID: 8300000, guid: 30ae7eeb40fe77f4ea3aaf45109b182b, type: 3}
@@ -118,7 +157,7 @@ SpriteRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 14fe66266921e48b487e816833339b57, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -134,7 +173,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 89ffba092c60748fcaa6eddc90350635, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0cb09e44cfe104b569da628edb249c0b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

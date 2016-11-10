@@ -1,23 +1,29 @@
 ﻿using UnityEngine;
 using System.Collections;
+<<<<<<< HEAD
 using System.Linq;
 using System.Collections.Generic;
+=======
+using System.Collections.Generic;
+using System.Linq;
+>>>>>>> origin/master
 
 [RequireComponent(typeof(SpriteRenderer))]
-public class FollowPlayer : MonoBehaviour
+public class FollowPlayer : CharacterMovement
 {
 
     public Transform target;
-    private Rigidbody2D body;
-    private SpriteRenderer renderer;
-    public float moveForce;
+    private new SpriteRenderer renderer;
     public float visibleDistance = 1.5f;
     public bool visibleOverride = false;
+
+    public LayerMask detectionBlockMask;
 
     public bool allowedToWander = true;
     public float raycastStartRadius = 1f;
     public float minWanderDistance = 2f;
     public float maxWanderDistance = 5f;
+
 
     public float attackCooldown = 2;
     public float attackChargeTime = 2;
@@ -32,11 +38,9 @@ public class FollowPlayer : MonoBehaviour
     private Vector2 knownPlayerPosition;
     private Vector2 nextWanderPosition;
     private bool playedSound = false;
-
-    // Use this for initialization
-    void Start()
+    
+    public override void Start()
     {
-        body = GetComponent<Rigidbody2D>();
         renderer = GetComponent<SpriteRenderer>();
         if (target == null)
         {
@@ -45,12 +49,10 @@ public class FollowPlayer : MonoBehaviour
             if (target == null)
                 Debug.LogError("No object tagged 'Player'");
         }
-
-        audioSource = sourceContainer.AddComponent<AudioSource>();
-        audioSource.volume = 0.2f;
+        base.Start();
     }
 
-    void Update()
+    public override void Update()
     {
         if (target != null && !attacking && Vector3.Distance(transform.position, target.position) < visibleDistance)
             StartCoroutine(Attack());
@@ -69,22 +71,20 @@ public class FollowPlayer : MonoBehaviour
         yield return new WaitForSeconds(attackCooldown);
         attacking = false;
     }
-
-	
-	void FixedUpdate () {
+    
+    void FixedUpdate () {
         if(isSeeingPlayer())
         {
             //play random ghost sound
-            if (!playedSound && !audioSource.isPlaying)
+            if (!playedSound && !SoundSystem.IsPlaying("ghost sound"))
             {
-                audioSource.clip = ghostSounds[Random.Range(0, ghostSounds.Count-1)];
-                audioSource.Play();
+                SoundSystem.Play("ghost sound");
                 playedSound = true;
             }
 
             Debug.DrawLine(transform.position, target.position, Color.red, 1f);
             knownPlayerPosition = target.position;
-            isMovingTowardsKnownPlayerPosition = true;
+            isMovingTowardsKnownhPlayerPosition = true;
             isMovingTowardsWanderPosition = false;
 
         }
@@ -116,9 +116,10 @@ public class FollowPlayer : MonoBehaviour
 
             moveDirection = nextWanderPosition - (Vector2)transform.position;
         }
+        transform.rotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * Mathf.Atan2(moveDirection.y, moveDirection.x) - 90);
+        Move = moveDirection;
 
-        body.AddForce(moveDirection.normalized * moveForce * Time.fixedDeltaTime);
-
+        base.Update();
     }
 
 
@@ -144,8 +145,7 @@ public class FollowPlayer : MonoBehaviour
             location = (Vector2)transform.position + new Vector2(Mathf.Cos(angle) * dist, Mathf.Sin(angle) * dist);
             Vector2 delta = location - (Vector2)transform.position;
 
-            if (!Physics2D.Linecast((Vector2)transform.position + delta.normalized * raycastStartRadius, location))
-            {
+            if(!Physics2D.Linecast((Vector2)transform.position + delta.normalized * raycastStartRadius, location, detectionBlockMask)){
                 //found a location
                 foundLocation = true;
                 Debug.DrawLine(transform.position, location, Color.green, 1f);
