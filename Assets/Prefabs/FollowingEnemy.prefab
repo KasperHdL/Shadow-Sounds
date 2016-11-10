@@ -86,7 +86,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Move: {x: 0, y: 0}
-  MoveSpeed: 3
+  DisableMovement: 0
+  MoveSpeed: 2
   Acceleration: 0.1
   Deceleration: 0.1
   StartCurve:
@@ -122,7 +123,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   target: {fileID: 0}
-  visibleDistance: 1.8
+  visibleDistance: 2.2
   visibleOverride: 0
   detectionBlockMask:
     serializedVersion: 2
@@ -131,9 +132,10 @@ MonoBehaviour:
   raycastStartRadius: 1
   minWanderDistance: 1
   maxWanderDistance: 3
-  attackCooldown: 1.6
-  attackChargeTime: 0.5
-  attackForce: 1000
+  attackCooldown: 1.1
+  attackChargeTime: 0.1
+  attackForce: 800
+  hitForce: 50
 --- !u!212 &212000011481643816
 SpriteRenderer:
   m_ObjectHideFlags: 1

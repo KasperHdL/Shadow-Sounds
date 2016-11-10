@@ -23,7 +23,9 @@ public class FollowPlayer : CharacterMovement
     public float attackCooldown = 2;
     public float attackChargeTime = 2;
     public float attackForce = 100;
+    public float hitForce = 800;
     private bool attacking;
+    private bool charging;
 
     private bool isMovingTowardsWanderPosition = false;
     private bool isMovingTowardsKnownPlayerPosition = false;
@@ -46,22 +48,24 @@ public class FollowPlayer : CharacterMovement
 
     public override void Update()
     {
-        if (target != null && !attacking && Vector3.Distance(transform.position, target.position) < visibleDistance)
+        if (target != null && !charging && Vector3.Distance(transform.position, target.position) < visibleDistance)
             StartCoroutine(Attack());
 
-        renderer.enabled = attacking || visibleOverride;
+        renderer.enabled = charging || visibleOverride;
+        DisableMovement = charging;
     }
 
     IEnumerator Attack()
     {
-        attacking = true;
+        charging = true;
         var dir = target.position - transform.position;
         body.isKinematic = true;
         yield return new WaitForSeconds(attackChargeTime);
+        attacking = true;
         body.isKinematic = false;
         body.AddForce(dir * attackForce);
         yield return new WaitForSeconds(attackCooldown);
-        attacking = false;
+        attacking = charging = false;
     }
     
     void FixedUpdate () {
@@ -90,7 +94,7 @@ public class FollowPlayer : CharacterMovement
 
         if (isMovingTowardsKnownPlayerPosition)
         {
-            if (isAtPosition(knownPlayerPosition))
+            if (IsAtPosition(knownPlayerPosition))
             {
                 isMovingTowardsKnownPlayerPosition = false;
                 isMovingTowardsWanderPosition = false;
@@ -100,7 +104,7 @@ public class FollowPlayer : CharacterMovement
         }
         if (allowedToWander && !isMovingTowardsKnownPlayerPosition)
         {
-            if (!isMovingTowardsWanderPosition || isAtPosition(nextWanderPosition))
+            if (!isMovingTowardsWanderPosition || IsAtPosition(nextWanderPosition))
             {
                 nextWanderPosition = pickWanderPosition();
                 isMovingTowardsWanderPosition = true;
@@ -151,17 +155,23 @@ public class FollowPlayer : CharacterMovement
     }
 
 
-    bool isAtPosition(Vector2 pos)
+    bool IsAtPosition(Vector2 pos)
     {
         return (pos - (Vector2)transform.position).magnitude < 0.5f;
-
     }
 
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         var player = collision.gameObject.GetComponent<PlayerMovement>();
-        if (player && attacking)
+
+        if (player != null && attacking) { 
             player.Hit(1);
+            attacking = false;
+
+            var avgNormal = collision.contacts.Aggregate(Vector2.zero, (a, c) => a + c.normal) / collision.contacts.Length;
+            body.AddForce(avgNormal.normalized * hitForce);
+            collision.rigidbody.AddForce(-avgNormal.normalized * hitForce);
+        }
     }
 }

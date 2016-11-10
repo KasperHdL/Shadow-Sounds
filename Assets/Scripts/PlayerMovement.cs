@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using System.Linq;
 using KInput;
@@ -8,7 +9,6 @@ public class PlayerMovement : CharacterMovement
 {
 
     public int health = 4;
-    public float hitForce;
     
     public float stepVolume = 0.1f;
     public bool fallOnWalls;
@@ -39,10 +39,6 @@ public class PlayerMovement : CharacterMovement
                 SoundSystem.Play("enemy collision", enemyColVol);
                 //Debug.Log("EnemyCollision");
 
-                var avgNormal = collision.contacts.Aggregate(Vector2.zero, (a, c) => a + c.normal) / collision.contacts.Length;
-                body.AddForce(avgNormal * hitForce);
-                collision.rigidbody.AddForce(-avgNormal * hitForce);
-
                 break;
             case "Wall":
                 if (fallOnWalls)
@@ -62,9 +58,19 @@ public class PlayerMovement : CharacterMovement
 
     public void Hit(int damage)
     {
+        DisableMovement = true;
+        StartCoroutine(Reactivate());
+
         health -= damage;
         if (health <= 0) Die();
     }
+
+    private IEnumerator Reactivate()
+    {
+        yield return new WaitForSeconds(0.1f);
+        DisableMovement = false;
+    }
+
     private void Die()
     {
         Destroy(gameObject);
