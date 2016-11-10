@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -9,7 +8,6 @@ public class FollowPlayer : CharacterMovement
 
     public Transform target;
     private new SpriteRenderer renderer;
-    public float visibleDistance = 1.5f;
     public bool visibleOverride = false;
 
     public LayerMask detectionBlockMask;
@@ -18,14 +16,18 @@ public class FollowPlayer : CharacterMovement
     public float raycastStartRadius = 1f;
     public float minWanderDistance = 2f;
     public float maxWanderDistance = 5f;
-    
-    
+
+    public float attackDistance = 2f;
     public float attackCooldown = 2;
-    public float attackChargeTime = 2;
+    public float attackChargeTime = 0.2f;
     public float attackForce = 100;
     public float hitForce = 800;
     private bool attacking;
     private bool charging;
+
+    public float immidiateDetectionDistance = 6;
+    public float detectionTime = 1;
+    private float? targetSeenTime = 0;
 
     private bool isMovingTowardsWanderPosition = false;
     private bool isMovingTowardsKnownPlayerPosition = false;
@@ -48,7 +50,7 @@ public class FollowPlayer : CharacterMovement
 
     public override void Update()
     {
-        if (target != null && !charging && Vector3.Distance(transform.position, target.position) < visibleDistance)
+        if (target != null && !charging && Vector3.Distance(transform.position, target.position) < attackDistance)
             StartCoroutine(Attack());
 
         renderer.enabled = charging || visibleOverride;
@@ -125,7 +127,13 @@ public class FollowPlayer : CharacterMovement
         if (target == null) return false;
         Vector2 delta = target.position - transform.position;
         RaycastHit2D hit = Physics2D.Linecast((Vector2)transform.position + delta.normalized * raycastStartRadius, target.position);
-        return hit.collider.transform == target;
+        var result = hit.collider.transform == target;
+
+        if (!result) targetSeenTime = null;
+        if (result && targetSeenTime == null) targetSeenTime = Time.fixedTime;
+        if (delta.magnitude > immidiateDetectionDistance && Time.fixedTime - targetSeenTime < detectionTime) result = false;
+
+        return result;
     }
 
     Vector2 pickWanderPosition()
@@ -173,5 +181,11 @@ public class FollowPlayer : CharacterMovement
             body.AddForce(avgNormal.normalized * hitForce);
             collision.rigidbody.AddForce(-avgNormal.normalized * hitForce);
         }
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, immidiateDetectionDistance);
     }
 }
