@@ -36,13 +36,13 @@ public class PlayerMovement : CharacterMovement
         switch (collision.gameObject.tag)
         {
             case "Enemy":
-                SoundSystem.Play("enemy collision", enemyColVol);
-                //Debug.Log("EnemyCollision");
+                SoundSystem.Play("enemy collision", 1,enemyColVol);
+                Debug.Log("EnemyCollision");
 
                 break;
             case "Wall":
                 if (fallOnWalls)
-                    SoundSystem.Play("wall collision", defColVol);
+                    SoundSystem.Play("wall collision",1, defColVol);
 
                 //Debug.Log("WallCollision");
                 break;
@@ -53,7 +53,6 @@ public class PlayerMovement : CharacterMovement
                 //Debug.Log("No collision tag set!");
                 break;
         }
-
     }
 
     public void Hit(int damage)
