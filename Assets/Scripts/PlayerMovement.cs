@@ -24,6 +24,7 @@ public class PlayerMovement : CharacterMovement
     public bool useController;
     [Range(0,1)] public float deadzone = 0.1f;
     private Controller controller;
+    public PostProcessingAnimator ppAnimator;
 
     public override void Start()
     {
@@ -38,6 +39,7 @@ public class PlayerMovement : CharacterMovement
             case "Enemy":
                 SoundSystem.Play("enemy collision", enemyColVol);
                 //Debug.Log("EnemyCollision");
+                ppAnimator.PlayerAttacked();
 
                 var avgNormal = collision.contacts.Aggregate(Vector2.zero, (a, c) => a + c.normal) / collision.contacts.Length;
                 body.AddForce(avgNormal * hitForce);

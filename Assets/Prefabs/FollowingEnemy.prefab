@@ -26,7 +26,7 @@ GameObject:
   m_Layer: 8
   m_Name: FollowingEnemy
   m_TagString: Enemy
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -1462388694956747189, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013906157328}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.948, y: -12.8, z: 0.29}
+  m_LocalPosition: {x: -9.7, y: 11.1, z: 0.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -73,7 +73,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.53
+  m_Radius: 0.75
 --- !u!114 &114000010118106110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -122,7 +122,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   target: {fileID: 0}
-  visibleDistance: 1.8
   visibleOverride: 0
   detectionBlockMask:
     serializedVersion: 2
@@ -131,9 +130,13 @@ MonoBehaviour:
   raycastStartRadius: 1
   minWanderDistance: 1
   maxWanderDistance: 3
-  attackCooldown: 1.6
-  attackChargeTime: 0.5
-  attackForce: 1000
+  attackDistance: 2
+  attackCooldown: 1.1
+  attackChargeTime: 0.6
+  attackForce: 1200
+  hitForce: 50
+  immidiateDetectionDistance: 6
+  detectionTime: 1
 --- !u!212 &212000011481643816
 SpriteRenderer:
   m_ObjectHideFlags: 1
