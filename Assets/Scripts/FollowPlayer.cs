@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Linq;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class FollowPlayer : CharacterMovement
@@ -16,7 +17,7 @@ public class FollowPlayer : CharacterMovement
     public float raycastStartRadius = 1f;
     public float minWanderDistance = 2f;
     public float maxWanderDistance = 5f;
-
+    
     public float attackDistance = 2f;
     public float attackCooldown = 2;
     public float attackChargeTime = 0.2f;
@@ -87,7 +88,6 @@ public class FollowPlayer : CharacterMovement
                 SoundSystem.Play("ghost sound",1,0.5f);
                 playedSound = true;
             }
-
 
             Debug.DrawLine(transform.position, target.position, Color.red, 1f);
             knownPlayerPosition = target.position;
