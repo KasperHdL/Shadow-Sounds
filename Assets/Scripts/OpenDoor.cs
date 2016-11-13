@@ -3,6 +3,7 @@ using System.Collections;
 
 public class OpenDoor : MonoBehaviour {
 
+    public Material[] materials;
     public Transform door;
     public bool open = false;
     public float openSpeed;
@@ -13,16 +14,29 @@ public class OpenDoor : MonoBehaviour {
     {
         maxDistance = door.localScale.y;
         currDistance = 0.0f;
+        if(open == false){
+            GetComponent<Renderer>().sharedMaterial = materials[0];
+        }
+        else if(open == true){
+            GetComponent<Renderer>().sharedMaterial = materials[1];
+        }
     }
 
     void Update()
     {
         if(open == true && currDistance < maxDistance){
-            Vector3 delta = door.transform.position;
-            delta.z = 0;
-            delta.y += openSpeed*Time.deltaTime;
-            door.transform.position = delta;
+            door.transform.position += door.transform.up*openSpeed*Time.deltaTime;
             currDistance += openSpeed*Time.deltaTime;
+        }
+
+        else if(open == false && currDistance > 0.0f){
+            door.transform.position -= door.transform.up*openSpeed*Time.deltaTime;
+            currDistance -= openSpeed*Time.deltaTime;
+
+            if(currDistance < 0.0f){
+                door.transform.position += door.transform.up*currDistance;
+                currDistance = 0.0f;
+            }
         }
     }
 
@@ -31,6 +45,11 @@ public class OpenDoor : MonoBehaviour {
         if(enter.gameObject.tag == "Player"){
             if(open == false){
                 open = true;
+                GetComponent<Renderer>().sharedMaterial = materials[1];
+            }
+            else if(open == true){
+                open = false;
+                GetComponent<Renderer>().sharedMaterial = materials[0];
             }
         }
     }
