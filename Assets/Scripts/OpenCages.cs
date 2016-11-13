@@ -11,6 +11,7 @@ public class OpenCages : MonoBehaviour {
             foreach ( GameObject elem in cages){
                 Destroy(elem);
             }
+            Destroy(this);
         }
     }
 }
