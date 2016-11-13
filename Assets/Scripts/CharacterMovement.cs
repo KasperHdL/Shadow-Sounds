@@ -6,6 +6,8 @@ public class CharacterMovement : MonoBehaviour
 {
     [HideInInspector]
     public Vector2 Move;
+    [HideInInspector]
+    public bool DisableMovement;
 
     public float MoveSpeed = 10;
     public float Acceleration = 0.5f;
@@ -24,6 +26,8 @@ public class CharacterMovement : MonoBehaviour
 
     public virtual void Update()
     {
+        if (DisableMovement) return;
+
         var input = Move.normalized;
         speed = Vector2.MoveTowards(speed, input, Time.deltaTime / (input.sqrMagnitude > 0 ? Acceleration : Deceleration));
         var actualSpeed = MoveSpeed * (input.sqrMagnitude > 0 ? StartCurve.Evaluate(speed.magnitude) : StopCurve.Evaluate(speed.magnitude));

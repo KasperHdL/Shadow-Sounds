@@ -86,7 +86,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Move: {x: 0, y: 0}
-  MoveSpeed: 3
+  DisableMovement: 0
+  MoveSpeed: 2
   Acceleration: 0.1
   Deceleration: 0.1
   StartCurve:
@@ -122,28 +123,22 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   target: {fileID: 0}
-  visibleDistance: 1.8
+  visibleDistance: 2.2
   visibleOverride: 0
   detectionBlockMask:
     serializedVersion: 2
     m_Bits: 4294967039
   allowedToWander: 1
   raycastStartRadius: 1
-  minWanderDistance: 2
-  maxWanderDistance: 5
-  attackCooldown: 1.6
-  attackChargeTime: 0.5
-  attackForce: 1000
-
-  ghostSounds:
-  - {fileID: 8300000, guid: 10522021bbf9c404589dbf8a3b7a7520, type: 3}
-  - {fileID: 8300000, guid: 30ae7eeb40fe77f4ea3aaf45109b182b, type: 3}
-  - {fileID: 8300000, guid: 42238f745177ca0408c3c0e7d1b6d179, type: 3}
-  - {fileID: 8300000, guid: 928f71d9817d4fe49bec6f09d03812be, type: 3}
-  - {fileID: 8300000, guid: 75c2cb65a0f9cc74ca91f6e9c3520588, type: 3}
-  - {fileID: 8300000, guid: 835531f03fb60db418354110a561f655, type: 3}
-  - {fileID: 8300000, guid: 32e12cbd951298547b6d1aa52753a73b, type: 3}
-  sourceContainer: {fileID: 0}
+  minWanderDistance: 1
+  maxWanderDistance: 3
+  attackDistance: 2
+  attackCooldown: 1.1
+  attackChargeTime: 0.1
+  attackForce: 800
+  hitForce: 50
+  immidiateDetectionDistance: 6
+  detectionTime: 1
 --- !u!212 &212000011481643816
 SpriteRenderer:
   m_ObjectHideFlags: 1

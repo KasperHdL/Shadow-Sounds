@@ -1,12 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-<<<<<<< HEAD
 using System.Linq;
 using System.Collections.Generic;
-=======
-using System.Collections.Generic;
-using System.Linq;
->>>>>>> origin/master
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class FollowPlayer : CharacterMovement
@@ -14,7 +9,6 @@ public class FollowPlayer : CharacterMovement
 
     public Transform target;
     private new SpriteRenderer renderer;
-    public float visibleDistance = 1.5f;
     public bool visibleOverride = false;
 
     public LayerMask detectionBlockMask;
@@ -23,15 +17,18 @@ public class FollowPlayer : CharacterMovement
     public float raycastStartRadius = 1f;
     public float minWanderDistance = 2f;
     public float maxWanderDistance = 5f;
-
-
+    
+    public float attackDistance = 2f;
     public float attackCooldown = 2;
-    public float attackChargeTime = 2;
+    public float attackChargeTime = 0.2f;
     public float attackForce = 100;
+    public float hitForce = 800;
     private bool attacking;
-    public List<AudioClip> ghostSounds = new List<AudioClip>();
-    private AudioSource audioSource;
-    public GameObject sourceContainer;
+    private bool charging;
+
+    public float immidiateDetectionDistance = 6;
+    public float detectionTime = 1;
+    private float? targetSeenTime = 0;
 
     private bool isMovingTowardsWanderPosition = false;
     private bool isMovingTowardsKnownPlayerPosition = false;
@@ -54,22 +51,32 @@ public class FollowPlayer : CharacterMovement
 
     public override void Update()
     {
-        if (target != null && !attacking && Vector3.Distance(transform.position, target.position) < visibleDistance)
+        if (target != null && !charging && Vector3.Distance(transform.position, target.position) < attackDistance)
             StartCoroutine(Attack());
 
-        renderer.enabled = attacking || visibleOverride;
+        renderer.enabled = charging || visibleOverride;
+        DisableMovement = charging;
+        if(renderer.enabled)
+        {
+            SoundSystem.Play("enemy movement",1,0.5f);
+        }
+        else
+        {
+            SoundSystem.Stop("enemy movement");
+        }
     }
 
     IEnumerator Attack()
     {
-        attacking = true;
+        charging = true;
         var dir = target.position - transform.position;
         body.isKinematic = true;
         yield return new WaitForSeconds(attackChargeTime);
+        attacking = true;
         body.isKinematic = false;
         body.AddForce(dir * attackForce);
         yield return new WaitForSeconds(attackCooldown);
-        attacking = false;
+        attacking = charging = false;
     }
     
     void FixedUpdate () {
@@ -78,13 +85,13 @@ public class FollowPlayer : CharacterMovement
             //play random ghost sound
             if (!playedSound && !SoundSystem.IsPlaying("ghost sound"))
             {
-                SoundSystem.Play("ghost sound");
+                SoundSystem.Play("ghost sound",1,0.5f);
                 playedSound = true;
             }
 
             Debug.DrawLine(transform.position, target.position, Color.red, 1f);
             knownPlayerPosition = target.position;
-            isMovingTowardsKnownhPlayerPosition = true;
+            isMovingTowardsKnownPlayerPosition = true;
             isMovingTowardsWanderPosition = false;
 
         }
@@ -97,7 +104,7 @@ public class FollowPlayer : CharacterMovement
 
         if (isMovingTowardsKnownPlayerPosition)
         {
-            if (isAtPosition(knownPlayerPosition))
+            if (IsAtPosition(knownPlayerPosition))
             {
                 isMovingTowardsKnownPlayerPosition = false;
                 isMovingTowardsWanderPosition = false;
@@ -107,7 +114,7 @@ public class FollowPlayer : CharacterMovement
         }
         if (allowedToWander && !isMovingTowardsKnownPlayerPosition)
         {
-            if (!isMovingTowardsWanderPosition || isAtPosition(nextWanderPosition))
+            if (!isMovingTowardsWanderPosition || IsAtPosition(nextWanderPosition))
             {
                 nextWanderPosition = pickWanderPosition();
                 isMovingTowardsWanderPosition = true;
@@ -128,7 +135,13 @@ public class FollowPlayer : CharacterMovement
         if (target == null) return false;
         Vector2 delta = target.position - transform.position;
         RaycastHit2D hit = Physics2D.Linecast((Vector2)transform.position + delta.normalized * raycastStartRadius, target.position);
-        return hit.collider.transform == target;
+        var result = hit.collider.transform == target;
+
+        if (!result) targetSeenTime = null;
+        if (result && targetSeenTime == null) targetSeenTime = Time.fixedTime;
+        if (delta.magnitude > immidiateDetectionDistance && Time.fixedTime - targetSeenTime < detectionTime) result = false;
+
+        return result;
     }
 
     Vector2 pickWanderPosition()
@@ -158,17 +171,29 @@ public class FollowPlayer : CharacterMovement
     }
 
 
-    bool isAtPosition(Vector2 pos)
+    bool IsAtPosition(Vector2 pos)
     {
         return (pos - (Vector2)transform.position).magnitude < 0.5f;
-
     }
 
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         var player = collision.gameObject.GetComponent<PlayerMovement>();
-        if (player && attacking)
+
+        if (player != null && attacking) { 
             player.Hit(1);
+            attacking = false;
+
+            var avgNormal = collision.contacts.Aggregate(Vector2.zero, (a, c) => a + c.normal) / collision.contacts.Length;
+            body.AddForce(avgNormal.normalized * hitForce);
+            collision.rigidbody.AddForce(-avgNormal.normalized * hitForce);
+        }
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, immidiateDetectionDistance);
     }
 }

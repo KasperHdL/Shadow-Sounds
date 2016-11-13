@@ -24,8 +24,8 @@ GameObject:
   - 92: {fileID: 92000010491898994}
   - 81: {fileID: 81000011727532434}
   - 114: {fileID: 114000013913754286}
-  - 114: {fileID: 114000012107710002}
   - 114: {fileID: 114000013243246060}
+  - 114: {fileID: 114000012107710002}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -8985,7 +8985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b466ec9ccc151b1439e26f313b22be4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sids: 020000000400000006000000080000000a0000000c0000000e00000010000000
+  sids: 020000000400000006000000080000000a0000000c0000000e000000100000001200000014000000
   snames:
   - sonar hit
   - sonar no hit
@@ -8995,9 +8995,11 @@ MonoBehaviour:
   - sonar noise
   - ghost sound
   - enemy collision
+  - background
+  - enemy movement
   sclips:
   - data:
-    - {fileID: 8300000, guid: eda2c91970dd88346af4d24a5217b494, type: 3}
+    - {fileID: 8300000, guid: c6b94d59b5163434fa9ccea8e4aa5d4f, type: 3}
   - data:
     - {fileID: 8300000, guid: 022d1b9b3301219498ae4a914ea419e1, type: 3}
   - data:
@@ -9017,7 +9019,11 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 835531f03fb60db418354110a561f655, type: 3}
     - {fileID: 8300000, guid: 32e12cbd951298547b6d1aa52753a73b, type: 3}
   - data:
-    - {fileID: 8300000, guid: 025a5ac7b7d052245a043a70c40bdd16, type: 3}
+    - {fileID: 8300000, guid: 642be4a1d006fd34db47006dd291ade6, type: 3}
+  - data:
+    - {fileID: 8300000, guid: f1a78f72a92340b4f9e990bb52906b22, type: 3}
+  - data:
+    - {fileID: 8300000, guid: aa1f20bd9512b514595127f5e7812072, type: 3}
 --- !u!114 &114000013243246060
 MonoBehaviour:
   m_ObjectHideFlags: 1
