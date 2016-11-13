@@ -8985,7 +8985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b466ec9ccc151b1439e26f313b22be4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sids: 020000000400000006000000080000000a0000000c0000000e0000001000000012000000
+  sids: 020000000400000006000000080000000a0000000c0000000e000000100000001200000014000000
   snames:
   - sonar hit
   - sonar no hit
@@ -8996,6 +8996,7 @@ MonoBehaviour:
   - ghost sound
   - enemy collision
   - background
+  - enemy movement
   sclips:
   - data:
     - {fileID: 8300000, guid: c6b94d59b5163434fa9ccea8e4aa5d4f, type: 3}
@@ -9018,9 +9019,11 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 835531f03fb60db418354110a561f655, type: 3}
     - {fileID: 8300000, guid: 32e12cbd951298547b6d1aa52753a73b, type: 3}
   - data:
-    - {fileID: 8300000, guid: eab4886bb44931c4ea8511871fc36f7b, type: 3}
+    - {fileID: 8300000, guid: 642be4a1d006fd34db47006dd291ade6, type: 3}
   - data:
     - {fileID: 8300000, guid: f1a78f72a92340b4f9e990bb52906b22, type: 3}
+  - data:
+    - {fileID: 8300000, guid: aa1f20bd9512b514595127f5e7812072, type: 3}
 --- !u!114 &114000013243246060
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -55,6 +55,14 @@ public class FollowPlayer : CharacterMovement
 
         renderer.enabled = charging || visibleOverride;
         DisableMovement = charging;
+        if(renderer.enabled)
+        {
+            SoundSystem.Play("enemy movement",1,0.5f);
+        }
+        else
+        {
+            SoundSystem.Stop("enemy movement");
+        }
     }
 
     IEnumerator Attack()
@@ -76,7 +84,7 @@ public class FollowPlayer : CharacterMovement
             //play random ghost sound
             if (!playedSound && !SoundSystem.IsPlaying("ghost sound"))
             {
-                SoundSystem.Play("ghost sound");
+                SoundSystem.Play("ghost sound",1,0.5f);
                 playedSound = true;
             }
 
