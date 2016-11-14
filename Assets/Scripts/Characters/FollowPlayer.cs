@@ -25,6 +25,7 @@ public class FollowPlayer : CharacterMovement
     public float hitForce = 800;
     private bool attacking;
     private bool charging;
+    private bool isPlayingEnmMov = false;
 
     public float immidiateDetectionDistance = 6;
     public float detectionTime = 1;
@@ -56,13 +57,18 @@ public class FollowPlayer : CharacterMovement
 
         renderer.enabled = charging || visibleOverride;
         DisableMovement = charging;
-        if(renderer.enabled)
+        if (!isPlayingEnmMov)
         {
-            SoundSystem.Play("enemy movement",1,0.5f);
+            if (renderer.enabled)
+            {
+                SoundSystem.Play("enemy movement", 1, 0.5f);
+                isPlayingEnmMov = true;
+            }
         }
-        else
+        else if (!renderer.enabled)
         {
             SoundSystem.Stop("enemy movement");
+            isPlayingEnmMov = false;
         }
     }
 
@@ -134,7 +140,7 @@ public class FollowPlayer : CharacterMovement
     {
         if (target == null) return false;
         Vector2 delta = target.position - transform.position;
-        RaycastHit2D hit = Physics2D.Linecast((Vector2)transform.position + delta.normalized * raycastStartRadius, target.position);
+        RaycastHit2D hit = Physics2D.Linecast((Vector2)transform.position + delta.normalized * raycastStartRadius, target.position, detectionBlockMask);
         var result = hit.collider.transform == target;
 
         if (!result) targetSeenTime = null;
