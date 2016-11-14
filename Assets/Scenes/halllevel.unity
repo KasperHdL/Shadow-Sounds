@@ -12610,7 +12610,7 @@ Light:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 865941224}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 7
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -15407,7 +15407,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010239951574, guid: 97a3601da3d724085af643eccd59dc5a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 17
+      value: 13.59
       objectReference: {fileID: 0}
     - target: {fileID: 4000010239951574, guid: 97a3601da3d724085af643eccd59dc5a, type: 2}
       propertyPath: m_LocalPosition.z
@@ -18410,7 +18410,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010239951574, guid: 97a3601da3d724085af643eccd59dc5a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 38.2
+      value: 41.36
       objectReference: {fileID: 0}
     - target: {fileID: 4000010239951574, guid: 97a3601da3d724085af643eccd59dc5a, type: 2}
       propertyPath: m_LocalPosition.z
@@ -27729,7 +27729,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010239951574, guid: 97a3601da3d724085af643eccd59dc5a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.28
+      value: -0.96
       objectReference: {fileID: 0}
     - target: {fileID: 4000010239951574, guid: 97a3601da3d724085af643eccd59dc5a, type: 2}
       propertyPath: m_LocalPosition.z
