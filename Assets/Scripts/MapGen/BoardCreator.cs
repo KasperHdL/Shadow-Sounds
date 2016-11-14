@@ -21,6 +21,7 @@ public class BoardCreator : MonoBehaviour
     public GameObject[] outerWallTiles;                       // An array of outer wall tile prefabs.
     public GameObject player;
     public GameObject[] enemies;
+    public GameObject[] lights;
     public GameObject exit;
 
 
@@ -28,7 +29,7 @@ public class BoardCreator : MonoBehaviour
     private Room[] rooms;                                     // All the rooms that are created for this board.
     private Corridor[] corridors;                             // All the corridors that connect the rooms.
     private GameObject boardHolder;                           // GameObject that acts as a container for all other tiles.
-
+   
 
     private void Start()
     {
@@ -112,25 +113,30 @@ public class BoardCreator : MonoBehaviour
             if (i == 1) //place player
             {
                 Debug.Log("Setting player pos");
-                Vector3 playerPos = new Vector3(rooms[i].xPos+2, rooms[i].yPos+2, 0);
+                Vector3 playerPos = new Vector3(rooms[i].xPos+2.5f, rooms[i].yPos+2.5f, 0);
                 Instantiate(player, playerPos, Quaternion.identity);
             }
             else if (i == rooms.Length - 1) // place exit
             {
 
                 Vector3 exitPos = new Vector3(rooms[i].xPos + 2, rooms[i].yPos + 2, 0);
+
                 Instantiate(exit, exitPos, Quaternion.identity);
             }
-            else if(i % 5 == 0) // place monsters
+
+            if (i % 5 == 0) // place monsters
             {
                 
                 InstantiateFromArray(enemies, rooms[i].xPos + 2, rooms[i].yPos + 2);
             }
 
+            if (Random.Range(0, 10) <= 4)
+            {
+                InstantiateFromArray(lights, rooms[i].xPos + (rooms[i].roomWidth/2), rooms[i].yPos + rooms[i].roomHeight/2);
+            }
             //maybe place some light by a random chance.
         }
     }
-
 
     void SetTilesValuesForRooms()
     {

@@ -214,7 +214,7 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.6
+  m_Intensity: 0.28
   m_Range: 3
   m_SpotAngle: 24.7
   m_CookieSize: 10
@@ -322,7 +322,7 @@ MonoBehaviour:
     m_Bits: 256
   BlockMask:
     serializedVersion: 2
-    m_Bits: 4294967039
+    m_Bits: 4294967295
   coneAngle: 45
   coneIncrement: 0.25
   distance: 20

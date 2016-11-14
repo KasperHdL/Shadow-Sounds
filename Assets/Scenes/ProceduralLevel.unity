@@ -132,11 +132,11 @@ MonoBehaviour:
     m_Min: 40
     m_Max: 50
   roomWidth:
-    m_Min: 5
-    m_Max: 20
+    m_Min: 4
+    m_Max: 12
   roomHeight:
-    m_Min: 5
-    m_Max: 30
+    m_Min: 4
+    m_Max: 15
   corridorLength:
     m_Min: 2
     m_Max: 10
@@ -149,6 +149,10 @@ MonoBehaviour:
   player: {fileID: 1000011376699998, guid: c05b727539e0b415e927a48accd07b48, type: 2}
   enemies:
   - {fileID: 1000013906157328, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04, type: 2}
+  lights:
+  - {fileID: 1000012093569052, guid: 1911038583b2e6a4aad172c6470e719c, type: 2}
+  - {fileID: 1000012093569052, guid: d622c394c297a3c499ce2a3ddabe4f7d, type: 2}
+  - {fileID: 1000012093569052, guid: cd62f12e9b46c4546809517a66e0045c, type: 2}
   exit: {fileID: 1000013821232166, guid: 60ad6802246274e5e8fc56181142c256, type: 2}
 --- !u!114 &132904613
 MonoBehaviour:
@@ -612,7 +616,7 @@ Light:
   serializedVersion: 7
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.01
+  m_Intensity: 0
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
