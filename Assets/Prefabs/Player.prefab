@@ -318,16 +318,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sonarBulletPrefab: {fileID: 114000010584440910, guid: 85ca129e5d29eaf4996136c987115458,
     type: 2}
-  soundMask:
-    serializedVersion: 2
-    m_Bits: 256
-  blockMask:
-    serializedVersion: 2
-    m_Bits: 1
   coneAngle: 45
   coneIncrement: 0.25
   distance: 20
-  soundDelayPerMeter: 5
+  sonarSpeed: 10
   shotCooldown: 1
 --- !u!114 &114000012164523692
 MonoBehaviour:

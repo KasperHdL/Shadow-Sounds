@@ -19,6 +19,7 @@ public class SonarBullet : MonoBehaviour {
 
     public float hitPitch = 1.0f;
     public float hitVolume = 1.0f;
+    public float noHitVolume = 1.0f;
 
     private LineRenderer line;
 
@@ -53,6 +54,7 @@ public class SonarBullet : MonoBehaviour {
         var t = tt;
 
         var played = new HashSet<Collider2D>();
+        var finished = false;
 
         while(t > 0) {
             var l = ((tt - t) / tt);
@@ -115,7 +117,12 @@ public class SonarBullet : MonoBehaviour {
 
             var color = Color.Lerp(colorStart, colorEnd, l);
             line.SetColors(color, color);
-            
+
+            if(h == 0 && !finished) { 
+                SoundSystem.Play("sonar no hit", 1, noHitVolume);
+                finished = true;
+            }
+
             yield return new WaitForFixedUpdate();
             t -= Time.fixedDeltaTime;
         }

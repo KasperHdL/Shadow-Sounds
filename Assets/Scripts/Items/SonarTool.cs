@@ -17,8 +17,8 @@ public class SonarTool : MonoBehaviour, SonarSource {
 
     public float distance  = 20f;
     public float Distance { get { return distance; } }
-    public float soundDelayPerMeter = 1f;
-    public float Speed { get { return soundDelayPerMeter; } }
+    public float sonarSpeed = 1f;
+    public float Speed { get { return sonarSpeed; } }
     
     public int Rays { get { return (int)(coneAngle * 2 / coneIncrement); } }
     public RaycastHit2D[] soundHits;
@@ -47,7 +47,7 @@ public class SonarTool : MonoBehaviour, SonarSource {
 	
 	void Shoot()
 	{
-        SoundSystem.Play("sonar noise", 0.2f, 1, 0, distance * soundDelayPerMeter);
+        SoundSystem.Play("sonar noise", 0.2f, 1, 0, distance * sonarSpeed);
 
         var bullet = (SonarBullet)Instantiate(sonarBulletPrefab, transform.position, Quaternion.identity);
 	    bullet.source = this;

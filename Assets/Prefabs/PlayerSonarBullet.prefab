@@ -59,7 +59,7 @@ MonoBehaviour:
     m_Bits: 1
   HighlightMask:
     serializedVersion: 2
-    m_Bits: 8192
+    m_Bits: 8448
   material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   colorStart: {r: 0.528, g: 0.528, b: 0.528, a: 1}
   colorEnd: {r: 0.5294118, g: 0.5294118, b: 0.5294118, a: 0}
