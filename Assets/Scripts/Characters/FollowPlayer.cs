@@ -140,7 +140,7 @@ public class FollowPlayer : CharacterMovement
     {
         if (target == null) return false;
         Vector2 delta = target.position - transform.position;
-        RaycastHit2D hit = Physics2D.Linecast((Vector2)transform.position + delta.normalized * raycastStartRadius, target.position);
+        RaycastHit2D hit = Physics2D.Linecast((Vector2)transform.position + delta.normalized * raycastStartRadius, target.position, detectionBlockMask);
         var result = hit.collider.transform == target;
 
         if (!result) targetSeenTime = null;
