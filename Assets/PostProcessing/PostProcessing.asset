@@ -108,15 +108,15 @@ MonoBehaviour:
     m_Settings:
       tonemapping:
         tonemapper: 2
-        neutralBlackIn: 0.05
-        neutralWhiteIn: 9.9
-        neutralBlackOut: 0.002
+        neutralBlackIn: 0.1
+        neutralWhiteIn: 10
+        neutralBlackOut: 0
         neutralWhiteOut: 10
         neutralWhiteLevel: 5.3
         neutralWhiteClip: 10
       basic:
-        postExposure: 0.69
-        temperature: -10
+        postExposure: 0
+        temperature: 0
         tint: 0
         hueShift: 0
         saturation: 1
@@ -129,9 +129,9 @@ MonoBehaviour:
       colorWheels:
         mode: 1
         log:
-          slope: {r: 0.8999538, g: 0.9842223, b: 1, a: 0}
-          power: {r: 0.94069767, g: 0.9443454, b: 1, a: 0}
-          offset: {r: 0.932185, g: 0.98413587, b: 1, a: 0}
+          slope: {r: 1, g: 1, b: 1, a: 0}
+          power: {r: 1, g: 1, b: 1, a: 0}
+          offset: {r: 1, g: 1, b: 1, a: 0}
         linear:
           lift: {r: 1, g: 1, b: 1, a: 0}
           gamma: {r: 1, g: 1, b: 1, a: 0}
@@ -142,41 +142,41 @@ MonoBehaviour:
             serializedVersion: 2
             m_Curve:
             - time: 0
-              value: 0
-              inSlope: 0
-              outSlope: 1
-              tangentMode: 0
+              value: 0.008332745
+              inSlope: 0.9916673
+              outSlope: 0.9916673
+              tangentMode: 10
             - time: 1
               value: 1
-              inSlope: 1
-              outSlope: 0
-              tangentMode: 0
+              inSlope: 0.9916673
+              outSlope: 0.9916673
+              tangentMode: 10
             m_PreInfinity: 2
             m_PostInfinity: 2
             m_RotationOrder: 0
           m_Loop: 0
           m_ZeroValue: 0
-          m_Range: 1
+          m_Range: 0
         red:
           curve:
             serializedVersion: 2
             m_Curve:
             - time: 0
-              value: 0
-              inSlope: 1
-              outSlope: 1
+              value: 0.0026021488
+              inSlope: 0.99739784
+              outSlope: 0.99739784
               tangentMode: 0
             - time: 1
               value: 1
-              inSlope: 1
-              outSlope: 1
-              tangentMode: 0
+              inSlope: 0.99739784
+              outSlope: 0.99739784
+              tangentMode: 10
             m_PreInfinity: 2
             m_PostInfinity: 2
-            m_RotationOrder: 4
+            m_RotationOrder: 0
           m_Loop: 0
           m_ZeroValue: 0
-          m_Range: 1
+          m_Range: 0
         green:
           curve:
             serializedVersion: 2

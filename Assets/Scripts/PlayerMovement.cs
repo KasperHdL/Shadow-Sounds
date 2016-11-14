@@ -24,6 +24,7 @@ public class PlayerMovement : CharacterMovement
     public bool useController;
     [Range(0,1)] public float deadzone = 0.1f;
     private Controller controller;
+    public PostProcessingAnimator ppAnimator;
 
     public override void Start()
     {
@@ -36,8 +37,9 @@ public class PlayerMovement : CharacterMovement
         switch (collision.gameObject.tag)
         {
             case "Enemy":
+                ppAnimator.PlayerAttacked();
                 SoundSystem.Play("enemy collision", 1,enemyColVol);
-                Debug.Log("EnemyCollision");
+                //Debug.Log("EnemyCollision");
 
                 break;
             case "Wall":

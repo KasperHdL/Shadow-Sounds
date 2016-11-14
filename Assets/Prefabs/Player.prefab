@@ -30,7 +30,7 @@ GameObject:
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -304785387049774780, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -326,7 +326,7 @@ MonoBehaviour:
   coneAngle: 45
   coneIncrement: 0.25
   distance: 20
-  soundDelayPerMeter: 0.1
+  soundDelayPerMeter: 0.05
   rays: 360
   noHitVolume: 0.3
   hitPitch: 0.8
@@ -358,7 +358,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Move: {x: 0, y: 0}
   DisableMovement: 0
-  MoveSpeed: 5
+  MoveSpeed: 4
   Acceleration: 0.2
   Deceleration: 0.2
   StartCurve:
@@ -393,7 +393,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  health: 4
+  health: 3
   stepVolume: 1.2
   fallOnWalls: 0
   enemyColVol: 0.5
@@ -417,6 +417,6 @@ MonoBehaviour:
   colorEnd: {r: 1, g: 1, b: 1, a: 0}
   width: 0.1
   overrideTime: 1
-  time: 2
+  time: 1
   overrideDistance: 0
-  dist: 5
+  dist: 20
