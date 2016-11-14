@@ -11,11 +11,6 @@ public class SonarTool : MonoBehaviour, SonarSource {
 
     public SonarBullet sonarBulletPrefab;
 
-    public LayerMask soundMask;
-    public LayerMask SoundMask { get { return soundMask; } }
-    public LayerMask blockMask;
-    public LayerMask BlockMask { get { return blockMask; } }
-
     public float coneAngle = 30f;
     public float Angle { get { return coneAngle; } }
     public float coneIncrement = 1f;

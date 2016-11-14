@@ -6,10 +6,16 @@ public class SonarBullet : MonoBehaviour {
 
     public SonarSource source;
 
+    public LayerMask SoundMask;
+    public LayerMask BlockMask;
+    public LayerMask HighlightMask;
+
     public Material material;
     public Color colorStart = new Color(1, 1, 1, 1);
     public Color colorEnd = new Color(1, 1, 1, 0);
+    public Color colorHighlight = new Color(1, 1, 1, 1);
     public float width = 0.1f;
+    public float highlightWidth = 0.2f;
 
     public float hitPitch = 1.0f;
     public float hitVolume = 1.0f;
@@ -30,7 +36,11 @@ public class SonarBullet : MonoBehaviour {
         var coneIncrementRad = coneAngleRad / source.Rays;
         var startAngle = angle - coneAngleRad / 2;
         var done = new List<bool>();
-        for(int i = 0; i < source.Rays; i++)done.Add(false);
+        for(int i = 0; i < source.Rays; i++)
+            done.Add(false);
+        var highlight = new List<Vector2?>();
+        for(int i = 0; i < source.Rays; i++)
+            highlight.Add(null);
 
         line = line == null ? gameObject.AddComponent<LineRenderer>() : GetComponent<LineRenderer>();
         line.useWorldSpace = true;
@@ -48,37 +58,64 @@ public class SonarBullet : MonoBehaviour {
             var l = ((tt - t) / tt);
             var d = source.Distance * l;
             var dd = source.Speed * Time.fixedDeltaTime;
+            var h = 0;
 
-            for(int i = 0; i < source.Rays; i++)
-            {
-                if (done[i]) continue;
+            for(int i = 0; i < source.Rays; i++) {
+                if(done[i])
+                    continue;
+                h++;
 
                 var a = startAngle + coneIncrementRad * i;
                 var dir = new Vector2(Mathf.Cos(a), Mathf.Sin(a));
 
-                var soundhit = Physics2D.Raycast(origin + dir * d, dir, dd, source.SoundMask);
-                var blockhit = Physics2D.Raycast(origin + dir * d, dir, dd, source.BlockMask);
+                var soundhit = Physics2D.Raycast(origin + dir * d, dir, dd, SoundMask);
+                var blockhit = Physics2D.Raycast(origin + dir * d, dir, dd, BlockMask);
+                var highlighthit = Physics2D.Raycast(origin + dir * d, dir, dd, HighlightMask);
 
-                Vector2 hit = origin + dir*d;
-                if (soundhit.collider != null && !played.Contains(soundhit.collider))
-                {
+                Vector2 hit = origin + dir * d;
+                if(soundhit.collider != null && !played.Contains(soundhit.collider)) {
                     played.Add(soundhit.collider);
                     SoundSystem.Play("sonar hit",
                         hitPitch * t,
                         (float)(hitVolume * (1 - System.Math.Log(d) / System.Math.Log(source.Distance))));
                 }
-                if (blockhit.collider != null)
-                {
+                highlight[i] = highlighthit.collider != null ? (Vector2?)hit : null;
+                if(blockhit.collider != null) {
                     hit = blockhit.point;
                     done[i] = true;
+                    highlight[i] = null;
                 }
 
                 line.SetPosition(i, hit);
             }
 
+            var n = 0;
+            LineRenderer cline = null;
+            for(int i = 0; i < source.Rays; i++) {
+                if(highlight[i].HasValue) {
+                    if(cline == null) {
+                        var go = new GameObject("Hightlight");
+                        go.transform.parent = transform;
+                        cline = go.AddComponent<LineRenderer>();
+                        cline.useWorldSpace = true;
+                        cline.material = material;
+                        cline.SetColors(colorHighlight, colorHighlight);
+                        cline.SetWidth(highlightWidth, highlightWidth);
+                        Destroy(go, Time.fixedDeltaTime);
+                    }
+                    n++;
+                    cline.SetVertexCount(n);
+                    cline.SetPosition(n-1, (Vector3)highlight[i].Value + Vector3.back);
+                }
+                if(!highlight[i].HasValue && cline != null) {
+                    cline = null;
+                    n = 0;
+                }
+            }
+
             var color = Color.Lerp(colorStart, colorEnd, l);
             line.SetColors(color, color);
-
+            
             yield return new WaitForFixedUpdate();
             t -= Time.fixedDeltaTime;
         }
@@ -88,8 +125,6 @@ public class SonarBullet : MonoBehaviour {
 }
 
 public interface SonarSource {
-    LayerMask SoundMask { get; }
-    LayerMask BlockMask { get; }
     float Distance { get; }
     float Speed { get; }
     Vector2 Direction { get; }

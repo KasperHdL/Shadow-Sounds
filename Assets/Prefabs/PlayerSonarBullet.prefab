@@ -51,9 +51,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4a7dd675627b0e41bed0a907c49a3f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SoundMask:
+    serializedVersion: 2
+    m_Bits: 256
+  BlockMask:
+    serializedVersion: 2
+    m_Bits: 1
+  HighlightMask:
+    serializedVersion: 2
+    m_Bits: 8192
   material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  colorStart: {r: 1, g: 1, b: 1, a: 1}
-  colorEnd: {r: 1, g: 1, b: 1, a: 0}
-  width: 0.1
+  colorStart: {r: 0.528, g: 0.528, b: 0.528, a: 1}
+  colorEnd: {r: 0.5294118, g: 0.5294118, b: 0.5294118, a: 0}
+  colorHighlight: {r: 0.15862083, g: 1, b: 0, a: 1}
+  width: 0.15
+  highlightWidth: 0.4
   hitPitch: 0.8
   hitVolume: 1.2
