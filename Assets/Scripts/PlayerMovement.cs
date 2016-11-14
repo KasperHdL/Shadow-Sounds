@@ -15,6 +15,8 @@ public class PlayerMovement : CharacterMovement
     
     public float enemyColVol = 0.5f;
     public float defColVol = 0.5f;
+    private bool isPlayingSteps = false;
+
 
     [HideInInspector]
     public Vector2 viewDirection;
@@ -24,6 +26,7 @@ public class PlayerMovement : CharacterMovement
     public bool useController;
     [Range(0,1)] public float deadzone = 0.1f;
     private Controller controller;
+    public PostProcessingAnimator ppAnimator;
 
     public override void Start()
     {
@@ -36,8 +39,9 @@ public class PlayerMovement : CharacterMovement
         switch (collision.gameObject.tag)
         {
             case "Enemy":
+                ppAnimator.PlayerAttacked();
                 SoundSystem.Play("enemy collision", 1,enemyColVol);
-                Debug.Log("EnemyCollision");
+                //Debug.Log("EnemyCollision");
 
                 break;
             case "Wall":
@@ -96,13 +100,21 @@ public class PlayerMovement : CharacterMovement
 
         Move = v;
 
-        if (body.velocity.magnitude >= 0.1)
-            SoundSystem.Play("footsteps", stepVolume, 1, 0, null, true);
-        else
+        if (!isPlayingSteps)
+        {
+            if (body.velocity.magnitude >= 0.1)
+            {
+                SoundSystem.Play("footsteps", stepVolume, 1, 0, null, true);
+                isPlayingSteps = true;
+            }
+        }
+        else if (body.velocity.magnitude < 0.1)
+        {
             SoundSystem.Stop("footsteps");
+            isPlayingSteps = false;
+        }
 
-
-        if (useController)
+            if (useController)
         {
             Vector2 d = new Vector2(controller.GetAxis(Axis.StickRightX), controller.GetAxis(Axis.StickRightY));
             if(d.magnitude < deadzone){
