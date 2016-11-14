@@ -314,7 +314,7 @@ MonoBehaviour:
     m_Bits: 256
   BlockMask:
     serializedVersion: 2
-    m_Bits: 4294967039
+    m_Bits: 1
   coneAngle: 45
   coneIncrement: 0.25
   distance: 20
