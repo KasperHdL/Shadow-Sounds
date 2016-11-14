@@ -21,8 +21,8 @@ public class PostProcessingAnimator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        //StartCoroutine(fadeIn());
-        PlayerAttacked();
+        StartCoroutine(fadeIn());
+        //PlayerAttacked();
 
 	
 	}
