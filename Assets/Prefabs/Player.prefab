@@ -90,7 +90,7 @@ Transform:
   m_GameObject: {fileID: 1000011376699998}
   m_LocalRotation: {x: 0, y: 0, z: 0.117984846, w: 0.9930154}
   m_LocalPosition: {x: 23.66, y: -12.32, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -89.94601}
   m_Children:
   - {fileID: 4000012146727422}
@@ -401,6 +401,7 @@ MonoBehaviour:
   viewDirection: {x: 0.97215915, y: 0.23432153}
   useController: 0
   deadzone: 0.1
+  ppAnimator: {fileID: 0}
 --- !u!114 &114000013219125440
 MonoBehaviour:
   m_ObjectHideFlags: 1
