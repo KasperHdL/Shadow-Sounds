@@ -105,7 +105,7 @@ public class SonarTool : MonoBehaviour {
         {
             SoundSystem.Play("sonar hit",
                 hitPitch * (1 - hit.distance / distance),
-                hitVolume * (1 - hit.distance / distance),
+                (float) (hitVolume * (1 - (System.Math.Log(hit.distance) / System.Math.Log(distance)))),
                 hit.distance * soundDelayPerMeter);
         }
 

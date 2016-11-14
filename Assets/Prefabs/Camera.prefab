@@ -26,6 +26,7 @@ GameObject:
   - 114: {fileID: 114000013913754286}
   - 114: {fileID: 114000013243246060}
   - 114: {fileID: 114000012107710002}
+  - 114: {fileID: 114000012675689040}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -8985,7 +8986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b466ec9ccc151b1439e26f313b22be4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sids: 020000000400000006000000080000000a0000000c0000000e00000010000000
+  sids: 020000000400000006000000080000000a0000000c0000000e000000100000001200000014000000
   snames:
   - sonar hit
   - sonar no hit
@@ -8995,9 +8996,11 @@ MonoBehaviour:
   - sonar noise
   - ghost sound
   - enemy collision
+  - background
+  - enemy movement
   sclips:
   - data:
-    - {fileID: 8300000, guid: eda2c91970dd88346af4d24a5217b494, type: 3}
+    - {fileID: 8300000, guid: c6b94d59b5163434fa9ccea8e4aa5d4f, type: 3}
   - data:
     - {fileID: 8300000, guid: 022d1b9b3301219498ae4a914ea419e1, type: 3}
   - data:
@@ -9017,7 +9020,227 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 835531f03fb60db418354110a561f655, type: 3}
     - {fileID: 8300000, guid: 32e12cbd951298547b6d1aa52753a73b, type: 3}
   - data:
-    - {fileID: 8300000, guid: 025a5ac7b7d052245a043a70c40bdd16, type: 3}
+    - {fileID: 8300000, guid: 642be4a1d006fd34db47006dd291ade6, type: 3}
+  - data:
+    - {fileID: 8300000, guid: f1a78f72a92340b4f9e990bb52906b22, type: 3}
+  - data:
+    - {fileID: 8300000, guid: aa1f20bd9512b514595127f5e7812072, type: 3}
+--- !u!114 &114000012675689040
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011376902860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a523cceed5ae488f8a6f79bd20b84fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 5dd46969465974e8e863f2f800158649, type: 2}
+  colorGrading:
+    m_Enabled: 0
+    m_Settings:
+      tonemapping:
+        tonemapper: 2
+        neutralBlackIn: 0.1
+        neutralWhiteIn: 10
+        neutralBlackOut: 0
+        neutralWhiteOut: 10
+        neutralWhiteLevel: 5.3
+        neutralWhiteClip: 10
+      basic:
+        postExposure: 0
+        temperature: 0
+        tint: 0
+        hueShift: 0
+        saturation: 1
+        contrast: 1
+      channelMixer:
+        red: {x: 1, y: 0, z: 0}
+        green: {x: 0, y: 1, z: 0}
+        blue: {x: 0, y: 0, z: 1}
+        currentEditingChannel: 0
+      colorWheels:
+        mode: 1
+        log:
+          slope: {r: 1, g: 1, b: 1, a: 0}
+          power: {r: 1, g: 1, b: 1, a: 0}
+          offset: {r: 1, g: 1, b: 1, a: 0}
+        linear:
+          lift: {r: 1, g: 1, b: 1, a: 0}
+          gamma: {r: 1, g: 1, b: 1, a: 0}
+          gain: {r: 1, g: 1, b: 1, a: 0}
+      curves:
+        master:
+          curve:
+            serializedVersion: 2
+            m_Curve:
+            - time: 0
+              value: 0
+              inSlope: 1
+              outSlope: 1
+              tangentMode: 0
+            - time: 1
+              value: 1
+              inSlope: 1
+              outSlope: 1
+              tangentMode: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          m_Loop: 0
+          m_ZeroValue: 0
+          m_Range: 1
+        red:
+          curve:
+            serializedVersion: 2
+            m_Curve:
+            - time: -0.004901952
+              value: 0.0022113547
+              inSlope: 1
+              outSlope: 1
+              tangentMode: 0
+            - time: 1
+              value: 1
+              inSlope: 1
+              outSlope: 1
+              tangentMode: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 0
+          m_Loop: 0
+          m_ZeroValue: 0
+          m_Range: 1
+        green:
+          curve:
+            serializedVersion: 2
+            m_Curve:
+            - time: 0
+              value: 0
+              inSlope: 1
+              outSlope: 1
+              tangentMode: 0
+            - time: 1
+              value: 1
+              inSlope: 1
+              outSlope: 1
+              tangentMode: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          m_Loop: 0
+          m_ZeroValue: 0
+          m_Range: 1
+        blue:
+          curve:
+            serializedVersion: 2
+            m_Curve:
+            - time: 0
+              value: 0
+              inSlope: 1
+              outSlope: 1
+              tangentMode: 0
+            - time: 1
+              value: 1
+              inSlope: 1
+              outSlope: 1
+              tangentMode: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          m_Loop: 0
+          m_ZeroValue: 0
+          m_Range: 1
+        hueVShue:
+          curve:
+            serializedVersion: 2
+            m_Curve: []
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          m_Loop: 1
+          m_ZeroValue: 0.5
+          m_Range: 1
+        hueVSsat:
+          curve:
+            serializedVersion: 2
+            m_Curve: []
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          m_Loop: 1
+          m_ZeroValue: 0.5
+          m_Range: 1
+        satVSsat:
+          curve:
+            serializedVersion: 2
+            m_Curve: []
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          m_Loop: 0
+          m_ZeroValue: 0.5
+          m_Range: 1
+        lumVSsat:
+          curve:
+            serializedVersion: 2
+            m_Curve: []
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          m_Loop: 0
+          m_ZeroValue: 0.5
+          m_Range: 1
+        e_CurrentEditingCurve: 0
+        e_CurveY: 1
+        e_CurveR: 0
+        e_CurveG: 0
+        e_CurveB: 0
+  masterCurve:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0.008332745
+        inSlope: 0.9916673
+        outSlope: 0.9916673
+        tangentMode: 10
+      - time: 1
+        value: 1
+        inSlope: 0.9916673
+        outSlope: 0.9916673
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    m_Loop: 0
+    m_ZeroValue: 0
+    m_Range: 0
+  redCurve:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 10
+      - time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    m_Loop: 0
+    m_ZeroValue: 0
+    m_Range: 0
+  fadeInTime: 2
+  fadeRedTime: 1
+  channelRed: {x: 1, y: 0, z: 0}
+  channelGreen: {x: 0, y: 1, z: 0}
+  channelBlue: {x: 0, y: 0, z: 1}
 --- !u!114 &114000013243246060
 MonoBehaviour:
   m_ObjectHideFlags: 1

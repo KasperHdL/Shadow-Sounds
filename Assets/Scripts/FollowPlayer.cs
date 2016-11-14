@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Linq;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class FollowPlayer : CharacterMovement
@@ -16,7 +17,7 @@ public class FollowPlayer : CharacterMovement
     public float raycastStartRadius = 1f;
     public float minWanderDistance = 2f;
     public float maxWanderDistance = 5f;
-
+    
     public float attackDistance = 2f;
     public float attackCooldown = 2;
     public float attackChargeTime = 0.2f;
@@ -55,6 +56,14 @@ public class FollowPlayer : CharacterMovement
 
         renderer.enabled = charging || visibleOverride;
         DisableMovement = charging;
+        if(renderer.enabled)
+        {
+            SoundSystem.Play("enemy movement",1,0.5f);
+        }
+        else
+        {
+            SoundSystem.Stop("enemy movement");
+        }
     }
 
     IEnumerator Attack()
@@ -76,10 +85,9 @@ public class FollowPlayer : CharacterMovement
             //play random ghost sound
             if (!playedSound && !SoundSystem.IsPlaying("ghost sound"))
             {
-                SoundSystem.Play("ghost sound");
+                SoundSystem.Play("ghost sound",1,0.5f);
                 playedSound = true;
             }
-
 
             Debug.DrawLine(transform.position, target.position, Color.red, 1f);
             knownPlayerPosition = target.position;

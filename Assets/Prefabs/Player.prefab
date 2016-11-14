@@ -30,7 +30,7 @@ GameObject:
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -304785387049774780, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -88,7 +88,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011376699998}
-  m_LocalRotation: {x: -0, y: -0, z: -0.7067604, w: 0.707453}
+  m_LocalRotation: {x: 0, y: 0, z: 0.117984846, w: 0.9930154}
   m_LocalPosition: {x: 23.66, y: -12.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -89.94601}
@@ -229,7 +229,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -263,7 +263,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -297,7 +297,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -326,11 +326,11 @@ MonoBehaviour:
   coneAngle: 45
   coneIncrement: 0.25
   distance: 20
-  soundDelayPerMeter: 0.1
-  rays: 0
+  soundDelayPerMeter: 0.05
+  rays: 360
   noHitVolume: 0.3
   hitPitch: 0.8
-  hitVolume: 2
+  hitVolume: 1.2
   shotCooldown: 1
 --- !u!114 &114000012164523692
 MonoBehaviour:
@@ -358,7 +358,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Move: {x: 0, y: 0}
   DisableMovement: 0
-  MoveSpeed: 5
+  MoveSpeed: 4
   Acceleration: 0.2
   Deceleration: 0.2
   StartCurve:
@@ -393,13 +393,12 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  health: 4
-  hitForce: 10000
+  health: 3
   stepVolume: 1.2
   fallOnWalls: 0
   enemyColVol: 0.5
   defColVol: 0.5
-  viewDirection: {x: 0, y: 0}
+  viewDirection: {x: 0.97215915, y: 0.23432153}
   useController: 0
   deadzone: 0.1
 --- !u!114 &114000013219125440
@@ -418,6 +417,6 @@ MonoBehaviour:
   colorEnd: {r: 1, g: 1, b: 1, a: 0}
   width: 0.1
   overrideTime: 1
-  time: 2
+  time: 1
   overrideDistance: 0
-  dist: 5
+  dist: 20

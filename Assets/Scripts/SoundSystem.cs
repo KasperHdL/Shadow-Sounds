@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using Debug = UnityEngine.Debug;
 
 public class SoundSystem : MonoBehaviour, ISerializationCallbackReceiver
 {
@@ -60,7 +62,12 @@ public class SoundSystem : MonoBehaviour, ISerializationCallbackReceiver
     public static void Play(string sound, float pitch = 1, float volume = 1, float delay = 0, float? duration = null, bool loop = false)
     {
         if (instance == null) throw new UnityException("No sound system found!");
-        if (loop && IsPlaying(sound)) return;
+        if (loop && IsPlaying(sound))
+            return; 
+
+        //to prevent the above to trigger
+        //instance.sources.Add(sound,new List<AudioSource>());
+
         instance.StartCoroutine(instance.PlaySound(sound, pitch, volume, delay, duration, loop));
     }
     public static void Stop(string sound)
