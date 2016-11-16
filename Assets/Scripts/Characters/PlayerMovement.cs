@@ -38,12 +38,6 @@ public class PlayerMovement : CharacterMovement
     {
         switch (collision.gameObject.tag)
         {
-            case "Enemy":
-                ppAnimator.PlayerAttacked();
-                SoundSystem.Play("enemy collision", 1,enemyColVol);
-                //Debug.Log("EnemyCollision");
-
-                break;
             case "Wall":
                 if (fallOnWalls)
                     SoundSystem.Play("wall collision",1, defColVol);
@@ -63,7 +57,9 @@ public class PlayerMovement : CharacterMovement
     {
         DisableMovement = true;
         StartCoroutine(Reactivate());
-
+        ppAnimator.PlayerAttacked();
+        SoundSystem.Play("enemy collision", 1,enemyColVol);
+              
         health -= damage;
         if (health <= 0) Die();
     }
