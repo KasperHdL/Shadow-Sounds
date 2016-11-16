@@ -2279,7 +2279,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 40
+  m_RootOrder: 41
 --- !u!4 &483306635 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000013463432024, guid: da98cd61ac53e4a949eddf2f8904e9cc,
@@ -2710,7 +2710,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: -83.5, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 39
+  m_RootOrder: 40
 --- !u!1001 &539579199
 Prefab:
   m_ObjectHideFlags: 0
@@ -12252,11 +12252,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013350856620, guid: 9d88353ac1e014195bc097c501fab2dd, type: 2}
       propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012675689040, guid: 9d88353ac1e014195bc097c501fab2dd,
-        type: 2}
-      propertyPath: colorGrading.m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

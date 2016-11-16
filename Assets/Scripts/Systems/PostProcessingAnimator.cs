@@ -13,6 +13,8 @@ public class PostProcessingAnimator : MonoBehaviour {
     public float fadeInTime = 1f;
     private float exposure;
 
+    public float temperature;
+
     public float fadeRedTime = 1f;
     public Vector3 channelRed;
     public Vector3 channelGreen;
@@ -33,7 +35,6 @@ public class PostProcessingAnimator : MonoBehaviour {
 	void Start () {
         //StartCoroutine(fadeIn());
         //PlayerAttacked();
-
 	
 	}
 	
@@ -54,6 +55,7 @@ public class PostProcessingAnimator : MonoBehaviour {
 
         var settings = colorGrading.settings;
         settings.basic.postExposure = exposure;
+        settings.basic.temperature = temperature;
         settings.curves.master = masterCurve;
         settings.curves.red = redCurve;
 

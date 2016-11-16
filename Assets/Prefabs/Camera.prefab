@@ -9237,6 +9237,7 @@ MonoBehaviour:
     m_ZeroValue: 0
     m_Range: 0
   fadeInTime: 2
+  temperature: -7
   fadeRedTime: 1
   channelRed: {x: 1, y: 0, z: 0}
   channelGreen: {x: 0, y: 1, z: 0}

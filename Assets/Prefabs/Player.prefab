@@ -40,7 +40,6 @@ GameObject:
   - 114: {fileID: 114000012183586300}
   - 114: {fileID: 114000010623601598}
   - 114: {fileID: 114000012164523692}
-  - 114: {fileID: 114000013219125440}
   m_Layer: 12
   m_Name: Player
   m_TagString: Player
@@ -386,25 +385,6 @@ MonoBehaviour:
   useController: 1
   deadzone: 0.1
   ppAnimator: {fileID: 0}
---- !u!114 &114000013219125440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011376699998}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11fb50aebf6a5de4fba42c29995ee184, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 3}
-  colorStart: {r: 1, g: 1, b: 1, a: 1}
-  colorEnd: {r: 1, g: 1, b: 1, a: 0}
-  width: 0.1
-  overrideTime: 1
-  time: 1
-  overrideDistance: 0
-  dist: 20
 --- !u!212 &212000010111020912
 SpriteRenderer:
   m_ObjectHideFlags: 1
