@@ -8,8 +8,13 @@ public class FollowPlayer : CharacterMovement
 {
 
     public Transform target;
+    private PostProcessingAnimator postProcessingAnimator;
     private new SpriteRenderer renderer;
     public bool visibleOverride = false;
+
+    private bool showEnemy = false;
+    private bool lastFrameRendererEnabled = false;
+    public float visibleRange = 1.5f;
 
     public LayerMask detectionBlockMask;
 
@@ -47,6 +52,7 @@ public class FollowPlayer : CharacterMovement
             if (target == null)
                 Debug.LogError("No object tagged 'Player'");
         }
+        postProcessingAnimator = Camera.main.GetComponent<PostProcessingAnimator>();
         base.Start();
     }
 
@@ -55,7 +61,15 @@ public class FollowPlayer : CharacterMovement
         if (target != null && !charging && Vector3.Distance(transform.position, target.position) < attackDistance)
             StartCoroutine(Attack());
 
-        renderer.enabled = charging || visibleOverride;
+
+        renderer.enabled = charging || visibleOverride || showEnemy;
+        if(renderer.enabled && !lastFrameRendererEnabled)
+            postProcessingAnimator.FlickerInWorld();
+        else if(!renderer.enabled && lastFrameRendererEnabled)
+            postProcessingAnimator.FlickerOutWorld();
+        lastFrameRendererEnabled = renderer.enabled;
+        
+        
         DisableMovement = charging;
         if (!isPlayingEnmMov)
         {
@@ -100,9 +114,13 @@ public class FollowPlayer : CharacterMovement
             isMovingTowardsKnownPlayerPosition = true;
             isMovingTowardsWanderPosition = false;
 
+
+            showEnemy = (target.position - transform.position).magnitude < visibleRange;
+
         }
         else
         {
+            showEnemy = false;
             playedSound = false;
         }
 
