@@ -153,6 +153,12 @@ MonoBehaviour:
   - {fileID: 1000012093569052, guid: 1911038583b2e6a4aad172c6470e719c, type: 2}
   - {fileID: 1000012093569052, guid: d622c394c297a3c499ce2a3ddabe4f7d, type: 2}
   - {fileID: 1000012093569052, guid: cd62f12e9b46c4546809517a66e0045c, type: 2}
+  radioSound: {fileID: 1000010566964968, guid: 1a65344fba2c8a049bae661b40f1799a, type: 2}
+  machineSound: {fileID: 1000010566964968, guid: 1aa2cfd0fa5ae1a4f9b7b2f59ab3f1fc,
+    type: 2}
+  waterSound: {fileID: 1000010566964968, guid: 2a28e23cc5f5197449b497da1480214b, type: 2}
+  ventilationSound: {fileID: 1000010566964968, guid: dc359031ceb70d247a9718ef26ca2782,
+    type: 2}
   exit: {fileID: 1000013821232166, guid: 60ad6802246274e5e8fc56181142c256, type: 2}
 --- !u!114 &132904613
 MonoBehaviour:

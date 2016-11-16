@@ -22,6 +22,7 @@ public class BoardCreator : MonoBehaviour
     public GameObject player;
     public GameObject[] enemies;
     public GameObject[] lights;
+    public GameObject radioSound, machineSound, waterSound, ventilationSound;
     public GameObject exit;
 
 
@@ -129,6 +130,28 @@ public class BoardCreator : MonoBehaviour
                 
                 InstantiateFromArray(enemies, rooms[i].xPos + 2, rooms[i].yPos + 2);
             }
+
+            if (i == 8) // place sound
+            {
+                Vector3 soundPos = new Vector3(rooms[i].xPos + (rooms[i].roomWidth / 2), rooms[i].yPos + rooms[i].roomHeight / 2, -10);
+                Instantiate(radioSound, soundPos, Quaternion.identity);
+            }
+            if (i == 16) // place sound
+            {
+                Vector3 soundPos = new Vector3(rooms[i].xPos + (rooms[i].roomWidth / 2), rooms[i].yPos + rooms[i].roomHeight / 2, -10);
+                Instantiate(machineSound, soundPos, Quaternion.identity);
+            }
+            if (i == 20) // place sound
+            {
+                Vector3 soundPos = new Vector3(rooms[i].xPos + (rooms[i].roomWidth / 2), rooms[i].yPos + rooms[i].roomHeight / 2, -10);
+                Instantiate(waterSound, soundPos, Quaternion.identity);
+            }
+            if (i == 25) // place sound
+            {
+                Vector3 soundPos = new Vector3(rooms[i].xPos + (rooms[i].roomWidth / 2), rooms[i].yPos + rooms[i].roomHeight / 2, -10);
+                Instantiate(ventilationSound, soundPos, Quaternion.identity);
+            }
+
 
             if (Random.Range(0, 10) <= 4)
             {

@@ -391,7 +391,7 @@ MonoBehaviour:
   enemyColVol: 0.5
   defColVol: 0.5
   viewDirection: {x: 0.97215915, y: 0.23432153}
-  useController: 1
+  useController: 0
   deadzone: 0.1
   ppAnimator: {fileID: 0}
 --- !u!114 &114000013219125440
