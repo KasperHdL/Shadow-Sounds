@@ -12,9 +12,9 @@ public class FollowPlayer : CharacterMovement
     private new SpriteRenderer renderer;
     public bool visibleOverride = false;
 
-    private bool showEnemy = false;
+    private bool withinPlayerVisibleRange = false;
     private bool lastFrameRendererEnabled = false;
-    public float visibleRange = 1.5f;
+    public float visibleToPlayerRange = 5f;
 
     public LayerMask detectionBlockMask;
 
@@ -62,7 +62,7 @@ public class FollowPlayer : CharacterMovement
             StartCoroutine(Attack());
 
 
-        renderer.enabled = charging || visibleOverride || showEnemy;
+        renderer.enabled = charging || visibleOverride || withinPlayerVisibleRange;
         if(renderer.enabled && !lastFrameRendererEnabled)
             postProcessingAnimator.FlickerInWorld();
         else if(!renderer.enabled && lastFrameRendererEnabled)
@@ -115,12 +115,12 @@ public class FollowPlayer : CharacterMovement
             isMovingTowardsWanderPosition = false;
 
 
-            showEnemy = (target.position - transform.position).magnitude < visibleRange;
+            withinPlayerVisibleRange = (target.position - transform.position).magnitude < visibleToPlayerRange;
 
         }
         else
         {
-            showEnemy = false;
+            withinPlayerVisibleRange = false;
             playedSound = false;
         }
 
@@ -158,7 +158,7 @@ public class FollowPlayer : CharacterMovement
     {
         if (target == null) return false;
         Vector2 delta = target.position - transform.position;
-        RaycastHit2D hit = Physics2D.Linecast((Vector2)transform.position + delta.normalized * raycastStartRadius, target.position, detectionBlockMask);
+        RaycastHit2D hit = Physics2D.Linecast((Vector2)transform.position, target.position, detectionBlockMask);
         var result = hit.collider.transform == target;
 
         if (!result) targetSeenTime = null;

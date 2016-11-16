@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013906157328}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.67, y: 16.69, z: 0.29}
+  m_LocalPosition: {x: -19.43, y: -11.48, z: 0.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -87,7 +87,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Move: {x: 0, y: 0}
   DisableMovement: 0
-  MoveSpeed: 2
+  MoveSpeed: 3
   Acceleration: 0.1
   Deceleration: 0.1
   StartCurve:
@@ -124,17 +124,18 @@ MonoBehaviour:
     m_RotationOrder: 0
   target: {fileID: 0}
   visibleOverride: 0
+  visibleToPlayerRange: 5
   detectionBlockMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 4609
   allowedToWander: 1
-  raycastStartRadius: 1
+  raycastStartRadius: 0
   minWanderDistance: 1
   maxWanderDistance: 3
   attackDistance: 2
   attackCooldown: 1.1
-  attackChargeTime: 0.1
-  attackForce: 800
+  attackChargeTime: 0.6
+  attackForce: 1200
   hitForce: 50
   immidiateDetectionDistance: 6
   detectionTime: 1
