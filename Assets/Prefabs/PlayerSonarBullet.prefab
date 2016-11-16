@@ -66,5 +66,6 @@ MonoBehaviour:
   colorHighlight: {r: 0.15862083, g: 1, b: 0, a: 1}
   width: 0.15
   highlightWidth: 0.4
-  hitPitch: 0.8
-  hitVolume: 1.2
+  hitPitch: 0.4
+  hitVolume: 1.5
+  noHitVolume: 1
