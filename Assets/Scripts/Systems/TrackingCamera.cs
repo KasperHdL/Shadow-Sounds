@@ -21,7 +21,7 @@ public class TrackingCamera : MonoBehaviour {
             if(target == null)
                 Debug.LogError("No object tagged 'Player'");
         }
-        SoundSystem.Play("background",1,0.2f,0,null,true);
+        SoundSystem.Play("background",1,0.1f,0,null,true);
 
     }
 	

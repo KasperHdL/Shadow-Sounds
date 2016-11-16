@@ -377,6 +377,11 @@ MonoBehaviour:
   channelRed: {x: 1, y: 0, z: 0}
   channelGreen: {x: 0, y: 1, z: 0}
   channelBlue: {x: 0, y: 0, z: 1}
+  flickering: 0
+  flickeringIn: 0
+  flickeredIn: 0
+  flickerIn: 0
+  flickerOut: 0
 --- !u!114 &132904614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -643,7 +648,7 @@ Light:
     m_Bits: 4294967295
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &1989201954

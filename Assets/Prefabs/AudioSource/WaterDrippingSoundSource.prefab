@@ -51,15 +51,15 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: cc0b66d7af6066249a6d6b2372fcbdc8, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.81
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 5
-  MaxDistance: 20
+  MinDistance: 2
+  MaxDistance: 15
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -73,18 +73,18 @@ AudioSource:
       inSlope: -6.002399
       outSlope: -6.002399
       tangentMode: 0
-    - time: 0.33333334
-      value: 0.5
+    - time: 0.30420712
+      value: 0.32026148
       inSlope: -1.5005997
       outSlope: -1.5005997
       tangentMode: 0
-    - time: 0.6569579
-      value: 0.20686275
+    - time: 0.618123
+      value: 0.09183008
       inSlope: -0.37514994
       outSlope: -0.37514994
       tangentMode: 0
     - time: 1
-      value: 0.008496761
+      value: 0
       inSlope: -0.16673319
       outSlope: -0.16673319
       tangentMode: 0
@@ -106,7 +106,7 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: 0
+      value: 0.29444444
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -116,8 +116,8 @@ AudioSource:
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - time: 0.004854369
-      value: 0.9993465
+    - time: 0
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
