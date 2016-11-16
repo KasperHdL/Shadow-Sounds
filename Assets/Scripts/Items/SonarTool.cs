@@ -4,30 +4,25 @@ using System.Collections.Generic;
 using System.Linq;
 using KInput;
 
-public class SonarTool : MonoBehaviour {
+public class SonarTool : MonoBehaviour, SonarSource {
 
     private PlayerMovement player;
+    public Vector2 Direction { get { return player.viewDirection; } }
 
-    public LayerMask SoundMask;
-    public LayerMask BlockMask;
+    public SonarBullet sonarBulletPrefab;
 
     public float coneAngle = 30f;
+    public float Angle { get { return coneAngle; } }
     public float coneIncrement = 1f;
 
-    private float coneAngleRad;
-    private float coneIncrementRad;
-
     public float distance  = 20f;
-    public float soundDelayPerMeter = 1f;
-
-    [HideInInspector]
-    public int rays;
+    public float Distance { get { return distance; } }
+    public float sonarSpeed = 1f;
+    public float Speed { get { return sonarSpeed; } }
+    
+    public int Rays { get { return (int)(coneAngle * 2 / coneIncrement); } }
     public RaycastHit2D[] soundHits;
     public RaycastHit2D[] blockHits;
-
-    public float noHitVolume = 0.5f;
-    public float hitPitch    = 3f;
-    public float hitVolume   = 5f;
 
     private float lastShotTime = 0f;
     public float shotCooldown = 1f;
@@ -38,12 +33,6 @@ public class SonarTool : MonoBehaviour {
 	void Start () {
         player = GetComponent<PlayerMovement>();
         controller = GetComponent<ControllerContainer>().controller;
-        coneAngleRad = Mathf.Deg2Rad * coneAngle;
-        coneIncrementRad = Mathf.Deg2Rad * coneIncrement;
-
-	    rays = (int) (coneAngle*2/coneIncrement);
-        soundHits = new RaycastHit2D[rays];
-        blockHits = new RaycastHit2D[rays];
 	}
 
 
@@ -56,71 +45,11 @@ public class SonarTool : MonoBehaviour {
         }
     }
 	
-	void Shoot() {
-        Vector3 viewDir = player.viewDirection.normalized;
-        float angle = Mathf.Atan2(-viewDir.y, viewDir.x);
+	void Shoot()
+	{
+        SoundSystem.Play("sonar noise", 0.2f, 1, 0, distance * sonarSpeed);
 
-	    var colliderHits = new Dictionary<Collider2D, RaycastHit2D>();
-        var numRaysHit = 0;
-
-        float startAngle = angle - coneAngleRad;
-        for(int i = 0; i < rays; i++){
-
-            float a = startAngle + coneIncrementRad * i;
-
-            Vector3 d = new Vector3(Mathf.Cos(a), Mathf.Sin(-a),0); 
-
-            var hits = Physics2D.RaycastAll(player.transform.position + d, d, distance, SoundMask | BlockMask);
-            blockHits[i] = Physics2D.Raycast(player.transform.position + d, d, distance, BlockMask);
-
-            foreach (var hit in hits)
-            {
-                var c = hit.collider;
-                if (c != null && c.tag == "Enemy")
-                {
-                    numRaysHit++;
-                    if (!colliderHits.ContainsKey(c) || hit.distance < colliderHits[c].distance)
-                        colliderHits[hit.collider] = hit;
-                }
-                else
-                {
-                    break;
-                }
-            }
-
-            //draw debug
-            /*if (soundHits[i].collider != null){
-                Debug.DrawLine(player.transform.position, soundHits[i].point, Color.white, shotCooldown);
-            } else */if (blockHits[i].collider != null) {
-                Debug.DrawLine(player.transform.position, blockHits[i].point, Color.blue, shotCooldown);
-            } else { 
-                Debug.DrawLine(player.transform.position, player.transform.position + d * distance, Color.red, shotCooldown);
-            }
-        }
-
-	    SoundSystem.Play("sonar noise", 0.2f, 1, 0, distance*soundDelayPerMeter);
-
-        soundHits = colliderHits.Values.ToArray();
-	    foreach (var hit in colliderHits.Values)
-        {
-            SoundSystem.Play("sonar hit",
-                hitPitch * (1 - hit.distance / distance),
-                (float) (hitVolume * (1 - (System.Math.Log(hit.distance) / System.Math.Log(distance)))),
-                hit.distance * soundDelayPerMeter);
-        }
-
-        if(numRaysHit < rays){
-            SoundSystem.Play("sonar no hit", noHitVolume, 1f, distance * soundDelayPerMeter);
-
-            SendMessage("SonarShoot", distance);
-        }else{
-            float maxDist = 0f;
-            for(int i = 0;i < soundHits.Length; i++){
-                if(soundHits[i].collider != null && soundHits[i].distance > maxDist)
-                    maxDist = soundHits[i].distance;
-            }
-            SendMessage("SonarShoot", maxDist);
-        }
-        
+        var bullet = (SonarBullet)Instantiate(sonarBulletPrefab, transform.position, Quaternion.identity);
+	    bullet.source = this;
     }
 }

@@ -39,9 +39,9 @@ GameObject:
   - 50: {fileID: 50000011869989944}
   - 114: {fileID: 114000012183586300}
   - 114: {fileID: 114000010623601598}
-  - 114: {fileID: 114000013219125440}
   - 114: {fileID: 114000012164523692}
-  m_Layer: 0
+  - 114: {fileID: 114000013219125440}
+  m_Layer: 12
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: -304785387049774780, guid: 0000000000000000d000000000000000, type: 0}
@@ -57,7 +57,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013648864890}
   - 108: {fileID: 108000013190391010}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Player Avater Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013754612274}
   - 108: {fileID: 108000010558356852}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Ambient PointLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012146727422}
   - 108: {fileID: 108000013550046754}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Spotlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -309,20 +309,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d05100af1975410fba82047636557aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SoundMask:
-    serializedVersion: 2
-    m_Bits: 256
-  BlockMask:
-    serializedVersion: 2
-    m_Bits: 4294966015
+  sonarBulletPrefab: {fileID: 114000010584440910, guid: 85ca129e5d29eaf4996136c987115458,
+    type: 2}
   coneAngle: 45
   coneIncrement: 0.25
   distance: 20
-  soundDelayPerMeter: 0.05
-  rays: 360
-  noHitVolume: 0.3
-  hitPitch: 0.8
-  hitVolume: 1.2
+  sonarSpeed: 10
   shotCooldown: 1
 --- !u!114 &114000012164523692
 MonoBehaviour:
@@ -396,7 +388,7 @@ MonoBehaviour:
   ppAnimator: {fileID: 0}
 --- !u!114 &114000013219125440
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011376699998}
@@ -405,7 +397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11fb50aebf6a5de4fba42c29995ee184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 3}
   colorStart: {r: 1, g: 1, b: 1, a: 1}
   colorEnd: {r: 1, g: 1, b: 1, a: 0}
   width: 0.1
