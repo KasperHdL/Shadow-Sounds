@@ -29,7 +29,7 @@ public class SonarBeacon : MonoBehaviour, SonarSource {
         while (true)
         {
             yield return new WaitForSeconds(1/rate);
-            Debug.Log("SHOOT");
+            
             var bullet = (SonarBullet)Instantiate(sonarBulletPrefab, transform.position, Quaternion.identity);
 			bullet.source = this;
         }
