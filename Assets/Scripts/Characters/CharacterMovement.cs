@@ -9,6 +9,7 @@ public class CharacterMovement : MonoBehaviour
     [HideInInspector]
     public bool DisableMovement;
 
+    [Header("Movement")]
     public float MoveSpeed = 10;
     public float Acceleration = 0.5f;
     public float Deceleration = 0.5f;

@@ -7,22 +7,33 @@ using System.Collections.Generic;
 public class FollowPlayer : CharacterMovement
 {
 
-    public Transform target;
+    private Transform target;
     private PostProcessingAnimator postProcessingAnimator;
     private new SpriteRenderer renderer;
+    [Header("Visibility")]
     public bool visibleOverride = false;
+    public float visibleToPlayerRange = 5f;
 
     private bool withinPlayerVisibleRange = false;
     private bool lastFrameRendererEnabled = false;
-    public float visibleToPlayerRange = 5f;
 
-    public LayerMask detectionBlockMask;
 
+    [Header("Wandering")]
     public bool allowedToWander = true;
-    public float raycastStartRadius = 1f;
+    public bool randomWanderAfterPlayerSight = false;
+    private bool hasSeenPlayer = false;
+
+    public bool useGlobalPositionForWanderArea = false;
+    public Vector2 wanderingAreaGlobalPosition = Vector2.zero;
+    private Vector2 wanderingAreaStartPosition;
+    public Vector2 wanderingAreaOffset = Vector2.zero;
+    public Vector2 wanderingAreaSize = new Vector2(5,5);
+    private float allowedDistanceToWanderPosition = 0.5f;
+    [Header("Random Wandering")]
     public float minWanderDistance = 2f;
     public float maxWanderDistance = 5f;
     
+    [Header("Attack properties")]
     public float attackDistance = 2f;
     public float attackCooldown = 2;
     public float attackChargeTime = 0.2f;
@@ -32,27 +43,38 @@ public class FollowPlayer : CharacterMovement
     private bool charging;
     private bool isPlayingEnmMov = false;
 
+    [Header("Detection")]
+    public LayerMask detectionBlockMask;
     public float immidiateDetectionDistance = 6;
     public float detectionTime = 1;
     private float? targetSeenTime = 0;
 
     private bool isMovingTowardsWanderPosition = false;
     private bool isMovingTowardsKnownPlayerPosition = false;
-    private Vector2 knownPlayerPosition;
+    private bool isMovingTowardsEnemyWithKnownPlayerPosition = false;
+    [HideInInspector] public Vector2 knownPlayerPosition;
+    private Vector2 knownEnemyPosition;
     private Vector2 nextWanderPosition;
     private bool playedSound = false;
+    public float broadcastToOthersDelay = 0.25f;
+
+    [HideInInspector] public bool canSeePlayer = false;
+    [HideInInspector] public float broadcastTime = -1f;
     
     public override void Start()
     {
         renderer = GetComponent<SpriteRenderer>();
+
+        target = GameObject.FindWithTag("Player").GetComponent<Transform>();
         if (target == null)
-        {
-            Debug.LogWarning("Enemy has no target, gonna try to find an object tagged 'Player'");
-            target = GameObject.FindWithTag("Player").GetComponent<Transform>();
-            if (target == null)
-                Debug.LogError("No object tagged 'Player'");
-        }
+            Debug.LogError("No object tagged 'Player'");
+
         postProcessingAnimator = Camera.main.GetComponent<PostProcessingAnimator>();
+
+        if(useGlobalPositionForWanderArea)
+            wanderingAreaStartPosition = wanderingAreaGlobalPosition;
+        else
+            wanderingAreaStartPosition = wanderingAreaOffset + (Vector2)transform.position;
         base.Start();
     }
 
@@ -112,6 +134,7 @@ public class FollowPlayer : CharacterMovement
             Debug.DrawLine(transform.position, target.position, Color.red, 1f);
             knownPlayerPosition = target.position;
             isMovingTowardsKnownPlayerPosition = true;
+            isMovingTowardsEnemyWithKnownPlayerPosition = false;
             isMovingTowardsWanderPosition = false;
 
 
@@ -120,6 +143,7 @@ public class FollowPlayer : CharacterMovement
         }
         else
         {
+            broadcastTime = -1f;
             withinPlayerVisibleRange = false;
             playedSound = false;
         }
@@ -135,8 +159,16 @@ public class FollowPlayer : CharacterMovement
             }
             moveDirection = knownPlayerPosition - (Vector2)transform.position;
 
+        }else if(isMovingTowardsEnemyWithKnownPlayerPosition){
+            if (IsAtPosition(knownEnemyPosition))
+            {
+                isMovingTowardsEnemyWithKnownPlayerPosition = false;
+                isMovingTowardsWanderPosition = false;
+            }
+            moveDirection = knownEnemyPosition - (Vector2)transform.position;
         }
-        if (allowedToWander && !isMovingTowardsKnownPlayerPosition)
+
+        if (allowedToWander && !isMovingTowardsKnownPlayerPosition && !isMovingTowardsEnemyWithKnownPlayerPosition)
         {
             if (!isMovingTowardsWanderPosition || IsAtPosition(nextWanderPosition))
             {
@@ -165,38 +197,68 @@ public class FollowPlayer : CharacterMovement
         if (result && targetSeenTime == null) targetSeenTime = Time.fixedTime;
         if (delta.magnitude > immidiateDetectionDistance && Time.fixedTime - targetSeenTime < detectionTime) result = false;
 
+        if(!canSeePlayer)
+            broadcastTime = Time.time + broadcastToOthersDelay;
+
+        canSeePlayer = result;
         return result;
     }
 
-    Vector2 pickWanderPosition()
-    {
-        bool foundLocation = false;
-        int numTries = 0;
-        int maxTries = 16;
-        Vector2 location = Vector2.zero;
-        while (!foundLocation)
-        {
-            numTries++;
-            float angle = Random.Range(-180f, 180f);
-            float dist = Random.Range(minWanderDistance, maxWanderDistance);
-            location = (Vector2)transform.position + new Vector2(Mathf.Cos(angle) * dist, Mathf.Sin(angle) * dist);
-            Vector2 delta = location - (Vector2)transform.position;
+    public void GoToLocation(Vector2 position){
+            Debug.DrawLine(transform.position, position, Color.red, 1f);
 
-            if(!Physics2D.Linecast((Vector2)transform.position + delta.normalized * raycastStartRadius, location, detectionBlockMask)){
-                //found a location
-                foundLocation = true;
-                Debug.DrawLine(transform.position, location, Color.green, 1f);
-            }
-
-            if (numTries >= maxTries) break;
-        }
-        return location;
+            knownEnemyPosition = position;
+            isMovingTowardsEnemyWithKnownPlayerPosition = true;
+            isMovingTowardsWanderPosition = false;
 
     }
 
+    Vector2 pickWanderPosition(){
+        bool foundLocation = false;
+        int numTries = 0;
+        const int maxTries = 16;
+        Vector2 location = Vector2.zero;
 
-    bool IsAtPosition(Vector2 pos)
-    {
+        while(!foundLocation){
+            numTries++;
+
+            if(randomWanderAfterPlayerSight && hasSeenPlayer)
+                location = getRandomWanderPosition();
+            else
+                location = getWanderPositionWithinArea();
+
+            
+            if(checkIfWanderPositionIsPossible(location)){
+                Debug.DrawLine(transform.position,location, Color.green, 1f);
+                foundLocation = true;
+                break;
+            }
+
+            Debug.DrawLine(transform.position,location, Color.red, 1f);
+
+            if (numTries >= maxTries) break;
+        }
+        if(!foundLocation)
+            return Vector2.zero;
+
+        return location;
+    }
+
+    Vector2 getWanderPositionWithinArea(){
+        return new Vector2(Random.Range(0,wanderingAreaSize.x)-wanderingAreaSize.x/2,Random.Range(0,wanderingAreaSize.y)-wanderingAreaSize.y/2) + wanderingAreaStartPosition;
+    }
+
+    Vector2 getRandomWanderPosition(){
+        float angle = Random.Range(-180f, 180f);
+        float dist = Random.Range(minWanderDistance, maxWanderDistance);
+        return (Vector2)transform.position + new Vector2(Mathf.Cos(angle) * dist, Mathf.Sin(angle) * dist);
+    }
+
+    bool checkIfWanderPositionIsPossible(Vector2 position){
+        return !Physics2D.Linecast((Vector2)transform.position, position, detectionBlockMask);
+    }
+
+    bool IsAtPosition(Vector2 pos){
         return (pos - (Vector2)transform.position).magnitude < 0.5f;
     }
 
@@ -219,5 +281,17 @@ public class FollowPlayer : CharacterMovement
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, immidiateDetectionDistance);
+
+        if(!allowedToWander)return;
+        if(Application.isPlaying){
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireCube(wanderingAreaStartPosition, wanderingAreaSize);
+        }else{
+            Vector2 center = (useGlobalPositionForWanderArea ? wanderingAreaGlobalPosition :  (Vector2)transform.position + wanderingAreaOffset);
+
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireCube(center, wanderingAreaSize);
+
+        }
     }
 }
