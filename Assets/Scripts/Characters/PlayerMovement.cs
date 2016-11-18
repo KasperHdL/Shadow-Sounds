@@ -28,14 +28,20 @@ public class PlayerMovement : CharacterMovement
     private Controller controller;
     public PostProcessingAnimator ppAnimator;
 
+    private SonarTool sonar;
+
     public override void Start()
     {
         base.Start();
+        sonar = GetComponent<SonarTool>();
         controller = GetComponent<ControllerContainer>().controller;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+
+        Debug.Log("player hit a " + collision.gameObject.tag + ", named " + collision.gameObject.name);
+
         switch (collision.gameObject.tag)
         {
             case "Wall":
@@ -43,6 +49,12 @@ public class PlayerMovement : CharacterMovement
                     SoundSystem.Play("wall collision",1, defColVol);
 
                 //Debug.Log("WallCollision");
+                break;
+            case "PickUp":
+                if (collision.gameObject.name == "SonarChargePU")
+                    sonar.sonarChargeLeft += 200f;
+                Destroy(collision.gameObject);
+                
                 break;
             default:
                 if (fallOnWalls)
@@ -134,4 +146,5 @@ public class PlayerMovement : CharacterMovement
 
         base.Update();
     }
+    
 }

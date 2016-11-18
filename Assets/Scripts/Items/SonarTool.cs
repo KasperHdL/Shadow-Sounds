@@ -21,28 +21,42 @@ public class SonarTool : MonoBehaviour, SonarSource {
     public float Speed { get { return sonarSpeed; } }
     
     public int Rays { get { return (int)(coneAngle * 2 / coneIncrement); } }
+    public float SonarPct { get { return sonarChargeLeft / initialSonarCharge; } }
     public RaycastHit2D[] soundHits;
     public RaycastHit2D[] blockHits;
 
     private float lastShotTime = 0f;
     public float shotCooldown = 1f;
 
-    private Controller controller;
+    public float sonarChargeLeft = 6000f;
+    private float initialSonarCharge;
+    private float lastUpdateTime;
 
-	// Use this for initialization
+    private Controller controller;
+    
+
+    // Use this for initialization
 	void Start () {
         player = GetComponent<PlayerMovement>();
         controller = GetComponent<ControllerContainer>().controller;
-	}
+        lastUpdateTime = Time.time;
+        initialSonarCharge = sonarChargeLeft;
+    }
 
 
     void FixedUpdate(){
-        if(lastShotTime + shotCooldown < Time.time){
+
+
+        sonarChargeLeft -= (Time.time - lastUpdateTime);
+        lastUpdateTime = Time.time;
+
+        if (lastShotTime + shotCooldown < Time.time){
             if(Input.GetButtonDown("Fire1") || controller.GetAxis(Axis.TriggerRight) > 0.75f){
                 Shoot();
                 lastShotTime = Time.time;
             }
         }
+
     }
 	
 	void Shoot()
