@@ -40,6 +40,7 @@ GameObject:
   - 114: {fileID: 114000012183586300}
   - 114: {fileID: 114000010623601598}
   - 114: {fileID: 114000012164523692}
+  - 114: {fileID: 114000011003520742}
   m_Layer: 12
   m_Name: Player
   m_TagString: Player
@@ -103,7 +104,7 @@ Transform:
   m_GameObject: {fileID: 1000011376699998}
   m_LocalRotation: {x: -0, y: -0, z: -0.7067604, w: 0.707453}
   m_LocalPosition: {x: 23.66, y: -12.32, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -89.94601}
   m_Children:
   - {fileID: 4000012146727422}
@@ -120,7 +121,7 @@ Transform:
   m_GameObject: {fileID: 1000010248529958}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_Children: []
   m_Father: {fileID: 4000010077891988}
@@ -205,7 +206,7 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.28
+  m_Intensity: 0.6
   m_Range: 3
   m_SpotAngle: 24.7
   m_CookieSize: 10
@@ -269,7 +270,7 @@ Light:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012150167450}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 7
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -315,6 +316,18 @@ MonoBehaviour:
   distance: 20
   sonarSpeed: 10
   shotCooldown: 1
+  sonarChargeLeft: 6000
+--- !u!114 &114000011003520742
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011376699998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000012164523692
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -377,7 +390,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   health: 3
-  stepVolume: 1.2
+  stepVolume: 1
   fallOnWalls: 0
   enemyColVol: 0.5
   defColVol: 0.5
