@@ -232,8 +232,7 @@ public class BoardCreator : MonoBehaviour
         {
             for (int j = 0; j < tiles[i].Length; j++)
             {
-                // ... and instantiate a floor tile for it.
-                InstantiateFromArray(floorTiles, i, j);
+                
 
                 // If the tile type is Wall...
                 if (tiles[i][j] == TileType.Wall)
@@ -241,6 +240,8 @@ public class BoardCreator : MonoBehaviour
                     // ... instantiate a wall over the top.
                     InstantiateFromArray(wallTiles, i, j);
                 }
+                //else// ... and instantiate a floor tile for it.
+                    //InstantiateFromArray(floorTiles, i, j);
             }
         }
     }
