@@ -17,7 +17,7 @@ public class SwarmingHandler : MonoBehaviour {
         if(enemies.Length < 2) return;
 
         for(int i = 0; i < enemies.Length; i++){
-            if(enemies[i].canSeePlayer){
+            if(enemies[i].canSeePlayer && enemies[i].broadcastTime < Time.time){
 
                 for(int j = 0; j < enemies.Length; j++){
                     if(enemies[j].canSeePlayer) continue;

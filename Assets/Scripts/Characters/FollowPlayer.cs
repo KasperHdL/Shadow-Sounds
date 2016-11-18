@@ -56,8 +56,10 @@ public class FollowPlayer : CharacterMovement
     private Vector2 knownEnemyPosition;
     private Vector2 nextWanderPosition;
     private bool playedSound = false;
+    public float broadcastToOthersDelay = 0.25f;
 
     [HideInInspector] public bool canSeePlayer = false;
+    [HideInInspector] public float broadcastTime = -1f;
     
     public override void Start()
     {
@@ -141,6 +143,7 @@ public class FollowPlayer : CharacterMovement
         }
         else
         {
+            broadcastTime = -1f;
             withinPlayerVisibleRange = false;
             playedSound = false;
         }
@@ -193,6 +196,9 @@ public class FollowPlayer : CharacterMovement
         if (!result) targetSeenTime = null;
         if (result && targetSeenTime == null) targetSeenTime = Time.fixedTime;
         if (delta.magnitude > immidiateDetectionDistance && Time.fixedTime - targetSeenTime < detectionTime) result = false;
+
+        if(!canSeePlayer)
+            broadcastTime = Time.time + broadcastToOthersDelay;
 
         canSeePlayer = result;
         return result;
