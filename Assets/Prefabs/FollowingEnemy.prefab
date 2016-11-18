@@ -87,7 +87,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Move: {x: 0, y: 0}
   DisableMovement: 0
-  MoveSpeed: 3
+  MoveSpeed: 4
   Acceleration: 0.1
   Deceleration: 0.1
   StartCurve:
@@ -122,14 +122,14 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  target: {fileID: 0}
   visibleOverride: 0
   visibleToPlayerRange: 5
-  detectionBlockMask:
-    serializedVersion: 2
-    m_Bits: 4609
   allowedToWander: 1
-  raycastStartRadius: 0
+  randomWanderAfterPlayerSight: 1
+  useGlobalPositionForWanderArea: 0
+  wanderingAreaGlobalPosition: {x: 0, y: 0}
+  wanderingAreaOffset: {x: -2.5, y: -2.07}
+  wanderingAreaSize: {x: 18.63, y: 7.4}
   minWanderDistance: 1
   maxWanderDistance: 3
   attackDistance: 2
@@ -137,8 +137,15 @@ MonoBehaviour:
   attackChargeTime: 0.6
   attackForce: 1200
   hitForce: 50
+  detectionBlockMask:
+    serializedVersion: 2
+    m_Bits: 4609
   immidiateDetectionDistance: 6
   detectionTime: 1
+  knownPlayerPosition: {x: 0, y: 0}
+  broadcastToOthersDelay: 0.25
+  canSeePlayer: 0
+  broadcastTime: -1
 --- !u!212 &212000011481643816
 SpriteRenderer:
   m_ObjectHideFlags: 1

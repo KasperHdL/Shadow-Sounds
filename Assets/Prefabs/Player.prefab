@@ -341,7 +341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Move: {x: 0, y: 0}
   DisableMovement: 0
-  MoveSpeed: 4
+  MoveSpeed: 5
   Acceleration: 0.2
   Deceleration: 0.2
   StartCurve:
