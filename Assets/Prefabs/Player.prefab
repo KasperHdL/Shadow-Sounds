@@ -79,22 +79,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1000012150167450
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 4000012146727422}
-  - 108: {fileID: 108000013550046754}
-  m_Layer: 12
-  m_Name: Spotlight
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1000012321759068
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,6 +89,23 @@ GameObject:
   - 4: {fileID: 4000012952219248}
   m_Layer: 12
   m_Name: Particle System
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1000013602750024
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000011963132300}
+  - 108: {fileID: 108000013966267088}
+  - 61: {fileID: 61000011827396060}
+  m_Layer: 12
+  m_Name: FlashLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -132,11 +133,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011376699998}
   m_LocalRotation: {x: -0, y: -0, z: 0.9999942, w: 0.0033983923}
-  m_LocalPosition: {x: 23.83, y: -22.12, z: 0}
+  m_LocalPosition: {x: 22.7, y: -13.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 179.62201}
   m_Children:
-  - {fileID: 4000012146727422}
+  - {fileID: 4000011963132300}
   - {fileID: 4000013754612274}
   - {fileID: 4000013648864890}
   - {fileID: 4000010245580144}
@@ -155,14 +156,14 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000010077891988}
   m_RootOrder: 3
---- !u!4 &4000012146727422
+--- !u!4 &4000011963132300
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012150167450}
+  m_GameObject: {fileID: 1000013602750024}
   m_LocalRotation: {x: 0, y: 0.5735764, z: 0, w: 0.8191521}
-  m_LocalPosition: {x: -0.429, y: -0, z: -0.4}
+  m_LocalPosition: {x: -0.429, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 70, z: 0}
   m_Children: []
@@ -251,6 +252,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!61 &61000011827396060
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013602750024}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
 --- !u!108 &108000010558356852
 Light:
   m_ObjectHideFlags: 1
@@ -319,12 +334,12 @@ Light:
   m_BounceIntensity: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!108 &108000013550046754
+--- !u!108 &108000013966267088
 Light:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012150167450}
+  m_GameObject: {fileID: 1000013602750024}
   m_Enabled: 1
   serializedVersion: 7
   m_Type: 0
@@ -443,8 +458,12 @@ MonoBehaviour:
   deadzone: 0.1
   ppAnimator: {fileID: 0}
   AmbientLight: {fileID: 108000010558356852}
-  ChaseLightIntMultiplier: 2
-  ChaseLightRanMultiplier: 10
+  ChaseLightIntMultiplier: 1.5
+  ChaseLightRanMultiplier: 6
+  flashlight_prefab: {fileID: 1000011478801694, guid: 75a03bfe56bc041f8b2cecf5086b3848,
+    type: 2}
+  flashlight: {fileID: 1000013602750024}
+  isDead: 0
 --- !u!212 &212000010111020912
 SpriteRenderer:
   m_ObjectHideFlags: 1

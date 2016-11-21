@@ -92,6 +92,11 @@ public class PostProcessingAnimator : MonoBehaviour {
         StartCoroutine(fadeBgRedInOut(1,0f, .03f, .2f));
     }
 
+    public void FadeToBlack(float length){
+        StartCoroutine(fadeOut(length));
+
+    }
+
     public void FlickerInWorld(){
         if(!flickeredIn){
             if(flickering && flickeringIn)
@@ -133,7 +138,20 @@ public class PostProcessingAnimator : MonoBehaviour {
         }
         exposure = 0f;
         
+    }
 
+    IEnumerator fadeOut(float length){
+        float startTime = Time.time;
+        float endTime = Time.time + length;
+        
+        float t = 0;
+
+        while(Time.time < endTime){
+            t = (Time.time - startTime) / length;
+            exposure = Mathf.Lerp(0f, -10f, t);
+            yield return null;
+        }
+        exposure = -10f;
     }
 
     IEnumerator fadeBgRedInOut(float to, float end, float lengthIn, float lengthOut){

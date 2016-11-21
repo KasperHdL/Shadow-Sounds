@@ -60,10 +60,13 @@ public class FollowPlayer : CharacterMovement
 
     [HideInInspector] public bool canSeePlayer = false;
     [HideInInspector] public float broadcastTime = -1f;
+
+    private Collider2D coll;
     
     public override void Start()
     {
         renderer = GetComponent<SpriteRenderer>();
+        coll = GetComponent<Collider2D>();
 
         target = GameObject.FindWithTag("Player").GetComponent<Transform>();
         if (target == null)
@@ -260,7 +263,7 @@ public class FollowPlayer : CharacterMovement
     }
 
     bool IsAtPosition(Vector2 pos){
-        return (pos - (Vector2)transform.position).magnitude < 0.5f;
+        return (pos - (Vector2)transform.position).magnitude <= coll.bounds.size.x;
     }
 
 

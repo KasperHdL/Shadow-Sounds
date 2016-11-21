@@ -45,13 +45,14 @@ public class SonarTool : MonoBehaviour, SonarSource {
 
 
     void FixedUpdate(){
+        if(player.isDead) return;
 
 
         sonarChargeLeft -= (Time.time - lastUpdateTime);
         lastUpdateTime = Time.time;
 
         if (lastShotTime + shotCooldown < Time.time){
-            if(Input.GetButtonDown("Fire1") || controller.GetAxis(Axis.TriggerRight) > 0.75f){
+            if(Input.GetButton("Fire1") || controller.GetAxis(Axis.TriggerRight) > 0.75f){
                 Shoot();
                 lastShotTime = Time.time;
             }
