@@ -9393,8 +9393,8 @@ MonoBehaviour:
   offsetZ: -10
   viewOffsetMultiplier: 2
   velocityFactor: 80
-  chaseSize: 5
-  size: 6
+  chaseSize: 7
+  size: 8
   sizeLerp: 0.2
   normalVignette: 0.2
   normalChomatic: 0.5
