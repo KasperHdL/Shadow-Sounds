@@ -30,6 +30,11 @@ public class PlayerMovement : CharacterMovement
 
     private SonarTool sonar;
 
+    public GameObject flashlight_prefab;
+    public GameObject flashlight;
+
+    [HideInInspector] public bool isDead = false;
+
     public override void Start()
     {
         base.Start();
@@ -67,6 +72,7 @@ public class PlayerMovement : CharacterMovement
 
     public void Hit(int damage)
     {
+        if(isDead) return;
         DisableMovement = true;
         StartCoroutine(Reactivate());
         ppAnimator.PlayerAttacked();
@@ -84,13 +90,31 @@ public class PlayerMovement : CharacterMovement
 
     private void Die()
     {
-        Destroy(gameObject);
+        if(isDead) return;
+
+//        GameObject fl = Instantiate(flashlight_prefab, flashlight.transform.position, flashlight.transform.rotation) as GameObject;
+
+ //       flashlight.GetComponent<Light>().enabled = false;
+
+        body.drag = 5;
+        body.angularDrag = 0.5f;
+
+        isDead = true;
+
+        ppAnimator.FadeToBlack(2f);
+        StartCoroutine(ReloadLevel(2f));
+    }
+
+    private IEnumerator ReloadLevel(float delay){
+        yield return new WaitForSeconds(delay);
 
         Scene scene = SceneManager.GetActiveScene(); 
         SceneManager.LoadScene(scene.name);
     }
 
     public override void Update() {
+
+        if(isDead)return;
 
         Vector3 v = Vector3.zero;
         if (useController)

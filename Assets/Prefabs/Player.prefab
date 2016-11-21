@@ -40,7 +40,6 @@ GameObject:
   - 114: {fileID: 114000012183586300}
   - 114: {fileID: 114000010623601598}
   - 114: {fileID: 114000012164523692}
-  - 114: {fileID: 114000011003520742}
   m_Layer: 12
   m_Name: Player
   m_TagString: Player
@@ -80,17 +79,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1000012150167450
+--- !u!1 &1000013602750024
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 4000012146727422}
-  - 108: {fileID: 108000013550046754}
+  - 4: {fileID: 4000011963132300}
+  - 108: {fileID: 108000013966267088}
+  - 61: {fileID: 61000011827396060}
   m_Layer: 12
-  m_Name: Spotlight
+  m_Name: FlashLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,7 +107,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -89.94601}
   m_Children:
-  - {fileID: 4000012146727422}
+  - {fileID: 4000011963132300}
   - {fileID: 4000013754612274}
   - {fileID: 4000013648864890}
   - {fileID: 4000010245580144}
@@ -126,12 +126,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000010077891988}
   m_RootOrder: 3
---- !u!4 &4000012146727422
+--- !u!4 &4000011963132300
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012150167450}
+  m_GameObject: {fileID: 1000013602750024}
   m_LocalRotation: {x: 0, y: 0.5735764, z: 0, w: 0.8191521}
   m_LocalPosition: {x: -0.429, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -196,6 +196,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!61 &61000011827396060
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013602750024}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
 --- !u!108 &108000010558356852
 Light:
   m_ObjectHideFlags: 1
@@ -264,12 +278,12 @@ Light:
   m_BounceIntensity: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!108 &108000013550046754
+--- !u!108 &108000013966267088
 Light:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012150167450}
+  m_GameObject: {fileID: 1000013602750024}
   m_Enabled: 1
   serializedVersion: 7
   m_Type: 0
@@ -317,17 +331,6 @@ MonoBehaviour:
   sonarSpeed: 10
   shotCooldown: 1
   sonarChargeLeft: 6000
---- !u!114 &114000011003520742
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011376699998}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114000012164523692
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -395,9 +398,12 @@ MonoBehaviour:
   enemyColVol: 0.5
   defColVol: 0.5
   viewDirection: {x: 0.97215915, y: 0.23432153}
-  useController: 1
+  useController: 0
   deadzone: 0.1
   ppAnimator: {fileID: 0}
+  flashlight_prefab: {fileID: 1000011478801694, guid: 75a03bfe56bc041f8b2cecf5086b3848,
+    type: 2}
+  flashlight: {fileID: 1000013602750024}
 --- !u!212 &212000010111020912
 SpriteRenderer:
   m_ObjectHideFlags: 1
