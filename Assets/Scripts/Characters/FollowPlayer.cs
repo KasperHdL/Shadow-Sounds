@@ -263,7 +263,7 @@ public class FollowPlayer : CharacterMovement
     }
 
     bool IsAtPosition(Vector2 pos){
-        return (pos - (Vector2)transform.position).magnitude <= coll.bounds.size.x;
+        return (pos - (Vector2)transform.position).magnitude < coll.bounds.size.x / 2;
     }
 
 
