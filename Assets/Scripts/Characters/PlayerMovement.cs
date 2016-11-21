@@ -110,7 +110,7 @@ public class PlayerMovement : CharacterMovement
  //       flashlight.GetComponent<Light>().enabled = false;
 
         body.drag = 5;
-        body.angularDrag = 0.5f;
+        body.angularDrag = 1f;
 
         isDead = true;
 
