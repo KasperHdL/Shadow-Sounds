@@ -251,10 +251,14 @@ public class FollowPlayer : CharacterMovement
 
             Debug.DrawLine(transform.position,location, Color.red, 1f);
 
-            if (numTries >= maxTries) break;
+            if (numTries >= maxTries)
+            {
+                Debug.Log("tried too much");
+                break;
+            }
         }
         if(!foundLocation )
-            return Vector2.zero;
+            return transform.position;
 
         return location;
     }
