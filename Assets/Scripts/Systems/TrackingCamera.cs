@@ -44,7 +44,6 @@ public class TrackingCamera : MonoBehaviour {
                 Debug.LogError("No object tagged 'Player'");
         }
         SoundSystem.Play("background",1,0.1f,0,null,true);
-
     }
 	
 	void FixedUpdate ()
@@ -53,13 +52,17 @@ public class TrackingCamera : MonoBehaviour {
 
         Vector3 delta = target.transform.position - transform.position;
         delta.z = 0;
-        Vector3 desiredPosition = (Vector2)transform.position + (Vector2)delta.normalized * delta.sqrMagnitude + target.viewDirection * viewOffsetMultiplier;
+        Vector3 desiredPosition = 
+              (Vector2)transform.position 
+            + (Vector2)delta.normalized * delta.sqrMagnitude 
+            + target.viewDirection * viewOffsetMultiplier
+            + target.GetComponent<Rigidbody2D>().velocity * Time.fixedDeltaTime * velocityFactor;
 
         desiredPosition.z = offsetZ;
 
         delta = desiredPosition - transform.position;
         
-        transform.position += (Vector3)delta * smoothFactor * Time.deltaTime;
+        transform.position += (Vector3)delta * smoothFactor * Time.fixedDeltaTime;
 
 
 	}
