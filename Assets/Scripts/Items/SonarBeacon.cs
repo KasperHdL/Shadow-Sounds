@@ -12,12 +12,14 @@ public class SonarBeacon : MonoBehaviour, SonarSource {
     public Vector2 direction;
     public float angle;
     public int rays;
+    public float sonarPct = 1.0f;
 
     public float Distance { get { return distance; } }
     public float Speed { get { return speed; } }
     public Vector2 Direction { get { return direction; } }
     public float Angle { get { return angle; } }
     public int Rays { get { return rays; } }
+    public float SonarPct { get { return sonarPct; } }
 
 
     void Start()
