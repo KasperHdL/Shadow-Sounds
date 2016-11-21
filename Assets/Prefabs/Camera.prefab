@@ -9330,7 +9330,7 @@ MonoBehaviour:
     m_ZeroValue: 0
     m_Range: 0
   fadeInTime: 2
-  temperature: -7
+  temperature: 0
   fadeRedTime: 1
   channelRed: {x: 1, y: 0, z: 0}
   channelGreen: {x: 0, y: 1, z: 0}
@@ -9338,6 +9338,7 @@ MonoBehaviour:
   flickering: 0
   flickeringIn: 0
   flickeredIn: 0
+  enemies: []
   flickerIn: 0
   flickerOut: 0
 --- !u!114 &114000013243246060
@@ -9367,6 +9368,10 @@ MonoBehaviour:
   smoothFactor: 0.8
   offsetZ: -10
   viewOffsetMultiplier: 2
+  velocityFactor: 65
+  chaseSize: 5
+  size: 6
+  sizeLerp: 0.2
 --- !u!124 &124000012198625174
 Behaviour:
   m_ObjectHideFlags: 1
@@ -11573,7 +11578,7 @@ ParticleSystem:
     serializedVersion: 2
     m_Type: 0
     rate:
-      scalar: 100
+      scalar: 200
       maxCurve:
         serializedVersion: 2
         m_Curve:

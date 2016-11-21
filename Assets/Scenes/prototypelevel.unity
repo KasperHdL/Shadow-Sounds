@@ -4006,15 +4006,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 198000011258797966, guid: 9d88353ac1e014195bc097c501fab2dd,
+    - target: {fileID: 114000013913754286, guid: 9d88353ac1e014195bc097c501fab2dd,
         type: 2}
-      propertyPath: EmissionModule.rate.scalar
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 198000011258797966, guid: 9d88353ac1e014195bc097c501fab2dd,
-        type: 2}
-      propertyPath: randomSeed
-      value: 108292209
+      propertyPath: velocityFactor
+      value: 80
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9d88353ac1e014195bc097c501fab2dd, type: 2}
