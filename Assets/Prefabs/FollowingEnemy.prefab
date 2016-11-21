@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013906157328}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.43, y: -11.48, z: 0.29}
+  m_LocalPosition: {x: -26.9, y: -11.48, z: 0.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -87,7 +87,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Move: {x: 0, y: 0}
   DisableMovement: 0
-  MoveSpeed: 3
+  MoveSpeed: 4
   Acceleration: 0.1
   Deceleration: 0.1
   StartCurve:
@@ -122,23 +122,30 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  target: {fileID: 0}
   visibleOverride: 0
-  visibleToPlayerRange: 5
-  detectionBlockMask:
-    serializedVersion: 2
-    m_Bits: 4609
+  visibleToPlayerRange: 4
   allowedToWander: 1
-  raycastStartRadius: 0
+  randomWanderAfterPlayerSight: 1
+  useGlobalPositionForWanderArea: 0
+  wanderingAreaGlobalPosition: {x: 0, y: 0}
+  wanderingAreaOffset: {x: 4.8, y: -2.07}
+  wanderingAreaSize: {x: 18.63, y: 7.4}
   minWanderDistance: 1
   maxWanderDistance: 3
   attackDistance: 2
   attackCooldown: 1.1
-  attackChargeTime: 0.6
+  attackChargeTime: 0.3
   attackForce: 1200
   hitForce: 50
-  immidiateDetectionDistance: 6
+  detectionBlockMask:
+    serializedVersion: 2
+    m_Bits: 4609
+  immidiateDetectionDistance: 4
   detectionTime: 1
+  knownPlayerPosition: {x: 0, y: 0}
+  broadcastToOthersDelay: 0.25
+  canSeePlayer: 0
+  broadcastTime: -1
 --- !u!212 &212000011481643816
 SpriteRenderer:
   m_ObjectHideFlags: 1

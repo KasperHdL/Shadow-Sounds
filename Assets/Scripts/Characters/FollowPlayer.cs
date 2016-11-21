@@ -91,11 +91,12 @@ public class FollowPlayer : CharacterMovement
 
 
         renderer.enabled = charging || visibleOverride || withinPlayerVisibleRange;
-        if(renderer.enabled && !lastFrameRendererEnabled)
-            postProcessingAnimator.FlickerInWorld();
-        else if(!renderer.enabled && lastFrameRendererEnabled)
-            postProcessingAnimator.FlickerOutWorld();
-        lastFrameRendererEnabled = renderer.enabled;
+
+        if(renderer.enabled)
+            postProcessingAnimator.RegisterEnemyWithinPlayer(this);
+        else if(!renderer.enabled)
+            postProcessingAnimator.RegitsterEnemyOutsidePlayer(this);
+
         
         
         DisableMovement = charging;

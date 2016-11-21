@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.PostProcessing;
 
 public class PostProcessingAnimator : MonoBehaviour {
@@ -25,6 +26,7 @@ public class PostProcessingAnimator : MonoBehaviour {
     public bool flickeredIn = false;
 
 
+    public List<FollowPlayer> enemies;
     private IEnumerator flickerEnumerator;
 
     [Header("Debug")]
@@ -33,7 +35,8 @@ public class PostProcessingAnimator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        //StartCoroutine(fadeIn());
+        enemies = new List<FollowPlayer>();
+        StartCoroutine(fadeIn());
         //PlayerAttacked();
 	
 	}
@@ -68,6 +71,20 @@ public class PostProcessingAnimator : MonoBehaviour {
         colorGrading.enabled = true;
         
 	}
+
+    public void RegisterEnemyWithinPlayer(FollowPlayer enemy){
+        if(enemies.IndexOf(enemy) == -1){
+            enemies.Add(enemy);
+            FlickerInWorld();
+        }
+    }
+    public void RegitsterEnemyOutsidePlayer(FollowPlayer enemy){
+        enemies.Remove(enemy);
+
+        if(enemies.Count == 0)
+            FlickerOutWorld();
+
+    }
 
 
     public void PlayerAttacked(){
