@@ -946,6 +946,9 @@ MonoBehaviour:
   useController: 0
   deadzone: 0.1
   ppAnimator: {fileID: 196772234}
+  flashlight_prefab: {fileID: 0}
+  flashlight: {fileID: 0}
+  isDead: 0
 --- !u!50 &1008646649
 Rigidbody2D:
   serializedVersion: 2
@@ -1540,6 +1543,16 @@ Prefab:
       propertyPath: wanderingAreaOffset.x
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010118106110, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04,
+        type: 2}
+      propertyPath: maxWanderDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010118106110, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04,
+        type: 2}
+      propertyPath: MoveSpeed
+      value: 2.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04, type: 2}
   m_IsPrefabParent: 0
@@ -2001,6 +2014,11 @@ Prefab:
       propertyPath: wanderingAreaOffset.y
       value: -7.07
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010118106110, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04,
+        type: 2}
+      propertyPath: maxWanderDistance
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04, type: 2}
   m_IsPrefabParent: 0
@@ -2129,6 +2147,16 @@ Prefab:
         type: 2}
       propertyPath: wanderingAreaOffset.x
       value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010118106110, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04,
+        type: 2}
+      propertyPath: maxWanderDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010118106110, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04,
+        type: 2}
+      propertyPath: MoveSpeed
+      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04, type: 2}
