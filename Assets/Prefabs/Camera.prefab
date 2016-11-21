@@ -11201,12 +11201,12 @@ ParticleSystem:
   moveWithTransform: 0
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 108292209
+  randomSeed: 644764586
   InitialModule:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 20
+      scalar: 40
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -11606,7 +11606,7 @@ ParticleSystem:
     serializedVersion: 2
     m_Type: 0
     rate:
-      scalar: 200
+      scalar: 80
       maxCurve:
         serializedVersion: 2
         m_Curve:
