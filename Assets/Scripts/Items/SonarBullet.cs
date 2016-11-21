@@ -14,6 +14,7 @@ public class SonarBullet : MonoBehaviour {
     public Color colorStart = new Color(1, 1, 1, 1);
     public Color colorEnd = new Color(1, 1, 1, 0);
     public Color colorHighlight = new Color(1, 1, 1, 1);
+    public AnimationCurve colorCurve;
     public float width = 0.1f;
     public float highlightWidth = 0.2f;
 
@@ -66,6 +67,7 @@ public class SonarBullet : MonoBehaviour {
 
         while(t > 0) {
             var l = ((tt - t) / tt);
+            var cl = colorCurve.Evaluate(1-t);
             var d = source.Distance * l;
             var dd = source.Speed * Time.fixedDeltaTime;
             var h = 0;
@@ -136,7 +138,7 @@ public class SonarBullet : MonoBehaviour {
                 }
             }
 
-            var color = Color.Lerp(colorStart, colorEnd, l);
+            var color = Color.LerpUnclamped(colorStart, colorEnd, cl);
             line.SetColors(color, color);
 
             if(h == 0 && !finished) {

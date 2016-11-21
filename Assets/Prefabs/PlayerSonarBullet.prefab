@@ -64,6 +64,27 @@ MonoBehaviour:
   colorStart: {r: 0.528, g: 0.528, b: 0.528, a: 1}
   colorEnd: {r: 0.5294118, g: 0.5294118, b: 0.5294118, a: 0}
   colorHighlight: {r: 0.15862083, g: 1, b: 0, a: 1}
+  colorCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 0.623216
+      value: 0.50061345
+      inSlope: 3.1720867
+      outSlope: 3.1720867
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
   width: 0.1
   highlightWidth: 0.4
   noise: 50
