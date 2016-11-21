@@ -442,6 +442,9 @@ MonoBehaviour:
   useController: 0
   deadzone: 0.1
   ppAnimator: {fileID: 0}
+  AmbientLight: {fileID: 108000010558356852}
+  ChaseLightIntMultiplier: 2
+  ChaseLightRanMultiplier: 10
 --- !u!212 &212000010111020912
 SpriteRenderer:
   m_ObjectHideFlags: 1

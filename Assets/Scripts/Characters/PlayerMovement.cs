@@ -28,6 +28,13 @@ public class PlayerMovement : CharacterMovement
     private Controller controller;
     public PostProcessingAnimator ppAnimator;
 
+    [Header("Ambient Light Chase Settings")]
+    public Light AmbientLight;
+    public float ChaseLightIntMultiplier = 5;
+    public float ChaseLightRanMultiplier = 5;
+    private float OriginalALightIntensity;
+    private float OriginalALightRange;
+
     private SonarTool sonar;
 
     public override void Start()
@@ -35,6 +42,12 @@ public class PlayerMovement : CharacterMovement
         base.Start();
         sonar = GetComponent<SonarTool>();
         controller = GetComponent<ControllerContainer>().controller;
+
+        if (AmbientLight)
+        {
+            OriginalALightIntensity = AmbientLight.intensity;
+            OriginalALightRange = AmbientLight.range;
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -143,6 +156,13 @@ public class PlayerMovement : CharacterMovement
         }
 
         transform.rotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * Mathf.Atan2(viewDirection.y, viewDirection.x));
+
+
+        if(AmbientLight != null) { 
+            var chase = GameObject.FindGameObjectsWithTag("Enemy").Any(e => e.GetComponent<SpriteRenderer>().enabled);
+            AmbientLight.intensity = OriginalALightIntensity * (chase ? ChaseLightIntMultiplier: 1.0f);
+            AmbientLight.range = OriginalALightRange * (chase ? ChaseLightRanMultiplier : 1.0f);
+        }
 
         base.Update();
     }

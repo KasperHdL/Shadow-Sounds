@@ -851,11 +851,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000010077891988, guid: c05b727539e0b415e927a48accd07b48, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 23.83
+      value: -15.2
       objectReference: {fileID: 0}
     - target: {fileID: 4000010077891988, guid: c05b727539e0b415e927a48accd07b48, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -22.12
+      value: -20.9
       objectReference: {fileID: 0}
     - target: {fileID: 4000010077891988, guid: c05b727539e0b415e927a48accd07b48, type: 2}
       propertyPath: m_LocalPosition.z
@@ -880,6 +880,16 @@ Prefab:
     - target: {fileID: 4000010077891988, guid: c05b727539e0b415e927a48accd07b48, type: 2}
       propertyPath: m_RootOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012183586300, guid: c05b727539e0b415e927a48accd07b48,
+        type: 2}
+      propertyPath: ChaseLightIntMultiplier
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012183586300, guid: c05b727539e0b415e927a48accd07b48,
+        type: 2}
+      propertyPath: ChaseLightRanMultiplier
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c05b727539e0b415e927a48accd07b48, type: 2}
