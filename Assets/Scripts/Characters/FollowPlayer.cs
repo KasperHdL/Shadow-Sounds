@@ -282,11 +282,17 @@ public class FollowPlayer : CharacterMovement
     }
 
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
+    void OnCollisionEnter2D(Collision2D collision) {
+        HandleCollision(collision);
+    }
+    void OnCollisionStay2D(Collision2D collision) {
+        HandleCollision(collision);
+    }
+
+    void HandleCollision(Collision2D collision) {
         var player = collision.gameObject.GetComponent<PlayerMovement>();
 
-        if (player != null && attacking) { 
+        if(player != null && attacking) {
             player.Hit(1);
             attacking = false;
 
