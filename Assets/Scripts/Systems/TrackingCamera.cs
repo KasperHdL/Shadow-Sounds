@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
+using UnityStandardAssets.ImageEffects;
 
+[RequireComponent(typeof(Camera))]
+[RequireComponent(typeof(VignetteAndChromaticAberration))]
 public class TrackingCamera : MonoBehaviour {
 
 	public PlayerMovement target;
@@ -10,7 +14,25 @@ public class TrackingCamera : MonoBehaviour {
 	public float offsetZ  = -10;
 	public float viewOffsetMultiplier = 2f;
 
-    void Start(){
+    public float velocityFactor = 1;
+
+    public float chaseSize = 5;
+    public float size = 6;
+    public float sizeLerp = 0.2f;
+
+    public float normalVignette = 0.2f;
+    public float normalChomatic = 0.5f;
+    public float chaseVignette = 0.5f;
+    public float chaseChomatic = 5;
+
+    private Camera cam;
+    private VignetteAndChromaticAberration effects;
+
+    void Start()
+    {
+        cam = GetComponent<Camera>();
+        effects = GetComponent<VignetteAndChromaticAberration>();
+
         if(target == null){
             Debug.LogWarning("Camera has no target, gonna try to find an object tagged 'Player'");
             
@@ -41,4 +63,13 @@ public class TrackingCamera : MonoBehaviour {
 
 
 	}
+
+    void Update()
+    {
+        var chase = GameObject.FindGameObjectsWithTag("Enemy").Any(e => e.GetComponent<SpriteRenderer>().enabled);
+
+        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, chase ? chaseSize : size, sizeLerp);
+        effects.chromaticAberration = chase ? chaseChomatic : normalChomatic;
+        effects.intensity = chase ? chaseVignette : normalVignette;
+    }
 }
