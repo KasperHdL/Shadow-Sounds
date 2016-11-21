@@ -9,4 +9,13 @@ public class ControllerContainer : MonoBehaviour{
     void Awake(){
         controller = new Xbox360(controllerIndex);
     }
+
+    /*
+    void Update(){
+        for(int i = 0; i < (int)Axis.Count; i++)
+            Debug.Log((Axis) i + " = " + controller.GetAxis((.Axis)i));
+
+    }
+    */
+
 }
