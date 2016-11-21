@@ -253,7 +253,7 @@ public class FollowPlayer : CharacterMovement
 
             if (numTries >= maxTries)
             {
-                Debug.Log("tried too much");
+                //Debug.Log("tried too much");
                 break;
             }
         }
