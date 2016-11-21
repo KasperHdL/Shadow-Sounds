@@ -40,7 +40,7 @@ public class PlayerMovement : CharacterMovement
     void OnCollisionEnter2D(Collision2D collision)
     {
 
-        Debug.Log("player hit a " + collision.gameObject.tag + ", named " + collision.gameObject.name);
+        //Debug.Log("player hit a " + collision.gameObject.tag + ", named " + collision.gameObject.name);
 
         switch (collision.gameObject.tag)
         {
