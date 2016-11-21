@@ -17,11 +17,16 @@ public class SonarBullet : MonoBehaviour {
     public float width = 0.1f;
     public float highlightWidth = 0.2f;
 
+    public float noise = 10;
+    public float noiseBlockMultiplier = 0.1f;
+    public float noiseHitMultiplier = 1.5f;
+    public float noiseHighlightMultiplier = 3.0f;
+
     public float hitPitch = 0.5f;
     public float hitVolume = 1.0f;
     public float noHitVolume = 1.0f;
-    
-    
+
+
     private LineRenderer line;
 
     public void Start() {
@@ -49,7 +54,7 @@ public class SonarBullet : MonoBehaviour {
         line = line == null ? gameObject.AddComponent<LineRenderer>() : GetComponent<LineRenderer>();
         line.useWorldSpace = true;
         line.SetColors(colorStart, colorStart);
-        line.SetWidth(width*sonarPct, width*sonarPct);
+        line.SetWidth(width * sonarPct, width * sonarPct);
         line.SetVertexCount(source.Rays);
         line.material = material;
 
@@ -77,20 +82,33 @@ public class SonarBullet : MonoBehaviour {
                 var blockhit = Physics2D.Raycast(origin + dir * d, dir, dd, BlockMask);
                 var highlighthit = Physics2D.Raycast(origin + dir * d, dir, dd, HighlightMask);
 
+                var nois = noise / 1000;
+
                 Vector2 hit = origin + dir * d;
-                if(soundhit.collider != null && !played.Contains(soundhit.collider)) {
-                    played.Add(soundhit.collider);
-                    SoundSystem.Play("sonar hit",
-                        hitPitch * t,
-                        (float)(sonarPct * hitVolume * (1 - System.Math.Log(d) / System.Math.Log(source.Distance))));
+                if(soundhit.collider != null) {
+                    nois *= noiseHitMultiplier;
+
+                    if(!played.Contains(soundhit.collider)) {
+                        played.Add(soundhit.collider);
+                        SoundSystem.Play("sonar hit",
+                            hitPitch * t,
+                            (float)(sonarPct * hitVolume * (1 - System.Math.Log(d) / System.Math.Log(source.Distance))));
+                    }
                 }
+
                 highlight[i] = highlighthit.collider != null ? (Vector2?)hit : null;
+                if(highlighthit.collider != null)
+                    nois *= noiseHighlightMultiplier;
+
                 if(blockhit.collider != null) {
                     hit = blockhit.point;
                     done[i] = true;
                     highlight[i] = null;
+
+                    nois *= noiseBlockMultiplier;
                 }
 
+                hit += Random.insideUnitCircle.normalized * nois;
                 line.SetPosition(i, hit);
             }
 
@@ -110,7 +128,7 @@ public class SonarBullet : MonoBehaviour {
                     }
                     n++;
                     cline.SetVertexCount(n);
-                    cline.SetPosition(n-1, (Vector3)highlight[i].Value + Vector3.back);
+                    cline.SetPosition(n - 1, (Vector3)highlight[i].Value + Vector3.back);
                 }
                 if(!highlight[i].HasValue && cline != null) {
                     cline = null;
@@ -121,7 +139,7 @@ public class SonarBullet : MonoBehaviour {
             var color = Color.Lerp(colorStart, colorEnd, l);
             line.SetColors(color, color);
 
-            if(h == 0 && !finished) { 
+            if(h == 0 && !finished) {
                 SoundSystem.Play("sonar no hit", 1, noHitVolume);
                 finished = true;
             }

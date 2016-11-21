@@ -40,7 +40,6 @@ GameObject:
   - 114: {fileID: 114000012183586300}
   - 114: {fileID: 114000010623601598}
   - 114: {fileID: 114000012164523692}
-  - 114: {fileID: 114000011003520742}
   m_Layer: 12
   m_Name: Player
   m_TagString: Player
@@ -103,9 +102,7 @@ GameObject:
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 4000013887622384}
-  - 198: {fileID: 198000010083805330}
-  - 199: {fileID: 199000012058210840}
+  - 4: {fileID: 4000012952219248}
   m_Layer: 12
   m_Name: Particle System
   m_TagString: Untagged
@@ -121,8 +118,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000012538017616}
-  - 198: {fileID: 198000012006095828}
-  - 199: {fileID: 199000011922554602}
   m_Layer: 12
   m_Name: Particle System
   m_TagString: Untagged
@@ -136,10 +131,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011376699998}
-  m_LocalRotation: {x: -0, y: -0, z: -0.7067604, w: 0.707453}
-  m_LocalPosition: {x: 23.66, y: -13.91, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.9999942, w: 0.0033983923}
+  m_LocalPosition: {x: 23.83, y: -22.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -89.94601}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 179.62201}
   m_Children:
   - {fileID: 4000012146727422}
   - {fileID: 4000013754612274}
@@ -167,7 +162,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012150167450}
   m_LocalRotation: {x: 0, y: 0.5735764, z: 0, w: 0.8191521}
-  m_LocalPosition: {x: -0.429, y: -0, z: 0}
+  m_LocalPosition: {x: -0.429, y: -0, z: -0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 70, z: 0}
   m_Children: []
@@ -184,7 +179,20 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 4000013887622384}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!4 &4000012952219248
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012321759068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &4000013648864890
 Transform:
@@ -320,18 +328,18 @@ Light:
   m_Enabled: 1
   serializedVersion: 7
   m_Type: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.72794116, g: 0.9662272, b: 1, a: 1}
   m_Intensity: 2
-  m_Range: 12
-  m_SpotAngle: 65
+  m_Range: 16
+  m_SpotAngle: 60
   m_CookieSize: 10
   m_Shadows:
     m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
-    m_Bias: 0
-    m_NormalBias: 0
+    m_Bias: 0.1
+    m_NormalBias: 0.1
     m_NearPlane: 0.1
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
@@ -364,17 +372,6 @@ MonoBehaviour:
   sonarSpeed: 10
   shotCooldown: 1
   sonarChargeLeft: 6000
---- !u!114 &114000011003520742
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011376699998}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114000012164523692
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -442,7 +439,7 @@ MonoBehaviour:
   enemyColVol: 0.5
   defColVol: 0.5
   viewDirection: {x: 0.97215915, y: 0.23432153}
-  useController: 1
+  useController: 0
   deadzone: 0.1
   ppAnimator: {fileID: 0}
 --- !u!212 &212000010111020912

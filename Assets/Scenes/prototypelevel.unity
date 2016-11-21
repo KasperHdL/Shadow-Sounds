@@ -851,11 +851,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000010077891988, guid: c05b727539e0b415e927a48accd07b48, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 22.25
+      value: 23.83
       objectReference: {fileID: 0}
     - target: {fileID: 4000010077891988, guid: c05b727539e0b415e927a48accd07b48, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -14.2
+      value: -22.12
       objectReference: {fileID: 0}
     - target: {fileID: 4000010077891988, guid: c05b727539e0b415e927a48accd07b48, type: 2}
       propertyPath: m_LocalPosition.z
@@ -863,19 +863,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010077891988, guid: c05b727539e0b415e927a48accd07b48, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4000010077891988, guid: c05b727539e0b415e927a48accd07b48, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4000010077891988, guid: c05b727539e0b415e927a48accd07b48, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.38268343
+      value: 0.9999942
       objectReference: {fileID: 0}
     - target: {fileID: 4000010077891988, guid: c05b727539e0b415e927a48accd07b48, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.92387956
+      value: 0.0033983923
       objectReference: {fileID: 0}
     - target: {fileID: 4000010077891988, guid: c05b727539e0b415e927a48accd07b48, type: 2}
       propertyPath: m_RootOrder
@@ -4005,6 +4005,16 @@ Prefab:
     - target: {fileID: 4000013350856620, guid: 9d88353ac1e014195bc097c501fab2dd, type: 2}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 198000011258797966, guid: 9d88353ac1e014195bc097c501fab2dd,
+        type: 2}
+      propertyPath: EmissionModule.rate.scalar
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 198000011258797966, guid: 9d88353ac1e014195bc097c501fab2dd,
+        type: 2}
+      propertyPath: randomSeed
+      value: 108292209
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9d88353ac1e014195bc097c501fab2dd, type: 2}
