@@ -13,11 +13,15 @@ public class TrackingCamera : MonoBehaviour {
     void Start(){
         if(target == null){
             Debug.LogWarning("Camera has no target, gonna try to find an object tagged 'Player'");
+            
             target = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
+
+            transform.position = new Vector3(target.transform.position.x, target.transform.position.y,transform.position.z);
+
             if(target == null)
                 Debug.LogError("No object tagged 'Player'");
         }
-        SoundSystem.Play("background",1,0.2f,0,null,true);
+        SoundSystem.Play("background",1,0.1f,0,null,true);
 
     }
 	
@@ -32,6 +36,7 @@ public class TrackingCamera : MonoBehaviour {
         desiredPosition.z = offsetZ;
 
         delta = desiredPosition - transform.position;
+        
         transform.position += (Vector3)delta * smoothFactor * Time.deltaTime;
 
 

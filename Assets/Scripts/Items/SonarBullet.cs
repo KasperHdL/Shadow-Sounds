@@ -17,10 +17,11 @@ public class SonarBullet : MonoBehaviour {
     public float width = 0.1f;
     public float highlightWidth = 0.2f;
 
-    public float hitPitch = 1.0f;
+    public float hitPitch = 0.5f;
     public float hitVolume = 1.0f;
     public float noHitVolume = 1.0f;
-
+    
+    
     private LineRenderer line;
 
     public void Start() {
@@ -30,6 +31,8 @@ public class SonarBullet : MonoBehaviour {
     private IEnumerator DoUpdate() {
         while(source == null)
             yield return null;
+
+        var sonarPct = source.SonarPct;
 
         Vector2 origin = transform.position;
         var angle = Mathf.Atan2(source.Direction.y, source.Direction.x);
@@ -46,7 +49,7 @@ public class SonarBullet : MonoBehaviour {
         line = line == null ? gameObject.AddComponent<LineRenderer>() : GetComponent<LineRenderer>();
         line.useWorldSpace = true;
         line.SetColors(colorStart, colorStart);
-        line.SetWidth(width, width);
+        line.SetWidth(width*sonarPct, width*sonarPct);
         line.SetVertexCount(source.Rays);
         line.material = material;
 
@@ -79,7 +82,7 @@ public class SonarBullet : MonoBehaviour {
                     played.Add(soundhit.collider);
                     SoundSystem.Play("sonar hit",
                         hitPitch * t,
-                        (float)(hitVolume * (1 - System.Math.Log(d) / System.Math.Log(source.Distance))));
+                        (float)(sonarPct * hitVolume * (1 - System.Math.Log(d) / System.Math.Log(source.Distance))));
                 }
                 highlight[i] = highlighthit.collider != null ? (Vector2?)hit : null;
                 if(blockhit.collider != null) {
@@ -137,4 +140,5 @@ public interface SonarSource {
     Vector2 Direction { get; }
     float Angle { get; }
     int Rays { get; }
+    float SonarPct { get; }
 }

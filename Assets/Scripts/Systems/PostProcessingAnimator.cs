@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.PostProcessing;
 
 public class PostProcessingAnimator : MonoBehaviour {
@@ -13,26 +14,51 @@ public class PostProcessingAnimator : MonoBehaviour {
     public float fadeInTime = 1f;
     private float exposure;
 
+    public float temperature;
+
     public float fadeRedTime = 1f;
     public Vector3 channelRed;
     public Vector3 channelGreen;
     public Vector3 channelBlue;
 
+    public bool flickering = false;
+    public bool flickeringIn = false;
+    public bool flickeredIn = false;
+
+
+    public List<FollowPlayer> enemies;
+    private IEnumerator flickerEnumerator;
+
+    [Header("Debug")]
+    public bool flickerIn = false;
+    public bool flickerOut = false;
 
 	// Use this for initialization
 	void Start () {
+        enemies = new List<FollowPlayer>();
         StartCoroutine(fadeIn());
         //PlayerAttacked();
-
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+        if(flickerIn){
+            FlickerInWorld();
+            flickerIn = false;
+        }
+
+        if(flickerOut){
+            FlickerOutWorld();
+            flickerOut = false;
+        }
+ 
         colorGrading.enabled = false;
 
         var settings = colorGrading.settings;
         settings.basic.postExposure = exposure;
+        settings.basic.temperature = temperature;
         settings.curves.master = masterCurve;
         settings.curves.red = redCurve;
 
@@ -46,10 +72,50 @@ public class PostProcessingAnimator : MonoBehaviour {
         
 	}
 
+    public void RegisterEnemyWithinPlayer(FollowPlayer enemy){
+        if(enemies.IndexOf(enemy) == -1){
+            enemies.Add(enemy);
+            FlickerInWorld();
+        }
+    }
+    public void RegitsterEnemyOutsidePlayer(FollowPlayer enemy){
+        enemies.Remove(enemy);
+
+        if(enemies.Count == 0)
+            FlickerOutWorld();
+
+    }
+
 
     public void PlayerAttacked(){
-        StartCoroutine(fadeBgRedInOut(0.75f,0f, .05f, .1f));
-        //StartCoroutine(fadeFgRedInOut(-.75f,0f, .02f, .1f));
+
+        StartCoroutine(fadeBgRedInOut(1,0f, .03f, .2f));
+    }
+
+    public void FlickerInWorld(){
+        if(!flickeredIn){
+            if(flickering && flickeringIn)
+                return;
+
+            if(flickerEnumerator != null)
+                StopCoroutine(flickerEnumerator);
+
+            flickerEnumerator = FlickerIn();
+            StartCoroutine(flickerEnumerator);
+        }
+    }
+
+    public void FlickerOutWorld(){
+        if(flickeredIn){
+            if(flickering && !flickeringIn)
+                return;
+
+            if(flickerEnumerator != null)
+                StopCoroutine(flickerEnumerator);
+
+            flickerEnumerator = FlickerOut();
+            StartCoroutine(flickerEnumerator);
+        }
     }
     
 
@@ -128,6 +194,77 @@ public class PostProcessingAnimator : MonoBehaviour {
         }
 
         redCurve.curve.keys[0].value = to;
+    }
+
+    IEnumerator FlickerIn(){
+        flickering = true;
+        flickeringIn = true;
+
+        float val = -1f;
+        channelGreen = new Vector3(val, 1, 0);
+        channelBlue = new Vector3(val, 0, 1);
+
+        yield return new WaitForSeconds(0.03f);
+
+        val = -0.1f;
+        channelGreen = new Vector3(val, 1, 0);
+        channelBlue = new Vector3(val, 0, 1);
+
+        yield return new WaitForSeconds(0.07f);
+
+        val = -1f;
+        channelGreen = new Vector3(val, 1, 0);
+        channelBlue = new Vector3(val, 0, 1);
+
+        yield return new WaitForSeconds(0.04f);
+
+        val = -0.2f;
+        channelGreen = new Vector3(val, 1, 0);
+        channelBlue = new Vector3(val, 0, 1);
+
+        yield return new WaitForSeconds(0.02f);
+
+        val = -1f;
+        channelGreen = new Vector3(val, 1, 0);
+        channelBlue = new Vector3(val, 0, 1);
+
+        flickering = false;
+        flickeredIn = true;
+    }
+
+
+    IEnumerator FlickerOut(){
+        flickering = true;
+        flickeringIn = false;
+        float val = 0.2f;
+        channelGreen = new Vector3(val, 1, 0);
+        channelBlue = new Vector3(val, 0, 1);
+
+        yield return new WaitForSeconds(0.02f);
+
+        val = -1f;
+        channelGreen = new Vector3(val, 1, 0);
+        channelBlue = new Vector3(val, 0, 1);
+
+        yield return new WaitForSeconds(0.04f);
+
+        val = 0.1f;
+        channelGreen = new Vector3(val, 1, 0);
+        channelBlue = new Vector3(val, 0, 1);
+
+        yield return new WaitForSeconds(0.07f);
+
+        val = -1f;
+        channelGreen = new Vector3(val, 1, 0);
+        channelBlue = new Vector3(val, 0, 1);
+
+        yield return new WaitForSeconds(0.03f);
+
+        val = 0; 
+        channelGreen = new Vector3(val, 1, 0);
+        channelBlue = new Vector3(val, 0, 1);
+        flickering = false;
+        flickeredIn = false;
     }
 
 

@@ -9330,10 +9330,16 @@ MonoBehaviour:
     m_ZeroValue: 0
     m_Range: 0
   fadeInTime: 2
+  temperature: -7
   fadeRedTime: 1
   channelRed: {x: 1, y: 0, z: 0}
   channelGreen: {x: 0, y: 1, z: 0}
   channelBlue: {x: 0, y: 0, z: 1}
+  flickering: 0
+  flickeringIn: 0
+  flickeredIn: 0
+  flickerIn: 0
+  flickerOut: 0
 --- !u!114 &114000013243246060
 MonoBehaviour:
   m_ObjectHideFlags: 1

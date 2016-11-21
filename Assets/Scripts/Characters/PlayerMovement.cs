@@ -28,27 +28,33 @@ public class PlayerMovement : CharacterMovement
     private Controller controller;
     public PostProcessingAnimator ppAnimator;
 
+    private SonarTool sonar;
+
     public override void Start()
     {
         base.Start();
+        sonar = GetComponent<SonarTool>();
         controller = GetComponent<ControllerContainer>().controller;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+
+        Debug.Log("player hit a " + collision.gameObject.tag + ", named " + collision.gameObject.name);
+
         switch (collision.gameObject.tag)
         {
-            case "Enemy":
-                ppAnimator.PlayerAttacked();
-                SoundSystem.Play("enemy collision", 1,enemyColVol);
-                //Debug.Log("EnemyCollision");
-
-                break;
             case "Wall":
                 if (fallOnWalls)
                     SoundSystem.Play("wall collision",1, defColVol);
 
                 //Debug.Log("WallCollision");
+                break;
+            case "PickUp":
+                if (collision.gameObject.name == "SonarChargePU")
+                    sonar.sonarChargeLeft += 200f;
+                Destroy(collision.gameObject);
+                
                 break;
             default:
                 if (fallOnWalls)
@@ -63,7 +69,9 @@ public class PlayerMovement : CharacterMovement
     {
         DisableMovement = true;
         StartCoroutine(Reactivate());
-
+        ppAnimator.PlayerAttacked();
+        SoundSystem.Play("enemy collision", 1,enemyColVol);
+              
         health -= damage;
         if (health <= 0) Die();
     }
@@ -138,4 +146,5 @@ public class PlayerMovement : CharacterMovement
 
         base.Update();
     }
+    
 }
