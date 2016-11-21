@@ -325,9 +325,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sonarBulletPrefab: {fileID: 114000010584440910, guid: 85ca129e5d29eaf4996136c987115458,
     type: 2}
-  coneAngle: 45
+  coneAngle: 60
   coneIncrement: 0.25
-  distance: 20
+  distance: 30
   sonarSpeed: 10
   shotCooldown: 1
   sonarChargeLeft: 6000
@@ -404,6 +404,7 @@ MonoBehaviour:
   flashlight_prefab: {fileID: 1000011478801694, guid: 75a03bfe56bc041f8b2cecf5086b3848,
     type: 2}
   flashlight: {fileID: 1000013602750024}
+  isDead: 0
 --- !u!212 &212000010111020912
 SpriteRenderer:
   m_ObjectHideFlags: 1
