@@ -42,6 +42,13 @@ public class PlayerMovement : CharacterMovement
 
     [HideInInspector] public bool isDead = false;
 
+    public void Awake()
+    {
+        var savesystem = GameObject.FindGameObjectWithTag("SaveSystem");
+        if (savesystem != null && savesystem.GetComponent<SaveSystem>().PlayerPosition.HasValue)
+            transform.position = savesystem.GetComponent<SaveSystem>().PlayerPosition.Value;
+    }
+
     public override void Start()
     {
         base.Start();
@@ -92,7 +99,7 @@ public class PlayerMovement : CharacterMovement
         StartCoroutine(Reactivate());
         ppAnimator.PlayerAttacked();
         SoundSystem.Play("enemy collision", 1,enemyColVol);
-              
+        TrackingCamera.ShakeIt(0.5f, 0.5f);
         health -= damage;
         if (health <= 0) Die();
     }
@@ -112,7 +119,7 @@ public class PlayerMovement : CharacterMovement
  //       flashlight.GetComponent<Light>().enabled = false;
 
         body.drag = 5;
-        body.angularDrag = 0.5f;
+        body.angularDrag = 1f;
 
         isDead = true;
 
