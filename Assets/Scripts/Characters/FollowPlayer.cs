@@ -6,6 +6,10 @@ using System.Collections.Generic;
 [RequireComponent(typeof(SpriteRenderer))]
 public class FollowPlayer : CharacterMovement
 {
+    
+    public float ChaseSpeed;
+    private float normalSpeed;
+
 
     private Transform target;
     private PostProcessingAnimator postProcessingAnimator;
@@ -67,7 +71,6 @@ public class FollowPlayer : CharacterMovement
     {
         renderer = GetComponent<SpriteRenderer>();
         coll = GetComponent<Collider2D>();
-
         target = GameObject.FindWithTag("Player").GetComponent<Transform>();
         if (target == null)
             Debug.LogError("No object tagged 'Player'");
@@ -79,6 +82,8 @@ public class FollowPlayer : CharacterMovement
         else
             wanderingAreaStartPosition = wanderingAreaOffset + (Vector2)transform.position;
         base.Start();
+
+        normalSpeed = MoveSpeed;
     }
 
     public override void Update()
@@ -128,6 +133,7 @@ public class FollowPlayer : CharacterMovement
     void FixedUpdate () {
         if(isSeeingPlayer())
         {
+            MoveSpeed = ChaseSpeed;
             //play random ghost sound
             if (!playedSound && !SoundSystem.IsPlaying("ghost sound"))
             {
@@ -150,6 +156,7 @@ public class FollowPlayer : CharacterMovement
             broadcastTime = -1f;
             withinPlayerVisibleRange = false;
             playedSound = false;
+            MoveSpeed = normalSpeed;
         }
 
         Vector2 moveDirection = Vector2.zero;
@@ -171,8 +178,7 @@ public class FollowPlayer : CharacterMovement
             }
             moveDirection = knownEnemyPosition - (Vector2)transform.position;
         }
-
-        if (allowedToWander && !isMovingTowardsKnownPlayerPosition && !isMovingTowardsEnemyWithKnownPlayerPosition)
+        else if (allowedToWander)
         {
             if (!isMovingTowardsWanderPosition || IsAtPosition(nextWanderPosition))
             {
@@ -184,7 +190,7 @@ public class FollowPlayer : CharacterMovement
             moveDirection = nextWanderPosition - (Vector2)transform.position;
         }
         transform.rotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * Mathf.Atan2(moveDirection.y, moveDirection.x) - 90);
-        Move = moveDirection;
+        Move = Vector2.ClampMagnitude(moveDirection,maxWanderDistance);
 
         base.Update();
     }
@@ -226,13 +232,18 @@ public class FollowPlayer : CharacterMovement
         while(!foundLocation){
             numTries++;
 
-            if(randomWanderAfterPlayerSight && hasSeenPlayer)
+            if (randomWanderAfterPlayerSight && hasSeenPlayer)
                 location = getRandomWanderPosition();
             else
+            {
                 location = getWanderPositionWithinArea();
+                //clamping location to maxWanderDistance
+                location = Vector2.ClampMagnitude((location - (Vector2)transform.position), maxWanderDistance) + (Vector2)transform.position;
 
-            
-            if(checkIfWanderPositionIsPossible(location)){
+            }
+
+
+            if (checkIfWanderPositionIsPossible(location)){
                 Debug.DrawLine(transform.position,location, Color.green, 1f);
                 foundLocation = true;
                 break;
@@ -240,10 +251,14 @@ public class FollowPlayer : CharacterMovement
 
             Debug.DrawLine(transform.position,location, Color.red, 1f);
 
-            if (numTries >= maxTries) break;
+            if (numTries >= maxTries)
+            {
+                //Debug.Log("tried too much");
+                break;
+            }
         }
-        if(!foundLocation)
-            return Vector2.zero;
+        if(!foundLocation )
+            return transform.position;
 
         return location;
     }
