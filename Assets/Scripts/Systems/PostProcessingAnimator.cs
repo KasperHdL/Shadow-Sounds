@@ -12,7 +12,7 @@ public class PostProcessingAnimator : MonoBehaviour {
     public ColorGradingCurve redCurve;
 
     public float fadeInTime = 1f;
-    public float fadeOutTime = 3f;
+    public float fadeOutTime = 2;
     private float exposure;
 
     private float temperature;
@@ -31,6 +31,7 @@ public class PostProcessingAnimator : MonoBehaviour {
     public bool playerAttacked = false;
     public bool fadeToBlack = false;
 
+    public bool forceNormalMode = false;
     private List<FollowPlayer> enemies;
     private IEnumerator flickerEnumerator;
     public MonoBehaviour m;
@@ -69,12 +70,18 @@ public class PostProcessingAnimator : MonoBehaviour {
 
         if(fadeToBlack){
             fadeToBlack = false;
+        forceNormalMode = true;
+        enemies.Clear();
+        FlickerOutWorld();
+
+
             StartCoroutine(fadeOut(fadeOutTime));
         }
 
 	}
 
     public void RegisterEnemyWithinPlayer(FollowPlayer enemy){
+        if(forceNormalMode)return;
         if(enemies.IndexOf(enemy) == -1){
             enemies.Add(enemy);
             FlickerInWorld();

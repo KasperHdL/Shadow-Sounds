@@ -859,11 +859,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114000013872320056, guid: 569abab7e627f41c9affd0fca8280b2a,
-        type: 2}
-      propertyPath: detectionBlockMask.m_Bits
-      value: 769
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 569abab7e627f41c9affd0fca8280b2a, type: 2}
   m_IsPrefabParent: 0
@@ -1325,6 +1320,7 @@ MonoBehaviour:
     m_ZeroValue: 0
     m_Range: 0
   fadeInTime: 1
+  fadeOutTime: 3
   fadedInTemperature: 0
   fadedOutTemperature: -10
   fadeRedTime: 1
@@ -1334,7 +1330,11 @@ MonoBehaviour:
   flickering: 0
   flickeringIn: 0
   flickeredIn: 0
-  enemies: []
+  playerAttacked: 0
+  fadeToBlack: 0
+  forceNormalMode: 0
+  m: {fileID: 0}
+  g: {fileID: 0}
 --- !u!1 &211838100
 GameObject:
   m_ObjectHideFlags: 0

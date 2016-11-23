@@ -39,10 +39,12 @@ public class TrackingCamera : MonoBehaviour {
 
     private Camera cam;
     private VignetteAndChromaticAberration effects;
+    private PostProcessingAnimator ppAnimator;
 
     void Start() {
         cam = GetComponent<Camera>();
         effects = GetComponent<VignetteAndChromaticAberration>();
+        ppAnimator = GetComponent<PostProcessingAnimator>();
 
         if(target == null) {
             //Debug.LogWarning("Camera has no target, gonna try to find an object tagged 'Player'");
@@ -86,6 +88,8 @@ public class TrackingCamera : MonoBehaviour {
     void Update()
     {
         var chase = GameObject.FindGameObjectsWithTag("Enemy").Any(e => e.GetComponent<FollowPlayer>().visible);
+        if(ppAnimator.forceNormalMode)
+            chase = false;
 
         cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, chase ? chaseSize : size, sizeLerp);
         effects.chromaticAberration = chase ? chaseChomatic : normalChomatic;

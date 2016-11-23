@@ -9363,7 +9363,7 @@ MonoBehaviour:
     m_ZeroValue: 0
     m_Range: 0
   fadeInTime: 2
-  fadeOutTime: 3
+  fadeOutTime: 2
   fadedInTemperature: 0
   fadedOutTemperature: -10
   fadeRedTime: 1
@@ -9375,6 +9375,7 @@ MonoBehaviour:
   flickeredIn: 0
   playerAttacked: 0
   fadeToBlack: 0
+  forceNormalMode: 0
   m: {fileID: 0}
   g: {fileID: 0}
 --- !u!114 &114000013243246060
