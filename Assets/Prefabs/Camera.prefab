@@ -9150,7 +9150,7 @@ MonoBehaviour:
   - data:
     - {fileID: 8300000, guid: cfe373218de390d4592411fb1d616a08, type: 3}
   - data:
-    - {fileID: 8300000, guid: c83c587ddee47514c8f029d4c4b1aaee, type: 3}
+    - {fileID: 0}
 --- !u!114 &114000012675689040
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9401,8 +9401,8 @@ MonoBehaviour:
   offsetZ: -10
   viewOffsetMultiplier: 2
   velocityFactor: 80
-  chaseSize: 7
-  size: 8
+  chaseSize: 6
+  size: 7
   sizeLerp: 0.2
   normalVignette: 0.2
   normalChomatic: 0.5
