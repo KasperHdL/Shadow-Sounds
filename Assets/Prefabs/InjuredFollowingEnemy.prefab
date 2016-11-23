@@ -445,10 +445,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 0
     m_RotationOrder: 0
-  AnimationLegSpeed: 2
-  AnimationLegFactor: 16
+  AnimationLegSpeed: 1.6
+  AnimationLegFactor: 30
   RandomLegOffset: 5
   velocityFactor: 1
+  legOffsetAngle: -30
 --- !u!114 &114000013303700870
 MonoBehaviour:
   m_ObjectHideFlags: 1
