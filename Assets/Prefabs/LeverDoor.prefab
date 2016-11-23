@@ -123,6 +123,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 2
-  openDuration: 0
+  openDuration: 1.5
   minScale: 0
   openDirection: {x: 0, y: 0, z: 0}
+  doorAnimationCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
