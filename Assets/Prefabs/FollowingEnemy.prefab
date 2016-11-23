@@ -87,7 +87,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Move: {x: 0, y: 0}
   DisableMovement: 0
-  MoveSpeed: 4
+  MoveSpeed: 2
   Acceleration: 0.1
   Deceleration: 0.1
   StartCurve:
@@ -122,6 +122,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+  ChaseSpeed: 6
   visibleOverride: 0
   visibleToPlayerRange: 5
   allowedToWander: 1
@@ -141,7 +142,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4609
   immidiateDetectionDistance: 4
-  detectionTime: 1
+  detectionTime: 4
   knownPlayerPosition: {x: 0, y: 0}
   broadcastToOthersDelay: 0.25
   canSeePlayer: 0
