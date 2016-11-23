@@ -790,6 +790,12 @@ MonoBehaviour:
   useController: 0
   deadzone: 0.1
   ppAnimator: {fileID: 196772234}
+  AmbientLight: {fileID: 0}
+  ChaseLightIntMultiplier: 5
+  ChaseLightRanMultiplier: 5
+  flashlight_prefab: {fileID: 0}
+  flashlight: {fileID: 0}
+  isDead: 0
 --- !u!50 &1008646649
 Rigidbody2D:
   serializedVersion: 2
@@ -1154,6 +1160,102 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: da98cd61ac53e4a949eddf2f8904e9cc, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &1679841849
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000011656636190, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 15.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011656636190, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011656636190, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011656636190, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011656636190, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011656636190, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011656636190, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011656636190, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04, type: 2}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010118106110, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04,
+        type: 2}
+      propertyPath: MoveSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010118106110, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04,
+        type: 2}
+      propertyPath: minWanderDistance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010118106110, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04,
+        type: 2}
+      propertyPath: maxWanderDistance
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010118106110, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04,
+        type: 2}
+      propertyPath: randomWanderAfterPlayerSight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010118106110, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04,
+        type: 2}
+      propertyPath: wanderingAreaSize.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010118106110, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04,
+        type: 2}
+      propertyPath: wanderingAreaSize.y
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010118106110, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04,
+        type: 2}
+      propertyPath: wanderingAreaOffset.y
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010118106110, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04,
+        type: 2}
+      propertyPath: ChaseSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010118106110, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04,
+        type: 2}
+      propertyPath: attackChargeTime
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010118106110, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04,
+        type: 2}
+      propertyPath: attackCooldown
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013906157328, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04, type: 2}
+      propertyPath: m_Name
+      value: FollowingEnemy (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: c0ec80ce1aeb54ebfbef4b7a5ce8ed04, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1977442020
 GameObject:
   m_ObjectHideFlags: 0
@@ -1258,6 +1360,11 @@ Prefab:
     - target: {fileID: 4000013350856620, guid: 9d88353ac1e014195bc097c501fab2dd, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013913754286, guid: 9d88353ac1e014195bc097c501fab2dd,
+        type: 2}
+      propertyPath: size
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9d88353ac1e014195bc097c501fab2dd, type: 2}
