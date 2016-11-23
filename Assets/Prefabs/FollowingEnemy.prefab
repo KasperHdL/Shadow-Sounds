@@ -466,11 +466,10 @@ MonoBehaviour:
   minWanderDistance: 1
   maxWanderDistance: 3
   attackDistance: 2
-  attackCooldown: 1.1
-  attackChargeTime: 0.6
+  attackCooldown: 0.5
+  attackChargeTime: 0.1
   attackForce: 1200
-  hitForce: 200
-  attacking: 0
+  hitForce: 50
   detectionBlockMask:
     serializedVersion: 2
     m_Bits: 4609

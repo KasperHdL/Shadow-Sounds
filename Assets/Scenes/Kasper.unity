@@ -6242,6 +6242,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114000011132555544, guid: 3434cdbe279ca4009ad762629ae97334,
+        type: 2}
+      propertyPath: doorAnimationCurve.m_Curve.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4000010011824386, guid: 3434cdbe279ca4009ad762629ae97334, type: 2}
       propertyPath: m_LocalPosition.x
       value: 8.92
@@ -6277,6 +6282,66 @@ Prefab:
     - target: {fileID: 4000010011824386, guid: 3434cdbe279ca4009ad762629ae97334, type: 2}
       propertyPath: m_LocalScale.y
       value: 2.973271
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011132555544, guid: 3434cdbe279ca4009ad762629ae97334,
+        type: 2}
+      propertyPath: state
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011132555544, guid: 3434cdbe279ca4009ad762629ae97334,
+        type: 2}
+      propertyPath: doorAnimationCurve.m_Curve.Array.data[1].time
+      value: 0.09117089
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011132555544, guid: 3434cdbe279ca4009ad762629ae97334,
+        type: 2}
+      propertyPath: doorAnimationCurve.m_Curve.Array.data[1].value
+      value: 0.14656281
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011132555544, guid: 3434cdbe279ca4009ad762629ae97334,
+        type: 2}
+      propertyPath: doorAnimationCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011132555544, guid: 3434cdbe279ca4009ad762629ae97334,
+        type: 2}
+      propertyPath: doorAnimationCurve.m_Curve.Array.data[1].inSlope
+      value: 1.1640787
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011132555544, guid: 3434cdbe279ca4009ad762629ae97334,
+        type: 2}
+      propertyPath: doorAnimationCurve.m_Curve.Array.data[1].outSlope
+      value: 1.1640787
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011132555544, guid: 3434cdbe279ca4009ad762629ae97334,
+        type: 2}
+      propertyPath: doorAnimationCurve.m_Curve.Array.data[2].time
+      value: 0.8475566
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011132555544, guid: 3434cdbe279ca4009ad762629ae97334,
+        type: 2}
+      propertyPath: doorAnimationCurve.m_Curve.Array.data[2].value
+      value: 0.5654668
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011132555544, guid: 3434cdbe279ca4009ad762629ae97334,
+        type: 2}
+      propertyPath: doorAnimationCurve.m_Curve.Array.data[2].inSlope
+      value: 1.180172
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011132555544, guid: 3434cdbe279ca4009ad762629ae97334,
+        type: 2}
+      propertyPath: doorAnimationCurve.m_Curve.Array.data[2].outSlope
+      value: 1.180172
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011132555544, guid: 3434cdbe279ca4009ad762629ae97334,
+        type: 2}
+      propertyPath: doorAnimationCurve.m_Curve.Array.data[3].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011132555544, guid: 3434cdbe279ca4009ad762629ae97334,
+        type: 2}
+      propertyPath: doorAnimationCurve.m_Curve.Array.data[3].value
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3434cdbe279ca4009ad762629ae97334, type: 2}
@@ -6599,11 +6664,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000010077891988, guid: c05b727539e0b415e927a48accd07b48, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 23.7
+      value: 4.2
       objectReference: {fileID: 0}
     - target: {fileID: 4000010077891988, guid: c05b727539e0b415e927a48accd07b48, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -17.1
+      value: 7.7
       objectReference: {fileID: 0}
     - target: {fileID: 4000010077891988, guid: c05b727539e0b415e927a48accd07b48, type: 2}
       propertyPath: m_LocalPosition.z
@@ -9965,7 +10030,13 @@ Transform:
   m_PrefabParentObject: {fileID: 4000013463432024, guid: da98cd61ac53e4a949eddf2f8904e9cc,
     type: 2}
   m_PrefabInternal: {fileID: 1426303368}
---- !u!1001 &1428401712
+--- !u!114 &1443956763 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000011132555544, guid: 3434cdbe279ca4009ad762629ae97334,
+    type: 2}
+  m_PrefabInternal: {fileID: 923343233}
+  m_Script: {fileID: 11500000, guid: 54f16db3d64ed4b4288a1400f92c4455, type: 3}
+--- !u!1001 &1461109757
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10630,6 +10701,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010581744102, guid: 326a77c85da044d238f2ea3fa7798ea7,
+        type: 2}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 1443956763}
     m_RemovedComponents:
     - {fileID: 50000013814396788, guid: 326a77c85da044d238f2ea3fa7798ea7, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 326a77c85da044d238f2ea3fa7798ea7, type: 2}
