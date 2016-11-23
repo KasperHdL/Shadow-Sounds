@@ -122,9 +122,10 @@ public class PlayerMovement : CharacterMovement
         body.angularDrag = 1f;
 
         isDead = true;
+        SoundSystem.Play("death",1,8);
 
-        ppAnimator.FadeToBlack(2f);
-        StartCoroutine(ReloadLevel(2f));
+        ppAnimator.FadeToBlack(8f);
+        StartCoroutine(ReloadLevel(8f));
     }
 
     private IEnumerator ReloadLevel(float delay){
@@ -192,7 +193,7 @@ public class PlayerMovement : CharacterMovement
 
 
         if(AmbientLight != null) { 
-            var chase = GameObject.FindGameObjectsWithTag("Enemy").Any(e => e.GetComponent<SpriteRenderer>().enabled);
+            var chase = GameObject.FindGameObjectsWithTag("Enemy").Any(e => e.GetComponent<FollowPlayer>().visible);
             AmbientLight.intensity = OriginalALightIntensity * (chase ? ChaseLightIntMultiplier: 1.0f);
             AmbientLight.range = OriginalALightRange * (chase ? ChaseLightRanMultiplier : 1.0f);
         }

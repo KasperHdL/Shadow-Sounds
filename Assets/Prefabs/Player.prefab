@@ -383,7 +383,7 @@ MonoBehaviour:
     type: 2}
   coneAngle: 60
   coneIncrement: 0.25
-  distance: 30
+  distance: 20
   sonarSpeed: 10
   shotCooldown: 1
   sonarChargeLeft: 6000

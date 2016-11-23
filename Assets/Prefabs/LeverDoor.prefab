@@ -23,6 +23,7 @@ GameObject:
   - 23: {fileID: 23000014270204346}
   - 61: {fileID: 61000013528473170}
   - 50: {fileID: 50000011872893982}
+  - 114: {fileID: 114000011132555544}
   m_Layer: 0
   m_Name: LeverDoor
   m_TagString: Untagged
@@ -37,8 +38,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013407422182}
   m_LocalRotation: {x: 0, y: 0.30070576, z: 0, w: 0.953717}
-  m_LocalPosition: {x: 34, y: 13, z: 0}
-  m_LocalScale: {x: 1, y: 8, z: 1}
+  m_LocalPosition: {x: 8.92, y: 12.97, z: 0}
+  m_LocalScale: {x: 1, y: 2.973271, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 35, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -110,3 +111,24 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
+--- !u!114 &114000011132555544
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013407422182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f16db3d64ed4b4288a1400f92c4455, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 2
+  openDuration: 1.5
+  minScale: 0
+  openDirection: {x: 0, y: 0, z: 0}
+  doorAnimationCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
