@@ -120,7 +120,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011376902860}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23, y: -14, z: -10}
+  m_LocalPosition: {x: 24, y: -14, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -9117,7 +9117,7 @@ MonoBehaviour:
   - enemy movement
   sclips:
   - data:
-    - {fileID: 8300000, guid: c6b94d59b5163434fa9ccea8e4aa5d4f, type: 3}
+    - {fileID: 8300000, guid: 46172244123ccf44882ef4fa2684e008, type: 3}
   - data:
     - {fileID: 8300000, guid: 022d1b9b3301219498ae4a914ea419e1, type: 3}
   - data:
