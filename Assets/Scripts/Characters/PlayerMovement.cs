@@ -47,6 +47,8 @@ public class PlayerMovement : CharacterMovement
         base.Start();
         sonar = GetComponent<SonarTool>();
         controller = GetComponent<ControllerContainer>().controller;
+        if (ppAnimator == null)
+            ppAnimator = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<PostProcessingAnimator>();
 
         if (AmbientLight)
         {
