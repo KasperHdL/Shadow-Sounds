@@ -12941,7 +12941,7 @@ GameObject:
   - 4: {fileID: 1834106159}
   - 61: {fileID: 1834106158}
   - 114: {fileID: 1834106160}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Checkpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
