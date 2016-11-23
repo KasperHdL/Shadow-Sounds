@@ -21,6 +21,7 @@ public class Door : MonoBehaviour {
     private float moveAmount;
 
     public Vector3 openDirection;
+    public AnimationCurve doorAnimationCurve;
 
     void OnReset(){
         if(openDirection == Vector3.zero)
@@ -71,7 +72,7 @@ public class Door : MonoBehaviour {
 	}
     
     private void SetDoor(){
-        float t = aniTime / openDuration;
+        float t = doorAnimationCurve.Evaluate(aniTime / openDuration);
         transform.position = startPosition - openDirection * moveAmount * t;
 
         Vector3 s = transform.localScale;
