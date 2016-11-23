@@ -105,11 +105,8 @@ public class FollowPlayer : CharacterMovement
         DisableMovement = charging;
         if (!isPlayingEnmMov && visible)
         {
-            if (renderer.enabled)
-            {
-                SoundSystem.Play("enemy movement", 1, 0.25f);
-                isPlayingEnmMov = true;
-            }
+            SoundSystem.Play("enemy movement", 1, 0.25f);
+            isPlayingEnmMov = true;
         }
         else if (!visible)
         {

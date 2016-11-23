@@ -252,7 +252,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013906157328}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.77, y: -25.83, z: 0.29}
+  m_LocalPosition: {x: -0.8, y: -25.4, z: 0.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -454,7 +454,7 @@ MonoBehaviour:
     m_RotationOrder: 0
   ChaseSpeed: 6
   sprite: {fileID: 1000012319584334}
-  visibleOverride: 1
+  visibleOverride: 0
   visibleToPlayerRange: 5
   visible: 0
   allowedToWander: 1
@@ -470,6 +470,7 @@ MonoBehaviour:
   attackChargeTime: 0.1
   attackForce: 1200
   hitForce: 50
+  attacking: 0
   detectionBlockMask:
     serializedVersion: 2
     m_Bits: 4609

@@ -94,7 +94,6 @@ public class TrackingCamera : MonoBehaviour {
 
         if (shakeDuration > 0)
         {
-            Debug.Log("shake it like a polaroid");
 
             if (!shakePosSet)
             {
