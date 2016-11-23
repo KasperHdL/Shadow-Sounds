@@ -56,6 +56,7 @@ public class FollowPlayer : CharacterMovement
     [HideInInspector] public Vector2 knownPlayerPosition;
     private Vector2 knownEnemyPosition;
     private Vector2 nextWanderPosition;
+    private Vector2 lookDirection;
     private bool playedSound = false;
     public float broadcastToOthersDelay = 0.25f;
 
@@ -183,7 +184,8 @@ public class FollowPlayer : CharacterMovement
 
             moveDirection = nextWanderPosition - (Vector2)transform.position;
         }
-        transform.rotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * Mathf.Atan2(moveDirection.y, moveDirection.x) - 90);
+        if (body.velocity.magnitude > 0) lookDirection = body.velocity;
+        transform.rotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * Mathf.Atan2(lookDirection.y, lookDirection.x) - 90);
         Move = moveDirection;
 
         base.Update();
