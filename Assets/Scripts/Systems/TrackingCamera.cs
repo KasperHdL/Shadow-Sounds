@@ -75,6 +75,7 @@ public class TrackingCamera : MonoBehaviour {
 
         transform.position += delta * smoothFactor * Time.fixedDeltaTime;
 
+    }
 
     public static void ShakeIt(float duration, float amount = 0.05f)
     {
@@ -85,7 +86,7 @@ public class TrackingCamera : MonoBehaviour {
 
     void Update()
     {
-        var chase = GameObject.FindGameObjectsWithTag("Enemy").Any(e => e.GetComponent<SpriteRenderer>().enabled);
+        var chase = GameObject.FindGameObjectsWithTag("Enemy").Any(e => e.GetComponent<FollowPlayer>().visible);
 
         cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, chase ? chaseSize : size, sizeLerp);
         effects.chromaticAberration = chase ? chaseChomatic : normalChomatic;

@@ -44,7 +44,7 @@ public class FollowPlayer : CharacterMovement
     public float attackChargeTime = 0.2f;
     public float attackForce = 100;
     public float hitForce = 800;
-    private bool attacking;
+    public bool attacking;
     private bool charging;
     private bool isPlayingEnmMov = false;
 

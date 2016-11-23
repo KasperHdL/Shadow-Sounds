@@ -221,7 +221,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014211235934}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.8, y: -25.4, z: 0.29}
+  m_LocalPosition: {x: -0.8391086, y: -26.025568, z: 0.29}
   m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -359,8 +359,8 @@ MonoBehaviour:
   LeftJaw: {fileID: 4000013829231812}
   RightJaw: {fileID: 4000011812420048}
   LeftLegs:
-  - {fileID: 4000013904679580}
   - {fileID: 4000010936265940}
+  - {fileID: 4000013904679580}
   RightLegs:
   - {fileID: 4000014154138760}
   - {fileID: 4000014076042706}
@@ -448,6 +448,7 @@ MonoBehaviour:
   AnimationLegSpeed: 2
   AnimationLegFactor: 16
   RandomLegOffset: 5
+  velocityFactor: 1
 --- !u!114 &114000013303700870
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -496,6 +497,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+  ChaseSpeed: 0
   sprite: {fileID: 0}
   visibleOverride: 0
   visibleToPlayerRange: 5
@@ -513,6 +515,7 @@ MonoBehaviour:
   attackChargeTime: 0.8
   attackForce: 500
   hitForce: 200
+  attacking: 0
   detectionBlockMask:
     serializedVersion: 2
     m_Bits: 4097
