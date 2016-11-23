@@ -56,7 +56,7 @@ MonoBehaviour:
     m_Bits: 256
   BlockMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 512
   HighlightMask:
     serializedVersion: 2
     m_Bits: 8448

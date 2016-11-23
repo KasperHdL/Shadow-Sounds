@@ -143,6 +143,7 @@ public class SonarBullet : MonoBehaviour {
 
             if(h == 0 && !finished) {
                 SoundSystem.Play("sonar no hit", 1, noHitVolume);
+                SoundSystem.Stop("sonar noise");
                 finished = true;
             }
 

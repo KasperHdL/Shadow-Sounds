@@ -452,6 +452,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+  ChaseSpeed: 6
   sprite: {fileID: 0}
   visibleOverride: 0
   visibleToPlayerRange: 5
@@ -473,7 +474,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4609
   immidiateDetectionDistance: 4
-  detectionTime: 1
+  detectionTime: 4
   knownPlayerPosition: {x: 0, y: 0}
   broadcastToOthersDelay: 0.25
   canSeePlayer: 0
