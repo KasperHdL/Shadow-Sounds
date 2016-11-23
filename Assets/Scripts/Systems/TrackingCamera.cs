@@ -45,7 +45,7 @@ public class TrackingCamera : MonoBehaviour {
         effects = GetComponent<VignetteAndChromaticAberration>();
 
         if(target == null) {
-            Debug.LogWarning("Camera has no target, gonna try to find an object tagged 'Player'");
+            //Debug.LogWarning("Camera has no target, gonna try to find an object tagged 'Player'");
 
             target = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
 

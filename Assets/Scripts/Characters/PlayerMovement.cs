@@ -114,18 +114,18 @@ public class PlayerMovement : CharacterMovement
     {
         if(isDead) return;
 
+// Drop Flashlight(does not look good currently)
 //        GameObject fl = Instantiate(flashlight_prefab, flashlight.transform.position, flashlight.transform.rotation) as GameObject;
-
- //       flashlight.GetComponent<Light>().enabled = false;
+//       flashlight.GetComponent<Light>().enabled = false;
 
         body.drag = 5;
         body.angularDrag = 1f;
 
         isDead = true;
-        SoundSystem.Play("death",1,8);
+        SoundSystem.Play("death",1,1,0,2.25f);
 
-        ppAnimator.FadeToBlack(8f);
-        StartCoroutine(ReloadLevel(8f));
+        ppAnimator.FadeToBlack(3f);
+        StartCoroutine(ReloadLevel(3f));
     }
 
     private IEnumerator ReloadLevel(float delay){
