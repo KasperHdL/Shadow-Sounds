@@ -92,7 +92,7 @@ public class PlayerMovement : CharacterMovement
         StartCoroutine(Reactivate());
         ppAnimator.PlayerAttacked();
         SoundSystem.Play("enemy collision", 1,enemyColVol);
-              
+        TrackingCamera.ShakeIt(0.5f, 0.5f);
         health -= damage;
         if (health <= 0) Die();
     }
