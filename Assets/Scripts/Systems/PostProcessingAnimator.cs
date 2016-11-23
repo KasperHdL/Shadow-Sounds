@@ -14,8 +14,10 @@ public class PostProcessingAnimator : MonoBehaviour {
     public float fadeInTime = 1f;
     private float exposure;
 
-    public float temperature;
-
+    private float temperature;
+    public float fadedInTemperature = 0;
+    public float fadedOutTemperature = -10;
+ 
     public float fadeRedTime = 1f;
     public Vector3 channelRed;
     public Vector3 channelGreen;
@@ -25,37 +27,22 @@ public class PostProcessingAnimator : MonoBehaviour {
     public bool flickeringIn = false;
     public bool flickeredIn = false;
 
+    private bool playerAttacked = false;
 
     public List<FollowPlayer> enemies;
     private IEnumerator flickerEnumerator;
-
-    [Header("Debug")]
-    public bool flickerIn = false;
-    public bool flickerOut = false;
 
 	// Use this for initialization
 	void Start () {
         enemies = new List<FollowPlayer>();
         StartCoroutine(fadeIn());
-        //PlayerAttacked();
+        temperature = fadedOutTemperature;
 	
 	}
 	
 	// Update is called once per frame
-	void Update () {
-
-        if(flickerIn){
-            FlickerInWorld();
-            flickerIn = false;
-        }
-
-        if(flickerOut){
-            FlickerOutWorld();
-            flickerOut = false;
-        }
- 
+	void FixedUpdate () {
         colorGrading.enabled = false;
-
         var settings = colorGrading.settings;
         settings.basic.postExposure = exposure;
         settings.basic.temperature = temperature;
@@ -69,7 +56,13 @@ public class PostProcessingAnimator : MonoBehaviour {
         colorGrading.settings = settings;
         profile.colorGrading = colorGrading;
         colorGrading.enabled = true;
-        
+  
+        if(playerAttacked){
+            StartCoroutine(fadeBgRedInOut(1,0f, .03f, .2f));
+            playerAttacked = false;
+        }
+
+       
 	}
 
     public void RegisterEnemyWithinPlayer(FollowPlayer enemy){
@@ -88,8 +81,7 @@ public class PostProcessingAnimator : MonoBehaviour {
 
 
     public void PlayerAttacked(){
-
-        StartCoroutine(fadeBgRedInOut(1,0f, .03f, .2f));
+        playerAttacked = true;
     }
 
     public void FadeToBlack(float length){
@@ -222,30 +214,35 @@ public class PostProcessingAnimator : MonoBehaviour {
         channelGreen = new Vector3(val, 1, 0);
         channelBlue = new Vector3(val, 0, 1);
 
+        temperature = fadedInTemperature;
         yield return new WaitForSeconds(0.03f);
 
         val = -0.1f;
         channelGreen = new Vector3(val, 1, 0);
         channelBlue = new Vector3(val, 0, 1);
 
+        temperature = fadedOutTemperature;
         yield return new WaitForSeconds(0.07f);
 
         val = -1f;
         channelGreen = new Vector3(val, 1, 0);
         channelBlue = new Vector3(val, 0, 1);
 
+        temperature = fadedInTemperature;
         yield return new WaitForSeconds(0.04f);
 
         val = -0.2f;
         channelGreen = new Vector3(val, 1, 0);
         channelBlue = new Vector3(val, 0, 1);
 
+        temperature = fadedOutTemperature;
         yield return new WaitForSeconds(0.02f);
 
         val = -1f;
         channelGreen = new Vector3(val, 1, 0);
         channelBlue = new Vector3(val, 0, 1);
 
+        temperature = fadedInTemperature;
         flickering = false;
         flickeredIn = true;
     }
@@ -258,29 +255,34 @@ public class PostProcessingAnimator : MonoBehaviour {
         channelGreen = new Vector3(val, 1, 0);
         channelBlue = new Vector3(val, 0, 1);
 
+        temperature = fadedOutTemperature;
         yield return new WaitForSeconds(0.02f);
 
         val = -1f;
         channelGreen = new Vector3(val, 1, 0);
         channelBlue = new Vector3(val, 0, 1);
 
+        temperature = fadedInTemperature;
         yield return new WaitForSeconds(0.04f);
 
         val = 0.1f;
         channelGreen = new Vector3(val, 1, 0);
         channelBlue = new Vector3(val, 0, 1);
 
+        temperature = fadedOutTemperature;
         yield return new WaitForSeconds(0.07f);
 
         val = -1f;
         channelGreen = new Vector3(val, 1, 0);
         channelBlue = new Vector3(val, 0, 1);
 
+        temperature = fadedInTemperature;
         yield return new WaitForSeconds(0.03f);
 
         val = 0; 
         channelGreen = new Vector3(val, 1, 0);
         channelBlue = new Vector3(val, 0, 1);
+        temperature = fadedOutTemperature;
         flickering = false;
         flickeredIn = false;
     }
