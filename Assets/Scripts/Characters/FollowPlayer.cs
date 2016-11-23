@@ -3,13 +3,12 @@ using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 
-[RequireComponent(typeof(SpriteRenderer))]
 public class FollowPlayer : CharacterMovement
 {
 
     private Transform target;
     private PostProcessingAnimator postProcessingAnimator;
-    private new SpriteRenderer renderer;
+    public GameObject sprite;
     [Header("Visibility")]
     public bool visibleOverride = false;
     public float visibleToPlayerRange = 5f;
@@ -67,7 +66,7 @@ public class FollowPlayer : CharacterMovement
     
     public override void Start()
     {
-        renderer = GetComponent<SpriteRenderer>();
+        sprite = transform.FindChild("nonvaginabody").gameObject;
         coll = GetComponent<Collider2D>();
 
         target = GameObject.FindWithTag("Player").GetComponent<Transform>();
@@ -88,10 +87,7 @@ public class FollowPlayer : CharacterMovement
         if (target != null && !charging && Vector3.Distance(transform.position, target.position) < attackDistance)
             StartCoroutine(Attack());
 
-
-        visible = charging || withinPlayerVisibleRange;
-
-        renderer.enabled = visible || visibleOverride;
+        sprite.SetActive(visible || visibleOverride);
 
         if(visible)
             postProcessingAnimator.RegisterEnemyWithinPlayer(this);
@@ -127,6 +123,9 @@ public class FollowPlayer : CharacterMovement
     }
     
     void FixedUpdate () {
+
+        visible = charging || withinPlayerVisibleRange;
+
         if(isSeeingPlayer())
         {
             //play random ghost sound
@@ -195,8 +194,10 @@ public class FollowPlayer : CharacterMovement
     {
         if (target == null) return false;
         Vector2 delta = target.position - transform.position;
-        RaycastHit2D hit = Physics2D.Linecast((Vector2)transform.position, target.position, detectionBlockMask);
-        var result = hit.collider.transform == target;
+        RaycastHit2D hit = Physics2D.Linecast(transform.position, target.position, detectionBlockMask);
+        var result = false;
+        if (hit.collider != null)
+            result = hit.collider.transform == target;
 
         if (!result) targetSeenTime = null;
         if (result && targetSeenTime == null) targetSeenTime = Time.fixedTime;
