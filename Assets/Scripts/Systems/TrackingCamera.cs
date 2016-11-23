@@ -83,14 +83,6 @@ public class TrackingCamera : MonoBehaviour {
         shakeAmount = amount;
     }
 
-
-    public static void ShakeIt(float duration, float amount = 0.05f)
-    {
-        shakeDuration = duration;
-        shakeAmount = amount;
-    }
-
-
     void Update()
     {
         var chase = GameObject.FindGameObjectsWithTag("Enemy").Any(e => e.GetComponent<FollowPlayer>().visible);
