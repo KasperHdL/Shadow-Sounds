@@ -25,6 +25,18 @@ public class TrackingCamera : MonoBehaviour {
     public float chaseVignette = 0.5f;
     public float chaseChomatic = 5;
 
+    // How long the object should shake for.
+    private static float shakeDuration;
+
+    //used for shaking
+    private static Vector3 originalPos;
+    private bool shakePosSet;
+
+    // Amplitude of the shake. A larger value shakes the camera harder.
+    private static float shakeAmount;
+
+
+
     private Camera cam;
     private VignetteAndChromaticAberration effects;
 
@@ -64,13 +76,43 @@ public class TrackingCamera : MonoBehaviour {
         transform.position += delta * smoothFactor * Time.fixedDeltaTime;
 
 
+    public static void ShakeIt(float duration, float amount = 0.05f)
+    {
+        shakeDuration = duration;
+        shakeAmount = amount;
     }
 
-    void Update() {
-        var chase = GameObject.FindGameObjectsWithTag("Enemy").Any(e => e.GetComponent<FollowPlayer>().visible);
+
+    void Update()
+    {
+        var chase = GameObject.FindGameObjectsWithTag("Enemy").Any(e => e.GetComponent<SpriteRenderer>().enabled);
 
         cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, chase ? chaseSize : size, sizeLerp);
         effects.chromaticAberration = chase ? chaseChomatic : normalChomatic;
         effects.intensity = chase ? chaseVignette : normalVignette;
+
+
+        if (shakeDuration > 0)
+        {
+            Debug.Log("shake it like a polaroid");
+
+            if (!shakePosSet)
+            {
+                shakePosSet = true;
+                originalPos = cam.transform.localPosition;
+            }
+
+            float decreaseFactor = 1.0f;
+
+            cam.transform.position = originalPos + Random.insideUnitSphere * shakeAmount;
+
+            shakeDuration -= Time.deltaTime * decreaseFactor;
+        }
+        else
+        {
+            shakePosSet = false;
+            shakeDuration = 0f;
+        }
+
     }
 }
