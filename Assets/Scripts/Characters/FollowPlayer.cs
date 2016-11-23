@@ -14,6 +14,8 @@ public class FollowPlayer : CharacterMovement
     public bool visibleOverride = false;
     public float visibleToPlayerRange = 5f;
 
+    [HideInInspector] public bool visible = false;
+
     private bool withinPlayerVisibleRange = false;
     private bool lastFrameRendererEnabled = false;
 
@@ -87,25 +89,24 @@ public class FollowPlayer : CharacterMovement
             StartCoroutine(Attack());
 
 
-        renderer.enabled = charging || visibleOverride || withinPlayerVisibleRange;
+        visible = charging || withinPlayerVisibleRange;
 
-        if(renderer.enabled)
+        renderer.enabled = visible || visibleOverride;
+
+        if(visible)
             postProcessingAnimator.RegisterEnemyWithinPlayer(this);
-        else if(!renderer.enabled)
+        else
             postProcessingAnimator.RegitsterEnemyOutsidePlayer(this);
 
         
         
         DisableMovement = charging;
-        if (!isPlayingEnmMov)
+        if (!isPlayingEnmMov && visible)
         {
-            if (renderer.enabled)
-            {
-                SoundSystem.Play("enemy movement", 1, 0.5f);
-                isPlayingEnmMov = true;
-            }
+            SoundSystem.Play("enemy movement", 1, 0.5f);
+            isPlayingEnmMov = true;
         }
-        else if (!renderer.enabled)
+        else if (!visible)
         {
             SoundSystem.Stop("enemy movement");
             isPlayingEnmMov = false;
