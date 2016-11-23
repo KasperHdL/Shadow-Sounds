@@ -123,6 +123,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 2
-  openDuration: 2
+  openDuration: 0
   minScale: 0
   openDirection: {x: 0, y: 0, z: 0}

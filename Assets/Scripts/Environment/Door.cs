@@ -79,21 +79,31 @@ public class Door : MonoBehaviour {
         transform.localScale = s;
     }
 
-    public void Toggle(){
-        if(state == State.Closed || state == State.Closing)
-            state = State.Opening;
-        else
-            state = State.Closing;
+    public void Toggle()
+    {
+        if (state == State.Closed)
+            Open();
+        else if (state == State.Open)
+            Close();
     }
 
     public void Open(){
-        if(state != State.Open)
+        if (state != State.Open)
+        {
             state = State.Opening;
+            //todo: make relative to player location
+            SoundSystem.Play("doorOpen");
+        }
     }
 
     public void Close(){
-        if(state != State.Closed)
+        if (state != State.Closed)
+        {
             state = State.Closing;
+            //todo: make relative to player location
+            SoundSystem.Play("doorClose");
+
+        }
     }
 
 

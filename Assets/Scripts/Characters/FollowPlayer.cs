@@ -106,7 +106,7 @@ public class FollowPlayer : CharacterMovement
         {
             if (renderer.enabled)
             {
-                SoundSystem.Play("enemy movement", 1, 0.5f);
+                SoundSystem.Play("enemy movement", 1, 0.25f);
                 isPlayingEnmMov = true;
             }
         }

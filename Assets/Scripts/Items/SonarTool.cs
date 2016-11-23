@@ -62,7 +62,7 @@ public class SonarTool : MonoBehaviour, SonarSource {
 	
 	void Shoot()
 	{
-        SoundSystem.Play("sonar noise", 1.0f, 1, 0, distance/sonarSpeed);
+        SoundSystem.Play("sonar noise", 1.0f, 0.5f, 0, distance/sonarSpeed);
         
         var bullet = (SonarBullet)Instantiate(sonarBulletPrefab, transform.position, Quaternion.identity);
 	    bullet.source = this;
