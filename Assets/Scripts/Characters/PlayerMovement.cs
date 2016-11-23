@@ -42,6 +42,13 @@ public class PlayerMovement : CharacterMovement
 
     [HideInInspector] public bool isDead = false;
 
+    public void Awake()
+    {
+        var savesystem = GameObject.FindGameObjectWithTag("SaveSystem");
+        if (savesystem != null && savesystem.GetComponent<SaveSystem>().PlayerPosition.HasValue)
+            transform.position = savesystem.GetComponent<SaveSystem>().PlayerPosition.Value;
+    }
+
     public override void Start()
     {
         base.Start();
