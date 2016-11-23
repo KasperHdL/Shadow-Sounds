@@ -44,6 +44,7 @@ GameObject:
   - 114: {fileID: 114000013243246060}
   - 114: {fileID: 114000012107710002}
   - 114: {fileID: 114000012675689040}
+  - 114: {fileID: 114000011673231572}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -119,7 +120,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011376902860}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23, y: -14, z: -10}
+  m_LocalPosition: {x: 24, y: -14, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -9068,6 +9069,29 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011376902860}
   m_Enabled: 1
+--- !u!114 &114000011673231572
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011376902860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd6d4281e5d7cd44d8c6e38bc2c1b8d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mode: 0
+  intensity: 0.2
+  chromaticAberration: 0
+  axialAberration: 0.5
+  blur: 0
+  blurSpread: 0
+  luminanceDependency: 0.25
+  blurDistance: 2.5
+  vignetteShader: {fileID: 4800000, guid: 627943dc7a9a74286b70a4f694a0acd5, type: 3}
+  separableBlurShader: {fileID: 4800000, guid: e97c14fbb5ea04c3a902cc533d7fc5d1, type: 3}
+  chromAberrationShader: {fileID: 4800000, guid: 2b4f29398d9484ccfa9fd220449f5eee,
+    type: 3}
 --- !u!114 &114000012107710002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9093,7 +9117,7 @@ MonoBehaviour:
   - enemy movement
   sclips:
   - data:
-    - {fileID: 8300000, guid: c6b94d59b5163434fa9ccea8e4aa5d4f, type: 3}
+    - {fileID: 8300000, guid: 46172244123ccf44882ef4fa2684e008, type: 3}
   - data:
     - {fileID: 8300000, guid: 022d1b9b3301219498ae4a914ea419e1, type: 3}
   - data:
@@ -9368,10 +9392,14 @@ MonoBehaviour:
   smoothFactor: 0.8
   offsetZ: -10
   viewOffsetMultiplier: 2
-  velocityFactor: 65
-  chaseSize: 5
-  size: 6
+  velocityFactor: 80
+  chaseSize: 7
+  size: 8
   sizeLerp: 0.2
+  normalVignette: 0.2
+  normalChomatic: 0.5
+  chaseVignette: 0.4
+  chaseChomatic: 8
 --- !u!124 &124000012198625174
 Behaviour:
   m_ObjectHideFlags: 1
@@ -11173,12 +11201,12 @@ ParticleSystem:
   moveWithTransform: 0
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 108292209
+  randomSeed: 644764586
   InitialModule:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 20
+      scalar: 40
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -11578,7 +11606,7 @@ ParticleSystem:
     serializedVersion: 2
     m_Type: 0
     rate:
-      scalar: 200
+      scalar: 80
       maxCurve:
         serializedVersion: 2
         m_Curve:

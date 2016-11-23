@@ -47,6 +47,8 @@ public class PlayerMovement : CharacterMovement
         base.Start();
         sonar = GetComponent<SonarTool>();
         controller = GetComponent<ControllerContainer>().controller;
+        if (ppAnimator == null)
+            ppAnimator = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<PostProcessingAnimator>();
 
         if (AmbientLight)
         {
@@ -58,7 +60,7 @@ public class PlayerMovement : CharacterMovement
     void OnCollisionEnter2D(Collision2D collision)
     {
 
-        Debug.Log("player hit a " + collision.gameObject.tag + ", named " + collision.gameObject.name);
+        //Debug.Log("player hit a " + collision.gameObject.tag + ", named " + collision.gameObject.name);
 
         switch (collision.gameObject.tag)
         {
@@ -90,7 +92,7 @@ public class PlayerMovement : CharacterMovement
         StartCoroutine(Reactivate());
         ppAnimator.PlayerAttacked();
         SoundSystem.Play("enemy collision", 1,enemyColVol);
-              
+        TrackingCamera.ShakeIt(0.5f, 0.5f);
         health -= damage;
         if (health <= 0) Die();
     }

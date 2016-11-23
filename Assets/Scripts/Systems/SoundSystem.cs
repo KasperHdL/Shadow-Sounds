@@ -95,13 +95,13 @@ public class SoundSystem : MonoBehaviour, ISerializationCallbackReceiver
         source.pitch = pitch;
         source.volume = volume;
         source.clip = clips[sound].data[Random.Range(0, clips[sound].data.Count)];
-        source.loop = loop;
+        source.loop = loop || duration.HasValue;
         source.Play();
 
         if (!sources.ContainsKey(sound)) sources.Add(sound, new List<AudioSource>());
         sources[sound].Add(source);
 
-        if (loop) yield break;
+        if (loop && !duration.HasValue) yield break;
 
         if (!duration.HasValue)
         {
