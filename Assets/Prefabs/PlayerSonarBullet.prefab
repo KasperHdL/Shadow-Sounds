@@ -53,13 +53,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SoundMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 16640
   BlockMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 513
   HighlightMask:
     serializedVersion: 2
-    m_Bits: 8448
+    m_Bits: 24832
   material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   colorStart: {r: 0.528, g: 0.528, b: 0.528, a: 1}
   colorEnd: {r: 0.5294118, g: 0.5294118, b: 0.5294118, a: 0}

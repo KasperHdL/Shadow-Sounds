@@ -193,7 +193,7 @@ public class PlayerMovement : CharacterMovement
 
 
         if(AmbientLight != null) { 
-            var chase = GameObject.FindGameObjectsWithTag("Enemy").Any(e => e.GetComponent<SpriteRenderer>().enabled);
+            var chase = GameObject.FindGameObjectsWithTag("Enemy").Any(e => e.GetComponent<FollowPlayer>().visible);
             AmbientLight.intensity = OriginalALightIntensity * (chase ? ChaseLightIntMultiplier: 1.0f);
             AmbientLight.range = OriginalALightRange * (chase ? ChaseLightRanMultiplier : 1.0f);
         }
