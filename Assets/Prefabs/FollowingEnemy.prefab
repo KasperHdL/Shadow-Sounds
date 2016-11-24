@@ -473,7 +473,7 @@ MonoBehaviour:
   attacking: 0
   detectionBlockMask:
     serializedVersion: 2
-    m_Bits: 4609
+    m_Bits: 37377
   immidiateDetectionDistance: 4
   detectionTime: 4
   knownPlayerPosition: {x: 0, y: 0}
