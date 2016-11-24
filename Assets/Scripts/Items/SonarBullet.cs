@@ -19,6 +19,7 @@ public class SonarBullet : MonoBehaviour {
     public float width = 0.1f;
     public float highlightWidth = 0.2f;
     public float transparentSlowRate = 0.01f;
+    public float transparentMinSpeed = 0.1f;
 
     public float noise = 10;
     public float noiseBlockMultiplier = 0.1f;
@@ -75,7 +76,7 @@ public class SonarBullet : MonoBehaviour {
 
         while(t > 0) {
             var cl = colorCurve.Evaluate(1 - t);
-            var h = 0;
+            var h = 0; // Number of active points
 
             for(int i = 0; i < source.Rays; i++) {
                 if(done[i])
@@ -87,50 +88,56 @@ public class SonarBullet : MonoBehaviour {
                 var a = startAngle + coneIncrementRad * i;
                 var dir = new Vector2(Mathf.Cos(a), Mathf.Sin(a));
 
-                var soundhit = Physics2D.Raycast(position[i], dir, dd, SoundMask);
-                var blockhit = Physics2D.Raycast(position[i], dir, dd, BlockMask);
-                var highlighthit = Physics2D.Raycast(position[i], dir, dd, HighlightMask);
-                var transparenthit = Physics2D.Raycast(position[i], dir, dd, TransparentMask);
+                var hits = Physics2D.RaycastAll(position[i], dir, dd,
+                    SoundMask | BlockMask | HighlightMask | TransparentMask);
 
                 var nois = noise / 1000;
 
-                Vector2 hit = position[i] + dir * dd;
-                if(soundhit.collider != null) {
-                    nois *= noiseHitMultiplier;
+                Vector2 p = position[i] + dir * dd;
+                highlight[i] = null;
 
-                    if(!played.Contains(soundhit.collider)) {
-                        played.Add(soundhit.collider);
-                        SoundSystem.Play("sonar hit",
-                            hitPitch * t,
-                            (float)(sonarPct * hitVolume * (1 - System.Math.Log(Vector3.Distance(hit, origin)) / System.Math.Log(source.Distance))));
+                foreach(var hit in hits) {
+                    // Check if hit sound maker
+                    if((SoundMask & (1 << hit.collider.gameObject.layer)) != 0) {
+                        nois *= noiseHitMultiplier;
+
+                        if(!played.Contains(hit.collider)) {
+                            played.Add(hit.collider);
+                            SoundSystem.Play("sonar hit",
+                                hitPitch * t,
+                                (float)(sonarPct * hitVolume * (1 - System.Math.Log(Vector3.Distance(p, origin)) / System.Math.Log(source.Distance))));
+                        }
                     }
-                }
 
-                highlight[i] = highlighthit.collider != null ? (Vector2?)hit : null;
-                if(highlighthit.collider != null)
-                    nois *= noiseHighlightMultiplier;
-
-                if(blockhit.collider != null) {
-                    hit = blockhit.point;
-                    done[i] = true;
-                    highlight[i] = null;
-
-                    nois *= noiseBlockMultiplier;
-                }
-
-                if(transparenthit.collider != null) {
-                    hit = transparenthit.point + dir * 0.05f;
-                    nois *= noiseTransMultiplier;
-                    slow[i]++;
-                    if(slow[i] * transparentSlowRate >= source.Speed) {
+                    // Check if hit a blocking collider
+                    if((BlockMask & (1 << hit.collider.gameObject.layer)) != 0) {
+                        p = hit.point;
                         done[i] = true;
                         highlight[i] = null;
+
+                        nois *= noiseBlockMultiplier;
+                        break;
                     }
+
+                    // Check if hit a transparent
+                    if((TransparentMask & (1 << hit.collider.gameObject.layer)) != 0) {
+                        p = hit.point + dir * 0.1f;
+                        nois *= noiseTransMultiplier;
+                        slow[i]++;
+                        if(slow[i] * transparentSlowRate > source.Speed - transparentMinSpeed)
+                            slow[i]--;
+                    }
+
+                    // Check if hit highlight
+                    if((HighlightMask & (1 << hit.collider.gameObject.layer)) != 0) {
+                        highlight[i] = p;
+                        if(hit.collider != null)
+                            nois *= noiseHighlightMultiplier;
+                    } 
                 }
 
-                position[i] = hit;
-                hit += Random.insideUnitCircle.normalized * nois;
-                line.SetPosition(i, hit);
+                position[i] = p;
+                line.SetPosition(i, p + Random.insideUnitCircle.normalized * nois);
             }
 
             // Smoothing
@@ -180,6 +187,7 @@ public class SonarBullet : MonoBehaviour {
                 finished = true;
             }
 
+            // Sleep
             yield return new WaitForFixedUpdate();
             t -= Time.fixedDeltaTime;
         }

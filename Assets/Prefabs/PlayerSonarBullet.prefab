@@ -90,7 +90,7 @@ MonoBehaviour:
     m_RotationOrder: 0
   width: 0.1
   highlightWidth: 0.4
-  transparentSlowRate: 0.005
+  transparentSlowRate: 0.5
   noise: 50
   noiseBlockMultiplier: 0.05
   noiseHitMultiplier: 2
