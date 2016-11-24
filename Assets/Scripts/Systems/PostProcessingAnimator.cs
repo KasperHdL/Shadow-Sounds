@@ -12,6 +12,7 @@ public class PostProcessingAnimator : MonoBehaviour {
     public ColorGradingCurve redCurve;
 
     public float fadeInTime = 1f;
+    public float fadeOutTime = 2;
     private float exposure;
 
     private float temperature;
@@ -27,21 +28,26 @@ public class PostProcessingAnimator : MonoBehaviour {
     public bool flickeringIn = false;
     public bool flickeredIn = false;
 
-    private bool playerAttacked = false;
+    public bool playerAttacked = false;
+    public bool fadeToBlack = false;
 
-    public List<FollowPlayer> enemies;
+    public bool forceNormalMode = false;
+    private List<FollowPlayer> enemies;
     private IEnumerator flickerEnumerator;
+    public MonoBehaviour m;
+    public GameObject g;
 
 	// Use this for initialization
 	void Start () {
         enemies = new List<FollowPlayer>();
+        m = this;
+        g = gameObject;
         StartCoroutine(fadeIn());
         temperature = fadedOutTemperature;
 	
 	}
-	
 	// Update is called once per frame
-	void FixedUpdate () {
+	void OnPreRender() {
         colorGrading.enabled = false;
         var settings = colorGrading.settings;
         settings.basic.postExposure = exposure;
@@ -56,16 +62,26 @@ public class PostProcessingAnimator : MonoBehaviour {
         colorGrading.settings = settings;
         profile.colorGrading = colorGrading;
         colorGrading.enabled = true;
-  
+
         if(playerAttacked){
-            StartCoroutine(fadeBgRedInOut(1,0f, .03f, .2f));
             playerAttacked = false;
+            StartCoroutine(fadeBgRedInOut(1,0f, .03f, .2f));
         }
 
-       
+        if(fadeToBlack){
+            fadeToBlack = false;
+        forceNormalMode = true;
+        enemies.Clear();
+        FlickerOutWorld();
+
+
+            StartCoroutine(fadeOut(fadeOutTime));
+        }
+
 	}
 
     public void RegisterEnemyWithinPlayer(FollowPlayer enemy){
+        if(forceNormalMode)return;
         if(enemies.IndexOf(enemy) == -1){
             enemies.Add(enemy);
             FlickerInWorld();
@@ -81,11 +97,11 @@ public class PostProcessingAnimator : MonoBehaviour {
 
 
     public void PlayerAttacked(){
-        playerAttacked = true;
+        Camera.main.GetComponent<PostProcessingAnimator>().playerAttacked = true;
     }
 
     public void FadeToBlack(float length){
-        StartCoroutine(fadeOut(length));
+        Camera.main.GetComponent<PostProcessingAnimator>().fadeToBlack = true;
 
     }
 
@@ -126,7 +142,7 @@ public class PostProcessingAnimator : MonoBehaviour {
         while(Time.time < endTime){
             t = (Time.time - startTime) / fadeInTime;
             exposure = Mathf.Lerp(-10f, 0f, t);
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
         exposure = 0f;
         
@@ -141,7 +157,7 @@ public class PostProcessingAnimator : MonoBehaviour {
         while(Time.time < endTime){
             t = (Time.time - startTime) / length;
             exposure = Mathf.Lerp(0f, -10f, t);
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
         exposure = -10f;
     }
@@ -174,7 +190,7 @@ public class PostProcessingAnimator : MonoBehaviour {
             channelGreen = new Vector3(v, 1, 0);
             channelBlue = new Vector3(v, 0, 1);
 
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
         
         channelRed = new Vector3(1, 0, 0);
@@ -200,7 +216,7 @@ public class PostProcessingAnimator : MonoBehaviour {
             redCurve.curve.RemoveKey(0);
             redCurve.curve.AddKey(0f,v);
 
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
 
         redCurve.curve.keys[0].value = to;
@@ -286,6 +302,26 @@ public class PostProcessingAnimator : MonoBehaviour {
         flickering = false;
         flickeredIn = false;
     }
+	
+    void OnApplicationQuit(){
+        colorGrading.enabled = false;
+        var settings = colorGrading.settings;
+        settings.basic.postExposure = 0;
+        settings.basic.temperature = fadedOutTemperature;
+        settings.curves.master = masterCurve;
+        settings.curves.red = masterCurve;
+
+        settings.channelMixer.red = new Vector3(1,0,0);
+        settings.channelMixer.green = new Vector3(0,1,0);
+        settings.channelMixer.blue = new Vector3(0,0,1);
+
+        colorGrading.settings = settings;
+        profile.colorGrading = colorGrading;
+        colorGrading.enabled = true;
+
+
+    }
+
 
 
 }
