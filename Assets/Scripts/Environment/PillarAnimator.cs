@@ -32,6 +32,13 @@ public class PillarAnimator : MonoBehaviour {
     public AnimationCurve ColorMixCurve;
     public float ColorMixCurveSpeed;
 
+    //heartbeat stuff
+    private float HeartBearRate;
+    private float lastBeat;
+    public AudioClip HeartBeatClip;
+    private AudioSource heartAudioSource;
+
+
     private List<Transform> children;
     private List<SpriteRenderer> sprites;
     private List<Vector3> positions;
@@ -68,6 +75,16 @@ public class PillarAnimator : MonoBehaviour {
             target.Add(Random.insideUnitCircle.normalized);
             sprites.Add(child.GetComponent<SpriteRenderer>());
         }
+
+
+        HeartBearRate = PositionPulseCurveSpeed;
+        heartAudioSource = gameObject.AddComponent<AudioSource>();
+        heartAudioSource.clip = HeartBeatClip;
+        heartAudioSource.minDistance = 10;
+
+        heartAudioSource.maxDistance = 40;
+        heartAudioSource.rolloffMode = AudioRolloffMode.Linear;
+        lastBeat = Time.time;
     }
 
     public void Update() {
@@ -86,5 +103,15 @@ public class PillarAnimator : MonoBehaviour {
             var b = ColorPulseCurve.Evaluate(Time.time * ColorPulseSpeed + colorRandom[i]);
             sprites[i].color = Color.LerpUnclamped(ColorA, ColorB, Mathf.Lerp(a, b, ColorMixCurve.Evaluate(Time.time * ColorMixCurveSpeed)));
         }
+
+        //heart is beating
+        if (lastBeat + HeartBearRate < Time.time)
+        {
+            lastBeat = Time.time;
+            
+
+            heartAudioSource.Play();
+        }
+
     }
 }
