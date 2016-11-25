@@ -62,7 +62,7 @@ public class PillarAnimator : MonoBehaviour {
         target = new List<Vector3>();
         for(int i = 0; i < transform.childCount; i++) {
             var child = transform.GetChild(i);
-            if(child.GetComponent<Light>() != null)
+            if(child.GetComponent<SpriteRenderer>() == null)
                 continue;
 
             children.Add(child);

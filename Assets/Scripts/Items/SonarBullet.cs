@@ -141,12 +141,14 @@ public class SonarBullet : MonoBehaviour {
 
             // Smoothing
             for(int j = 0; j < 6; j++) {
-                for(int i = 1; i < source.Rays - 1; i++) {
+                for(int i = 2; i < source.Rays - 2; i++) {
                     var dir = (position[i] - origin).normalized;
+                    var dist0 = Vector3.Distance(origin, position[i - 2]);
                     var dist1 = Vector3.Distance(origin, position[i - 1]);
                     var dist2 = Vector3.Distance(origin, position[i]);
                     var dist3 = Vector3.Distance(origin, position[i + 1]);
-                    position[i] = origin + dir * ((dist1 + dist2 + dist3) / 3);
+                    var dist4 = Vector3.Distance(origin, position[i + 2]);
+                    position[i] = origin + dir * ((dist0 + dist1 + dist2 + dist3 + dist4) / 5);
                 }
             }
 
