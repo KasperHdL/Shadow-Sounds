@@ -45,6 +45,7 @@ public class PlayerMovement : CharacterMovement
         var savesystem = GameObject.FindGameObjectWithTag("SaveSystem");
         if (savesystem != null && savesystem.GetComponent<SaveSystem>().PlayerPosition.HasValue)
             transform.position = savesystem.GetComponent<SaveSystem>().PlayerPosition.Value;
+    //    doNotNormalize = true;
     }
 
     public override void Start()
@@ -63,7 +64,16 @@ public class PlayerMovement : CharacterMovement
     }
 
     void OnTriggerStay2D(Collider2D coll){
-        if(coll.gameObject.tag == "Interactable" && (controller.GetButtonDown(KInput.Button.BumperRight) || Input.GetButtonDown("Use"))){
+        if(coll.gameObject.tag == "Interactable"){
+            if(
+                Input.GetButtonDown("Use") || 
+                controller.GetButtonDown(KInput.Button.BumperLeft) ||
+                controller.GetButtonDown(KInput.Button.X) ||
+                controller.GetButtonDown(KInput.Button.A) ||
+                controller.GetButtonDown(KInput.Button.StickRightClick) ||
+                controller.GetButtonDown(KInput.Button.StickLeftClick) ||
+                controller.GetAxis(Axis.TriggerLeft) > 0.75f
+                )
             coll.gameObject.GetComponent<Interactable>().Interact();;
 
         }
@@ -160,8 +170,9 @@ public class PlayerMovement : CharacterMovement
                 v = v.normalized*((v.magnitude - deadzone)/(1 - deadzone));
             }
         }
+
         if (v == Vector3.zero)
-            v = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0);
+            v = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0).normalized;
 
         Move = v;
 

@@ -52,12 +52,12 @@ public class SonarTool : MonoBehaviour, SonarSource {
         lastUpdateTime = Time.time;
 
         if (lastShotTime + shotCooldown < Time.time){
-            if(Input.GetButton("Fire1") || controller.GetAxis(Axis.TriggerRight) > 0.75f){
+            if(Input.GetButton("Fire1") || controller.GetAxis(Axis.TriggerRight) > 0.75f || controller.GetButton(KInput.Button.BumperRight))
+            {
                 Shoot();
                 lastShotTime = Time.time;
             }
         }
-
     }
 	
 	void Shoot()
