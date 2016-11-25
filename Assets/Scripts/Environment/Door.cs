@@ -103,12 +103,17 @@ public class Door : MonoBehaviour {
     public void Toggle()
     {
 
-        if (state == State.Closed)
-            Open();
-        else if (state == State.Open)
-            Close();
-        else if(state == State.Error)
-            Error();
+        switch(state){
+            case State.Closed:
+                Open();
+                break;
+            case State.Open:
+                Close();
+                break;
+            case State.Error:
+                Error();
+                break;
+        }
     }
 
     public void Open(){
