@@ -328,6 +328,7 @@ GameObject:
   - 114: {fileID: 114000013000410872}
   - 58: {fileID: 58000012155115342}
   - 82: {fileID: 82000010312977044}
+  - 58: {fileID: 58000013063026306}
   m_Layer: 14
   m_Name: Pillar
   m_TagString: Interactable
@@ -2187,6 +2188,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.25
+--- !u!58 &58000013063026306
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011369317332}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.75
 --- !u!82 &82000010312977044
 AudioSource:
   m_ObjectHideFlags: 1
