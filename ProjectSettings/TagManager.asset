@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - Event
   - PickUp
+  - SaveSystem
   layers:
   - Default
   - TransparentFX
@@ -23,8 +24,8 @@ TagManager:
   - 
   - Player
   - Highlights
-  - 
-  - 
+  - Pillar
+  - Transparent
   - 
   - 
   - 
@@ -44,4 +45,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 3523521751
     locked: 0

@@ -7,12 +7,12 @@ using UnityStandardAssets.ImageEffects;
 [RequireComponent(typeof(VignetteAndChromaticAberration))]
 public class TrackingCamera : MonoBehaviour {
 
-	public PlayerMovement target;
+    public PlayerMovement target;
 
-	public float smoothFactor = 0.8f;
+    public float smoothFactor = 0.8f;
 
-	public float offsetZ  = -10;
-	public float viewOffsetMultiplier = 2f;
+    public float offsetZ  = -10;
+    public float viewOffsetMultiplier = 2f;
 
     public float velocityFactor = 1;
 
@@ -39,45 +39,45 @@ public class TrackingCamera : MonoBehaviour {
 
     private Camera cam;
     private VignetteAndChromaticAberration effects;
+    private PostProcessingAnimator ppAnimator;
 
-    void Start()
-    {
+    void Start() {
         cam = GetComponent<Camera>();
         effects = GetComponent<VignetteAndChromaticAberration>();
+        ppAnimator = GetComponent<PostProcessingAnimator>();
 
-        if(target == null){
-            Debug.LogWarning("Camera has no target, gonna try to find an object tagged 'Player'");
-            
+        if(target == null) {
+            //Debug.LogWarning("Camera has no target, gonna try to find an object tagged 'Player'");
+
             target = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
 
-            transform.position = new Vector3(target.transform.position.x, target.transform.position.y,transform.position.z);
+            transform.position = new Vector3(target.transform.position.x, target.transform.position.y, transform.position.z);
 
             if(target == null)
                 Debug.LogError("No object tagged 'Player'");
         }
-        SoundSystem.Play("background",1,0.1f,0,null,true);
+        SoundSystem.Play("background", 1, 0.1f, 0, null, true);
     }
-	
-	void FixedUpdate ()
-	{
-	    if (target == null) return;
+
+    void FixedUpdate() {
+        if(target == null)
+            return;
 
         Vector3 delta = target.transform.position - transform.position;
         delta.z = 0;
-        Vector3 desiredPosition = 
-              (Vector2)transform.position 
-            + (Vector2)delta.normalized * delta.sqrMagnitude 
+        Vector3 desiredPosition =
+              (Vector2)transform.position
+            + (Vector2)delta.normalized * delta.sqrMagnitude
             + target.viewDirection * viewOffsetMultiplier
             + target.GetComponent<Rigidbody2D>().velocity * Time.fixedDeltaTime * velocityFactor;
 
         desiredPosition.z = offsetZ;
 
         delta = desiredPosition - transform.position;
-        
-        transform.position += (Vector3)delta * smoothFactor * Time.fixedDeltaTime;
 
+        transform.position += delta * smoothFactor * Time.fixedDeltaTime;
 
-	}
+    }
 
     public static void ShakeIt(float duration, float amount = 0.05f)
     {
@@ -85,10 +85,11 @@ public class TrackingCamera : MonoBehaviour {
         shakeAmount = amount;
     }
 
-
     void Update()
     {
-        var chase = GameObject.FindGameObjectsWithTag("Enemy").Any(e => e.GetComponent<SpriteRenderer>().enabled);
+        var chase = GameObject.FindGameObjectsWithTag("Enemy").Any(e => e.GetComponent<FollowPlayer>().visible);
+        if(ppAnimator.forceNormalMode)
+            chase = false;
 
         cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, chase ? chaseSize : size, sizeLerp);
         effects.chromaticAberration = chase ? chaseChomatic : normalChomatic;
@@ -97,7 +98,6 @@ public class TrackingCamera : MonoBehaviour {
 
         if (shakeDuration > 0)
         {
-            Debug.Log("shake it like a polaroid");
 
             if (!shakePosSet)
             {

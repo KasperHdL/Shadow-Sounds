@@ -17,6 +17,7 @@ public class PlayerMovement : CharacterMovement
     public float defColVol = 0.5f;
     private bool isPlayingSteps = false;
 
+    public float deathFade = 3f;
 
     [HideInInspector]
     public Vector2 viewDirection;
@@ -41,6 +42,13 @@ public class PlayerMovement : CharacterMovement
     public GameObject flashlight;
 
     [HideInInspector] public bool isDead = false;
+
+    public void Awake()
+    {
+        var savesystem = GameObject.FindGameObjectWithTag("SaveSystem");
+        if (savesystem != null && savesystem.GetComponent<SaveSystem>().PlayerPosition.HasValue)
+            transform.position = savesystem.GetComponent<SaveSystem>().PlayerPosition.Value;
+    }
 
     public override void Start()
     {
@@ -107,17 +115,18 @@ public class PlayerMovement : CharacterMovement
     {
         if(isDead) return;
 
+// Drop Flashlight(does not look good currently)
 //        GameObject fl = Instantiate(flashlight_prefab, flashlight.transform.position, flashlight.transform.rotation) as GameObject;
-
- //       flashlight.GetComponent<Light>().enabled = false;
+//       flashlight.GetComponent<Light>().enabled = false;
 
         body.drag = 5;
         body.angularDrag = 1f;
 
         isDead = true;
+        SoundSystem.Play("death",1,1,0,deathFade - 0.75f);
 
-        ppAnimator.FadeToBlack(2f);
-        StartCoroutine(ReloadLevel(2f));
+        ppAnimator.FadeToBlack();
+        StartCoroutine(ReloadLevel(deathFade));
     }
 
     private IEnumerator ReloadLevel(float delay){
@@ -185,7 +194,7 @@ public class PlayerMovement : CharacterMovement
 
 
         if(AmbientLight != null) { 
-            var chase = GameObject.FindGameObjectsWithTag("Enemy").Any(e => e.GetComponent<SpriteRenderer>().enabled);
+            var chase = GameObject.FindGameObjectsWithTag("Enemy").Any(e => e.GetComponent<FollowPlayer>().visible);
             AmbientLight.intensity = OriginalALightIntensity * (chase ? ChaseLightIntMultiplier: 1.0f);
             AmbientLight.range = OriginalALightRange * (chase ? ChaseLightRanMultiplier : 1.0f);
         }

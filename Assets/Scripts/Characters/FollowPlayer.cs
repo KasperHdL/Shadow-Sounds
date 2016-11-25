@@ -3,7 +3,6 @@ using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 
-[RequireComponent(typeof(SpriteRenderer))]
 public class FollowPlayer : CharacterMovement
 {
     
@@ -13,13 +12,14 @@ public class FollowPlayer : CharacterMovement
 
     private Transform target;
     private PostProcessingAnimator postProcessingAnimator;
-    private new SpriteRenderer renderer;
+    public GameObject sprite;
     [Header("Visibility")]
     public bool visibleOverride = false;
     public float visibleToPlayerRange = 5f;
 
+    [HideInInspector] public bool visible = false;
+
     private bool withinPlayerVisibleRange = false;
-    private bool lastFrameRendererEnabled = false;
 
 
     [Header("Wandering")]
@@ -32,7 +32,6 @@ public class FollowPlayer : CharacterMovement
     private Vector2 wanderingAreaStartPosition;
     public Vector2 wanderingAreaOffset = Vector2.zero;
     public Vector2 wanderingAreaSize = new Vector2(5,5);
-    private float allowedDistanceToWanderPosition = 0.5f;
     [Header("Random Wandering")]
     public float minWanderDistance = 2f;
     public float maxWanderDistance = 5f;
@@ -43,7 +42,7 @@ public class FollowPlayer : CharacterMovement
     public float attackChargeTime = 0.2f;
     public float attackForce = 100;
     public float hitForce = 800;
-    private bool attacking;
+    public bool attacking;
     private bool charging;
     private bool isPlayingEnmMov = false;
 
@@ -59,6 +58,7 @@ public class FollowPlayer : CharacterMovement
     [HideInInspector] public Vector2 knownPlayerPosition;
     private Vector2 knownEnemyPosition;
     private Vector2 nextWanderPosition;
+    private Vector2 lookDirection;
     private bool playedSound = false;
     public float broadcastToOthersDelay = 0.25f;
 
@@ -69,7 +69,7 @@ public class FollowPlayer : CharacterMovement
     
     public override void Start()
     {
-        renderer = GetComponent<SpriteRenderer>();
+        sprite = transform.FindChild("nonvaginabody").gameObject;
         coll = GetComponent<Collider2D>();
         target = GameObject.FindWithTag("Player").GetComponent<Transform>();
         if (target == null)
@@ -91,26 +91,22 @@ public class FollowPlayer : CharacterMovement
         if (target != null && !charging && Vector3.Distance(transform.position, target.position) < attackDistance)
             StartCoroutine(Attack());
 
+        sprite.SetActive(visible || visibleOverride);
 
-        renderer.enabled = charging || visibleOverride || withinPlayerVisibleRange;
-
-        if(renderer.enabled)
+        if(visible)
             postProcessingAnimator.RegisterEnemyWithinPlayer(this);
-        else if(!renderer.enabled)
+        else
             postProcessingAnimator.RegitsterEnemyOutsidePlayer(this);
 
         
         
         DisableMovement = charging;
-        if (!isPlayingEnmMov)
+        if (!isPlayingEnmMov && visible)
         {
-            if (renderer.enabled)
-            {
-                SoundSystem.Play("enemy movement", 1, 0.5f);
-                isPlayingEnmMov = true;
-            }
+            SoundSystem.Play("enemy movement", 1, 0.25f);
+            isPlayingEnmMov = true;
         }
-        else if (!renderer.enabled)
+        else if (!visible)
         {
             SoundSystem.Stop("enemy movement");
             isPlayingEnmMov = false;
@@ -131,6 +127,9 @@ public class FollowPlayer : CharacterMovement
     }
     
     void FixedUpdate () {
+
+        visible = charging || withinPlayerVisibleRange;
+
         if(isSeeingPlayer())
         {
             MoveSpeed = ChaseSpeed;
@@ -189,7 +188,8 @@ public class FollowPlayer : CharacterMovement
 
             moveDirection = nextWanderPosition - (Vector2)transform.position;
         }
-        transform.rotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * Mathf.Atan2(moveDirection.y, moveDirection.x) - 90);
+        if (body.velocity.magnitude > 0) lookDirection = body.velocity;
+        transform.rotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * Mathf.Atan2(lookDirection.y, lookDirection.x) - 90);
         Move = Vector2.ClampMagnitude(moveDirection,maxWanderDistance);
 
         base.Update();
@@ -200,8 +200,10 @@ public class FollowPlayer : CharacterMovement
     {
         if (target == null) return false;
         Vector2 delta = target.position - transform.position;
-        RaycastHit2D hit = Physics2D.Linecast((Vector2)transform.position, target.position, detectionBlockMask);
-        var result = hit.collider.transform == target;
+        RaycastHit2D hit = Physics2D.Linecast(transform.position, target.position, detectionBlockMask);
+        var result = false;
+        if (hit.collider != null)
+            result = hit.collider.transform == target;
 
         if (!result) targetSeenTime = null;
         if (result && targetSeenTime == null) targetSeenTime = Time.fixedTime;
