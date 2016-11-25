@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class Door : MonoBehaviour {
 
@@ -7,6 +8,7 @@ public class Door : MonoBehaviour {
         Closing,
         Open,
         Opening,
+        Error,
     };
 
     public State state;
@@ -23,13 +25,15 @@ public class Door : MonoBehaviour {
     public Vector3 openDirection;
     public AnimationCurve doorAnimationCurve;
 
+    public List<Button> buttons;
+
     void OnReset(){
         if(openDirection == Vector3.zero)
             openDirection = transform.up;
     }
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         maxScale = transform.localScale.y;
         moveAmount = maxScale / 2;
         
@@ -45,6 +49,22 @@ public class Door : MonoBehaviour {
 
         SetDoor();
 	}
+
+    public void AddButton(Button b){
+        buttons.Add(b);
+        b.DoorStateChanged(state);
+    }
+
+    public void RemoveButton(Button b){
+        buttons.Remove(b);
+    }
+
+    private void ChangeState(State state){
+        this.state = state;
+        for(int i = 0; i < buttons.Count; i++){
+            buttons[i].DoorStateChanged(state);
+        }
+    }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -54,18 +74,18 @@ public class Door : MonoBehaviour {
         SetDoor();
 
         switch(state){
-        case State.Opening:
+            case State.Opening:
                 aniTime -= Time.fixedDeltaTime;
                 if(aniTime <= 0){
                     aniTime = 0;
-                    state = State.Open;
+                    ChangeState(State.Open);
                 }
             break;
             case State.Closing:
                 aniTime += Time.fixedDeltaTime;
                 if(aniTime >= openDuration){
                     aniTime = openDuration;
-                    state = State.Closed;
+                    ChangeState(State.Closed);
                 }
             break;
         }
@@ -91,7 +111,7 @@ public class Door : MonoBehaviour {
     public void Open(){
         if (state != State.Open)
         {
-            state = State.Opening;
+            ChangeState(State.Opening);
             //todo: make relative to player location
             SoundSystem.Play("doorOpen");
         }
@@ -100,7 +120,7 @@ public class Door : MonoBehaviour {
     public void Close(){
         if (state != State.Closed)
         {
-            state = State.Closing;
+            ChangeState(State.Closing);
             //todo: make relative to player location
             SoundSystem.Play("doorClose");
 
