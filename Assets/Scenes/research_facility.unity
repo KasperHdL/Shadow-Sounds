@@ -12299,6 +12299,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114000013000410872, guid: 761f5628786a03c488d3d77b74a20c76,
+        type: 2}
+      propertyPath: OnDestroyTurnOn.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4000010448195084, guid: 761f5628786a03c488d3d77b74a20c76, type: 2}
       propertyPath: m_LocalPosition.x
       value: 15.336305
@@ -12336,6 +12341,11 @@ Prefab:
       propertyPath: End
       value: 
       objectReference: {fileID: 1032498489}
+    - target: {fileID: 114000013000410872, guid: 761f5628786a03c488d3d77b74a20c76,
+        type: 2}
+      propertyPath: OnDestroyTurnOn.Array.data[0]
+      value: 
+      objectReference: {fileID: 1441543233}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 761f5628786a03c488d3d77b74a20c76, type: 2}
   m_IsPrefabParent: 0
@@ -20735,6 +20745,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4000013351651438, guid: c9c84f3b3900e4f86ae94550e468e42b,
     type: 2}
   m_PrefabInternal: {fileID: 1435827673}
+--- !u!1 &1441543233 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000013407422182, guid: 3434cdbe279ca4009ad762629ae97334,
+    type: 2}
+  m_PrefabInternal: {fileID: 1478002688}
 --- !u!1 &1444055725
 GameObject:
   m_ObjectHideFlags: 0
@@ -21334,6 +21349,11 @@ Prefab:
         type: 2}
       propertyPath: minScale
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011132555544, guid: 3434cdbe279ca4009ad762629ae97334,
+        type: 2}
+      propertyPath: state
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3434cdbe279ca4009ad762629ae97334, type: 2}
@@ -24096,6 +24116,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010077891988, guid: c05b727539e0b415e927a48accd07b48, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012183586300, guid: c05b727539e0b415e927a48accd07b48,
+        type: 2}
+      propertyPath: Inside
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -474,6 +474,7 @@ MonoBehaviour:
   health: 3
   stepVolume: 1
   fallOnWalls: 0
+  Inside: 0
   enemyColVol: 0.5
   defColVol: 0.5
   deathFade: 4
