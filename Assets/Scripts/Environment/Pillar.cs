@@ -26,15 +26,24 @@ public class Pillar : Interactable {
     public float KeepTransparency = 0.4f;
     public float KeepSpread = 0.5f;
 
+    public List<GameObject> OnDestroyTurnOn;
+    public List<GameObject> OnDestroyTurnOff;
+
+    public bool IsDead;
+
     public void Start() {
     }
 
     public override void Interact(){
-        StartCoroutine(Explode());
+        if (!IsDead)
+        {
+            IsDead = true;
+            StartCoroutine(Explode());
+        }
     }
 
     public IEnumerator Explode() {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(2);
         var animator = GetComponent<PillarAnimator>();
 
 
@@ -78,6 +87,8 @@ public class Pillar : Interactable {
             t2.GetComponent<SpriteRenderer>().color = c;
             t2.transform.localPosition *= 1 + (KeepSpread * Random.value);
         }
+
+
 
         SoundSystem.Play("Pillar Death");
         // Explosion
@@ -130,6 +141,22 @@ public class Pillar : Interactable {
                 trans.GetComponent<SpriteRenderer>().color = c;
             }
             yield return new WaitForFixedUpdate();
+        }
+
+        foreach (var go in OnDestroyTurnOn)
+        {
+            foreach (var act in go.GetComponents<IActivatable>())
+            {
+                act.Activate();                
+            }
+        }
+
+        foreach (var go in OnDestroyTurnOff)
+        {
+            foreach (var act in go.GetComponents<IActivatable>())
+            {
+                act.ShutDown();
+            }
         }
     }
 }
