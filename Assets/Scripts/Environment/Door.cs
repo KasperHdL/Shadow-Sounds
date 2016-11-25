@@ -102,14 +102,20 @@ public class Door : MonoBehaviour {
 
     public void Toggle()
     {
+
         if (state == State.Closed)
             Open();
         else if (state == State.Open)
             Close();
+        else if(state == State.Error)
+            Error();
     }
 
     public void Open(){
-        if (state != State.Open)
+        if(state == State.Error){
+            Error();
+        }
+        else if (state != State.Open)
         {
             ChangeState(State.Opening);
             //todo: make relative to player location
@@ -118,13 +124,20 @@ public class Door : MonoBehaviour {
     }
 
     public void Close(){
-        if (state != State.Closed)
+        if(state == State.Error){
+            Error();
+        }
+        else if (state != State.Closed)
         {
             ChangeState(State.Closing);
             //todo: make relative to player location
             SoundSystem.Play("doorClose");
 
         }
+    }
+
+    public void Error(){
+        ChangeState(State.Error);
     }
 
 
