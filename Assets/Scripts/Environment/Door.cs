@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class Door : MonoBehaviour {
+public class Door : MonoBehaviour,IActivatable {
 
     public enum State{
         Closed,
@@ -147,5 +147,13 @@ public class Door : MonoBehaviour {
     }
 
 
+    public void Activate()
+    {
+        state = State.Closed;
+    }
 
+    public void ShutDown()
+    {
+        state = State.Error;
+    }
 }
