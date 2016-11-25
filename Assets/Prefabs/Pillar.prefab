@@ -215,7 +215,6 @@ GameObject:
   - 114: {fileID: 114000013378146242}
   - 58: {fileID: 58000012155115342}
   - 82: {fileID: 82000010312977044}
-  - 82: {fileID: 82000010739543708}
   m_Layer: 14
   m_Name: Pillar
   m_TagString: Untagged
@@ -1606,8 +1605,8 @@ AudioSource:
   Spatialize: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 2
-  MaxDistance: 15
+  MinDistance: 9.95742
+  MaxDistance: 35
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -1616,25 +1615,20 @@ AudioSource:
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - time: 0.16666667
+    - time: 0.28449774
       value: 1
-      inSlope: -6.002399
-      outSlope: -6.002399
+      inSlope: -3.516372
+      outSlope: -3.516372
       tangentMode: 0
-    - time: 0.30420712
-      value: 0.32026148
-      inSlope: -1.5005997
-      outSlope: -1.5005997
-      tangentMode: 0
-    - time: 0.618123
-      value: 0.09183008
-      inSlope: -0.37514994
-      outSlope: -0.37514994
+    - time: 0.5946964
+      value: 0.300625
+      inSlope: -0.879093
+      outSlope: -0.879093
       tangentMode: 0
     - time: 1
       value: 0
-      inSlope: -0.16673319
-      outSlope: -0.16673319
+      inSlope: -0.2846107
+      outSlope: -0.2846107
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -1666,80 +1660,6 @@ AudioSource:
     m_Curve:
     - time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
---- !u!82 &82000010739543708
-AudioSource:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011369317332}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d64ee915ad5291346bf39381cf04334a, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 2
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1898,7 +1818,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 0
     m_RotationOrder: 0
-  PositionCurveSpeed: 0.1
+  PositionCurveSpeed: 0.5
   PositionCurveFactor: 0.1
   PositionCurveRandomize: 20
   PositionPulseCurve:
@@ -1922,7 +1842,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 0
     m_RotationOrder: 0
-  PositionPulseCurveSpeed: 1.3
+  PositionPulseCurveSpeed: 1.5
   PositionPulseCurveFactor: 0.25
   ColorA: {r: 1, g: 1, b: 1, a: 1}
   ColorB: {r: 0.49019608, g: 0.49019608, b: 0.49019608, a: 1}
@@ -1982,6 +1902,8 @@ MonoBehaviour:
     m_PostInfinity: 0
     m_RotationOrder: 0
   ColorMixCurveSpeed: 1.5
+  HeartBearRate: 1.5
+  HeartBeatClip: {fileID: 8300000, guid: d64ee915ad5291346bf39381cf04334a, type: 3}
 --- !u!212 &212000010017607370
 SpriteRenderer:
   m_ObjectHideFlags: 1
