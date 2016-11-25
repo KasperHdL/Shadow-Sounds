@@ -5765,6 +5765,10 @@ Prefab:
       propertyPath: PulseRate
       value: 0.75
       objectReference: {fileID: 0}
+    - target: {fileID: 1000011369317332, guid: 761f5628786a03c488d3d77b74a20c76, type: 2}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 761f5628786a03c488d3d77b74a20c76, type: 2}
   m_IsPrefabParent: 0
@@ -7288,6 +7292,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 212000010111020912, guid: c05b727539e0b415e927a48accd07b48,
+        type: 2}
+      propertyPath: m_SortingLayerID
+      value: -771445545
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012183586300, guid: c05b727539e0b415e927a48accd07b48,
+        type: 2}
+      propertyPath: useController
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012183586300, guid: c05b727539e0b415e927a48accd07b48,
+        type: 2}
+      propertyPath: ppAnimator
+      value: 
+      objectReference: {fileID: 1890697933}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c05b727539e0b415e927a48accd07b48, type: 2}
   m_IsPrefabParent: 0
@@ -9553,36 +9572,6 @@ Prefab:
       propertyPath: door
       value: 
       objectReference: {fileID: 1443956763}
-    - target: {fileID: 114000010581744102, guid: 326a77c85da044d238f2ea3fa7798ea7,
-        type: 2}
-      propertyPath: openColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010581744102, guid: 326a77c85da044d238f2ea3fa7798ea7,
-        type: 2}
-      propertyPath: openColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010581744102, guid: 326a77c85da044d238f2ea3fa7798ea7,
-        type: 2}
-      propertyPath: openColor.b
-      value: 0.13103461
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010581744102, guid: 326a77c85da044d238f2ea3fa7798ea7,
-        type: 2}
-      propertyPath: closedColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010581744102, guid: 326a77c85da044d238f2ea3fa7798ea7,
-        type: 2}
-      propertyPath: closedColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010581744102, guid: 326a77c85da044d238f2ea3fa7798ea7,
-        type: 2}
-      propertyPath: closedColor.b
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 326a77c85da044d238f2ea3fa7798ea7, type: 2}
   m_IsPrefabParent: 0
@@ -12738,6 +12727,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4000013463432024, guid: da98cd61ac53e4a949eddf2f8904e9cc,
     type: 2}
   m_PrefabInternal: {fileID: 1890199241}
+--- !u!114 &1890697933 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000012675689040, guid: 9d88353ac1e014195bc097c501fab2dd,
+    type: 2}
+  m_PrefabInternal: {fileID: 2027580180}
+  m_Script: {fileID: 11500000, guid: 4a523cceed5ae488f8a6f79bd20b84fe, type: 3}
 --- !u!1 &1912504145
 GameObject:
   m_ObjectHideFlags: 0

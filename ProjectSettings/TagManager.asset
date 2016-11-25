@@ -9,6 +9,7 @@ TagManager:
   - Event
   - PickUp
   - SaveSystem
+  - Interactable
   layers:
   - Default
   - TransparentFX

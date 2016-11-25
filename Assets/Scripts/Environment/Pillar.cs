@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 [RequireComponent(typeof(PillarAnimator))]
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(CircleCollider2D))]
-public class Pillar : MonoBehaviour {
+public class Pillar : Interactable {
 
     public float ShakeTime = 1f;
     public float ShakeFactor = 1f;
@@ -27,7 +27,10 @@ public class Pillar : MonoBehaviour {
     public float KeepSpread = 0.5f;
 
     public void Start() {
-        //StartCoroutine(Explode());
+    }
+
+    public override void Interact(){
+        StartCoroutine(Explode());
     }
 
     public IEnumerator Explode() {
@@ -53,6 +56,7 @@ public class Pillar : MonoBehaviour {
             animator.Rotation2CurveSpeed = r20 * ShakeCurve.Evaluate(1 - (t / ShakeTime)) * ShakeFactor;
             animator.ScaleCurveSpeed = s0 * ShakeCurve.Evaluate(1 - (t / ShakeTime)) * ShakeFactor;
             animator.PositionPulseCurveSpeed = pp0 * ShakeCurve.Evaluate(1 - (t / ShakeTime)) * ShakeFactor;
+            animator.HeartBearRate = animator.PositionPulseCurveSpeed;
             GetComponentInChildren<Light>().intensity = li * ShakeCurve.Evaluate(1 - (t / ShakeTime)) * ShakeFactor;
 
             yield return new WaitForFixedUpdate();
@@ -75,6 +79,7 @@ public class Pillar : MonoBehaviour {
             t2.transform.localPosition *= 1 + (KeepSpread * Random.value);
         }
 
+        SoundSystem.Play("Pillar Death");
         // Explosion
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<CircleCollider2D>().enabled = false;
@@ -93,7 +98,6 @@ public class Pillar : MonoBehaviour {
         animator.ScaleCurveSpeed = 0;
         animator.PositionPulseCurveSpeed = 0;
 
-        //SoundSystem.Play("Pillar Death");
 
         for(float t = ExplosionTime; t > 0; t -= Time.fixedDeltaTime) {
             animator.PositionCurveFactor += ExplosionRate * Time.fixedDeltaTime * ExplosionCurve.Evaluate(t / ExplosionTime);
@@ -102,6 +106,11 @@ public class Pillar : MonoBehaviour {
             GetComponentInChildren<Light>().intensity = li * ExplosionCurve.Evaluate(t / ExplosionTime);
 
             yield return new WaitForFixedUpdate();
+        }
+
+        foreach (var audioSource in gameObject.GetComponents<AudioSource>())
+        {
+            audioSource.Stop();
         }
 
         animator.enabled = false;
