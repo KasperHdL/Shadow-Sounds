@@ -21,7 +21,6 @@ public class FollowPlayer : CharacterMovement
 
     private bool withinPlayerVisibleRange = false;
 
-
     [Header("Wandering")]
     public bool allowedToWander = true;
     public bool randomWanderAfterPlayerSight = false;
@@ -66,9 +65,11 @@ public class FollowPlayer : CharacterMovement
     [HideInInspector] public float broadcastTime = -1f;
 
     private Collider2D coll;
+    private Rigidbody2D body;
     
     public override void Start()
     {
+        body = GetComponent<Rigidbody2D>();
         sprite = transform.FindChild("nonvaginabody").gameObject;
         coll = GetComponent<Collider2D>();
         target = GameObject.FindWithTag("Player").GetComponent<Transform>();
@@ -97,8 +98,6 @@ public class FollowPlayer : CharacterMovement
             postProcessingAnimator.RegisterEnemyWithinPlayer(this);
         else
             postProcessingAnimator.RegitsterEnemyOutsidePlayer(this);
-
-        
         
         DisableMovement = charging;
         if (!isPlayingEnmMov && visible)
@@ -162,15 +161,19 @@ public class FollowPlayer : CharacterMovement
 
         if (isMovingTowardsKnownPlayerPosition)
         {
-            if (IsAtPosition(knownPlayerPosition))
+            if (IsAtPosition(knownPlayerPosition) || (!canSeePlayer && body.velocity.magnitude < .01f))
             {
                 isMovingTowardsKnownPlayerPosition = false;
                 isMovingTowardsWanderPosition = false;
+            }else if(canSeePlayer && body.velocity.magnitude < .01f){
+                moveDirection = Vector2.zero;
+            }else{
+                moveDirection = knownPlayerPosition - (Vector2)transform.position;
             }
-            moveDirection = knownPlayerPosition - (Vector2)transform.position;
 
         }else if(isMovingTowardsEnemyWithKnownPlayerPosition){
-            if (IsAtPosition(knownEnemyPosition))
+
+            if (IsAtPosition(knownEnemyPosition) )
             {
                 isMovingTowardsEnemyWithKnownPlayerPosition = false;
                 isMovingTowardsWanderPosition = false;
@@ -188,7 +191,7 @@ public class FollowPlayer : CharacterMovement
 
             moveDirection = nextWanderPosition - (Vector2)transform.position;
         }
-        if (body.velocity.magnitude > 0) lookDirection = body.velocity;
+        if (body.velocity.magnitude > 0.01f) lookDirection = body.velocity;
         transform.rotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * Mathf.Atan2(lookDirection.y, lookDirection.x) - 90);
         Move = Vector2.ClampMagnitude(moveDirection,maxWanderDistance);
 
