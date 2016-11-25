@@ -95,9 +95,8 @@ public class PostProcessingAnimator : MonoBehaviour {
         Camera.main.GetComponent<PostProcessingAnimator>().playerAttacked = true;
     }
 
-    public void FadeToBlack(float length){
+    public void FadeToBlack(){
         Camera.main.GetComponent<PostProcessingAnimator>().fadeToBlack = true;
-
     }
 
     public void FlickerInWorld(){
