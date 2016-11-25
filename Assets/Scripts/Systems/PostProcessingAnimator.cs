@@ -34,20 +34,15 @@ public class PostProcessingAnimator : MonoBehaviour {
     public bool forceNormalMode = false;
     private List<FollowPlayer> enemies;
     private IEnumerator flickerEnumerator;
-    public MonoBehaviour m;
-    public GameObject g;
 
 	// Use this for initialization
 	void Start () {
         enemies = new List<FollowPlayer>();
-        m = this;
-        g = gameObject;
         StartCoroutine(fadeIn());
         temperature = fadedOutTemperature;
-	
 	}
 	// Update is called once per frame
-	void OnPreRender() {
+	void FixedUpdate() {
         colorGrading.enabled = false;
         var settings = colorGrading.settings;
         settings.basic.postExposure = exposure;
@@ -70,9 +65,9 @@ public class PostProcessingAnimator : MonoBehaviour {
 
         if(fadeToBlack){
             fadeToBlack = false;
-        forceNormalMode = true;
-        enemies.Clear();
-        FlickerOutWorld();
+            forceNormalMode = true;
+            enemies.Clear();
+            FlickerOutWorld();
 
 
             StartCoroutine(fadeOut(fadeOutTime));

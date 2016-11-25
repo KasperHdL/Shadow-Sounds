@@ -20,7 +20,6 @@ public class FollowPlayer : CharacterMovement
     [HideInInspector] public bool visible = false;
 
     private bool withinPlayerVisibleRange = false;
-    private bool lastFrameRendererEnabled = false;
 
 
     [Header("Wandering")]
@@ -33,7 +32,6 @@ public class FollowPlayer : CharacterMovement
     private Vector2 wanderingAreaStartPosition;
     public Vector2 wanderingAreaOffset = Vector2.zero;
     public Vector2 wanderingAreaSize = new Vector2(5,5);
-    private float allowedDistanceToWanderPosition = 0.5f;
     [Header("Random Wandering")]
     public float minWanderDistance = 2f;
     public float maxWanderDistance = 5f;
