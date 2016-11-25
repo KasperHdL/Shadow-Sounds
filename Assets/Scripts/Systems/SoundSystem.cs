@@ -129,11 +129,13 @@ public class SoundSystem : MonoBehaviour, ISerializationCallbackReceiver
 
     private IEnumerator FadeOut(string sound, AudioSource source)
     {
+        if(source == null) yield break;
+        
         var faceOutTime = 0.5f;
         var t = faceOutTime;
         var v0 = source.volume;
-        while (t > 0)
-        {
+        while (t > 0) {
+            if(source == null) yield break;
             source.volume = Mathf.Lerp(0, v0, t / faceOutTime);
 
             yield return new WaitForFixedUpdate();

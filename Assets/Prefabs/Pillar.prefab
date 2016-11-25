@@ -1924,6 +1924,64 @@ MonoBehaviour:
     m_RotationOrder: 0
   PositionPulseCurveSpeed: 1.3
   PositionPulseCurveFactor: 0.25
+  ColorA: {r: 1, g: 1, b: 1, a: 1}
+  ColorB: {r: 0.49019608, g: 0.49019608, b: 0.49019608, a: 1}
+  ColorDistanceCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  ColorPulseCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0.99731916
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 0.80675083
+      value: 0.6972704
+      inSlope: 2.1158235
+      outSlope: 2.1158235
+      tangentMode: 0
+    - time: 1.0062494
+      value: 0.6303998
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 0
+    m_RotationOrder: 0
+  ColorPulseSpeed: 1.5
+  ColorPulseRandomize: 0.5
+  ColorMixCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0.3016695
+      inSlope: 0.02066616
+      outSlope: 0.02066616
+      tangentMode: 0
+    - time: 1.010882
+      value: 0.8046832
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 0
+    m_RotationOrder: 0
+  ColorMixCurveSpeed: 1.5
 --- !u!212 &212000010017607370
 SpriteRenderer:
   m_ObjectHideFlags: 1
