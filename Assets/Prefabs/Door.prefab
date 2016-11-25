@@ -11,6 +11,38 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1000013407422182}
   m_IsPrefabParent: 1
+--- !u!1 &1000010022558474
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000012289576282}
+  m_Layer: 0
+  m_Name: Height
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1000012080394666
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000013591868938}
+  - 33: {fileID: 33000013098313192}
+  - 23: {fileID: 23000014022360886}
+  m_Layer: 0
+  m_Name: Model
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000013407422182
 GameObject:
   m_ObjectHideFlags: 0
@@ -19,10 +51,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000010011824386}
-  - 33: {fileID: 33000012907084590}
-  - 23: {fileID: 23000014270204346}
   - 61: {fileID: 61000013528473170}
-  - 50: {fileID: 50000011872893982}
   - 114: {fileID: 114000011132555544}
   m_Layer: 0
   m_Name: LeverDoor
@@ -37,19 +66,47 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013407422182}
-  m_LocalRotation: {x: 0, y: 0.30070576, z: 0, w: 0.953717}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8.92, y: 12.97, z: 0}
-  m_LocalScale: {x: 1, y: 2.973271, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 35, z: 0}
-  m_Children: []
+  m_LocalScale: {x: 1, y: 3.5, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 4000012289576282}
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!23 &23000014270204346
+--- !u!4 &4000012289576282
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010022558474}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.004, z: 0.75}
+  m_LocalScale: {x: 1, y: 1, z: 2.5}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 4000013591868938}
+  m_Father: {fileID: 4000010011824386}
+  m_RootOrder: 0
+--- !u!4 &4000013591868938
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012080394666}
+  m_LocalRotation: {x: -0, y: 0.38268343, z: -0, w: 0.92387956}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.75, y: 1, z: 0.75}
+  m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000012289576282}
+  m_RootOrder: 0
+--- !u!23 &23000014022360886
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013407422182}
+  m_GameObject: {fileID: 1000012080394666}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -73,30 +130,13 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &33000012907084590
+--- !u!33 &33000013098313192
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013407422182}
+  m_GameObject: {fileID: 1000012080394666}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!50 &50000011872893982
-Rigidbody2D:
-  serializedVersion: 2
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013407422182}
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!61 &61000013528473170
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -124,7 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   openDuration: 1.8
-  minScale: 0
+  minScale: 2
   openDirection: {x: 0, y: 0, z: 0}
   doorAnimationCurve:
     serializedVersion: 2
@@ -134,13 +174,13 @@ MonoBehaviour:
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-    - time: 0.25783756
-      value: 0.57156277
+    - time: 0.09117089
+      value: 0.14656281
       inSlope: 1.1640787
       outSlope: 1.1640787
       tangentMode: 0
-    - time: 0.91422325
-      value: 0.83421683
+    - time: 0.8475566
+      value: 0.5654668
       inSlope: 1.180172
       outSlope: 1.180172
       tangentMode: 0
@@ -152,3 +192,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+  buttons: []
