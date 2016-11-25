@@ -60,6 +60,9 @@ MonoBehaviour:
   HighlightMask:
     serializedVersion: 2
     m_Bits: 24832
+  TransparentMask:
+    serializedVersion: 2
+    m_Bits: 32768
   material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   colorStart: {r: 0.528, g: 0.528, b: 0.528, a: 1}
   colorEnd: {r: 0.5294118, g: 0.5294118, b: 0.5294118, a: 0}
@@ -87,10 +90,12 @@ MonoBehaviour:
     m_RotationOrder: 0
   width: 0.1
   highlightWidth: 0.4
+  transparentSlowRate: 0.5
   noise: 50
   noiseBlockMultiplier: 0.05
   noiseHitMultiplier: 2
   noiseHighlightMultiplier: 4
+  noiseTransMultiplier: 0.2
   hitPitch: 0.4
   hitVolume: 1.5
   noHitVolume: 1

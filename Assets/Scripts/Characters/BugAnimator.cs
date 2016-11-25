@@ -3,7 +3,7 @@ using System.Collections;
 using System.Linq;
 
 public class BugAnimator : MonoBehaviour {
-    private Rigidbody2D rigidbody;
+    private new Rigidbody2D rigidbody;
     private FollowPlayer enemy;
 
     public Transform LeftJaw;
@@ -48,7 +48,7 @@ public class BugAnimator : MonoBehaviour {
 
 
 
-        float speedMultiplier = (enemy.attacking ? 2 : (rigidbody.velocity.magnitude == 0 ? 0 : 1)) * velocityFactor;
+        float speedMultiplier = (enemy.attacking ? 2 : (rigidbody.velocity.magnitude <= Mathf.Epsilon ? 0 : 1)) * velocityFactor;
 
         float t = Time.time * AnimationLegSpeed * speedMultiplier;
 
