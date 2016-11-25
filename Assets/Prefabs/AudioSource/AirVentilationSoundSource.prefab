@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010683601406}
   - 82: {fileID: 82000012668764490}
+  - 114: {fileID: 114000012573159854}
   m_Layer: 0
   m_Name: AirVentilationSoundSource
   m_TagString: Untagged
@@ -124,3 +125,14 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114000012573159854
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010566964968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c77b5e294434894face62bbed5b12c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
