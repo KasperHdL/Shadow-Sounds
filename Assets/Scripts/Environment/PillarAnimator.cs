@@ -33,7 +33,7 @@ public class PillarAnimator : MonoBehaviour {
     public float ColorMixCurveSpeed;
 
     //heartbeat stuff
-    private float HeartBearRate;
+    public float HeartBearRate;
     private float lastBeat;
     public AudioClip HeartBeatClip;
     private AudioSource heartAudioSource;
