@@ -75,7 +75,6 @@ public class SonarBullet : MonoBehaviour {
         var finished = false;
 
         while(t > 0) {
-            var cl = colorCurve.Evaluate(1 - t);
             var h = 0; // Number of active points
 
             for(int i = 0; i < source.Rays; i++) {
@@ -177,7 +176,7 @@ public class SonarBullet : MonoBehaviour {
             }
 
             // Color
-            var color = Color.LerpUnclamped(colorStart, colorEnd, cl);
+            var color = Color.LerpUnclamped(colorStart, colorEnd, colorCurve.Evaluate(1 - t));
             line.SetColors(color, color);
 
             // Finish early
