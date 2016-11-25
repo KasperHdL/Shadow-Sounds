@@ -476,6 +476,7 @@ MonoBehaviour:
   fallOnWalls: 0
   enemyColVol: 0.5
   defColVol: 0.5
+  deathFade: 4
   viewDirection: {x: 0.97215915, y: 0.23432153}
   useController: 0
   deadzone: 0.1
