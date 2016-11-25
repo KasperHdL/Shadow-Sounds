@@ -35,7 +35,7 @@ public class Door : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
         maxScale = transform.localScale.y;
-        moveAmount = maxScale / 2;
+        moveAmount = (maxScale - minScale) / 2;
         
         if(openDirection == Vector3.zero)
             openDirection = transform.up;
@@ -96,7 +96,7 @@ public class Door : MonoBehaviour {
         transform.position = startPosition - openDirection * moveAmount * t;
 
         Vector3 s = transform.localScale;
-        s.y = (maxScale - minScale) * t;
+        s.y = minScale + (maxScale - minScale) * t;
         transform.localScale = s;
     }
 
