@@ -17,6 +17,7 @@ public class PlayerMovement : CharacterMovement
     public float defColVol = 0.5f;
     private bool isPlayingSteps = false;
 
+    public float deathFade = 3f;
 
     [HideInInspector]
     public Vector2 viewDirection;
@@ -122,10 +123,10 @@ public class PlayerMovement : CharacterMovement
         body.angularDrag = 1f;
 
         isDead = true;
-        SoundSystem.Play("death",1,1,0,2.25f);
+        SoundSystem.Play("death",1,1,0,deathFade - 0.75f);
 
-        ppAnimator.FadeToBlack(3f);
-        StartCoroutine(ReloadLevel(3f));
+        ppAnimator.FadeToBlack();
+        StartCoroutine(ReloadLevel(deathFade));
     }
 
     private IEnumerator ReloadLevel(float delay){
