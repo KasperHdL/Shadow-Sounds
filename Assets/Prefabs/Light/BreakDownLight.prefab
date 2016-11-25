@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000010243796472}
   - 108: {fileID: 108000010590216270}
   - 114: {fileID: 114000012232076942}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: BreakDownLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,8 +51,8 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.9632353, g: 0.94838625, b: 0.42495677, a: 1}
-  m_Intensity: 1.03
-  m_Range: 10
+  m_Intensity: 0.59
+  m_Range: 20
   m_SpotAngle: 24.7
   m_CookieSize: 10
   m_Shadows:

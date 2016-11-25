@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000010243796472}
   - 108: {fileID: 108000010590216270}
   - 114: {fileID: 114000013779597552}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: small light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,12 +47,12 @@ Light:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012093569052}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 1, g: 0.9215517, b: 0.875, a: 1}
-  m_Intensity: 1.32
-  m_Range: 10
+  m_Intensity: 0.99
+  m_Range: 15
   m_SpotAngle: 24.7
   m_CookieSize: 10
   m_Shadows:
