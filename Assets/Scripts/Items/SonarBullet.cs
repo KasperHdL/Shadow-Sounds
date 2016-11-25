@@ -50,15 +50,18 @@ public class SonarBullet : MonoBehaviour {
         var coneIncrementRad = coneAngleRad / source.Rays;
         var startAngle = angle - coneAngleRad / 2;
         var done = new List<bool>();
-        for(int i = 0; i < source.Rays; i++)
-            done.Add(false);
         var highlight = new List<Vector2?>();
         var position = new List<Vector2>();
+        var direction = new List<Vector2>();
         var slow = new List<int>();
         for(int i = 0; i < source.Rays; i++) {
+            done.Add(false);
             highlight.Add(null);
             position.Add(origin);
             slow.Add(0);
+
+            var a = startAngle + coneIncrementRad * i;
+            direction.Add(new Vector2(Mathf.Cos(a), Mathf.Sin(a)));
         }
 
         line = line == null ? gameObject.AddComponent<LineRenderer>() : GetComponent<LineRenderer>();
@@ -84,15 +87,12 @@ public class SonarBullet : MonoBehaviour {
 
                 var dd = (source.Speed - transparentSlowRate * slow[i]) * Time.fixedDeltaTime;
 
-                var a = startAngle + coneIncrementRad * i;
-                var dir = new Vector2(Mathf.Cos(a), Mathf.Sin(a));
-
-                var hits = Physics2D.RaycastAll(position[i], dir, dd,
+                var hits = Physics2D.RaycastAll(position[i], direction[i], dd,
                     SoundMask | BlockMask | HighlightMask | TransparentMask);
 
                 var nois = noise / 1000;
 
-                Vector2 p = position[i] + dir * dd;
+                Vector2 p = position[i] + direction[i] * dd;
                 highlight[i] = null;
 
                 foreach(var hit in hits) {
@@ -110,7 +110,9 @@ public class SonarBullet : MonoBehaviour {
 
                     // Check if hit a blocking collider
                     if((BlockMask & (1 << hit.collider.gameObject.layer)) != 0) {
-                        p = hit.point;
+                        //direction[i] = Vector2.Reflect(direction[i], hit.normal);
+                        p = hit.point + direction[i] * 0.1f;
+                        //slow[i] += 5;
                         done[i] = true;
                         highlight[i] = null;
 
@@ -120,7 +122,9 @@ public class SonarBullet : MonoBehaviour {
 
                     // Check if hit a transparent
                     if((TransparentMask & (1 << hit.collider.gameObject.layer)) != 0) {
-                        p = hit.point + dir * 0.1f;
+                        //direction[i] = Vector3.Lerp(-hit.normal, direction[i], 0.8f).normalized;
+                        //direction[i] = -hit.normal;
+                        p = hit.point + direction[i] * 0.1f;
                         nois *= noiseTransMultiplier;
                         slow[i]++;
                         if(slow[i] * transparentSlowRate > source.Speed - transparentMinSpeed)
