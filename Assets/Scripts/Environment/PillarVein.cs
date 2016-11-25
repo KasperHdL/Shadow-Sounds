@@ -19,6 +19,7 @@ public class PillarVein : MonoBehaviour {
     public float Offset;
     public float MoveRate;
     public float MoveAmount;
+    public float DeathSpeed;
 
     private LineRenderer line;
     private Pillar root;
@@ -69,7 +70,7 @@ public class PillarVein : MonoBehaviour {
     }
 
     public IEnumerator Pulse() {
-        while(root != null) {
+        while(root != null && !root.IsDead) {
             yield return new WaitForSeconds(1 / PulseRate);
 
             var go = new GameObject("Pulse");
@@ -112,7 +113,10 @@ public class PillarVein : MonoBehaviour {
                     var v = Mathf.FloorToInt(t / SectionLength);
                     var o = (t % SectionLength)/SectionLength;
                     //s += "(" + v + " " + o + ") ";
-                    lines[j].GetComponent<LineRenderer>().SetPosition(k, Vector3.LerpUnclamped(positions[v], positions[v + 1], o) + Vector3.back);
+                    if(v < positions.Length-1)
+                        lines[j].GetComponent<LineRenderer>().SetPosition(k, Vector3.LerpUnclamped(positions[v], positions[v + 1], o) + Vector3.back);
+                    else
+                        lines[j].GetComponent<LineRenderer>().SetPosition(k, positions[v] + Vector3.back);
                 }
 
                 //Debug.Log(s);
