@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Rendering;
 
 public class SonarBullet : MonoBehaviour {
 
@@ -69,6 +70,7 @@ public class SonarBullet : MonoBehaviour {
         line.SetColors(colorStart, colorStart);
         line.SetWidth(width * sonarPct, width * sonarPct);
         line.SetVertexCount(source.Rays);
+        line.shadowCastingMode = ShadowCastingMode.Off;
         line.material = material;
 
         var tt = source.Distance / source.Speed;
@@ -166,6 +168,7 @@ public class SonarBullet : MonoBehaviour {
                         go.transform.parent = transform;
                         cline = go.AddComponent<LineRenderer>();
                         cline.useWorldSpace = true;
+                        cline.shadowCastingMode = ShadowCastingMode.Off;
                         cline.material = material;
                         cline.SetColors(colorHighlight, colorHighlight);
                         cline.SetWidth(highlightWidth, highlightWidth);
