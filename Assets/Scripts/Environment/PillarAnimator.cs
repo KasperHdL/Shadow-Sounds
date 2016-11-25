@@ -81,9 +81,10 @@ public class PillarAnimator : MonoBehaviour {
         heartAudioSource = gameObject.AddComponent<AudioSource>();
         heartAudioSource.clip = HeartBeatClip;
         heartAudioSource.minDistance = 10;
-
-        heartAudioSource.maxDistance = 40;
+        heartAudioSource.maxDistance = 35;
+        heartAudioSource.spatialBlend = 1;
         heartAudioSource.rolloffMode = AudioRolloffMode.Linear;
+
         lastBeat = Time.time;
     }
 

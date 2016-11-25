@@ -35,7 +35,7 @@ public class Door : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
         maxScale = transform.localScale.y;
-        moveAmount = maxScale / 2;
+        moveAmount = (maxScale - minScale) / 2;
         
         if(openDirection == Vector3.zero)
             openDirection = transform.up;
@@ -96,19 +96,24 @@ public class Door : MonoBehaviour {
         transform.position = startPosition - openDirection * moveAmount * t;
 
         Vector3 s = transform.localScale;
-        s.y = (maxScale - minScale) * t;
+        s.y = minScale + (maxScale - minScale) * t;
         transform.localScale = s;
     }
 
     public void Toggle()
     {
 
-        if (state == State.Closed)
-            Open();
-        else if (state == State.Open)
-            Close();
-        else if(state == State.Error)
-            Error();
+        switch(state){
+            case State.Closed:
+                Open();
+                break;
+            case State.Open:
+                Close();
+                break;
+            case State.Error:
+                Error();
+                break;
+        }
     }
 
     public void Open(){
@@ -138,6 +143,7 @@ public class Door : MonoBehaviour {
 
     public void Error(){
         ChangeState(State.Error);
+        SoundSystem.Play("DoorError");
     }
 
 
