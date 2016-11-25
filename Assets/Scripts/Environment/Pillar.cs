@@ -43,7 +43,7 @@ public class Pillar : Interactable {
     }
 
     public IEnumerator Explode() {
-        yield return new WaitForSeconds(2);
+        //yield return new WaitForSeconds(2);
         var animator = GetComponent<PillarAnimator>();
 
 
