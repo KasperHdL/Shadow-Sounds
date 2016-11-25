@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000010243796472}
   - 108: {fileID: 108000010590216270}
   m_Layer: 0
-  m_Name: PointLight3
+  m_Name: medium light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,8 +50,8 @@ Light:
   serializedVersion: 7
   m_Type: 2
   m_Color: {r: 1, g: 0.9215517, b: 0.875, a: 1}
-  m_Intensity: 1.32
-  m_Range: 10
+  m_Intensity: 2.29
+  m_Range: 20
   m_SpotAngle: 24.7
   m_CookieSize: 10
   m_Shadows:
