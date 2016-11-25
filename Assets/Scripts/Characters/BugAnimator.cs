@@ -48,7 +48,7 @@ public class BugAnimator : MonoBehaviour {
 
 
 
-        float speedMultiplier = (enemy.attacking ? 2 : (rigidbody.velocity.magnitude == 0 ? 0 : 1)) * velocityFactor;
+        float speedMultiplier = (enemy.attacking ? 2 : (rigidbody.velocity.magnitude <= Mathf.Epsilon ? 0 : 1)) * velocityFactor;
 
         float t = Time.time * AnimationLegSpeed * speedMultiplier;
 
