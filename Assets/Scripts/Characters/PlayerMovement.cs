@@ -65,6 +65,13 @@ public class PlayerMovement : CharacterMovement
         }
     }
 
+    void OnTriggerStay2D(Collider2D coll){
+        if(coll.gameObject.tag == "Interactable" && (controller.GetButtonDown(KInput.Button.BumperRight) || Input.GetButtonDown("Use"))){
+            coll.gameObject.GetComponent<Interactable>().Interact();;
+
+        }
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
 

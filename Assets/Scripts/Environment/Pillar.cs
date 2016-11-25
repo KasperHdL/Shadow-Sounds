@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 [RequireComponent(typeof(PillarAnimator))]
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(CircleCollider2D))]
-public class Pillar : MonoBehaviour {
+public class Pillar : Interactable {
 
     public float ShakeTime = 1f;
     public float ShakeFactor = 1f;
@@ -27,6 +27,9 @@ public class Pillar : MonoBehaviour {
     public float KeepSpread = 0.5f;
 
     public void Start() {
+    }
+
+    public override void Interact(){
         StartCoroutine(Explode());
     }
 
