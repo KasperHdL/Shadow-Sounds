@@ -119,6 +119,7 @@ public class Button : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D coll){
         if(coll.gameObject.tag == "Player"){
+            SoundSystem.Play("buttonClick");
             switch(buttonMode){
                 case ButtonMode.ToggleDoor:
                     door.Toggle();
