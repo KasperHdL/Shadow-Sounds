@@ -118,6 +118,7 @@ public class Button : Interactable{
     }
 
     public override void Interact(){
+	SoundSystem.Play("buttonClick");
         switch(buttonMode){
             case ButtonMode.ToggleDoor:
                 door.Toggle();
@@ -130,9 +131,5 @@ public class Button : Interactable{
                 break;
         }
  
-    }
-    void OnTriggerEnter2D(Collider2D coll){
-        if(coll.gameObject.tag == "Player"){
-       }
     }
 }

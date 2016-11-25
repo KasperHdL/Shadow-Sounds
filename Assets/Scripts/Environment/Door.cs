@@ -143,6 +143,7 @@ public class Door : MonoBehaviour {
 
     public void Error(){
         ChangeState(State.Error);
+        SoundSystem.Play("DoorError");
     }
 
 
