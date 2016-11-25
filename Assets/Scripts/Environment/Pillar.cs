@@ -27,7 +27,7 @@ public class Pillar : MonoBehaviour {
     public float KeepSpread = 0.5f;
 
     public void Start() {
-        StartCoroutine(Explode());
+        //StartCoroutine(Explode());
     }
 
     public IEnumerator Explode() {
