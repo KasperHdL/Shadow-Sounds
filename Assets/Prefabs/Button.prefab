@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011701354002}
   - 108: {fileID: 108000013215815334}
-  m_Layer: 13
+  m_Layer: 10
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   - 4: {fileID: 4000011668281594}
   - 61: {fileID: 61000010204469932}
   - 114: {fileID: 114000010581744102}
-  m_Layer: 13
+  m_Layer: 10
   m_Name: Button
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000010706062088}
-  m_Layer: 13
+  m_Layer: 10
   m_Name: OnWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ GameObject:
   - 4: {fileID: 4000011210978106}
   - 33: {fileID: 33000011370100710}
   - 23: {fileID: 23000010047398242}
-  m_Layer: 13
+  m_Layer: 10
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   - 4: {fileID: 4000011856880516}
   - 33: {fileID: 33000012668084722}
   - 23: {fileID: 23000010150579978}
-  m_Layer: 13
+  m_Layer: 10
   m_Name: Back Plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}

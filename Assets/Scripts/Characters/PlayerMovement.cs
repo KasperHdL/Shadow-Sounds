@@ -7,8 +7,10 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : CharacterMovement
 {
+    public PostProcessingAnimator ppAnimator;
     public int health = 4;
 
+    [Header("Audio Properties")]
     public float stepVolume = 0.1f;
     public bool fallOnWalls;
     public bool Inside = true;
@@ -17,7 +19,6 @@ public class PlayerMovement : CharacterMovement
     public float defColVol = 0.5f;
     private bool isPlayingSteps = false;
 
-    public float deathFade = 3f;
 
     [HideInInspector] public Vector2 viewDirection;
     private bool fallen;
@@ -25,7 +26,6 @@ public class PlayerMovement : CharacterMovement
     [Header("Controller Settings")] public bool useController;
     [Range(0, 1)] public float deadzone = 0.1f;
     private Controller controller;
-    public PostProcessingAnimator ppAnimator;
 
     [Header("Ambient Light Chase Settings")] public Light AmbientLight;
     public float ChaseLightIntMultiplier = 5;
@@ -35,10 +35,17 @@ public class PlayerMovement : CharacterMovement
 
     private SonarTool sonar;
 
+    [Header("Flashlight")]
     public GameObject flashlight_prefab;
     public GameObject flashlight;
 
     [HideInInspector] public bool isDead = false;
+
+    [Header("Death Properties")]
+    public float deathFade = 3f;
+    public float deathBodyMass = 1;
+    public float deathBodyDrag = 1;
+    public float deathBodyAngularDrag = 1;
 
     public void Awake()
     {
@@ -133,8 +140,9 @@ public class PlayerMovement : CharacterMovement
 //        GameObject fl = Instantiate(flashlight_prefab, flashlight.transform.position, flashlight.transform.rotation) as GameObject;
 //       flashlight.GetComponent<Light>().enabled = false;
 
-        body.drag = 5;
-        body.angularDrag = 1f;
+        body.mass = deathBodyMass;
+        body.drag = deathBodyDrag;
+        body.angularDrag = deathBodyAngularDrag;
 
         isDead = true;
         SoundSystem.Play("death", 1, 1, 0, deathFade - 0.75f);
