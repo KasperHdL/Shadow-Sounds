@@ -96,14 +96,15 @@ public class PlayerMovement : CharacterMovement
             case "Wall":
                 if (fallOnWalls)
                     SoundSystem.Play("wall collision", 1, defColVol);
-
-                //Debug.Log("WallCollision");
+                
                 break;
             case "PickUp":
+                Debug.Log("pick up!!!");
                 if (collision.gameObject.name == "SonarChargePU")
                     sonar.sonarChargeLeft += 200f;
+                if (collision.gameObject.name == "SonarPU")
+                    gameObject.GetComponent<SonarTool>().enabled = true;
                 Destroy(collision.gameObject);
-
                 break;
             default:
                 if (fallOnWalls)
