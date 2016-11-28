@@ -22,7 +22,8 @@ GameObject:
   - 50: {fileID: 50000013753543252}
   - 61: {fileID: 61000010350841402}
   - 212: {fileID: 212000013619245966}
-  m_Layer: 0
+  - 114: {fileID: 114000013213389770}
+  m_Layer: 15
   m_Name: SonarPU
   m_TagString: PickUp
   m_Icon: {fileID: 3932251862328519117, guid: 0000000000000000d000000000000000, type: 0}
@@ -38,7 +39,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013488049842}
   - 108: {fileID: 108000011467129438}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Ambient PointLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +53,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013821232166}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.5, y: 13, z: 0}
+  m_LocalPosition: {x: 54.904354, y: -6.3511004, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -137,6 +138,26 @@ Light:
   m_BounceIntensity: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114000013213389770
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013821232166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46f4e9f1d51b07a478c0af51f70677a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sonarBulletPrefab: {fileID: 114000010584440910, guid: 85ca129e5d29eaf4996136c987115458,
+    type: 2}
+  rate: 0.5
+  distance: 30
+  speed: 5
+  direction: {x: 0, y: 0}
+  angle: 60
+  rays: 361
+  sonarPct: 1
 --- !u!212 &212000013619245966
 SpriteRenderer:
   m_ObjectHideFlags: 1
