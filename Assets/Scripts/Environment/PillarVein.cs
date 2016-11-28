@@ -19,6 +19,7 @@ public class PillarVein : MonoBehaviour {
     public float Offset;
     public float MoveRate;
     public float MoveAmount;
+    public float DeathSpeed;
 
     private LineRenderer line;
     private Pillar root;
@@ -29,6 +30,7 @@ public class PillarVein : MonoBehaviour {
     private List<GameObject> lines;
     private List<float> times;
 
+    private float life;
     private int psecs = 3;
 
     public void Start() {
@@ -64,12 +66,14 @@ public class PillarVein : MonoBehaviour {
         targets = positions.Select(a => a).ToArray();
         line.SetPositions(positions);
 
+        life = Vector3.Distance(transform.position, End.position);
+
         StartCoroutine(Pulse());
         StartCoroutine(Move());
     }
 
     public IEnumerator Pulse() {
-        while(root != null) {
+        while(root != null && !root.IsDead) {
             yield return new WaitForSeconds(1 / PulseRate);
 
             var go = new GameObject("Pulse");
@@ -86,7 +90,7 @@ public class PillarVein : MonoBehaviour {
     }
     public IEnumerator Move() {
         var dir = (End.position - transform.position).normalized;
-        while(true) {
+        while(root == null || !root.IsDead) {
             yield return new WaitForSeconds(1 / MoveRate);
 
             for(int i = 1; i < n; i++) {
@@ -101,38 +105,54 @@ public class PillarVein : MonoBehaviour {
             return;
 
         var d = Vector3.Distance(End.position, transform.position);
+        if(root != null && root.IsDead)
+            life -= Time.deltaTime * DeathSpeed;
 
-        for(int i = 1; i < n; i++) {
-            positions[i] = Vector3.Lerp(positions[i], targets[i], 0.01f);
+        if (life < 0)
+        {
+            if (End.GetComponent<PillarVein>() != null) End.GetComponent<PillarVein>().root = root;
+            foreach (var l in lines)
+                Destroy(l);
+            Destroy(line);
+            Destroy(this);
+            return;
+        }
 
-            for(int j = 0; j < lines.Count; j++) {
-                //var s = "";
-                for(int k = 0; k < psecs; k++) {
-                    var t = times[j] + k * (PulseSize / psecs);
-                    var v = Mathf.FloorToInt(t / SectionLength);
-                    var o = (t % SectionLength)/SectionLength;
-                    //s += "(" + v + " " + o + ") ";
+        for(int i = 0; i < n; i++) {
+            if(root == null || !root.IsDead)
+                positions[i] = Vector3.Lerp(positions[i], targets[i], 0.01f);
+            var more = positions[i] - End.position;
+            var p = End.position + more.normalized*Mathf.Min(more.magnitude, life);
+            positions[i] = Vector3.Project(p - positions[i], positions[i]-p)+positions[i];
+        }
+
+        for(int j = 0; j < lines.Count; j++) {
+            for(int k = 0; k < psecs; k++) {
+                var t = times[j] + k * (PulseSize / psecs);
+                var v = Mathf.FloorToInt(t / SectionLength);
+                var o = (t % SectionLength) / SectionLength;
+                if(v < positions.Length - 1)
                     lines[j].GetComponent<LineRenderer>().SetPosition(k, Vector3.LerpUnclamped(positions[v], positions[v + 1], o) + Vector3.back);
-                }
-
-                //Debug.Log(s);
-
-                times[j] += Time.deltaTime * PulseSpeed;
+                else
+                    lines[j].GetComponent<LineRenderer>().SetPosition(k, positions[v] + Vector3.back);
             }
-            if(times.Count > 0 && times[0] + PulseSize > d) {
-                if(End.GetComponent<PillarVein>()) {
-                    End.GetComponent<PillarVein>().lines.Add(lines[0]);
-                    End.GetComponent<PillarVein>().times.Add(0);
-                    lines.RemoveAt(0);
-                    times.RemoveAt(0);
-                } else {
-                    var l = lines[0];
-                    lines.RemoveAt(0);
-                    times.RemoveAt(0);
-                    Destroy(l);
-                }
+
+            times[j] += Time.deltaTime * PulseSpeed;
+        }
+        if(times.Count > 0 && times[0] + PulseSize > d) {
+            if(End.GetComponent<PillarVein>()) {
+                End.GetComponent<PillarVein>().lines.Add(lines[0]);
+                End.GetComponent<PillarVein>().times.Add(0);
+                lines.RemoveAt(0);
+                times.RemoveAt(0);
+            } else {
+                var l = lines[0];
+                lines.RemoveAt(0);
+                times.RemoveAt(0);
+                Destroy(l);
             }
         }
+
         Smooth();
         line.SetPositions(positions);
     }
@@ -169,6 +189,7 @@ public class PillarVein : MonoBehaviour {
                 End.GetComponent<PillarVein>().PulseSize = PulseSize;
                 End.GetComponent<PillarVein>().MoveAmount = MoveAmount;
                 End.GetComponent<PillarVein>().MoveRate = MoveRate;
+                End.GetComponent<PillarVein>().DeathSpeed = DeathSpeed;
                 End.GetComponent<PillarVein>().Offset = Offset;
             }
         }

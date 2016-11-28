@@ -20,8 +20,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010243796472}
   - 108: {fileID: 108000010590216270}
-  m_Layer: 0
-  m_Name: PointLight2
+  - 114: {fileID: 114000012232076942}
+  m_Layer: 15
+  m_Name: BreakDownLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,9 +50,9 @@ Light:
   m_Enabled: 1
   serializedVersion: 7
   m_Type: 2
-  m_Color: {r: 1, g: 0.9215517, b: 0.875, a: 1}
-  m_Intensity: 1.16
-  m_Range: 200
+  m_Color: {r: 0.9632353, g: 0.94838625, b: 0.42495677, a: 1}
+  m_Intensity: 0.59
+  m_Range: 20
   m_SpotAngle: 24.7
   m_CookieSize: 10
   m_Shadows:
@@ -74,3 +75,14 @@ Light:
   m_BounceIntensity: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114000012232076942
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012093569052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 503596adaea52ec47a5413249bbd72ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -120,7 +120,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011376902860}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24, y: -14, z: -10}
+  m_LocalPosition: {x: 25, y: -14, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -9103,7 +9103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b466ec9ccc151b1439e26f313b22be4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sids: 020000000400000006000000080000000a0000000c0000000e00000010000000120000001400000016000000180000001a0000001c0000001e0000002000000022000000
+  sids: 020000000400000006000000080000000a0000000c0000000e00000010000000120000001400000016000000180000001a0000001c0000001e000000200000002200000024000000
   snames:
   - sonar hit
   - sonar no hit
@@ -9122,6 +9122,7 @@ MonoBehaviour:
   - DoorError
   - buttonClick
   - snowsteps
+  - Outside
   sclips:
   - data:
     - {fileID: 8300000, guid: 46172244123ccf44882ef4fa2684e008, type: 3}
@@ -9162,6 +9163,8 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 022d1b9b3301219498ae4a914ea419e1, type: 3}
   - data:
     - {fileID: 8300000, guid: a3636c75d193c2647a3f338126bf3ef9, type: 3}
+  - data:
+    - {fileID: 8300000, guid: 5c43d833a32807d4fb4d9e4f3129edc5, type: 3}
 --- !u!114 &114000012675689040
 MonoBehaviour:
   m_ObjectHideFlags: 1

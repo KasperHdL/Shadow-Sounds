@@ -22,7 +22,7 @@ GameObject:
   - 50: {fileID: 50000013753543252}
   - 61: {fileID: 61000010350841402}
   - 114: {fileID: 114000010484566392}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: GoOutside
   m_TagString: Untagged
   m_Icon: {fileID: 3932251862328519117, guid: 0000000000000000d000000000000000, type: 0}
