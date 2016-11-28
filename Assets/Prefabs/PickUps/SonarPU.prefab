@@ -23,7 +23,7 @@ GameObject:
   - 61: {fileID: 61000010350841402}
   - 212: {fileID: 212000013619245966}
   m_Layer: 0
-  m_Name: SonarChargePU
+  m_Name: SonarPU
   m_TagString: PickUp
   m_Icon: {fileID: 3932251862328519117, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
