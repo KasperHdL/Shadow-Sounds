@@ -80,10 +80,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013821232166}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 55.25, y: -6.3511004, z: 0}
-  m_LocalScale: {x: 1, y: 1.5, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.8870109, w: 0.46174863}
+  m_LocalPosition: {x: -17, y: 32.43, z: 0}
+  m_LocalScale: {x: 0.75445265, y: 1.1316787, z: 0.75445247}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -125}
   m_Children:
   - {fileID: 4000013488049842}
   - {fileID: 4000010622169290}
@@ -132,7 +132,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 1, y: 0}
   serializedVersion: 2
-  m_Size: {x: 2, y: 1}
+  m_Size: {x: 1.5, y: 0.5}
 --- !u!108 &108000011467129438
 Light:
   m_ObjectHideFlags: 1
@@ -183,7 +183,7 @@ MonoBehaviour:
   rate: 0.5
   distance: 30
   speed: 5
-  direction: {x: -1, y: 0}
+  direction: {x: 1, y: 1}
   angle: 60
   rays: 361
   sonarPct: 1
