@@ -265,6 +265,7 @@ public class PostProcessingAnimator : MonoBehaviour {
             yield return new WaitForSeconds(flickerInDelay[i]);
 
         }
+        temperature = fadedInTemperature;
 
         flickering = false;
         flickeredIn = true;
@@ -290,6 +291,7 @@ public class PostProcessingAnimator : MonoBehaviour {
             yield return new WaitForSeconds(flickerOutDelay[i]);
 
         }
+        temperature = fadedOutTemperature;
         
         flickering = false;
         flickeredIn = false;

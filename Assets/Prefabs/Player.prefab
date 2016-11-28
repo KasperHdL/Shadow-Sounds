@@ -119,8 +119,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011376699998}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -30.27, y: 52.82, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.7067604, w: 0.707453}
+  m_LocalPosition: {x: 7.5, y: -24.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -471,17 +471,16 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+  ppAnimator: {fileID: 0}
   health: 3
   stepVolume: 1
   fallOnWalls: 0
   Inside: 1
   enemyColVol: 0.5
   defColVol: 0.5
-  deathFade: 4
   viewDirection: {x: 0.97215915, y: 0.23432153}
-  useController: 1
+  useController: 0
   deadzone: 0.25
-  ppAnimator: {fileID: 0}
   AmbientLight: {fileID: 108000010558356852}
   ChaseLightIntMultiplier: 1.5
   ChaseLightRanMultiplier: 6
@@ -489,6 +488,10 @@ MonoBehaviour:
     type: 2}
   flashlight: {fileID: 1000013392914856}
   isDead: 0
+  deathFade: 4
+  deathBodyMass: 20
+  deathBodyDrag: 3
+  deathBodyAngularDrag: 1.5
 --- !u!212 &212000010111020912
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -516,7 +519,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: -771445545
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c0aa9bb5227994de2b81ffaec555d1f6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

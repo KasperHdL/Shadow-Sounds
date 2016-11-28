@@ -1713,19 +1713,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000010448195084}
   m_RootOrder: 24
---- !u!4 &4000012296094522
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010208701094}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 7.2502465, y: 7.2502375, z: 7.2502375}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 4000011493936062}
-  m_RootOrder: 0
 --- !u!4 &4000012269566104
 Transform:
   m_ObjectHideFlags: 1
@@ -1738,6 +1725,19 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000013490698678}
+  m_RootOrder: 0
+--- !u!4 &4000012296094522
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010208701094}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 7.2502465, y: 7.2502375, z: 7.2502375}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000011493936062}
   m_RootOrder: 0
 --- !u!4 &4000012473122396
 Transform:
@@ -1960,7 +1960,7 @@ Transform:
   m_Children:
   - {fileID: 4000012269566104}
   m_Father: {fileID: 4000010448195084}
-  m_RootOrder: 69
+  m_RootOrder: 70
 --- !u!4 &4000013512098358
 Transform:
   m_ObjectHideFlags: 1
@@ -2399,6 +2399,7 @@ MonoBehaviour:
   Offset: 0.1
   MoveRate: 0.5
   MoveAmount: 0.75
+  DeathSpeed: 4
 --- !u!114 &114000013000410872
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2482,6 +2483,9 @@ MonoBehaviour:
   RemoveRate: 0.3
   KeepTransparency: 0.8
   KeepSpread: 0.5
+  OnDestroyTurnOn: []
+  OnDestroyTurnOff: []
+  IsDead: 0
 --- !u!114 &114000013378146242
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2684,6 +2688,7 @@ MonoBehaviour:
     m_PostInfinity: 0
     m_RotationOrder: 0
   ColorMixCurveSpeed: 1.5
+  HeartBearRate: 0
   HeartBeatClip: {fileID: 8300000, guid: d64ee915ad5291346bf39381cf04334a, type: 3}
 --- !u!212 &212000010005055406
 SpriteRenderer:
