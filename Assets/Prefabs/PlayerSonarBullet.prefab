@@ -59,7 +59,7 @@ MonoBehaviour:
     m_Bits: 513
   HighlightMask:
     serializedVersion: 2
-    m_Bits: 24832
+    m_Bits: 24576
   TransparentMask:
     serializedVersion: 2
     m_Bits: 32768
@@ -91,6 +91,7 @@ MonoBehaviour:
   width: 0.1
   highlightWidth: 0.4
   transparentSlowRate: 0.5
+  transparentMinSpeed: 0.1
   noise: 50
   noiseBlockMultiplier: 0.05
   noiseHitMultiplier: 2

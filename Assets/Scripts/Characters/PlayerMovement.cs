@@ -47,6 +47,9 @@ public class PlayerMovement : CharacterMovement
     public float deathBodyDrag = 1;
     public float deathBodyAngularDrag = 1;
 
+    public SpriteRenderer spriteRenderer;
+    public Sprite woundedSprite;
+
     public void Awake()
     {
         var savesystem = GameObject.FindGameObjectWithTag("SaveSystem");
@@ -124,6 +127,7 @@ public class PlayerMovement : CharacterMovement
         SoundSystem.Play("enemy collision", 1, enemyColVol);
         TrackingCamera.ShakeIt(0.5f, 0.5f);
         health -= damage;
+        spriteRenderer.sprite = woundedSprite;
         if (health <= 0) Die();
     }
 
