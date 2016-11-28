@@ -7225,36 +7225,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 212000010111020912, guid: c05b727539e0b415e927a48accd07b48,
-        type: 2}
-      propertyPath: m_SortingLayerID
-      value: -771445545
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012183586300, guid: c05b727539e0b415e927a48accd07b48,
-        type: 2}
-      propertyPath: useController
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 114000012183586300, guid: c05b727539e0b415e927a48accd07b48,
         type: 2}
       propertyPath: ppAnimator
       value: 
       objectReference: {fileID: 1890697933}
-    - target: {fileID: 114000012183586300, guid: c05b727539e0b415e927a48accd07b48,
-        type: 2}
-      propertyPath: deathBodyMass
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012183586300, guid: c05b727539e0b415e927a48accd07b48,
-        type: 2}
-      propertyPath: deathBodyDrag
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012183586300, guid: c05b727539e0b415e927a48accd07b48,
-        type: 2}
-      propertyPath: deathBodyAngularDrag
-      value: 1.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c05b727539e0b415e927a48accd07b48, type: 2}
   m_IsPrefabParent: 0
