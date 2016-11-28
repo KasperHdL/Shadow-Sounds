@@ -99,6 +99,7 @@ public class PlayerMovement : CharacterMovement
                 
                 break;
             case "PickUp":
+                Debug.Log("pick up!!!");
                 if (collision.gameObject.name == "SonarChargePU")
                     sonar.sonarChargeLeft += 200f;
                 if (collision.gameObject.name == "SonarPU")
