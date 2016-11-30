@@ -43,7 +43,34 @@ public class Pillar : Interactable {
                 ShakeTime = 0;
                 ExplosionTime = 0;
                 //StartCoroutine(Explode());
+
+                foreach(var go in OnDestroyTurnOn) {
+                    if(go == null)
+                        continue;
+                    foreach(var act in go.GetComponents<IActivatable>()) {
+                        act.Activate();
+                    }
+                }
+
+                foreach(var go in OnDestroyTurnOff) {
+                    if(go == null)
+                        continue;
+                    foreach(var act in go.GetComponents<IActivatable>()) {
+                        act.ShutDown();
+                    }
+
+                }
+
+                foreach(var go in OnDestroyTurnTrigger) {
+                    if(go == null)
+                        continue;
+                    foreach(var act in go.GetComponents<IActivatable>()) {
+                        act.Trigger();
+                    }
+                }
+           
                 Destroy(gameObject);
+
 
             }
         }
