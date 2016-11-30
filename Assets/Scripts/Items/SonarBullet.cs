@@ -197,7 +197,8 @@ public class SonarBullet : MonoBehaviour {
 
             // Sleep
             yield return new WaitForFixedUpdate();
-            t -= Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+            t -= Time.fixedDeltaTime * 2;
         }
 
         Destroy(gameObject);
