@@ -181,6 +181,7 @@ public class PillarVein : MonoBehaviour {
                     var end = End.GetComponent<PillarVein>();
                     if(end == null) {
                         v = positions.Length-2;
+                        o = 1;
                     } else {
                         pos = end.positions;
                         v -= positions.Length;
