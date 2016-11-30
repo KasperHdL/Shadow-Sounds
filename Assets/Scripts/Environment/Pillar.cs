@@ -35,6 +35,8 @@ public class Pillar : Interactable {
     }
 
     public override void Interact(){
+        
+
         if (!IsDead)
         {
             IsDead = true;
@@ -45,7 +47,7 @@ public class Pillar : Interactable {
     public IEnumerator Explode() {
         //yield return new WaitForSeconds(2);
         var animator = GetComponent<PillarAnimator>();
-
+        SoundSystem.Play("pre-explode",1,1,0,ShakeTime);
 
         // Save state
         var li = GetComponentInChildren<Light>().intensity;
