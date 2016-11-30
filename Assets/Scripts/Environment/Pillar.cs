@@ -42,6 +42,9 @@ public class Pillar : Interactable {
                 IsDead = true;
                 ShakeTime = 0;
                 ExplosionTime = 0;
+                //StartCoroutine(Explode());
+                Destroy(gameObject);
+
             }
         }
     }
@@ -53,14 +56,15 @@ public class Pillar : Interactable {
         }
     }
 
-    public void OnDrawGizmos() {
-        if(PillarId == 0)
-            PillarId = Random.Range(int.MinValue, int.MaxValue);
+    public void OnDrawGizmos()
+    {
+//if (PillarId == 0) PillarId = Random.Range(int.MinValue, int.MaxValue);
     }
 
     public IEnumerator Explode() {
         //yield return new WaitForSeconds(2);
         var animator = GetComponent<PillarAnimator>();
+        SoundSystem.Play("pre-explode",1,1,0,ShakeTime);
 
         // Register in save system
         var savesystem = GameObject.FindGameObjectWithTag("SaveSystem");
