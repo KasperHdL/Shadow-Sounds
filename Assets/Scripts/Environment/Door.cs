@@ -149,11 +149,11 @@ public class Door : MonoBehaviour,IActivatable {
 
     public void Activate()
     {
-        state = State.Closed;
+        ChangeState(State.Closed);
     }
 
     public void ShutDown()
     {
-        state = State.Error;
+        ChangeState(State.Error);
     }
 }

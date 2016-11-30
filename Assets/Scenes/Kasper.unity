@@ -1616,8 +1616,8 @@ MonoBehaviour:
   PulseSize: 2
   Offset: 0.1
   MoveRate: 0.5
-  MoveAmount: 0.5
-  DeathSpeed: 4
+  MoveAmount: 0.75
+  DeathSpeed: 0
 --- !u!1 &268149050
 GameObject:
   m_ObjectHideFlags: 0
@@ -1734,8 +1734,8 @@ MonoBehaviour:
   PulseSize: 2
   Offset: 0.1
   MoveRate: 0.5
-  MoveAmount: 0.5
-  DeathSpeed: 4
+  MoveAmount: 0.75
+  DeathSpeed: 0
 --- !u!1001 &314379715
 Prefab:
   m_ObjectHideFlags: 0
@@ -5975,11 +5975,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114000011132555544, guid: 3434cdbe279ca4009ad762629ae97334,
-        type: 2}
-      propertyPath: doorAnimationCurve.m_Curve.Array.size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 4000010011824386, guid: 3434cdbe279ca4009ad762629ae97334, type: 2}
       propertyPath: m_LocalPosition.x
       value: 8.92
@@ -5998,7 +5993,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010011824386, guid: 3434cdbe279ca4009ad762629ae97334, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.30070576
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4000010011824386, guid: 3434cdbe279ca4009ad762629ae97334, type: 2}
       propertyPath: m_LocalRotation.z
@@ -6006,75 +6001,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010011824386, guid: 3434cdbe279ca4009ad762629ae97334, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.953717
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000010011824386, guid: 3434cdbe279ca4009ad762629ae97334, type: 2}
       propertyPath: m_RootOrder
       value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000010011824386, guid: 3434cdbe279ca4009ad762629ae97334, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 2.973271
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011132555544, guid: 3434cdbe279ca4009ad762629ae97334,
-        type: 2}
-      propertyPath: state
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011132555544, guid: 3434cdbe279ca4009ad762629ae97334,
-        type: 2}
-      propertyPath: doorAnimationCurve.m_Curve.Array.data[1].time
-      value: 0.09117089
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011132555544, guid: 3434cdbe279ca4009ad762629ae97334,
-        type: 2}
-      propertyPath: doorAnimationCurve.m_Curve.Array.data[1].value
-      value: 0.14656281
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011132555544, guid: 3434cdbe279ca4009ad762629ae97334,
-        type: 2}
-      propertyPath: doorAnimationCurve.m_RotationOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011132555544, guid: 3434cdbe279ca4009ad762629ae97334,
-        type: 2}
-      propertyPath: doorAnimationCurve.m_Curve.Array.data[1].inSlope
-      value: 1.1640787
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011132555544, guid: 3434cdbe279ca4009ad762629ae97334,
-        type: 2}
-      propertyPath: doorAnimationCurve.m_Curve.Array.data[1].outSlope
-      value: 1.1640787
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011132555544, guid: 3434cdbe279ca4009ad762629ae97334,
-        type: 2}
-      propertyPath: doorAnimationCurve.m_Curve.Array.data[2].time
-      value: 0.8475566
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011132555544, guid: 3434cdbe279ca4009ad762629ae97334,
-        type: 2}
-      propertyPath: doorAnimationCurve.m_Curve.Array.data[2].value
-      value: 0.5654668
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011132555544, guid: 3434cdbe279ca4009ad762629ae97334,
-        type: 2}
-      propertyPath: doorAnimationCurve.m_Curve.Array.data[2].inSlope
-      value: 1.180172
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011132555544, guid: 3434cdbe279ca4009ad762629ae97334,
-        type: 2}
-      propertyPath: doorAnimationCurve.m_Curve.Array.data[2].outSlope
-      value: 1.180172
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011132555544, guid: 3434cdbe279ca4009ad762629ae97334,
-        type: 2}
-      propertyPath: doorAnimationCurve.m_Curve.Array.data[3].time
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011132555544, guid: 3434cdbe279ca4009ad762629ae97334,
-        type: 2}
-      propertyPath: doorAnimationCurve.m_Curve.Array.data[3].value
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3434cdbe279ca4009ad762629ae97334, type: 2}
@@ -7311,11 +7242,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000010077891988, guid: c05b727539e0b415e927a48accd07b48, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 23.7
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 4000010077891988, guid: c05b727539e0b415e927a48accd07b48, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -16.7
+      value: -24.9
       objectReference: {fileID: 0}
     - target: {fileID: 4000010077891988, guid: c05b727539e0b415e927a48accd07b48, type: 2}
       propertyPath: m_LocalPosition.z
@@ -7340,16 +7271,6 @@ Prefab:
     - target: {fileID: 4000010077891988, guid: c05b727539e0b415e927a48accd07b48, type: 2}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 212000010111020912, guid: c05b727539e0b415e927a48accd07b48,
-        type: 2}
-      propertyPath: m_SortingLayerID
-      value: -771445545
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012183586300, guid: c05b727539e0b415e927a48accd07b48,
-        type: 2}
-      propertyPath: useController
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114000012183586300, guid: c05b727539e0b415e927a48accd07b48,
         type: 2}
@@ -8823,7 +8744,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1333442519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9621,6 +9542,10 @@ Prefab:
       propertyPath: door
       value: 
       objectReference: {fileID: 1443956763}
+    - target: {fileID: 1000011457680330, guid: 326a77c85da044d238f2ea3fa7798ea7, type: 2}
+      propertyPath: m_Name
+      value: Button
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 326a77c85da044d238f2ea3fa7798ea7, type: 2}
   m_IsPrefabParent: 0

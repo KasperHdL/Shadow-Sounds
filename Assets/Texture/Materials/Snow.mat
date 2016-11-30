@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: floor
+  m_Name: Snow
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
@@ -31,7 +31,7 @@ Material:
         name: _DetailAlbedoMap
       second:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 10, y: 10}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _DetailMask
@@ -49,13 +49,13 @@ Material:
         name: _EmissionMap
       second:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 150, y: 150}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 2800000, guid: 142be876d556a4a9693863b3f347f011, type: 3}
-        m_Scale: {x: 150, y: 150}
+        m_Texture: {fileID: 2800000, guid: 448839b9616d6a04f961a900324328e0, type: 3}
+        m_Scale: {x: 500, y: 500}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _MetallicGlossMap

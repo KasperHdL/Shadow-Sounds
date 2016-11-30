@@ -12,8 +12,8 @@ public class Button : Interactable{
     public Door door;
     public ButtonMode buttonMode;
 
-    public Color openColor;
-    public Color closedColor;
+    public Color interactableColor;
+    public Color nonInteractableColor;
     public Color errorColor;
 
     public float blinkingColorReduce = 0.5f;
@@ -57,12 +57,9 @@ public class Button : Interactable{
         if(nextBlinkTime < Time.time){
             blinkIsOn = !blinkIsOn;
 
-            Color c = openColor;
+            Color c  = nonInteractableColor;
+            
             switch(doorState){
-                case Door.State.Closing: 
-                    c = closedColor; 
-                    break;
-
                 case Door.State.Error: 
                     c = errorColor; 
                     break;
@@ -81,12 +78,8 @@ public class Button : Interactable{
         if(state != doorState || first || state == Door.State.Error){
             switch(state){
                 case Door.State.Open:
-                    setColor(openColor);
-                    isBlinking = false;
-
-                break;
                 case Door.State.Closed:
-                    setColor(closedColor);
+                    setColor(interactableColor);
                     isBlinking = false;
                 break;
 

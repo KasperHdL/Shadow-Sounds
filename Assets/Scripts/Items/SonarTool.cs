@@ -11,6 +11,8 @@ public class SonarTool : MonoBehaviour, SonarSource {
 
     public SonarBullet sonarBulletPrefab;
 
+    [HideInInspector] public Transform sonarSprite;
+
     public float coneAngle = 30f;
     public float Angle { get { return coneAngle; } }
     public float coneIncrement = 1f;
@@ -48,23 +50,23 @@ public class SonarTool : MonoBehaviour, SonarSource {
         if(player.isDead) return;
 
 
-        sonarChargeLeft -= (Time.time - lastUpdateTime);
+        //sonarChargeLeft -= (Time.time - lastUpdateTime);
         lastUpdateTime = Time.time;
 
         if (lastShotTime + shotCooldown < Time.time){
-            if(Input.GetButton("Fire1") || controller.GetAxis(Axis.TriggerRight) > 0.75f){
+            if(Input.GetButton("Fire1") || controller.GetAxis(Axis.TriggerRight) > 0.75f || controller.GetButton(KInput.Button.BumperRight))
+            {
                 Shoot();
                 lastShotTime = Time.time;
             }
         }
-
     }
 	
 	void Shoot()
 	{
         SoundSystem.Play("sonar noise", 1.0f, 0.5f, 0, distance/sonarSpeed);
         
-        var bullet = (SonarBullet)Instantiate(sonarBulletPrefab, transform.position, Quaternion.identity);
+        var bullet = (SonarBullet)Instantiate(sonarBulletPrefab, sonarSprite.position, Quaternion.identity);
 	    bullet.source = this;
     }
 }

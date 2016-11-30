@@ -14,6 +14,18 @@ public class GoOutOrInside : MonoBehaviour
             Debug.LogWarning("Player collided");
 
             GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().setInside(Inside);
+            if (Inside)
+            {
+                SoundSystem.Play("background");
+                SoundSystem.Stop("Outside");
+            }
+            else
+            {
+
+                SoundSystem.Stop("background");
+                SoundSystem.Play("Outside",1,0.08f);
+            }
+
         }
     }
 }
