@@ -103,10 +103,14 @@ public class PlayerMovement : CharacterMovement
                 break;
             case "PickUp":
                 Debug.Log("pick up!!!");
+                SoundSystem.Play("pickUp");
                 if (collision.gameObject.name == "SonarChargePU")
                     sonar.sonarChargeLeft += 200f;
                 if (collision.gameObject.name == "SonarPU")
+                {
                     gameObject.GetComponent<SonarTool>().enabled = true;
+                    SoundSystem.Play("charging");
+                }
                 Destroy(collision.gameObject);
                 break;
             default:
