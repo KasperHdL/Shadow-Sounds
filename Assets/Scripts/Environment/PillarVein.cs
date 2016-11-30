@@ -43,6 +43,7 @@ public class PillarVein : MonoBehaviour {
         line = gameObject.AddComponent<LineRenderer>();
         if(root == null)
             root = GetComponent<Pillar>();
+        if (End == transform) End = null;
         if(End == null) {
             Destroy(this);
             return;
@@ -177,19 +178,21 @@ public class PillarVein : MonoBehaviour {
                 var o = (t % SectionLength) / SectionLength;
 
                 var pos = positions;
-                if(v >= positions.Length - 1) {
+                
+                if(v >= positions.Length - 2) {
                     var end = End.GetComponent<PillarVein>();
                     if(end == null) {
-                        v = positions.Length-2;
+                        v = positions.Length - 2;
                         o = 1;
-                    } else {
+                    } else if(end.positions != null){
                         pos = end.positions;
                         v -= positions.Length;
                     }
                 }
                 if (v < 0) v = 0;
                 
-                aline.SetPosition(k < 0 ? k + 2 : (k >= psecs ? k - psecs : k), Vector3.LerpUnclamped(pos[v], pos[v + 1], o) + Vector3.back);
+                if(aline != null)
+                    aline.SetPosition(k < 0 ? k + 2 : (k >= psecs ? k - psecs : k), Vector3.LerpUnclamped(pos[v], pos[v + 1], o) + Vector3.back);
                 latest = Vector3.LerpUnclamped(pos[v], pos[v + 1], o);
             }
 
