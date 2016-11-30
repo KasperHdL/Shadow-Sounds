@@ -55,7 +55,7 @@ public class Pillar : Interactable {
 
     public void OnDrawGizmos()
     {
-        if (PillarId == 0) PillarId = Random.Range(int.MinValue, int.MinValue);
+        if (PillarId == 0) PillarId = Random.Range(int.MinValue, int.MaxValue);
     }
 
     public IEnumerator Explode() {
