@@ -191,7 +191,8 @@ public class PillarVein : MonoBehaviour {
                 if (v < 0) v = 0;
                 
                 //Debug.Log(v + " " + pos.Length);
-                aline.SetPosition(k < 0 ? k + 2 : (k >= psecs ? k - psecs : k), Vector3.LerpUnclamped(pos[v], pos[v + 1], o) + Vector3.back);
+                if(aline != null)
+                    aline.SetPosition(k < 0 ? k + 2 : (k >= psecs ? k - psecs : k), Vector3.LerpUnclamped(pos[v], pos[v + 1], o) + Vector3.back);
                 latest = Vector3.LerpUnclamped(pos[v], pos[v + 1], o);
             }
 
