@@ -49,12 +49,23 @@ public class PlayerMovement : CharacterMovement
 
     public SpriteRenderer spriteRenderer;
     public Sprite woundedSprite;
+    public Transform sonarSprite;
+    public float moveAmount = 1f;
 
     public void Awake()
     {
         var savesystem = GameObject.FindGameObjectWithTag("SaveSystem");
-        if (savesystem != null && savesystem.GetComponent<SaveSystem>().PlayerPosition.HasValue)
-            transform.position = savesystem.GetComponent<SaveSystem>().PlayerPosition.Value;
+        if (savesystem != null ){
+
+            SaveSystem save = savesystem.GetComponent<SaveSystem>();
+            if(save.PlayerPosition.HasValue){
+                transform.position = save.PlayerPosition.Value;
+                if(save.playerPickedUpSonar){
+                    sonarSprite.gameObject.SetActive(true);
+                    GetComponent<SonarTool>().enabled = true;
+                }
+            }
+        }
     //    doNotNormalize = true;
     }
 
@@ -62,6 +73,7 @@ public class PlayerMovement : CharacterMovement
     {
         base.Start();
         sonar = GetComponent<SonarTool>();
+        sonar.sonarSprite = sonarSprite;
         controller = GetComponent<ControllerContainer>().controller;
         if (ppAnimator == null)
             ppAnimator = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<PostProcessingAnimator>();
@@ -84,7 +96,7 @@ public class PlayerMovement : CharacterMovement
                 controller.GetButtonDown(KInput.Button.StickLeftClick) ||
                 controller.GetAxis(Axis.TriggerLeft) > 0.75f
                 )
-            coll.gameObject.GetComponent<Interactable>().Interact();;
+            coll.gameObject.GetComponent<Interactable>().Interact();
 
         }
     }
@@ -105,8 +117,11 @@ public class PlayerMovement : CharacterMovement
                 Debug.Log("pick up!!!");
                 if (collision.gameObject.name == "SonarChargePU")
                     sonar.sonarChargeLeft += 200f;
-                if (collision.gameObject.name == "SonarPU")
+                if (collision.gameObject.name == "SonarPU"){
                     gameObject.GetComponent<SonarTool>().enabled = true;
+                    sonarSprite.gameObject.SetActive(true);
+                    GameObject.FindGameObjectWithTag("SaveSystem").GetComponent<SaveSystem>().playerPickedUpSonar = true;
+                }
                 Destroy(collision.gameObject);
                 break;
             default:
