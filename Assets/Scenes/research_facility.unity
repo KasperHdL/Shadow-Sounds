@@ -14153,7 +14153,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_Children: []
   m_Father: {fileID: 1761066292}
-  m_RootOrder: 271
+  m_RootOrder: 193
 --- !u!50 &716791166
 Rigidbody2D:
   serializedVersion: 2
@@ -19995,11 +19995,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4000010693230208, guid: 1911038583b2e6a4aad172c6470e719c,
     type: 2}
   m_PrefabInternal: {fileID: 991649324}
---- !u!4 &994515669 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4000012083602422, guid: c05b727539e0b415e927a48accd07b48,
-    type: 2}
-  m_PrefabInternal: {fileID: 1455498351}
 --- !u!1001 &1001790555
 Prefab:
   m_ObjectHideFlags: 0
@@ -25607,7 +25602,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1761066292}
-  m_RootOrder: 362
+  m_RootOrder: 352
 --- !u!50 &1315233211
 Rigidbody2D:
   serializedVersion: 2
@@ -27709,20 +27704,6 @@ Prefab:
     - target: {fileID: 4000010077891988, guid: c05b727539e0b415e927a48accd07b48, type: 2}
       propertyPath: m_RootOrder
       value: 34
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010623601598, guid: c05b727539e0b415e927a48accd07b48,
-        type: 2}
-      propertyPath: sonarSprite
-      value: 
-      objectReference: {fileID: 994515669}
-    - target: {fileID: 1000010795341214, guid: c05b727539e0b415e927a48accd07b48, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010623601598, guid: c05b727539e0b415e927a48accd07b48,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c05b727539e0b415e927a48accd07b48, type: 2}
@@ -33155,6 +33136,11 @@ Prefab:
       propertyPath: OnDestroyTurnTrigger.Array.data[0]
       value: 
       objectReference: {fileID: 1041748977}
+    - target: {fileID: 114000010216729932, guid: 761f5628786a03c488d3d77b74a20c76,
+        type: 2}
+      propertyPath: End
+      value: 
+      objectReference: {fileID: 1032498489}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 761f5628786a03c488d3d77b74a20c76, type: 2}
   m_IsPrefabParent: 0
@@ -34517,6 +34503,7 @@ Transform:
   - {fileID: 1554895725}
   - {fileID: 726262183}
   - {fileID: 927235672}
+  - {fileID: 716791165}
   - {fileID: 2020861474}
   - {fileID: 1650205760}
   - {fileID: 350644136}
@@ -34595,7 +34582,6 @@ Transform:
   - {fileID: 1531431128}
   - {fileID: 2002016226}
   - {fileID: 62698852}
-  - {fileID: 716791165}
   - {fileID: 18138487}
   - {fileID: 1682567756}
   - {fileID: 1083607017}
@@ -34676,6 +34662,7 @@ Transform:
   - {fileID: 1723537279}
   - {fileID: 1527327333}
   - {fileID: 1296031190}
+  - {fileID: 1315233210}
   - {fileID: 1514146578}
   - {fileID: 967647275}
   - {fileID: 1551139842}
@@ -34686,7 +34673,6 @@ Transform:
   - {fileID: 254273471}
   - {fileID: 1900569985}
   - {fileID: 40177473}
-  - {fileID: 1315233210}
   - {fileID: 267005718}
   - {fileID: 690019370}
   - {fileID: 1941791891}

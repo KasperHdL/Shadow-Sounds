@@ -57,7 +57,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000011376699998
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,18 +456,18 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011376699998}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d05100af1975410fba82047636557aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sonarBulletPrefab: {fileID: 114000010584440910, guid: 85ca129e5d29eaf4996136c987115458,
     type: 2}
-  sonarOffset: {x: 0, y: 0}
+  sonarSprite: {fileID: 4000012083602422}
   coneAngle: 60
   coneIncrement: 0.25
-  distance: 20
-  sonarSpeed: 10
+  distance: 25
+  sonarSpeed: 15
   shotCooldown: 1
   sonarChargeLeft: 5946.2676
 --- !u!114 &114000012164523692
