@@ -4038,6 +4038,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114000013000410872, guid: 761f5628786a03c488d3d77b74a20c76,
+        type: 2}
+      propertyPath: OnDestroyTurnTrigger.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4000010448195084, guid: 761f5628786a03c488d3d77b74a20c76, type: 2}
       propertyPath: m_LocalPosition.x
       value: 24.74731
@@ -4084,6 +4089,11 @@ Prefab:
       propertyPath: PillarId
       value: 1281450735
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013000410872, guid: 761f5628786a03c488d3d77b74a20c76,
+        type: 2}
+      propertyPath: OnDestroyTurnTrigger.Array.data[0]
+      value: 
+      objectReference: {fileID: 1041748977}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 761f5628786a03c488d3d77b74a20c76, type: 2}
   m_IsPrefabParent: 0
@@ -13940,6 +13950,11 @@ Prefab:
       propertyPath: OnDestroyTurnOff.Array.size
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013000410872, guid: 761f5628786a03c488d3d77b74a20c76,
+        type: 2}
+      propertyPath: OnDestroyTurnTrigger.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4000010448195084, guid: 761f5628786a03c488d3d77b74a20c76, type: 2}
       propertyPath: m_LocalPosition.x
       value: 33.3
@@ -14432,6 +14447,11 @@ Prefab:
       propertyPath: PillarId
       value: -489857271
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013000410872, guid: 761f5628786a03c488d3d77b74a20c76,
+        type: 2}
+      propertyPath: OnDestroyTurnTrigger.Array.data[0]
+      value: 
+      objectReference: {fileID: 1041748977}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 761f5628786a03c488d3d77b74a20c76, type: 2}
   m_IsPrefabParent: 0
@@ -14442,6 +14462,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114000013000410872, guid: 761f5628786a03c488d3d77b74a20c76,
+        type: 2}
+      propertyPath: OnDestroyTurnTrigger.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4000010448195084, guid: 761f5628786a03c488d3d77b74a20c76, type: 2}
       propertyPath: m_LocalPosition.x
       value: -65.1
@@ -14488,6 +14513,11 @@ Prefab:
       propertyPath: PillarId
       value: 1146902909
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013000410872, guid: 761f5628786a03c488d3d77b74a20c76,
+        type: 2}
+      propertyPath: OnDestroyTurnTrigger.Array.data[0]
+      value: 
+      objectReference: {fileID: 1041748977}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 761f5628786a03c488d3d77b74a20c76, type: 2}
   m_IsPrefabParent: 0
@@ -15535,6 +15565,11 @@ Prefab:
       propertyPath: OnDestroyTurnOff.Array.size
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013000410872, guid: 761f5628786a03c488d3d77b74a20c76,
+        type: 2}
+      propertyPath: OnDestroyTurnTrigger.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4000010448195084, guid: 761f5628786a03c488d3d77b74a20c76, type: 2}
       propertyPath: m_LocalPosition.x
       value: 15.336305
@@ -16102,6 +16137,11 @@ Prefab:
       propertyPath: PillarId
       value: 71786675
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013000410872, guid: 761f5628786a03c488d3d77b74a20c76,
+        type: 2}
+      propertyPath: OnDestroyTurnTrigger.Array.data[0]
+      value: 
+      objectReference: {fileID: 1041748977}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 761f5628786a03c488d3d77b74a20c76, type: 2}
   m_IsPrefabParent: 0
@@ -19621,6 +19661,16 @@ Prefab:
       propertyPath: openDuration
       value: 2.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011132555544, guid: 3434cdbe279ca4009ad762629ae97334,
+        type: 2}
+      propertyPath: NumTriggerRequired
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011132555544, guid: 3434cdbe279ca4009ad762629ae97334,
+        type: 2}
+      propertyPath: state
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3434cdbe279ca4009ad762629ae97334, type: 2}
   m_IsPrefabParent: 0
@@ -19630,6 +19680,11 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1041748975}
   m_Script: {fileID: 11500000, guid: 54f16db3d64ed4b4288a1400f92c4455, type: 3}
+--- !u!1 &1041748977 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000013407422182, guid: 3434cdbe279ca4009ad762629ae97334,
+    type: 2}
+  m_PrefabInternal: {fileID: 1041748975}
 --- !u!4 &1042408798 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000013510059320, guid: eda6c5fd3cf9447a98e2d7446a5eb5a1,
@@ -31940,6 +31995,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114000013000410872, guid: 761f5628786a03c488d3d77b74a20c76,
+        type: 2}
+      propertyPath: OnDestroyTurnTrigger.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4000010448195084, guid: 761f5628786a03c488d3d77b74a20c76, type: 2}
       propertyPath: m_LocalPosition.x
       value: -25.745306
@@ -32006,6 +32066,11 @@ Prefab:
       propertyPath: PillarId
       value: -1807056321
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013000410872, guid: 761f5628786a03c488d3d77b74a20c76,
+        type: 2}
+      propertyPath: OnDestroyTurnTrigger.Array.data[0]
+      value: 
+      objectReference: {fileID: 1041748977}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 761f5628786a03c488d3d77b74a20c76, type: 2}
   m_IsPrefabParent: 0
