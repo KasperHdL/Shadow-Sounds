@@ -41,6 +41,9 @@ public class Pillar : Interactable {
                 IsDead = true;
                 ShakeTime = 0;
                 ExplosionTime = 0;
+                //StartCoroutine(Explode());
+                Destroy(gameObject);
+
             }
         }
     }
@@ -57,7 +60,7 @@ public class Pillar : Interactable {
 
     public void OnDrawGizmos()
     {
-        if (PillarId == 0) PillarId = Random.Range(int.MinValue, int.MaxValue);
+//if (PillarId == 0) PillarId = Random.Range(int.MinValue, int.MaxValue);
     }
 
     public IEnumerator Explode() {
