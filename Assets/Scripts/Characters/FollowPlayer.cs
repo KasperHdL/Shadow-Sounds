@@ -215,6 +215,7 @@ public class FollowPlayer : CharacterMovement
         if(!canSeePlayer)
             broadcastTime = Time.time + broadcastToOthersDelay;
 
+        if(canSeePlayer && randomWanderAfterPlayerSight) hasSeenPlayer = true;
         canSeePlayer = result;
         return result;
     }
