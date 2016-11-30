@@ -5,6 +5,8 @@ public class SaveSystem : MonoBehaviour
 {
     private static SaveSystem instance;
 
+    public bool playerPickedUpSonar = false;
+
     public Vector2? PlayerPosition;
 
     public void Awake()
