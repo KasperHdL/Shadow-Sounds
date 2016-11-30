@@ -10,6 +10,8 @@ using Random = UnityEngine.Random;
 [RequireComponent(typeof(CircleCollider2D))]
 public class Pillar : Interactable {
 
+    public int PillarId;
+
     public float ShakeTime = 1f;
     public float ShakeFactor = 1f;
     public AnimationCurve ShakeCurve;
@@ -32,6 +34,15 @@ public class Pillar : Interactable {
     public bool IsDead;
 
     public void Start() {
+        var savesystem = GameObject.FindGameObjectWithTag("SaveSystem");
+        if(savesystem != null) {
+            SaveSystem save = savesystem.GetComponent<SaveSystem>();
+            if(save.PillarsDestroyed.Contains(PillarId)) { 
+                IsDead = true;
+                ShakeTime = 0;
+                ExplosionTime = 0;
+            }
+        }
     }
 
     public override void Interact(){
@@ -42,9 +53,21 @@ public class Pillar : Interactable {
         }
     }
 
+    public void OnDrawGizmos()
+    {
+        if (PillarId == 0) PillarId = Random.Range(int.MinValue, int.MaxValue);
+    }
+
     public IEnumerator Explode() {
         //yield return new WaitForSeconds(2);
         var animator = GetComponent<PillarAnimator>();
+
+        // Register in save system
+        var savesystem = GameObject.FindGameObjectWithTag("SaveSystem");
+        if(savesystem != null) {
+            SaveSystem save = savesystem.GetComponent<SaveSystem>();
+            save.PillarsDestroyed.Add(PillarId);
+        }
 
 
         // Save state

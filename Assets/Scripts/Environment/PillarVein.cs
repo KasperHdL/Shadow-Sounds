@@ -43,7 +43,8 @@ public class PillarVein : MonoBehaviour {
         line = gameObject.AddComponent<LineRenderer>();
         if(root == null)
             root = GetComponent<Pillar>();
-        if (End == transform) End = null;
+        if(End == transform)
+            End = null;
         if(End == null) {
             Destroy(this);
             return;
@@ -175,31 +176,46 @@ public class PillarVein : MonoBehaviour {
 
                 var t = times[j] + (k < 0 ? k + 1 : (k >= psecs ? k - 1 : k)) * (PulseSize / psecs);
                 var v = Mathf.FloorToInt(t / SectionLength);
+                var v1 = v + 1;
                 var o = (t % SectionLength) / SectionLength;
 
-                var pos = positions;
-                
-                if(v >= positions.Length - 2) {
-                    var end = End.GetComponent<PillarVein>();
-                    if(end == null) {
-                        v = positions.Length - 2;
-                        o = 1;
-                    } else if(end.positions != null){
-                        pos = end.positions;
+                var pos1 = positions;
+                var pos2 = positions;
+
+                var end = End.GetComponent<PillarVein>();
+                if(v >= positions.Length) {
+                    if(end != null && end.enabled && end.positions != null) {
+                        pos1 = end.positions;
                         v -= positions.Length;
+                    } else {
+                        v = positions.Length - 1;
+                        o = 1;
                     }
                 }
-                if (v < 0) v = 0;
-                
+                if(v < 0) v = 0;
+                var p1 = pos1[v];
+
+                if(v1 >= positions.Length) {
+                    if(end != null && end.enabled && end.positions != null) {
+                        pos2 = end.positions;
+                        v1 -= positions.Length;
+                    } else {
+                        v1 = positions.Length - 1;
+                        o = 1;
+                    }
+                }
+                if(v1 < 0) v1 = 0;
+                var p2 = pos2[v1];
+
                 if(aline != null)
-                    aline.SetPosition(k < 0 ? k + 2 : (k >= psecs ? k - psecs : k), Vector3.LerpUnclamped(pos[v], pos[v + 1], o) + Vector3.back);
-                latest = Vector3.LerpUnclamped(pos[v], pos[v + 1], o);
+                    aline.SetPosition(k < 0 ? k + 2 : (k >= psecs ? k - psecs : k), Vector3.LerpUnclamped(p1, p2, o) + Vector3.back);
+                latest = Vector3.LerpUnclamped(p1, p2, o);
             }
 
             times[j] += Time.deltaTime * PulseSpeed * PulseSpeedCurve.Evaluate(Time.time / PulseRate + Vector3.Distance(latest, transform.position) * 0.5f);
         }
         if(times.Count > 0 && times[0] > d) {
-            if(End.GetComponent<PillarVein>()) {
+            if(End.GetComponent<PillarVein>() && End.GetComponent<PillarVein>().lines != null) {
                 End.GetComponent<PillarVein>().lines.Add(lines[0]);
                 End.GetComponent<PillarVein>().starts.Add(lines[0], starts[lines[0]]);
                 End.GetComponent<PillarVein>().ends.Add(lines[0], ends[lines[0]]);
