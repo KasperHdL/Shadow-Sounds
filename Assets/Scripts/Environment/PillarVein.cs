@@ -162,8 +162,7 @@ public class PillarVein : MonoBehaviour {
             positions[i] = Vector3.Project(p - positions[i], positions[i] - p) + positions[i];
         }
 
-        for(int j = 0; j < lines.Count; j++)
-        {
+        for(int j = 0; j < lines.Count; j++) {
             var latest = Vector3.zero;
 
             for(int k = -2; k < psecs + 2; k++) {
@@ -174,16 +173,28 @@ public class PillarVein : MonoBehaviour {
                         : lines[j].GetComponent<LineRenderer>());
 
                 var t = times[j] + (k < 0 ? k + 1 : (k >= psecs ? k - 1 : k)) * (PulseSize / psecs);
-                var v = Mathf.Max(Mathf.Min(Mathf.FloorToInt(t / SectionLength), positions.Length - 2), 0);
+                var v = Mathf.FloorToInt(t / SectionLength);
                 var o = (t % SectionLength) / SectionLength;
+
+                var pos = positions;
+                if(v >= positions.Length - 1) {
+                    var end = End.GetComponent<PillarVein>();
+                    if(end == null) {
+                        v = positions.Length-2;
+                    } else {
+                        pos = end.positions;
+                        v -= positions.Length;
+                    }
+                }
+                if (v < 0) v = 0;
                 
-                aline.SetPosition(k < 0 ? k + 2 : (k >= psecs ? k - psecs : k), Vector3.LerpUnclamped(positions[v], positions[v + 1], o) + Vector3.back);
-                latest = Vector3.LerpUnclamped(positions[v], positions[v + 1], o);
+                aline.SetPosition(k < 0 ? k + 2 : (k >= psecs ? k - psecs : k), Vector3.LerpUnclamped(pos[v], pos[v + 1], o) + Vector3.back);
+                latest = Vector3.LerpUnclamped(pos[v], pos[v + 1], o);
             }
 
-            times[j] += Time.deltaTime*PulseSpeed * PulseSpeedCurve.Evaluate(Time.time / PulseRate + Vector3.Distance(latest, transform.position) * 0.5f);
+            times[j] += Time.deltaTime * PulseSpeed * PulseSpeedCurve.Evaluate(Time.time / PulseRate + Vector3.Distance(latest, transform.position) * 0.5f);
         }
-        if(times.Count > 0 && times[0] + PulseSize > d) {
+        if(times.Count > 0 && times[0] > d) {
             if(End.GetComponent<PillarVein>()) {
                 End.GetComponent<PillarVein>().lines.Add(lines[0]);
                 End.GetComponent<PillarVein>().starts.Add(lines[0], starts[lines[0]]);
