@@ -109,7 +109,7 @@ public class PlayerMovement : CharacterMovement
                 if (collision.gameObject.name == "SonarPU")
                 {
                     gameObject.GetComponent<SonarTool>().enabled = true;
-                    SoundSystem.Play("charging");
+                    SoundSystem.Play("charging",0.8f,0.5f);
                 }
                 Destroy(collision.gameObject);
                 break;
