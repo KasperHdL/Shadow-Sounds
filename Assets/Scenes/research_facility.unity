@@ -22261,7 +22261,7 @@ Prefab:
         type: 2}
       propertyPath: End
       value: 
-      objectReference: {fileID: 1032498489}
+      objectReference: {fileID: 0}
     - target: {fileID: 4000010448195084, guid: 761f5628786a03c488d3d77b74a20c76, type: 2}
       propertyPath: m_LocalScale.x
       value: 1.7
