@@ -120,7 +120,7 @@ public class PlayerMovement : CharacterMovement
                     sonar.sonarChargeLeft += 200f;
                 if (collision.gameObject.name == "SonarPU"){
                     gameObject.GetComponent<SonarTool>().enabled = true;
-                    SoundSystem.Play("charging");
+                    SoundSystem.Play("charging",0.8f,0.5f);
                     sonarSprite.gameObject.SetActive(true);
                     GameObject.FindGameObjectWithTag("SaveSystem").GetComponent<SaveSystem>().playerPickedUpSonar = true;
                 }
