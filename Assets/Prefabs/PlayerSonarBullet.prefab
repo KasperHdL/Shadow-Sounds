@@ -95,7 +95,7 @@ MonoBehaviour:
   noise: 50
   noiseBlockMultiplier: 0.05
   noiseHitMultiplier: 2
-  noiseHighlightMultiplier: 4
+  noiseHighlightMultiplier: 1.5
   noiseTransMultiplier: 0.2
   hitPitch: 0.4
   hitVolume: 1.5
