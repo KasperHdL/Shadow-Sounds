@@ -1581,16 +1581,43 @@ MonoBehaviour:
   End: {fileID: 448566879}
   SectionLength: 4
   Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  VeinColor: {r: 0.528, g: 0, b: 0, a: 0.7058824}
+  VeinColor: {r: 0.43137252, g: 0, b: 0, a: 0.9019608}
   VeinWidth: 0.2
-  PulseColor: {r: 0.866, g: 0, b: 0, a: 0.7058824}
-  PulseWidth: 0.4
+  PulseColor: {r: 0.8627451, g: 0, b: 0, a: 0.9019608}
+  PulseWidth: 0.3
   PulseRate: 0.75
-  PulseSpeed: 2
-  PulseSize: 0.5
+  PulseSpeed: 10
+  PulseSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 0.5145966
+      value: 0.5337839
+      inSlope: -1.5137528
+      outSlope: -1.5137528
+      tangentMode: 0
+    - time: 0.78433305
+      value: 0.33947238
+      inSlope: 0.751148
+      outSlope: 0.751148
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 1
+    m_RotationOrder: 0
+  PulseSize: 2
   Offset: 0.1
   MoveRate: 0.5
-  MoveAmount: 0.75
+  MoveAmount: 0.5
+  DeathSpeed: 4
 --- !u!1 &268149050
 GameObject:
   m_ObjectHideFlags: 0
@@ -1672,16 +1699,43 @@ MonoBehaviour:
   End: {fileID: 259239999}
   SectionLength: 4
   Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  VeinColor: {r: 0.528, g: 0, b: 0, a: 0.7058824}
+  VeinColor: {r: 0.43137252, g: 0, b: 0, a: 0.9019608}
   VeinWidth: 0.2
-  PulseColor: {r: 0.866, g: 0, b: 0, a: 0.7058824}
-  PulseWidth: 0.4
+  PulseColor: {r: 0.8627451, g: 0, b: 0, a: 0.9019608}
+  PulseWidth: 0.3
   PulseRate: 0.75
-  PulseSpeed: 2
-  PulseSize: 0.5
+  PulseSpeed: 10
+  PulseSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 0.5145966
+      value: 0.5337839
+      inSlope: -1.5137528
+      outSlope: -1.5137528
+      tangentMode: 0
+    - time: 0.78433305
+      value: 0.33947238
+      inSlope: 0.751148
+      outSlope: 0.751148
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 1
+    m_RotationOrder: 0
+  PulseSize: 2
   Offset: 0.1
   MoveRate: 0.5
-  MoveAmount: 0.75
+  MoveAmount: 0.5
+  DeathSpeed: 4
 --- !u!1001 &314379715
 Prefab:
   m_ObjectHideFlags: 0
@@ -2426,6 +2480,10 @@ Prefab:
     - target: {fileID: 4000011493936062, guid: 761f5628786a03c488d3d77b74a20c76, type: 2}
       propertyPath: m_RootOrder
       value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013490698678, guid: 761f5628786a03c488d3d77b74a20c76, type: 2}
+      propertyPath: m_RootOrder
+      value: 71
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 761f5628786a03c488d3d77b74a20c76, type: 2}
@@ -5760,15 +5818,6 @@ Prefab:
       propertyPath: End
       value: 
       objectReference: {fileID: 268149052}
-    - target: {fileID: 114000010216729932, guid: 761f5628786a03c488d3d77b74a20c76,
-        type: 2}
-      propertyPath: PulseRate
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000011369317332, guid: 761f5628786a03c488d3d77b74a20c76, type: 2}
-      propertyPath: m_TagString
-      value: Interactable
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 761f5628786a03c488d3d77b74a20c76, type: 2}
   m_IsPrefabParent: 0
@@ -7300,7 +7349,7 @@ Prefab:
     - target: {fileID: 114000012183586300, guid: c05b727539e0b415e927a48accd07b48,
         type: 2}
       propertyPath: useController
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114000012183586300, guid: c05b727539e0b415e927a48accd07b48,
         type: 2}
