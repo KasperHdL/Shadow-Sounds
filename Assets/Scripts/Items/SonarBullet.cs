@@ -30,7 +30,7 @@ public class SonarBullet : MonoBehaviour {
 
     public float hitPitch = 0.5f;
     public float hitVolume = 1.0f;
-    public float noHitVolume = 1.0f;
+    public float noHitVolume = 0.2f;
 
 
     private LineRenderer line;
@@ -77,9 +77,9 @@ public class SonarBullet : MonoBehaviour {
         var t = tt;
 
         var played = new HashSet<Collider2D>();
-        var finished = false;
+        var playedNoHitSound = false;
 
-        while(t > 0) {
+        while(t > 0 ) {
             var h = 0; // Number of active points
 
             for(int i = 0; i < source.Rays; i++) {
@@ -189,10 +189,11 @@ public class SonarBullet : MonoBehaviour {
             line.SetColors(color, color);
 
             // Finish early
-            if(h == 0 && !finished) {
+            if(h == 0 && !playedNoHitSound)
+            {
                 SoundSystem.Play("sonar no hit", 1, noHitVolume);
                 SoundSystem.Stop("sonar noise");
-                finished = true;
+                playedNoHitSound = true;
             }
 
             // Sleep
@@ -200,6 +201,8 @@ public class SonarBullet : MonoBehaviour {
             yield return new WaitForFixedUpdate();
             t -= Time.fixedDeltaTime * 2;
         }
+        if(!playedNoHitSound)
+            SoundSystem.Play("sonar no hit", 1, noHitVolume);
 
         Destroy(gameObject);
     }
