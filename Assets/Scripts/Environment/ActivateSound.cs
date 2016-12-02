@@ -12,4 +12,9 @@ public class ActivateSound : MonoBehaviour, IActivatable {
     {
         GetComponent<AudioSource>().Stop();
     }
+
+    public void Trigger()
+    {
+        Activate();
+    }
 }

@@ -252,7 +252,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013906157328}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.08, y: 60.07, z: 0.29}
+  m_LocalPosition: {x: -12.04, y: 76.25, z: 0.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -452,9 +452,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  ChaseSpeed: 6
+  ChaseSpeed: 5.25
   sprite: {fileID: 1000012319584334}
-  visibleOverride: 1
+  visibleOverride: 0
   visibleToPlayerRange: 5
   visible: 0
   allowedToWander: 1
@@ -466,7 +466,7 @@ MonoBehaviour:
   minWanderDistance: 1
   maxWanderDistance: 3
   attackDistance: 2
-  attackCooldown: 0.5
+  attackCooldown: 1.25
   attackChargeTime: 0.1
   attackForce: 1200
   hitForce: 50
@@ -475,7 +475,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 37377
   immidiateDetectionDistance: 4
-  detectionTime: 1
+  detectionTime: 2
   knownPlayerPosition: {x: 0, y: 0}
   broadcastToOthersDelay: 0.25
   canSeePlayer: 0
