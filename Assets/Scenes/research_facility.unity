@@ -21172,41 +21172,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 18
       objectReference: {fileID: 0}
-    - target: {fileID: 114000013303700870, guid: 16069e4fb40080e4eb124399da4802a3,
-        type: 2}
-      propertyPath: FlickerCurve.m_Curve.Array.data[5].time
-      value: 0.70626986
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013303700870, guid: 16069e4fb40080e4eb124399da4802a3,
-        type: 2}
-      propertyPath: FlickerCurve.m_Curve.Array.data[5].value
-      value: 0.21137208
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013303700870, guid: 16069e4fb40080e4eb124399da4802a3,
-        type: 2}
-      propertyPath: FlickerCurve.m_Curve.Array.data[1].time
-      value: 0.15367828
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013303700870, guid: 16069e4fb40080e4eb124399da4802a3,
-        type: 2}
-      propertyPath: FlickerCurve.m_Curve.Array.data[1].value
-      value: 0.094316974
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013303700870, guid: 16069e4fb40080e4eb124399da4802a3,
-        type: 2}
-      propertyPath: FlickerRate
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013303700870, guid: 16069e4fb40080e4eb124399da4802a3,
-        type: 2}
-      propertyPath: wanderingAreaSize.y
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013303700870, guid: 16069e4fb40080e4eb124399da4802a3,
-        type: 2}
-      propertyPath: FlickerCurveTime
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16069e4fb40080e4eb124399da4802a3, type: 2}
   m_IsPrefabParent: 0
