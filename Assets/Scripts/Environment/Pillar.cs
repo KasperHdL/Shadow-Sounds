@@ -32,7 +32,8 @@ public class Pillar : Interactable {
     public List<GameObject> OnDestroyTurnOff;
     public List<GameObject> OnDestroyTurnTrigger;
 
-    public bool IsDead;
+    private bool IsDead;
+    public bool killVein = false;
     public float enemyStunLength = 3f;
 
     public void Start() {
@@ -40,37 +41,41 @@ public class Pillar : Interactable {
         if(savesystem != null) {
             SaveSystem save = savesystem.GetComponent<SaveSystem>();
             if(save.PillarsDestroyed.Contains(PillarId)) {
+
+                
+
+                ShakeTime = 2.0f;
+                //ExplosionTime = 0;
+                StartCoroutine(PillarId == save.PillarsDestroyed.Last() ? Explode(0.1f) : Explode(0.0f));
+
                 IsDead = true;
-                ShakeTime = 0;
-                ExplosionTime = 0;
-                //StartCoroutine(Explode());
 
-                foreach(var go in OnDestroyTurnOn) {
-                    if(go == null)
-                        continue;
-                    foreach(var act in go.GetComponents<IActivatable>()) {
-                        act.Activate();
-                    }
-                }
+                //foreach(var go in OnDestroyTurnOn) {
+                //    if(go == null)
+                //        continue;
+                //    foreach(var act in go.GetComponents<IActivatable>()) {
+                //        act.Activate();
+                //    }
+                //}
 
-                foreach(var go in OnDestroyTurnOff) {
-                    if(go == null)
-                        continue;
-                    foreach(var act in go.GetComponents<IActivatable>()) {
-                        act.ShutDown();
-                    }
+                //foreach(var go in OnDestroyTurnOff) {
+                //    if(go == null)
+                //        continue;
+                //    foreach(var act in go.GetComponents<IActivatable>()) {
+                //        act.ShutDown();
+                //    }
 
-                }
+                //}
 
-                foreach(var go in OnDestroyTurnTrigger) {
-                    if(go == null)
-                        continue;
-                    foreach(var act in go.GetComponents<IActivatable>()) {
-                        act.Trigger();
-                    }
-                }
-           
-                Destroy(gameObject);
+                //foreach(var go in OnDestroyTurnTrigger) {
+                //    if(go == null)
+                //        continue;
+                //    foreach(var act in go.GetComponents<IActivatable>()) {
+                //        act.Trigger();
+                //    }
+                //}
+
+                //Destroy(gameObject);
 
 
             }
@@ -80,10 +85,20 @@ public class Pillar : Interactable {
     public override void Interact() {
         if(!IsDead) {
             IsDead = true;
-            StartCoroutine(Explode());
+            StartCoroutine(Explode(1.0f));
             var enemies = FindObjectsOfType<FollowPlayer>();
 
-            for(int i = 0; i < enemies.Length; i++)
+
+            // Register in save system
+            var savesystem = GameObject.FindGameObjectWithTag("SaveSystem");
+            if (savesystem != null)
+            {
+                SaveSystem save = savesystem.GetComponent<SaveSystem>();
+                save.PillarsDestroyed.Add(PillarId);
+            }
+
+
+            for (int i = 0; i < enemies.Length; i++)
                 enemies[i].Stun(enemyStunLength);
 
         }
@@ -96,17 +111,10 @@ public class Pillar : Interactable {
 
     
 
-    public IEnumerator Explode() {
+    public IEnumerator Explode(float volume) {
         //yield return new WaitForSeconds(2);
         var animator = GetComponent<PillarAnimator>();
-        SoundSystem.Play("pre-explode",1,1,0,ShakeTime);
-
-        // Register in save system
-        var savesystem = GameObject.FindGameObjectWithTag("SaveSystem");
-        if(savesystem != null) {
-            SaveSystem save = savesystem.GetComponent<SaveSystem>();
-            save.PillarsDestroyed.Add(PillarId);
-        }
+        SoundSystem.Play("pre-explode",1,volume,0,ShakeTime);
 
 
         // Save state
@@ -151,8 +159,10 @@ public class Pillar : Interactable {
         }
 
 
+        killVein = true;
 
-        SoundSystem.Play("Pillar Death");
+
+        SoundSystem.Play("Pillar Death",1.0f,volume);
         // Explosion
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<CircleCollider2D>().enabled = false;
@@ -170,13 +180,13 @@ public class Pillar : Interactable {
         animator.Rotation2CurveSpeed = 0;
         animator.ScaleCurveSpeed = 0;
         animator.PositionPulseCurveSpeed = 0;
+        GetComponentInChildren<Light>().intensity = li;
 
-
-        for(float t = ExplosionTime; t > 0; t -= Time.fixedDeltaTime) {
+        for (float t = ExplosionTime; t > 0; t -= Time.fixedDeltaTime) {
             animator.PositionCurveFactor += ExplosionRate * Time.fixedDeltaTime * ExplosionCurve.Evaluate(t / ExplosionTime);
             animator.ColorA.a = ExplosionCurve.Evaluate((t / ExplosionTime) * (1 - EndTransparency) + EndTransparency);
             animator.ColorB.a = ExplosionCurve.Evaluate((t / ExplosionTime) * (1 - EndTransparency) + EndTransparency);
-            GetComponentInChildren<Light>().intensity = li * ExplosionCurve.Evaluate(t / ExplosionTime);
+            
 
             yield return new WaitForFixedUpdate();
         }
@@ -205,7 +215,7 @@ public class Pillar : Interactable {
             yield return new WaitForFixedUpdate();
         }
 
-        foreach(var go in OnDestroyTurnOn) {
+        foreach (var go in OnDestroyTurnOn) {
             if(go == null)
                 continue;
             foreach(var act in go.GetComponents<IActivatable>()) {
