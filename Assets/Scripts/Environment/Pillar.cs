@@ -20,7 +20,7 @@ public class Pillar : Interactable {
     public float ExplosionRate = 1f;
     public AnimationCurve ExplosionCurve;
     public float EndTransparency = 0.4f;
-    
+
     public float FadeTime = 1f;
 
     public float KeepRate = 0.5f;
@@ -30,6 +30,7 @@ public class Pillar : Interactable {
 
     public List<GameObject> OnDestroyTurnOn;
     public List<GameObject> OnDestroyTurnOff;
+    public List<GameObject> OnDestroyTurnTrigger;
 
     public bool IsDead;
 
@@ -37,22 +38,46 @@ public class Pillar : Interactable {
         var savesystem = GameObject.FindGameObjectWithTag("SaveSystem");
         if(savesystem != null) {
             SaveSystem save = savesystem.GetComponent<SaveSystem>();
-            if(save.PillarsDestroyed.Contains(PillarId)) { 
+            if(save.PillarsDestroyed.Contains(PillarId)) {
                 IsDead = true;
                 ShakeTime = 0;
                 ExplosionTime = 0;
                 //StartCoroutine(Explode());
+
+                foreach(var go in OnDestroyTurnOn) {
+                    if(go == null)
+                        continue;
+                    foreach(var act in go.GetComponents<IActivatable>()) {
+                        act.Activate();
+                    }
+                }
+
+                foreach(var go in OnDestroyTurnOff) {
+                    if(go == null)
+                        continue;
+                    foreach(var act in go.GetComponents<IActivatable>()) {
+                        act.ShutDown();
+                    }
+
+                }
+
+                foreach(var go in OnDestroyTurnTrigger) {
+                    if(go == null)
+                        continue;
+                    foreach(var act in go.GetComponents<IActivatable>()) {
+                        act.Trigger();
+                    }
+                }
+           
                 Destroy(gameObject);
+
 
             }
         }
     }
 
-    public override void Interact(){
-        
-
-        if (!IsDead)
-        {
+    public override void Interact() {
+        if(!IsDead) {
             IsDead = true;
             StartCoroutine(Explode());
         }
@@ -148,8 +173,7 @@ public class Pillar : Interactable {
             yield return new WaitForFixedUpdate();
         }
 
-        foreach (var audioSource in gameObject.GetComponents<AudioSource>())
-        {
+        foreach(var audioSource in gameObject.GetComponents<AudioSource>()) {
             audioSource.Stop();
         }
 
@@ -158,33 +182,42 @@ public class Pillar : Interactable {
 
         // Remove some clots
         var remove = new List<Transform>();
-        for (int i = 0; i < transform.childCount; i++) remove.Add(transform.GetChild(i));
+        for(int i = 0; i < transform.childCount; i++)
+            remove.Add(transform.GetChild(i));
         remove = remove.OrderBy(_ => Guid.NewGuid()).Take((int)(remove.Count * RemoveRate)).ToList();
 
         for(float t = FadeTime; t > 0; t -= Time.fixedDeltaTime) {
-            foreach (var trans in remove)
-            {
-                if (trans.GetComponent<SpriteRenderer>() == null) continue;
+            foreach(var trans in remove) {
+                if(trans.GetComponent<SpriteRenderer>() == null)
+                    continue;
                 var c = trans.GetComponent<SpriteRenderer>().color;
-                c.a = EndTransparency*(t/FadeTime);
+                c.a = EndTransparency * (t / FadeTime);
                 trans.GetComponent<SpriteRenderer>().color = c;
             }
             yield return new WaitForFixedUpdate();
         }
 
-        foreach (var go in OnDestroyTurnOn)
-        {
-            foreach (var act in go.GetComponents<IActivatable>())
-            {
-                act.Activate();                
+        foreach(var go in OnDestroyTurnOn) {
+            if(go == null)
+                continue;
+            foreach(var act in go.GetComponents<IActivatable>()) {
+                act.Activate();
             }
         }
 
-        foreach (var go in OnDestroyTurnOff)
-        {
-            foreach (var act in go.GetComponents<IActivatable>())
-            {
+        foreach(var go in OnDestroyTurnOff) {
+            if(go == null)
+                continue;
+            foreach(var act in go.GetComponents<IActivatable>()) {
                 act.ShutDown();
+            }
+        }
+
+        foreach(var go in OnDestroyTurnTrigger) {
+            if(go == null)
+                continue;
+            foreach(var act in go.GetComponents<IActivatable>()) {
+                act.Trigger();
             }
         }
     }

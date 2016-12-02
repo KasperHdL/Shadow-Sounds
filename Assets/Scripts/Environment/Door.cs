@@ -27,6 +27,8 @@ public class Door : MonoBehaviour,IActivatable {
 
     public List<Button> buttons;
 
+    public int NumTriggerRequired = 9000;
+
     void OnReset(){
         if(openDirection == Vector3.zero)
             openDirection = transform.up;
@@ -155,5 +157,12 @@ public class Door : MonoBehaviour,IActivatable {
     public void ShutDown()
     {
         ChangeState(State.Error);
+    }
+
+    public void Trigger()
+    {
+        Debug.Log(NumTriggerRequired);
+        NumTriggerRequired--;
+        if(NumTriggerRequired == 0) Activate();
     }
 }
