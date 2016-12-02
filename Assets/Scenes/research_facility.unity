@@ -6763,11 +6763,6 @@ Prefab:
       propertyPath: m_Name
       value: Button (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 108000013215815334, guid: 326a77c85da044d238f2ea3fa7798ea7,
-        type: 2}
-      propertyPath: m_Shadows.m_Type
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 326a77c85da044d238f2ea3fa7798ea7, type: 2}
   m_IsPrefabParent: 0
@@ -17753,11 +17748,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000011261490950, guid: 4dc79755d2d50ac4d9cd70acb4f1ff16, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -15.02
+      value: -13.918
       objectReference: {fileID: 0}
     - target: {fileID: 4000011261490950, guid: 4dc79755d2d50ac4d9cd70acb4f1ff16, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 28.45
+      value: 27.6
       objectReference: {fileID: 0}
     - target: {fileID: 4000011261490950, guid: 4dc79755d2d50ac4d9cd70acb4f1ff16, type: 2}
       propertyPath: m_LocalPosition.z
@@ -17824,6 +17819,16 @@ Prefab:
         type: 2}
       propertyPath: direction.y
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61000010350841402, guid: 4dc79755d2d50ac4d9cd70acb4f1ff16,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 61000010350841402, guid: 4dc79755d2d50ac4d9cd70acb4f1ff16,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4dc79755d2d50ac4d9cd70acb4f1ff16, type: 2}
@@ -22499,18 +22504,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 65
       objectReference: {fileID: 0}
-    - target: {fileID: 1000011457680330, guid: 326a77c85da044d238f2ea3fa7798ea7, type: 2}
-      propertyPath: m_Name
-      value: Button (8)
-      objectReference: {fileID: 0}
     - target: {fileID: 114000010581744102, guid: 326a77c85da044d238f2ea3fa7798ea7,
         type: 2}
       propertyPath: door
       value: 
       objectReference: {fileID: 140717542}
-    - target: {fileID: 4000011668281594, guid: 326a77c85da044d238f2ea3fa7798ea7, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
+    - target: {fileID: 1000011457680330, guid: 326a77c85da044d238f2ea3fa7798ea7, type: 2}
+      propertyPath: m_Name
+      value: Button (8)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 326a77c85da044d238f2ea3fa7798ea7, type: 2}
