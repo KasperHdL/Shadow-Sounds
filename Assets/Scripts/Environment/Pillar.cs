@@ -33,6 +33,7 @@ public class Pillar : Interactable {
     public List<GameObject> OnDestroyTurnTrigger;
 
     public bool IsDead;
+    public float enemyStunLength = 3f;
 
     public void Start() {
         var savesystem = GameObject.FindGameObjectWithTag("SaveSystem");
@@ -80,6 +81,11 @@ public class Pillar : Interactable {
         if(!IsDead) {
             IsDead = true;
             StartCoroutine(Explode());
+            var enemies = FindObjectsOfType<FollowPlayer>();
+
+            for(int i = 0; i < enemies.Length; i++)
+                enemies[i].Stun(enemyStunLength);
+
         }
     }
 
@@ -87,6 +93,8 @@ public class Pillar : Interactable {
     {
 //if (PillarId == 0) PillarId = Random.Range(int.MinValue, int.MaxValue);
     }
+
+    
 
     public IEnumerator Explode() {
         //yield return new WaitForSeconds(2);
