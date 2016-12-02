@@ -28,7 +28,7 @@ public class SonarBullet : MonoBehaviour {
     public float noiseHighlightMultiplier = 3.0f;
     public float noiseTransMultiplier = 3.0f;
 
-    public float hitPitch = 0.5f;
+    public float hitPitch = 0.4f;
     public float hitVolume = 1.0f;
     public float noHitVolume = 0.2f;
 

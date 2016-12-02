@@ -133,9 +133,9 @@ public class Pillar : Interactable {
         // Warm up
         for(float t = ShakeTime; t > 0; t -= Time.fixedDeltaTime)
         {
-            vein.PulseSpeed = 0.5f  * vSpd * ShakeCurve.Evaluate(1 - (t / ShakeTime)) * ShakeFactor;
-            vein.PulseSize =  0.5f *vSz * ShakeCurve.Evaluate(1 - (t / ShakeTime)) * ShakeFactor;
-            vein.PulseWidth = 1.2f* vWdt * ShakeCurve.Evaluate(1 - (t / ShakeTime)) * ShakeFactor;
+            vein.PulseSpeed = 0.5f  * vSpd * ShakeCurve.Evaluate((t / ShakeTime)) * ShakeFactor;
+            vein.PulseSize =  0.5f *vSz * ShakeCurve.Evaluate((t / ShakeTime)) * ShakeFactor;
+            vein.PulseWidth = 1.5f* vWdt * ShakeCurve.Evaluate((t / ShakeTime)) * ShakeFactor;
             animator.PositionCurveSpeed = p0 * ShakeCurve.Evaluate(1 - (t / ShakeTime)) * ShakeFactor;
             animator.RotationCurveSpeed = r0 * ShakeCurve.Evaluate(1 - (t / ShakeTime)) * ShakeFactor;
             animator.RotationCurveFactor = r10 * ShakeCurve.Evaluate(1 - (t / ShakeTime)) * ShakeFactor;

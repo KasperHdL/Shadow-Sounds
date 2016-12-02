@@ -20,10 +20,13 @@ public class SonarBeacon : MonoBehaviour, SonarSource {
     public float Angle { get { return angle; } }
     public int Rays { get { return rays; } }
     public float SonarPct { get { return sonarPct; } }
+    private GameObject pl;
+    public float silenceDistance = 5.0f;
 
 
     void Start()
     {
+        pl = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(DoUpdate());
     }
     
@@ -32,8 +35,25 @@ public class SonarBeacon : MonoBehaviour, SonarSource {
         {
             yield return new WaitForSeconds(1/rate);
 
+            var plyrDist = Vector3.Distance(transform.position, pl.transform.position);
+
             var bullet = (SonarBullet)Instantiate(sonarBulletPrefab, transform.position, Quaternion.identity);
 			bullet.source = this;
+
+            if (plyrDist > silenceDistance)
+            {
+                bullet.hitVolume = 0.0f;
+                bullet.noise = 0;
+                bullet.noHitVolume = 0;
+            }
+            else
+            {
+
+                bullet.hitVolume = 0.5f/plyrDist;
+                bullet.noise = 1 / plyrDist;
+                
+            }
+            
         }
     }
 }
