@@ -204,7 +204,6 @@ public class FollowPlayer : CharacterMovement
     }
 
     public void Stun(float length){
-        Debug.Log("is stunned for " + length);
         stunned = true;
         StartCoroutine(stopBeingStunned(length));
     }
