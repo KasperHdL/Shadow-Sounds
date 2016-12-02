@@ -99,4 +99,4 @@ MonoBehaviour:
   noiseTransMultiplier: 0.2
   hitPitch: 0.4
   hitVolume: 1.5
-  noHitVolume: 0.3
+  noHitVolume: 0.2
