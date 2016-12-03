@@ -33,7 +33,7 @@ public class Pillar : Interactable {
     public List<GameObject> OnDestroyTurnTrigger;
 
     private bool IsDead;
-    public bool killVein = false;
+    public bool killVein;
     public float enemyStunLength = 3f;
 
     public void Start() {
@@ -145,6 +145,12 @@ public class Pillar : Interactable {
             animator.HeartBearRate = animator.PositionPulseCurveSpeed;
             GetComponentInChildren<Light>().intensity = li * ShakeCurve.Evaluate(1 - (t / ShakeTime)) * ShakeFactor;
 
+            if (t/ShakeTime < 0.30f && !killVein)
+            {
+                killVein = true;
+                SoundSystem.Play("VeinSnap",1.0f,volume);
+            }
+
             yield return new WaitForFixedUpdate();
         }
 
@@ -166,7 +172,7 @@ public class Pillar : Interactable {
         }
 
 
-        killVein = true;
+        
 
 
         SoundSystem.Play("Pillar Death",1.0f,volume);
