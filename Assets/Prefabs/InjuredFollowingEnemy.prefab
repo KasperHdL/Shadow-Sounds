@@ -221,7 +221,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014211235934}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.8391086, y: -26.025568, z: 0.29}
+  m_LocalPosition: {x: -23.11, y: 28.45, z: 0.29}
   m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -463,7 +463,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Move: {x: 0, y: 0}
   DisableMovement: 0
-  MoveSpeed: 1.5
+  MoveSpeed: 1
   Acceleration: 0.5
   Deceleration: 0.5
   StartCurve:
@@ -498,21 +498,21 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  ChaseSpeed: 0
+  ChaseSpeed: 1.5
   sprite: {fileID: 0}
   visibleOverride: 0
   visibleToPlayerRange: 5
   visible: 0
   allowedToWander: 1
-  randomWanderAfterPlayerSight: 0
+  randomWanderAfterPlayerSight: 1
   useGlobalPositionForWanderArea: 0
   wanderingAreaGlobalPosition: {x: 0, y: 0}
   wanderingAreaOffset: {x: 0, y: 0}
-  wanderingAreaSize: {x: 5, y: 5}
+  wanderingAreaSize: {x: 8, y: 10}
   minWanderDistance: 2
   maxWanderDistance: 5
   attackDistance: 3
-  attackCooldown: 3
+  attackCooldown: 2
   attackChargeTime: 0.8
   attackForce: 500
   hitForce: 200
@@ -534,8 +534,8 @@ MonoBehaviour:
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-    - time: 0.14615555
-      value: 0.027464807
+    - time: 0.15367828
+      value: 0.094316974
       inSlope: -0.19000843
       outSlope: -0.19000843
       tangentMode: 0
@@ -554,8 +554,8 @@ MonoBehaviour:
       inSlope: 0.004172325
       outSlope: 0.004172325
       tangentMode: 0
-    - time: 0.67617893
-      value: 0.050431676
+    - time: 0.70626986
+      value: 0.21137208
       inSlope: 0.028023496
       outSlope: 0.028023496
       tangentMode: 0
@@ -567,8 +567,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 0
     m_RotationOrder: 0
-  FlickerCurveTime: 30
-  FlickerRate: 10
+  FlickerCurveTime: 1
+  FlickerRate: 20
 --- !u!198 &198000012896573206
 ParticleSystem:
   m_ObjectHideFlags: 1

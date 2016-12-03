@@ -82,7 +82,7 @@ public class PillarVein : MonoBehaviour {
     }
 
     public IEnumerator Pulse() {
-        while(root != null && !root.IsDead) {
+        while(root != null && !root.killVein) {
             yield return new WaitForSeconds(1 / PulseRate);
 
             var go = new GameObject("Pulse");
@@ -128,7 +128,7 @@ public class PillarVein : MonoBehaviour {
     }
     public IEnumerator Move() {
         var dir = (End.position - transform.position).normalized;
-        while(root == null || !root.IsDead) {
+        while(root == null || !root.killVein) {
             yield return new WaitForSeconds(1 / MoveRate);
 
             for(int i = 1; i < n; i++) {
@@ -143,7 +143,7 @@ public class PillarVein : MonoBehaviour {
             return;
 
         var d = Vector3.Distance(End.position, transform.position);
-        if(root != null && root.IsDead)
+        if(root != null && root.killVein)
             life -= Time.deltaTime * DeathSpeed;
 
         if(life < 0) {
@@ -157,7 +157,7 @@ public class PillarVein : MonoBehaviour {
         }
 
         for(int i = 0; i < n; i++) {
-            if(root == null || !root.IsDead)
+            if(root == null || !root.killVein)
                 positions[i] = Vector3.Lerp(positions[i], targets[i], 0.01f);
             var more = positions[i] - End.position;
             var p = End.position + more.normalized * Mathf.Min(more.magnitude, life);

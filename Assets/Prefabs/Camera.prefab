@@ -120,7 +120,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011376902860}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24, y: -14, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -9103,7 +9103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b466ec9ccc151b1439e26f313b22be4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sids: 020000000400000006000000080000000a0000000c0000000e00000010000000120000001400000016000000180000001a0000001c0000001e00000020000000220000002400000026000000280000002a0000002c000000
+  sids: 020000000400000006000000080000000a0000000c0000000e00000010000000120000001400000016000000180000001a0000001c0000001e00000020000000220000002400000026000000280000002a0000002c0000002e000000
   snames:
   - sonar hit
   - sonar no hit
@@ -9127,6 +9127,7 @@ MonoBehaviour:
   - charging
   - hit
   - pre-explode
+  - VeinSnap
   sclips:
   - data:
     - {fileID: 8300000, guid: 46172244123ccf44882ef4fa2684e008, type: 3}
@@ -9180,6 +9181,8 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 5f16d7cce5e9f9a47a7ee30d59ec9df0, type: 3}
   - data:
     - {fileID: 8300000, guid: 08794e1da91275842a481c7a61bf18d4, type: 3}
+  - data:
+    - {fileID: 8300000, guid: 0d49aab29b9e22344b1c3fd86fd2c29a, type: 3}
 --- !u!114 &114000012675689040
 MonoBehaviour:
   m_ObjectHideFlags: 1

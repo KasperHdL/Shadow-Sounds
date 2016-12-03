@@ -151,7 +151,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011376699998}
   m_LocalRotation: {x: 0, y: 0, z: 0.6902513, w: 0.72356975}
-  m_LocalPosition: {x: 0.1, y: 4.6, z: 0}
+  m_LocalPosition: {x: -5.5, y: 43.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 87.3}
   m_Children:
@@ -456,18 +456,18 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011376699998}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d05100af1975410fba82047636557aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sonarBulletPrefab: {fileID: 114000010584440910, guid: 85ca129e5d29eaf4996136c987115458,
     type: 2}
-  sonarSprite: {fileID: 4000012083602422}
+  sonarSprite: {fileID: 0}
   coneAngle: 60
   coneIncrement: 0.25
-  distance: 25
-  sonarSpeed: 15
+  distance: 45
+  sonarSpeed: 30
   shotCooldown: 1
   sonarChargeLeft: 5946.2676
 --- !u!114 &114000012164523692

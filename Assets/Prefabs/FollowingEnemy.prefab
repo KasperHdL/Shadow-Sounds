@@ -252,7 +252,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013906157328}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.04, y: 76.25, z: 0.29}
+  m_LocalPosition: {x: -4.1, y: 59.05, z: 0.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -462,11 +462,11 @@ MonoBehaviour:
   useGlobalPositionForWanderArea: 0
   wanderingAreaGlobalPosition: {x: 0, y: 0}
   wanderingAreaOffset: {x: 0, y: 0}
-  wanderingAreaSize: {x: 10, y: 8}
+  wanderingAreaSize: {x: 6, y: 7.85}
   minWanderDistance: 1
   maxWanderDistance: 3
   attackDistance: 2
-  attackCooldown: 1.25
+  attackCooldown: 1.5
   attackChargeTime: 0.1
   attackForce: 1200
   hitForce: 50

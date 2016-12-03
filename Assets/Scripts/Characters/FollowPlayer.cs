@@ -66,6 +66,8 @@ public class FollowPlayer : CharacterMovement
 
     private Collider2D coll;
     private Rigidbody2D body;
+
+    private bool stunned = false;
     
     public override void Start()
     {
@@ -157,6 +159,8 @@ public class FollowPlayer : CharacterMovement
             MoveSpeed = normalSpeed;
         }
 
+        if(stunned) return;
+
         Vector2 moveDirection = Vector2.zero;
 
         if (isMovingTowardsKnownPlayerPosition)
@@ -196,6 +200,18 @@ public class FollowPlayer : CharacterMovement
         Move = Vector2.ClampMagnitude(moveDirection,maxWanderDistance);
 
         base.Update();
+        
+    }
+
+    public void Stun(float length){
+        stunned = true;
+        StartCoroutine(stopBeingStunned(length));
+    }
+
+    IEnumerator stopBeingStunned(float length){
+
+        yield return new WaitForSeconds(length);
+        stunned = false;
     }
 
 

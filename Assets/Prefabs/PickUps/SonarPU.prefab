@@ -38,6 +38,7 @@ GameObject:
   - 50: {fileID: 50000013753543252}
   - 61: {fileID: 61000010350841402}
   - 114: {fileID: 114000013213389770}
+  - 114: {fileID: 114000011711829180}
   m_Layer: 15
   m_Name: SonarPU
   m_TagString: PickUp
@@ -80,10 +81,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013821232166}
-  m_LocalRotation: {x: 0, y: 0, z: -0.8870109, w: 0.46174863}
-  m_LocalPosition: {x: -17, y: 32.43, z: 0}
-  m_LocalScale: {x: 0.75445265, y: 1.1316787, z: 0.75445247}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -125}
+  m_LocalRotation: {x: 0, y: 0, z: -0.004886923, w: 0.9999881}
+  m_LocalPosition: {x: -14.5, y: 28.88, z: 0}
+  m_LocalScale: {x: 0.50570846, y: 0.75856256, z: 0.50570834}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.56}
   m_Children:
   - {fileID: 4000013488049842}
   - {fileID: 4000010622169290}
@@ -144,7 +145,7 @@ Light:
   m_Type: 2
   m_Color: {r: 0.9632353, g: 0.1487349, b: 0.83965576, a: 1}
   m_Intensity: 1.11
-  m_Range: 5
+  m_Range: 3
   m_SpotAngle: 24.7
   m_CookieSize: 10
   m_Shadows:
@@ -167,6 +168,17 @@ Light:
   m_BounceIntensity: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114000011711829180
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013821232166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd86f8ca24ec94225aeb5b76f237a1c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000013213389770
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -178,15 +190,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f4e9f1d51b07a478c0af51f70677a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sonarBulletPrefab: {fileID: 114000010584440910, guid: 85ca129e5d29eaf4996136c987115458,
+  sonarBulletPrefab: {fileID: 114000010359655596, guid: 62f7e6bbdc2104951a986f27ecc6d9e9,
     type: 2}
   rate: 0.5
-  distance: 30
-  speed: 5
-  direction: {x: 1, y: 1}
+  distance: 40
+  speed: 10
+  direction: {x: -1, y: 0}
   angle: 60
   rays: 361
   sonarPct: 1
+  silenceDistance: 10
 --- !u!212 &212000010801313704
 SpriteRenderer:
   m_ObjectHideFlags: 1
