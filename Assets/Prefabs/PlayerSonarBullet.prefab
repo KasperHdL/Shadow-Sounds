@@ -53,13 +53,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SoundMask:
     serializedVersion: 2
-    m_Bits: 16640
+    m_Bits: 256
   BlockMask:
     serializedVersion: 2
     m_Bits: 513
   HighlightMask:
     serializedVersion: 2
-    m_Bits: 24576
+    m_Bits: 8192
   TransparentMask:
     serializedVersion: 2
     m_Bits: 32768
@@ -90,8 +90,8 @@ MonoBehaviour:
     m_RotationOrder: 0
   width: 0.1
   highlightWidth: 0.4
-  transparentSlowRate: 0.5
-  transparentMinSpeed: 0.1
+  transparentSlowRate: 2
+  transparentMinSpeed: 0.25
   noise: 50
   noiseBlockMultiplier: 0.05
   noiseHitMultiplier: 2

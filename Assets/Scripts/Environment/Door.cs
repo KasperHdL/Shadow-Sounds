@@ -161,7 +161,7 @@ public class Door : MonoBehaviour,IActivatable {
 
     public void Trigger()
     {
-        Debug.Log(NumTriggerRequired);
+//        Debug.Log(NumTriggerRequired);
         NumTriggerRequired--;
         if(NumTriggerRequired == 0) Activate();
     }
