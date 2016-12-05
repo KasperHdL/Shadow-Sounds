@@ -146,9 +146,9 @@ public class PlayerMovement : CharacterMovement
         SoundSystem.Play("enemy collision", 1, enemyColVol);
         TrackingCamera.ShakeIt(0.5f, 0.5f);
         health -= damage;
-        if (!SoundSystem.IsPlaying("breathing"))
+        if (!SoundSystem.IsPlaying("breathing") && health > 0)
         {
-            SoundSystem.Play("breathing",1,0.15f);
+            SoundSystem.Play("breathing",1,0.25f);
             playedBreathingStops = false;
         }
         hitTime = Time.time;
@@ -174,8 +174,17 @@ public class PlayerMovement : CharacterMovement
         body.drag = deathBodyDrag;
         body.angularDrag = deathBodyAngularDrag;
 
+        SoundSystem.Stop("footsteps");
+        SoundSystem.Stop("snowsteps");
+        SoundSystem.Stop("breathing");
+        SoundSystem.Stop("breathingEnds");
+        SoundSystem.Stop("Outside");
+
         isDead = true;
+
+        playedBreathingStops = true;
         SoundSystem.Play("death", 1, 1, 0, deathFade - 0.75f);
+        SoundSystem.Play("breathingEnds",1,0.55f,0, deathFade - 2f);
 
         ppAnimator.FadeToBlack();
         StartCoroutine(ReloadLevel(deathFade));
@@ -233,10 +242,11 @@ public class PlayerMovement : CharacterMovement
         else if (body.velocity.magnitude < 0.1)
         {
 
-            if (Time.time - hitTime > 2 &! playedBreathingStops)
+
+            if (Time.time - hitTime > 2 &! playedBreathingStops && health > 0)
             {
                 SoundSystem.Stop("breathing");
-                SoundSystem.Play("breathingEnds",1,0.3f);
+                SoundSystem.Play("breathingEnds",1,0.4f);
                 playedBreathingStops = true;
             }
                 
