@@ -16,14 +16,14 @@ public class GoOutOrInside : MonoBehaviour
             GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().setInside(Inside);
             if (Inside)
             {
-                SoundSystem.Play("background");
+                SoundSystem.Play("background",0,0.8f);
                 SoundSystem.Stop("Outside");
             }
             else
             {
 
                 SoundSystem.Stop("background");
-                SoundSystem.Play("Outside",1,0.15f);
+                SoundSystem.Play("Outside",1,0.10f);
             }
 
         }
