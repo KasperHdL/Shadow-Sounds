@@ -23,7 +23,7 @@ public class GoOutOrInside : MonoBehaviour
             {
 
                 SoundSystem.Stop("background");
-                SoundSystem.Play("Outside",1,0.08f);
+                SoundSystem.Play("Outside",1,0.15f);
             }
 
         }
