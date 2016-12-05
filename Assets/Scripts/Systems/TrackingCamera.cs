@@ -172,7 +172,7 @@ public class TrackingCamera : MonoBehaviour {
 
         //A slow logarithmic zoom out could be nice.
 
-        var zoomOutFactor = 0.002f;
+        var zoomOutFactor = 0.004f;
         zoomingOut = true;
 
         while (Camera.main.orthographicSize <= 50)
