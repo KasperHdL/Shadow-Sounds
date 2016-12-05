@@ -51,6 +51,8 @@ public class PlayerMovement : CharacterMovement
     public Sprite woundedSprite;
     public Transform sonarSprite;
     public float moveAmount = 1f;
+    private float hitTime;
+    private bool playedBreathingStops = true;
 
     public void Awake()
     {
@@ -144,6 +146,12 @@ public class PlayerMovement : CharacterMovement
         SoundSystem.Play("enemy collision", 1, enemyColVol);
         TrackingCamera.ShakeIt(0.5f, 0.5f);
         health -= damage;
+        if (!SoundSystem.IsPlaying("breathing"))
+        {
+            SoundSystem.Play("breathing",1,0.15f);
+            playedBreathingStops = false;
+        }
+        hitTime = Time.time;
         spriteRenderer.sprite = woundedSprite;
         if (health <= 0) Die();
     }
@@ -224,6 +232,14 @@ public class PlayerMovement : CharacterMovement
         }
         else if (body.velocity.magnitude < 0.1)
         {
+
+            if (Time.time - hitTime > 2 &! playedBreathingStops)
+            {
+                SoundSystem.Stop("breathing");
+                SoundSystem.Play("breathingEnds",1,0.3f);
+                playedBreathingStops = true;
+            }
+                
             SoundSystem.Stop("footsteps");
             SoundSystem.Stop("snowsteps");
             isPlayingSteps = false;
