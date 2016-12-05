@@ -89,16 +89,25 @@ public class Pillar : Interactable {
         var s0 = animator.ScaleCurveSpeed;
         var pp0 = animator.PositionPulseCurveSpeed;
         var vein = gameObject.GetComponent<PillarVein>();
-        var vSpd = vein.PulseSpeed;
-        var vSz = vein.PulseSize;
-        var vWdt = vein.PulseWidth;
 
+        float vSpd = 0;
+        float vSz = 0;
+        float vWdt = 0;
+
+        if(vein != null){
+            vSpd = vein.PulseSpeed;
+            vSz = vein.PulseSize;
+            vWdt = vein.PulseWidth;
+        }
         // Warm up
         for(float t = ShakeTime; t > 0; t -= Time.fixedDeltaTime)
         {
-            vein.PulseSpeed = 0.5f  * vSpd * ShakeCurve.Evaluate((t / ShakeTime)) * ShakeFactor;
-            vein.PulseSize =  0.5f *vSz * ShakeCurve.Evaluate((t / ShakeTime)) * ShakeFactor;
-            vein.PulseWidth = 1.5f* vWdt * ShakeCurve.Evaluate((t / ShakeTime)) * ShakeFactor;
+            if(vein != null){
+                vein.PulseSpeed = 0.5f * vSpd * ShakeCurve.Evaluate((t / ShakeTime)) * ShakeFactor;
+                vein.PulseSize =  0.5f * vSz * ShakeCurve.Evaluate((t / ShakeTime)) * ShakeFactor;
+                vein.PulseWidth = 1.5f * vWdt * ShakeCurve.Evaluate((t / ShakeTime)) * ShakeFactor;
+            }
+
             animator.PositionCurveSpeed = p0 * ShakeCurve.Evaluate(1 - (t / ShakeTime)) * ShakeFactor;
             animator.RotationCurveSpeed = r0 * ShakeCurve.Evaluate(1 - (t / ShakeTime)) * ShakeFactor;
             animator.RotationCurveFactor = r10 * ShakeCurve.Evaluate(1 - (t / ShakeTime)) * ShakeFactor;
@@ -108,7 +117,8 @@ public class Pillar : Interactable {
             animator.HeartBearRate = animator.PositionPulseCurveSpeed;
             GetComponentInChildren<Light>().intensity = li * ShakeCurve.Evaluate(1 - (t / ShakeTime)) * ShakeFactor;
 
-            if (t/ShakeTime < 0.30f && !killVein)
+            
+            if (t/ShakeTime < 0.30f && !killVein && vein != null)
             {
                 killVein = true;
                 SoundSystem.Play("VeinSnap",1.0f,volume);
