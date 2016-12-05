@@ -1859,7 +1859,7 @@ Prefab:
     - target: {fileID: 108000010590216270, guid: 1911038583b2e6a4aad172c6470e719c,
         type: 2}
       propertyPath: m_Shadows.m_Type
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 108000010590216270, guid: 1911038583b2e6a4aad172c6470e719c,
         type: 2}
@@ -4897,7 +4897,7 @@ Prefab:
     - target: {fileID: 114000013000410872, guid: 761f5628786a03c488d3d77b74a20c76,
         type: 2}
       propertyPath: PillarId
-      value: 1281450735
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114000013000410872, guid: 761f5628786a03c488d3d77b74a20c76,
         type: 2}
@@ -17493,7 +17493,7 @@ Prefab:
     - target: {fileID: 114000013000410872, guid: 761f5628786a03c488d3d77b74a20c76,
         type: 2}
       propertyPath: PillarId
-      value: -489857271
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114000013000410872, guid: 761f5628786a03c488d3d77b74a20c76,
         type: 2}
@@ -17919,7 +17919,7 @@ Prefab:
     - target: {fileID: 114000013000410872, guid: 761f5628786a03c488d3d77b74a20c76,
         type: 2}
       propertyPath: PillarId
-      value: 1146902909
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114000013000410872, guid: 761f5628786a03c488d3d77b74a20c76,
         type: 2}
@@ -20307,7 +20307,7 @@ Prefab:
     - target: {fileID: 114000013000410872, guid: 761f5628786a03c488d3d77b74a20c76,
         type: 2}
       propertyPath: PillarId
-      value: 71786675
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114000010216729932, guid: 761f5628786a03c488d3d77b74a20c76,
         type: 2}
@@ -25010,7 +25010,7 @@ Prefab:
     - target: {fileID: 114000013000410872, guid: 761f5628786a03c488d3d77b74a20c76,
         type: 2}
       propertyPath: PillarId
-      value: -970674259
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114000013000410872, guid: 761f5628786a03c488d3d77b74a20c76,
         type: 2}
@@ -26378,7 +26378,7 @@ Prefab:
     - target: {fileID: 108000010590216270, guid: 1911038583b2e6a4aad172c6470e719c,
         type: 2}
       propertyPath: m_Shadows.m_Type
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 108000010590216270, guid: 1911038583b2e6a4aad172c6470e719c,
         type: 2}
@@ -39997,7 +39997,7 @@ Prefab:
     - target: {fileID: 114000013000410872, guid: 761f5628786a03c488d3d77b74a20c76,
         type: 2}
       propertyPath: PillarId
-      value: -1807056321
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114000013000410872, guid: 761f5628786a03c488d3d77b74a20c76,
         type: 2}

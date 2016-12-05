@@ -42,8 +42,6 @@ public class Pillar : Interactable {
             SaveSystem save = savesystem.GetComponent<SaveSystem>();
             if(save.PillarsDestroyed.Contains(PillarId)) {
 
-                
-
                 ShakeTime = 2.0f;
                 //ExplosionTime = 0;
                 StartCoroutine(PillarId == save.PillarsDestroyed.Last() ? Explode(0.1f) : Explode(0.0f));
@@ -75,13 +73,6 @@ public class Pillar : Interactable {
 
         }
     }
-
-    public void OnDrawGizmos()
-    {
-//if (PillarId == 0) PillarId = Random.Range(int.MinValue, int.MaxValue);
-    }
-
-    
 
     public IEnumerator Explode(float volume) {
         //yield return new WaitForSeconds(2);
