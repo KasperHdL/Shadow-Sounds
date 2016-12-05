@@ -56,7 +56,7 @@ public class PostProcessingAnimator : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         enemies = new List<FollowPlayer>();
-        StartCoroutine(fadeIn());
+        
         temperature = fadedOutTemperature;
 
         colorGrading = profile.colorGrading;
@@ -66,11 +66,12 @@ public class PostProcessingAnimator : MonoBehaviour {
         linear.AddKey(1,1);
         masterCurve = new ColorGradingCurve(linear, 0, false, new Vector2(0,1));
         redCurve = new ColorGradingCurve(linear, 0, false, new Vector2(0,1));
-
-        
-
-
 	}
+
+    public void FadeIn()
+    {
+        StartCoroutine(fadeIn());
+    }
 	// Update is called once per frame
 	void FixedUpdate() {
         colorGrading.enabled = false;

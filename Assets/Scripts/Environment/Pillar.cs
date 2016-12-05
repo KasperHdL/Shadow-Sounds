@@ -36,6 +36,8 @@ public class Pillar : Interactable {
     public bool killVein;
     public float enemyStunLength = 3f;
 
+    public bool isFinalPillar;
+
     public void Start() {
         var savesystem = GameObject.FindGameObjectWithTag("SaveSystem");
         if(savesystem != null) {
@@ -72,7 +74,10 @@ public class Pillar : Interactable {
                 enemies[i].Stun(enemyStunLength);
 
         }
+
+        
     }
+
 
     public IEnumerator Explode(float volume) {
         //yield return new WaitForSeconds(2);
@@ -149,6 +154,13 @@ public class Pillar : Interactable {
 
 
         SoundSystem.Play("Pillar Death",1.0f,volume);
+
+
+        if (isFinalPillar)
+        {
+            GameObject.FindWithTag("MainCamera").GetComponent<TrackingCamera>().EndAnimation();
+        }
+
         // Explosion
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<CircleCollider2D>().enabled = false;
@@ -224,5 +236,6 @@ public class Pillar : Interactable {
                 act.Trigger();
             }
         }
+
     }
 }

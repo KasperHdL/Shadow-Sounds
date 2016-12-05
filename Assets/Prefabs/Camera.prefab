@@ -120,7 +120,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011376902860}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.5, y: -6, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -9103,7 +9103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b466ec9ccc151b1439e26f313b22be4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sids: 020000000400000006000000080000000a0000000c0000000e00000010000000120000001400000016000000180000001a0000001c0000001e00000020000000220000002400000026000000280000002a0000002c0000002e0000003000000032000000
+  sids: 020000000400000006000000080000000a0000000c0000000e00000010000000120000001400000016000000180000001a0000001c0000001e00000020000000220000002400000026000000280000002a0000002c0000002e000000300000003200000034000000
   snames:
   - sonar hit
   - sonar no hit
@@ -9130,6 +9130,7 @@ MonoBehaviour:
   - VeinSnap
   - breathing
   - breathingEnds
+  - Outro
   sclips:
   - data:
     - {fileID: 8300000, guid: 46172244123ccf44882ef4fa2684e008, type: 3}
@@ -9184,11 +9185,13 @@ MonoBehaviour:
   - data:
     - {fileID: 8300000, guid: 08794e1da91275842a481c7a61bf18d4, type: 3}
   - data:
-    - {fileID: 0}
+    - {fileID: 8300000, guid: 0d49aab29b9e22344b1c3fd86fd2c29a, type: 3}
   - data:
     - {fileID: 8300000, guid: bd066561b39b20040bbec460bbaedf81, type: 3}
   - data:
     - {fileID: 8300000, guid: b5dd3259fca8c6141a71b4da6734fe4e, type: 3}
+  - data:
+    - {fileID: 8300000, guid: 8aaed073b5b33ed47922753bc93a0115, type: 3}
 --- !u!114 &114000012675689040
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9276,6 +9279,7 @@ MonoBehaviour:
   normalChomatic: 0.5
   chaseVignette: 0.4
   chaseChomatic: 8
+  titleTime: 4
 --- !u!124 &124000012198625174
 Behaviour:
   m_ObjectHideFlags: 1

@@ -41,12 +41,27 @@ public class TrackingCamera : MonoBehaviour {
     private VignetteAndChromaticAberration effects;
     private PostProcessingAnimator ppAnimator;
 
+    public float titleTime = 5.0f;
+
     void Start() {
         cam = GetComponent<Camera>();
         effects = GetComponent<VignetteAndChromaticAberration>();
         ppAnimator = GetComponent<PostProcessingAnimator>();
 
-        if(target == null) {
+
+        if (GameObject.FindGameObjectWithTag("SaveSystem").GetComponent<SaveSystem>().PillarsDestroyed.Count > 0)
+        {
+            GameObject.FindWithTag("Title").gameObject.GetComponent<SpriteRenderer>().enabled = false;
+
+            ppAnimator.FadeIn();
+
+            GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().enabled = true;
+        }
+        else
+            StartCoroutine(TitleScreen());
+
+
+        if (target == null) {
             //Debug.LogWarning("Camera has no target, gonna try to find an object tagged 'Player'");
 
             target = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
@@ -56,7 +71,21 @@ public class TrackingCamera : MonoBehaviour {
             if(target == null)
                 Debug.LogError("No object tagged 'Player'");
         }
-        SoundSystem.Play("background", 1, 0.1f, 0, null, true);
+    }
+
+    IEnumerator TitleScreen()
+    {
+        yield return new WaitForSeconds(titleTime);
+
+        ppAnimator.fadeToBlack = true;
+        yield return new WaitForSeconds(1.5f);
+        
+        GameObject.FindWithTag("Title").gameObject.GetComponent<SpriteRenderer>().enabled = false;
+
+
+        ppAnimator.FadeIn();
+
+        GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().enabled = true;
     }
 
     void FixedUpdate() {
@@ -116,6 +145,22 @@ public class TrackingCamera : MonoBehaviour {
             shakePosSet = false;
             shakeDuration = 0f;
         }
+
+    }
+
+    public void EndAnimation()
+    {
+
+        GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().enabled = false;
+
+        //A slow zoom out could be nice.
+
+        SoundSystem.Play("Outro");
+
+        //slow fade to black
+        ppAnimator.fadeOutTime = 20;
+        ppAnimator.fadeToBlack = true;
+
 
     }
 }
