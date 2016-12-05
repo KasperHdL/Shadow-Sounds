@@ -53,7 +53,7 @@ public class SoundSystem : MonoBehaviour, ISerializationCallbackReceiver
         }
     }
 
-    public void Start()
+    public void Awake()
     {
         if (instance != null) throw new UnityException("Multiple sound systems found!");
         instance = this;
