@@ -164,7 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 4
   openDuration: 1.8
-  minScale: 0.1
+  minScale: 0.4
   openDirection: {x: 0, y: 0, z: 0}
   doorAnimationCurve:
     serializedVersion: 2
