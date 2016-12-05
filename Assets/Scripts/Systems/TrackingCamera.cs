@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityStandardAssets.ImageEffects;
 
@@ -41,7 +42,8 @@ public class TrackingCamera : MonoBehaviour {
     private VignetteAndChromaticAberration effects;
     private PostProcessingAnimator ppAnimator;
 
-    public float titleTime = 5.0f;
+    public float titleTime = 8.0f;
+    private bool zoomingOut;
 
     void Start() {
         cam = GetComponent<Camera>();
@@ -75,14 +77,16 @@ public class TrackingCamera : MonoBehaviour {
 
     IEnumerator TitleScreen()
     {
+        GameObject.FindWithTag("Title").gameObject.GetComponent<SpriteRenderer>().enabled = true;
+
+        ppAnimator.FadeIn();
         yield return new WaitForSeconds(titleTime);
 
         ppAnimator.fadeToBlack = true;
         yield return new WaitForSeconds(1.5f);
         
         GameObject.FindWithTag("Title").gameObject.GetComponent<SpriteRenderer>().enabled = false;
-
-
+        
         ppAnimator.FadeIn();
 
         GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().enabled = true;
@@ -116,6 +120,9 @@ public class TrackingCamera : MonoBehaviour {
 
     void Update()
     {
+        if (zoomingOut)
+            return;
+
         var chase = GameObject.FindGameObjectsWithTag("Enemy").Any(e => e.GetComponent<FollowPlayer>().visible);
         if(ppAnimator.forceNormalMode)
             chase = false;
@@ -148,19 +155,34 @@ public class TrackingCamera : MonoBehaviour {
 
     }
 
-    public void EndAnimation()
+    public IEnumerator EndAnimation()
     {
 
         GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().enabled = false;
 
-        //A slow zoom out could be nice.
 
         SoundSystem.Play("Outro");
+        SoundSystem.Stop("background");
 
         //slow fade to black
-        ppAnimator.fadeOutTime = 20;
+        ppAnimator.fadeOutTime = 150;
         ppAnimator.fadeToBlack = true;
 
+        SoundSystem.Stop("footsteps");
+
+        //A slow logarithmic zoom out could be nice.
+
+        var zoomOutFactor = 0.002f;
+        zoomingOut = true;
+
+        while (Camera.main.orthographicSize <= 50)
+        {
+            Camera.main.orthographicSize +=zoomOutFactor;
+
+            zoomOutFactor *= 1.001f;
+
+            yield return new WaitForFixedUpdate();
+        }
 
     }
 }

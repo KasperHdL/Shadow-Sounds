@@ -8343,7 +8343,7 @@ SpriteRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 326455107}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_MotionVectors: 1
@@ -34050,11 +34050,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000010077891988, guid: c05b727539e0b415e927a48accd07b48, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.5
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 4000010077891988, guid: c05b727539e0b415e927a48accd07b48, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -7.01
+      value: -6.1
       objectReference: {fileID: 0}
     - target: {fileID: 4000010077891988, guid: c05b727539e0b415e927a48accd07b48, type: 2}
       propertyPath: m_LocalPosition.z

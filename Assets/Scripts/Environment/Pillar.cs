@@ -158,7 +158,7 @@ public class Pillar : Interactable {
 
         if (isFinalPillar)
         {
-            GameObject.FindWithTag("MainCamera").GetComponent<TrackingCamera>().EndAnimation();
+            StartCoroutine(GameObject.FindWithTag("MainCamera").GetComponent<TrackingCamera>().EndAnimation());
         }
 
         // Explosion
