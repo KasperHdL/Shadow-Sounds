@@ -53,19 +53,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SoundMask:
     serializedVersion: 2
-    m_Bits: 16640
+    m_Bits: 256
   BlockMask:
     serializedVersion: 2
     m_Bits: 513
   HighlightMask:
     serializedVersion: 2
-    m_Bits: 24576
+    m_Bits: 8192
   TransparentMask:
     serializedVersion: 2
     m_Bits: 32768
   material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  colorStart: {r: 0.528, g: 0.528, b: 0.528, a: 1}
-  colorEnd: {r: 0.5294118, g: 0.5294118, b: 0.5294118, a: 0}
+  colorStart: {r: 1, g: 1, b: 1, a: 1}
+  colorEnd: {r: 1, g: 1, b: 1, a: 0}
   colorHighlight: {r: 0.08564016, g: 0.09174341, b: 0.9705882, a: 1}
   colorCurve:
     serializedVersion: 2
@@ -90,13 +90,13 @@ MonoBehaviour:
     m_RotationOrder: 0
   width: 0.1
   highlightWidth: 0.4
-  transparentSlowRate: 0.5
-  transparentMinSpeed: 0.1
+  transparentSlowRate: 2
+  transparentMinSpeed: 0.25
   noise: 50
   noiseBlockMultiplier: 0.05
   noiseHitMultiplier: 2
-  noiseHighlightMultiplier: 4
+  noiseHighlightMultiplier: 1.5
   noiseTransMultiplier: 0.2
   hitPitch: 0.4
   hitVolume: 0.25
-  noHitVolume: 0
+  noHitVolume: 0.1
