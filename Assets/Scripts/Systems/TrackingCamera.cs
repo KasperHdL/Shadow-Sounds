@@ -75,7 +75,10 @@ public class TrackingCamera : MonoBehaviour {
 
             target.enabled = true;
         } else
+        {
+            target.enabled = false;
             StartCoroutine(TitleScreen());
+        }
     }
 
     IEnumerator TitleScreen() {
@@ -85,8 +88,7 @@ public class TrackingCamera : MonoBehaviour {
             l.enabled = false;
         target.enabled = false;
 
-        transform.position = introCar.position + Vector3.back * 10;
-        title.transform.position = transform.position + Vector3.forward;
+        transform.position = title.transform.position + Vector3.back;
         title.color = new Color(1, 1, 1, 0);
 
         yield return new WaitForSeconds(preTitleTime);
@@ -106,11 +108,11 @@ public class TrackingCamera : MonoBehaviour {
             yield return null;
             tt -= Time.deltaTime;
         }
-        
+
         // Move Car
         while(Vector3.Distance(introCar.position, endPosition + Vector3.down) > 0.05f) {
             yield return null;
-            introCar.GetComponent<ShakeCar>().carOrigin = Vector3.Lerp(introCar.GetComponent<ShakeCar>().carOrigin, endPosition + Vector3.down, 0.05f);
+            introCar.GetComponent<ShakeCar>().carOrigin = Vector3.Lerp(introCar.GetComponent<ShakeCar>().carOrigin, endPosition + Vector3.down, 0.03f);
             transform.position = introCar.GetComponent<ShakeCar>().carOrigin + Vector3.back * 10;
         }
         

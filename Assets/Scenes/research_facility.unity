@@ -8602,7 +8602,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 326455107}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.31, y: -22.9, z: -0.8}
+  m_LocalPosition: {x: -75.5, y: -22.9, z: -0.8}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -48456,7 +48456,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000013350856620, guid: 9d88353ac1e014195bc097c501fab2dd, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.3
+      value: -75.5
       objectReference: {fileID: 0}
     - target: {fileID: 4000013350856620, guid: 9d88353ac1e014195bc097c501fab2dd, type: 2}
       propertyPath: m_LocalPosition.y
@@ -48491,6 +48491,36 @@ Prefab:
       propertyPath: introCar
       value: 
       objectReference: {fileID: 256705909}
+    - target: {fileID: 114000013913754286, guid: 9d88353ac1e014195bc097c501fab2dd,
+        type: 2}
+      propertyPath: preTitleTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013913754286, guid: 9d88353ac1e014195bc097c501fab2dd,
+        type: 2}
+      propertyPath: titleTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013913754286, guid: 9d88353ac1e014195bc097c501fab2dd,
+        type: 2}
+      propertyPath: exitCarCurve.m_Curve.Array.data[0].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013913754286, guid: 9d88353ac1e014195bc097c501fab2dd,
+        type: 2}
+      propertyPath: exitCarCurve.m_Curve.Array.data[0].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013913754286, guid: 9d88353ac1e014195bc097c501fab2dd,
+        type: 2}
+      propertyPath: exitCarCurve.m_Curve.Array.data[1].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013913754286, guid: 9d88353ac1e014195bc097c501fab2dd,
+        type: 2}
+      propertyPath: exitCarCurve.m_Curve.Array.data[1].outSlope
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9d88353ac1e014195bc097c501fab2dd, type: 2}
   m_IsPrefabParent: 0
