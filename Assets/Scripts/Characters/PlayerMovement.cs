@@ -54,8 +54,12 @@ public class PlayerMovement : CharacterMovement
     private float hitTime;
     private bool playedBreathingStops = true;
 
+    private bool doingOutroScene = false;
+
     public void Awake()
     {
+
+        Cursor.visible = false;
         var savesystem = GameObject.FindGameObjectWithTag("SaveSystem");
         if (savesystem != null ){
 
@@ -200,10 +204,28 @@ public class PlayerMovement : CharacterMovement
         SceneManager.LoadScene(scene.name);
     }
 
+    public void OutroScene(){
+        sonar.enabled = false;
+        body.velocity = Vector3.zero;
+        body.drag = 10f;
+        body.angularDrag = 5f;
+
+        doingOutroScene = false;
+
+
+        SoundSystem.Stop("footsteps");
+        SoundSystem.Stop("snowsteps");
+        SoundSystem.Stop("breathing");
+        SoundSystem.Stop("breathingEnds");
+        SoundSystem.Stop("Outside");
+
+
+    }
+
     public override void Update()
     {
 
-        if (isDead) return;
+        if (isDead || doingOutroScene) return; 
 
         Vector3 v = Vector3.zero;
         if (useController)
