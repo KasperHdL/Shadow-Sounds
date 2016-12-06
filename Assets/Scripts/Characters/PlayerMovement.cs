@@ -59,13 +59,15 @@ public class PlayerMovement : CharacterMovement
         var savesystem = GameObject.FindGameObjectWithTag("SaveSystem");
         if (savesystem != null ){
 
+            
             SaveSystem save = savesystem.GetComponent<SaveSystem>();
-            if(save.PlayerPosition.HasValue){
+            if (save.playerPickedUpSonar)
+            {
+                sonarSprite.gameObject.SetActive(true);
+                GetComponent<SonarTool>().enabled = true;
+            }
+            if (save.PlayerPosition.HasValue){
                 transform.position = save.PlayerPosition.Value;
-                if(save.playerPickedUpSonar){
-                    sonarSprite.gameObject.SetActive(true);
-                    GetComponent<SonarTool>().enabled = true;
-                }
             }
         }
     //    doNotNormalize = true;
