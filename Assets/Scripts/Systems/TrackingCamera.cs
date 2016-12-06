@@ -159,6 +159,7 @@ public class TrackingCamera : MonoBehaviour {
     {
 
         GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().enabled = false;
+        GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().health = 50000;
 
 
         SoundSystem.Play("Outro");
@@ -175,9 +176,10 @@ public class TrackingCamera : MonoBehaviour {
         var zoomOutFactor = 0.004f;
         zoomingOut = true;
 
-        while (Camera.main.orthographicSize <= 50)
+        while (Camera.main.orthographicSize <= 100)
         {
             Camera.main.orthographicSize +=zoomOutFactor;
+            Camera.main.transform.position -= new Vector3(0, zoomOutFactor, 0);
 
             zoomOutFactor *= 1.001f;
 
