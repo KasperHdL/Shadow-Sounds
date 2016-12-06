@@ -6622,6 +6622,7 @@ GameObject:
   - 4: {fileID: 256705909}
   - 212: {fileID: 256705908}
   - 61: {fileID: 256705910}
+  - 114: {fileID: 256705911}
   m_Layer: 0
   m_Name: Mini_van
   m_TagString: Untagged
@@ -6669,14 +6670,13 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 256705907}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.32, y: -12.86, z: 0}
+  m_LocalPosition: {x: 0.32, y: -28.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 861262211}
   - {fileID: 845893508}
   - {fileID: 714554441}
-  - {fileID: 1335904990}
   m_Father: {fileID: 0}
   m_RootOrder: 155
 --- !u!61 &256705910
@@ -6693,6 +6693,45 @@ BoxCollider2D:
   m_Offset: {x: -0.15, y: 0}
   serializedVersion: 2
   m_Size: {x: 1.5, y: 4}
+--- !u!114 &256705911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 256705907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69e354749d6e4f542a319fb680d088a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeCarAmount: 0.05
+  shakeCarCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 0.30571482
+      value: 0.888782
+      inSlope: 1.0688603
+      outSlope: 1.0688603
+      tangentMode: 0
+    - time: 0.638878
+      value: 0.46430612
+      inSlope: -0.71436167
+      outSlope: -0.71436167
+      tangentMode: 0
+    - time: 0.9849246
+      value: 0.712766
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 0
+    m_RotationOrder: 0
+  carOrigin: {x: 0, y: 0, z: 0}
 --- !u!4 &256827852 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000011284389806, guid: 14e03eb1ce1f24d7185a88c3f26cdde4,
@@ -8529,7 +8568,7 @@ SpriteRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 326455107}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_MotionVectors: 1
@@ -8563,7 +8602,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 326455107}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: -4.99, z: -0.8}
+  m_LocalPosition: {x: 0.31, y: -22.9, z: -0.8}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -33311,85 +33350,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1335057821}
   m_Script: {fileID: 11500000, guid: 54f16db3d64ed4b4288a1400f92c4455, type: 3}
---- !u!1 &1335904989
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1335904990}
-  - 33: {fileID: 1335904993}
-  - 65: {fileID: 1335904992}
-  - 23: {fileID: 1335904991}
-  m_Layer: 0
-  m_Name: Cube
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1335904990
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1335904989}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.17, y: 0, z: 0.55}
-  m_LocalScale: {x: 1.4875008, y: 3.549999, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 256705909}
-  m_RootOrder: 3
---- !u!23 &1335904991
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1335904989}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!65 &1335904992
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1335904989}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!33 &1335904993
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1335904989}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &1336837097 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114000011132555544, guid: 3434cdbe279ca4009ad762629ae97334,
@@ -48494,23 +48454,13 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114000013913754286, guid: 9d88353ac1e014195bc097c501fab2dd,
-        type: 2}
-      propertyPath: exitCarCurve.m_Curve.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013913754286, guid: 9d88353ac1e014195bc097c501fab2dd,
-        type: 2}
-      propertyPath: shakeCarCurve.m_Curve.Array.size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 4000013350856620, guid: 9d88353ac1e014195bc097c501fab2dd, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -6.48
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4000013350856620, guid: 9d88353ac1e014195bc097c501fab2dd, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -5.93
+      value: -23.9
       objectReference: {fileID: 0}
     - target: {fileID: 4000013350856620, guid: 9d88353ac1e014195bc097c501fab2dd, type: 2}
       propertyPath: m_LocalPosition.z
@@ -48536,123 +48486,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114000014288458388, guid: 9d88353ac1e014195bc097c501fab2dd,
-        type: 2}
-      propertyPath: car
-      value: 
-      objectReference: {fileID: 256705909}
     - target: {fileID: 114000013913754286, guid: 9d88353ac1e014195bc097c501fab2dd,
         type: 2}
       propertyPath: introCar
       value: 
       objectReference: {fileID: 256705909}
-    - target: {fileID: 114000013913754286, guid: 9d88353ac1e014195bc097c501fab2dd,
-        type: 2}
-      propertyPath: exitCarCurve.m_Curve.Array.data[0].inSlope
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013913754286, guid: 9d88353ac1e014195bc097c501fab2dd,
-        type: 2}
-      propertyPath: exitCarCurve.m_Curve.Array.data[0].outSlope
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013913754286, guid: 9d88353ac1e014195bc097c501fab2dd,
-        type: 2}
-      propertyPath: exitCarCurve.m_Curve.Array.data[1].time
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013913754286, guid: 9d88353ac1e014195bc097c501fab2dd,
-        type: 2}
-      propertyPath: exitCarCurve.m_Curve.Array.data[1].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013913754286, guid: 9d88353ac1e014195bc097c501fab2dd,
-        type: 2}
-      propertyPath: exitCarCurve.m_RotationOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013913754286, guid: 9d88353ac1e014195bc097c501fab2dd,
-        type: 2}
-      propertyPath: endPosition.y
-      value: -9
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013913754286, guid: 9d88353ac1e014195bc097c501fab2dd,
-        type: 2}
-      propertyPath: endPosition.x
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013913754286, guid: 9d88353ac1e014195bc097c501fab2dd,
-        type: 2}
-      propertyPath: shakeCarCurve.m_Curve.Array.data[0].inSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013913754286, guid: 9d88353ac1e014195bc097c501fab2dd,
-        type: 2}
-      propertyPath: shakeCarCurve.m_Curve.Array.data[0].outSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013913754286, guid: 9d88353ac1e014195bc097c501fab2dd,
-        type: 2}
-      propertyPath: shakeCarCurve.m_Curve.Array.data[1].time
-      value: 0.23719507
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013913754286, guid: 9d88353ac1e014195bc097c501fab2dd,
-        type: 2}
-      propertyPath: shakeCarCurve.m_Curve.Array.data[1].value
-      value: 0.7281233
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013913754286, guid: 9d88353ac1e014195bc097c501fab2dd,
-        type: 2}
-      propertyPath: shakeCarCurve.m_RotationOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013913754286, guid: 9d88353ac1e014195bc097c501fab2dd,
-        type: 2}
-      propertyPath: shakeCarCurve.m_PostInfinity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013913754286, guid: 9d88353ac1e014195bc097c501fab2dd,
-        type: 2}
-      propertyPath: shakeCarCurve.m_Curve.Array.data[1].inSlope
-      value: 1.0962039
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013913754286, guid: 9d88353ac1e014195bc097c501fab2dd,
-        type: 2}
-      propertyPath: shakeCarCurve.m_Curve.Array.data[1].outSlope
-      value: 1.0962039
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013913754286, guid: 9d88353ac1e014195bc097c501fab2dd,
-        type: 2}
-      propertyPath: shakeCarCurve.m_Curve.Array.data[2].time
-      value: 0.52667433
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013913754286, guid: 9d88353ac1e014195bc097c501fab2dd,
-        type: 2}
-      propertyPath: shakeCarCurve.m_Curve.Array.data[2].value
-      value: 0.5383277
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013913754286, guid: 9d88353ac1e014195bc097c501fab2dd,
-        type: 2}
-      propertyPath: shakeCarCurve.m_Curve.Array.data[2].inSlope
-      value: -0.60886145
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013913754286, guid: 9d88353ac1e014195bc097c501fab2dd,
-        type: 2}
-      propertyPath: shakeCarCurve.m_Curve.Array.data[2].outSlope
-      value: -0.60886145
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013913754286, guid: 9d88353ac1e014195bc097c501fab2dd,
-        type: 2}
-      propertyPath: shakeCarCurve.m_Curve.Array.data[3].time
-      value: 0.833074
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013913754286, guid: 9d88353ac1e014195bc097c501fab2dd,
-        type: 2}
-      propertyPath: shakeCarCurve.m_Curve.Array.data[3].value
-      value: 0.6218478
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114000014288458388, guid: 9d88353ac1e014195bc097c501fab2dd, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9d88353ac1e014195bc097c501fab2dd, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &2000267029
