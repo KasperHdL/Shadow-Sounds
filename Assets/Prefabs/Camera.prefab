@@ -45,6 +45,7 @@ GameObject:
   - 114: {fileID: 114000012107710002}
   - 114: {fileID: 114000012675689040}
   - 114: {fileID: 114000011673231572}
+  - 114: {fileID: 114000014288458388}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -9081,7 +9082,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mode: 0
-  intensity: 0.2
+  intensity: 0.57
   chromaticAberration: 0
   axialAberration: 0.5
   blur: 0
@@ -9280,6 +9281,18 @@ MonoBehaviour:
   chaseVignette: 0.4
   chaseChomatic: 8
   titleTime: 8
+--- !u!114 &114000014288458388
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011376902860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da564fe047b9ab0499f28021e434bd26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  car: {fileID: 0}
 --- !u!124 &124000012198625174
 Behaviour:
   m_ObjectHideFlags: 1

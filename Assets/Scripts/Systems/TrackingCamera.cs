@@ -42,28 +42,22 @@ public class TrackingCamera : MonoBehaviour {
     private VignetteAndChromaticAberration effects;
     private PostProcessingAnimator ppAnimator;
 
+    public float preTitleTime = 5.0f;
     public float titleTime = 8.0f;
+    public Transform introCar;
+    public AnimationCurve exitCarCurve;
+    public AnimationCurve shakeCarCurve;
+    public Vector3 endPosition;
+    private SpriteRenderer title;
     private bool zoomingOut;
 
     void Start() {
         cam = GetComponent<Camera>();
         effects = GetComponent<VignetteAndChromaticAberration>();
         ppAnimator = GetComponent<PostProcessingAnimator>();
+        title = GameObject.FindWithTag("Title").gameObject.GetComponent<SpriteRenderer>();
 
-
-        if (GameObject.FindGameObjectWithTag("SaveSystem").GetComponent<SaveSystem>().PillarsDestroyed.Count > 0)
-        {
-            GameObject.FindWithTag("Title").gameObject.GetComponent<SpriteRenderer>().enabled = false;
-
-            ppAnimator.FadeIn();
-
-            GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().enabled = true;
-        }
-        else
-            StartCoroutine(TitleScreen());
-
-
-        if (target == null) {
+        if(target == null) {
             //Debug.LogWarning("Camera has no target, gonna try to find an object tagged 'Player'");
 
             target = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
@@ -73,23 +67,77 @@ public class TrackingCamera : MonoBehaviour {
             if(target == null)
                 Debug.LogError("No object tagged 'Player'");
         }
+
+        if (GameObject.FindGameObjectWithTag("SaveSystem").GetComponent<SaveSystem>().PillarsDestroyed.Count > 0)
+        {
+            title.enabled = false;
+
+            ppAnimator.FadeIn();
+
+            target.enabled = true;
+        }
+        else
+            StartCoroutine(TitleScreen());
     }
 
-    IEnumerator TitleScreen()
-    {
-        GameObject.FindWithTag("Title").gameObject.GetComponent<SpriteRenderer>().enabled = true;
-
+    IEnumerator TitleScreen() {
         ppAnimator.FadeIn();
+
+        foreach (var l in target.GetComponentsInChildren<Light>())
+            l.enabled = false;
+        target.enabled = false;
+
+        var shake = ShakeCar();
+        StartCoroutine(shake);
+        yield return new WaitForSeconds(preTitleTime);
+
+        title.transform.position = transform.position;
+        title.enabled = true;
+
         yield return new WaitForSeconds(titleTime);
 
         ppAnimator.fadeToBlack = true;
         yield return new WaitForSeconds(1.5f);
-        
-        GameObject.FindWithTag("Title").gameObject.GetComponent<SpriteRenderer>().enabled = false;
-        
-        ppAnimator.FadeIn();
 
-        GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().enabled = true;
+        title.enabled = false;
+        StopCoroutine(shake);
+
+        ppAnimator.FadeIn();
+        introCar.position = endPosition + Vector3.down;
+
+        var t = 2.0f;
+        while (t > 0)
+        {
+            target.transform.position = Vector3.Lerp(endPosition, endPosition + Vector3.left * 2,
+                exitCarCurve.Evaluate(1 - t/2));
+            yield return null;
+            t -= Time.deltaTime;
+        }
+        
+        target.enabled = true;
+        foreach(var l in target.GetComponentsInChildren<Light>())
+            l.enabled = true;
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(endPosition, 0.1f);
+    }
+
+    IEnumerator ShakeCar()
+    {
+        var origin = introCar.position;
+        while (true)
+        {
+            yield return null;
+
+            var shake = Vector3.right * Random.Range(-1f,1f) * 0.1f * shakeCarCurve.Evaluate(Time.time);
+
+            introCar.position = origin + shake;
+            target.transform.position = introCar.position;
+            transform.position = introCar.position - shake;
+        }
     }
 
     void FixedUpdate() {
