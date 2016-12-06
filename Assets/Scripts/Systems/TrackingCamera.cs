@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityStandardAssets.ImageEffects;
 
@@ -41,12 +42,28 @@ public class TrackingCamera : MonoBehaviour {
     private VignetteAndChromaticAberration effects;
     private PostProcessingAnimator ppAnimator;
 
+    public float titleTime = 8.0f;
+    private bool zoomingOut;
+
     void Start() {
         cam = GetComponent<Camera>();
         effects = GetComponent<VignetteAndChromaticAberration>();
         ppAnimator = GetComponent<PostProcessingAnimator>();
 
-        if(target == null) {
+
+        if (GameObject.FindGameObjectWithTag("SaveSystem").GetComponent<SaveSystem>().PillarsDestroyed.Count > 0)
+        {
+            GameObject.FindWithTag("Title").gameObject.GetComponent<SpriteRenderer>().enabled = false;
+
+            ppAnimator.FadeIn();
+
+            GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().enabled = true;
+        }
+        else
+            StartCoroutine(TitleScreen());
+
+
+        if (target == null) {
             //Debug.LogWarning("Camera has no target, gonna try to find an object tagged 'Player'");
 
             target = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
@@ -56,7 +73,23 @@ public class TrackingCamera : MonoBehaviour {
             if(target == null)
                 Debug.LogError("No object tagged 'Player'");
         }
-        SoundSystem.Play("background", 1, 0.1f, 0, null, true);
+    }
+
+    IEnumerator TitleScreen()
+    {
+        GameObject.FindWithTag("Title").gameObject.GetComponent<SpriteRenderer>().enabled = true;
+
+        ppAnimator.FadeIn();
+        yield return new WaitForSeconds(titleTime);
+
+        ppAnimator.fadeToBlack = true;
+        yield return new WaitForSeconds(1.5f);
+        
+        GameObject.FindWithTag("Title").gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        
+        ppAnimator.FadeIn();
+
+        GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().enabled = true;
     }
 
     void FixedUpdate() {
@@ -87,6 +120,9 @@ public class TrackingCamera : MonoBehaviour {
 
     void Update()
     {
+        if (zoomingOut)
+            return;
+
         var chase = GameObject.FindGameObjectsWithTag("Enemy").Any(e => e.GetComponent<FollowPlayer>().visible);
         if(ppAnimator.forceNormalMode)
             chase = false;
@@ -115,6 +151,37 @@ public class TrackingCamera : MonoBehaviour {
         {
             shakePosSet = false;
             shakeDuration = 0f;
+        }
+
+    }
+
+    public IEnumerator EndAnimation()
+    {
+
+        GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().enabled = false;
+
+
+        SoundSystem.Play("Outro");
+        SoundSystem.Stop("background");
+
+        //slow fade to black
+        ppAnimator.fadeOutTime = 150;
+        ppAnimator.fadeToBlack = true;
+
+        SoundSystem.Stop("footsteps");
+
+        //A slow logarithmic zoom out could be nice.
+
+        var zoomOutFactor = 0.004f;
+        zoomingOut = true;
+
+        while (Camera.main.orthographicSize <= 50)
+        {
+            Camera.main.orthographicSize +=zoomOutFactor;
+
+            zoomOutFactor *= 1.001f;
+
+            yield return new WaitForFixedUpdate();
         }
 
     }

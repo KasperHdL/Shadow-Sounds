@@ -22,6 +22,9 @@ public class PillarVein : MonoBehaviour {
     public float MoveAmount;
     public float DeathSpeed;
 
+    public float zOffset = 1;
+    public float zFirstOffset = 1;
+
     private LineRenderer line;
     private Pillar root;
     private int n;
@@ -64,7 +67,7 @@ public class PillarVein : MonoBehaviour {
         line.shadowCastingMode = ShadowCastingMode.Off;
 
         positions = new Vector3[n + 1];
-        positions[0] = transform.position + Vector3.back;
+        positions[0] = transform.position + Vector3.back * zFirstOffset;
         positions[n] = End.position + Vector3.back;
         for(int i = 1; i < n; i++) {
             var offset = new Vector3(-dir.y, dir.x) * (1 - 2 * Random.value) * Offset;
@@ -133,7 +136,7 @@ public class PillarVein : MonoBehaviour {
 
             for(int i = 1; i < n; i++) {
                 var offset = new Vector3(-dir.y, dir.x) * (1 - 2 * Random.value) * MoveAmount;
-                targets[i] = transform.position + dir * SectionLength * i + offset;
+                targets[i] = transform.position + dir * SectionLength * i + offset + Vector3.back * zOffset;
             }
         }
     }

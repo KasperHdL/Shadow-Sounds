@@ -67,8 +67,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013407422182}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2, y: -7.24, z: 0}
-  m_LocalScale: {x: 0.7, y: 2, z: 1}
+  m_LocalPosition: {x: -4.8, y: -1.2, z: 5.34375}
+  m_LocalScale: {x: 0.7, y: 3.3, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000012289576282}
@@ -81,7 +81,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010022558474}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.004, z: 0.75}
+  m_LocalPosition: {x: 0, y: 0.004, z: 0.87}
   m_LocalScale: {x: 1, y: 1, z: 2.5}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -150,7 +150,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.7, y: 1}
+  m_Size: {x: 0.9, y: 1}
 --- !u!114 &114000011132555544
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 4
   openDuration: 1.8
-  minScale: 0.1
+  minScale: 0.4
   openDirection: {x: 0, y: 0, z: 0}
   doorAnimationCurve:
     serializedVersion: 2
@@ -192,6 +192,5 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  buttons:
-  - {fileID: 0}
+  buttons: []
   NumTriggerRequired: 9000

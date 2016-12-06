@@ -83,6 +83,7 @@ public class PillarAnimator : MonoBehaviour {
         heartAudioSource.minDistance = 10;
         heartAudioSource.maxDistance = 20;
         heartAudioSource.spatialBlend = 1;
+        heartAudioSource.volume = 2;
         heartAudioSource.rolloffMode = AudioRolloffMode.Linear;
 
         lastBeat = Time.time;
