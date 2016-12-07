@@ -71,7 +71,7 @@ public class Pillar : Interactable {
 
 
             for (int i = 0; i < enemies.Length; i++)
-                enemies[i].Stun(enemyStunLength);
+                enemies[i].Stun((isFinalPillar ? 300f : enemyStunLength));
 
         }
 

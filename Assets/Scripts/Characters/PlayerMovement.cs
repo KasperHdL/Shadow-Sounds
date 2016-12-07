@@ -170,7 +170,7 @@ public class PlayerMovement : CharacterMovement
 
     private void Die()
     {
-        if (isDead) return;
+        if (isDead || doingOutroScene) return;
 
 // Drop Flashlight(does not look good currently)
 //        GameObject fl = Instantiate(flashlight_prefab, flashlight.transform.position, flashlight.transform.rotation) as GameObject;
