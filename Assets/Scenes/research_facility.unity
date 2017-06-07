@@ -36085,7 +36085,7 @@ Prefab:
     - target: {fileID: 114000012183586300, guid: c05b727539e0b415e927a48accd07b48,
         type: 2}
       propertyPath: useController
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114000012183586300, guid: c05b727539e0b415e927a48accd07b48,
         type: 2}
