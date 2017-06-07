@@ -72,7 +72,7 @@ public class FollowPlayer : CharacterMovement
     public override void Start()
     {
         body = GetComponent<Rigidbody2D>();
-        sprite = transform.FindChild("nonvaginabody").gameObject;
+        sprite = transform.Find("nonvaginabody").gameObject;
         coll = GetComponent<Collider2D>();
         target = GameObject.FindWithTag("Player").GetComponent<Transform>();
         if (target == null)
